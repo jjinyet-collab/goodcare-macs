@@ -424,6 +424,10 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
 @keyframes ttl-wave{0%,14%,100%{transform:none}5%{transform:translateY(-12%) scale(1.06)}9%{transform:translateY(2%) scale(.98)}}
 @keyframes ttl-hop{0%{transform:none}40%{transform:translateY(-22%) scale(1.12) rotate(-6deg);color:var(--ink)}100%{transform:none}}
 @media (max-width:700px){.hero h1{font-size:clamp(40px,12vw,56px)!important}}
+
+/* subtitle: one line, no box, same width as the title */
+.hero .sub{display:block!important;background:none!important;padding:0!important;border-radius:0!important;color:var(--ink)!important;white-space:nowrap;font-weight:900;letter-spacing:-.01em;line-height:1.2;margin-top:6px}
+@media (max-width:700px){.hero .sub{white-space:normal;font-size:20px!important}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
 /* ===== Figma Motion (goodcaremacs, 8s loop) — values copied from Figma ===== */
@@ -646,7 +650,7 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
       <div class="slot"><img class="hero-bg" src="assets/gcm-hero-shake.jpg" alt="피스타치오가 흩뿌려진 아이보리빛 단백질 쉐이크 웨이브"><div class="hero-logo" aria-hidden="true"><img src="assets/gcm-logo-macs.png" alt=""></div></div>
       <div class="copy wrap">
         <h1 aria-label="GOODCARE MACs"><span style="--i:0" aria-hidden="true">G</span><span style="--i:1" aria-hidden="true">O</span><span style="--i:2" aria-hidden="true">O</span><span style="--i:3" aria-hidden="true">D</span><span style="--i:4" aria-hidden="true">C</span><span style="--i:5" aria-hidden="true">A</span><span style="--i:6" aria-hidden="true">R</span><span style="--i:7" aria-hidden="true">E</span><span style="--i:8" aria-hidden="true">&nbsp;</span><span style="--i:9" aria-hidden="true">M</span><span style="--i:10" aria-hidden="true">A</span><span style="--i:11" aria-hidden="true">C</span><span style="--i:12" aria-hidden="true">s</span></h1>
-        <p class="sub">균형영양식의 새로운 기준<br>내 몸과 미생물을 위한 이중영양 솔루션</p>
+        <p class="sub">균형영양식의 새로운 기준 · 내 몸과 미생물을 위한 이중영양 솔루션</p>
       </div>
     </div>
   </section>
@@ -946,6 +950,21 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
   </div>
 </footer>
 
+<script>
+(function(){
+  // Fit the subtitle so it starts and ends exactly with the GOODCARE MACs title.
+  const h=document.querySelector('.hero h1'),sub=document.querySelector('.hero .sub');if(!h||!sub)return;
+  function fit(){
+    if(innerWidth<=700){sub.style.fontSize='';return;}
+    const sp=h.querySelectorAll('span');const a=sp[0],z=sp[sp.length-1];
+    const tw=(z.offsetLeft+z.offsetWidth)-a.offsetLeft;
+    sub.style.setProperty('font-size','100px','important');
+    const rg=document.createRange();rg.selectNodeContents(sub);const sw=rg.getBoundingClientRect().width;
+    sub.style.setProperty('font-size',(100*tw/sw).toFixed(2)+'px','important');
+  }
+  fit();addEventListener('resize',fit);document.fonts&&document.fonts.ready.then(fit);addEventListener('load',fit);
+})();
+</script>
 <script>
 (function(){
   const h=document.querySelector('.hero');if(!h||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
