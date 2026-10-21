@@ -154,7 +154,7 @@ header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgrou
 .bar{display:grid;grid-template-columns:2fr 4fr 4fr;gap:6px}
 .bar i{display:block;height:44px;border-radius:12px;font:900 16px/44px var(--kr);font-style:normal;padding-left:14px;white-space:nowrap;overflow:hidden;transform-origin:left;animation:fill 8s cubic-bezier(.2,.8,.2,1) infinite}
 .bar i:nth-child(2){animation-delay:.2s}.bar i:nth-child(3){animation-delay:.4s}
-.bar.mac i:nth-child(1){animation-delay:.6s}.bar.mac i:nth-child(2){animation-delay:.8s}.bar.mac i:nth-child(3){animation-delay:1s}
+.bar.macbar i:nth-child(1){animation-delay:.6s}.bar.macbar i:nth-child(2){animation-delay:.8s}.bar.macbar i:nth-child(3){animation-delay:1s}
 @keyframes fill{0%,6%{transform:scaleX(.02)}14%,92%{transform:scaleX(1)}99%,100%{transform:scaleX(.02)}}
 @media (max-width:560px){.ratio .row{grid-template-columns:1fr}}
 
@@ -376,6 +376,202 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
 
 @media (max-width:700px){.hero .stage{min-height:0;display:block}.hero .slot{position:relative;inset:auto;aspect-ratio:1800/1005}.hero .copy{background:#4A1D0C;padding-block:28px}.hero h1{font-size:44px}.hero .sub{font-size:19px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* ===== Figma Motion (goodcaremacs, 8s loop) — values copied from Figma ===== */
+@keyframes fm-drift{0%{animation-timing-function:ease-in-out;translate:0px 0px}50%{animation-timing-function:ease-in-out;translate:-70px 0px}100%{translate:0px 0px}}
+.mac .giant{animation:fm-drift 8s linear infinite}
+@keyframes fm-human{0%{translate:0px 0px}7.75%{animation-timing-function:ease-in-out;translate:0px 0px}8.75%{animation-timing-function:ease-in-out;translate:-8px 0px}9.75%{animation-timing-function:ease-in-out;translate:8px 0px}10.75%{translate:-5px 0px}11.875%{translate:0px 0px}100%{translate:0px 0px}}
+.human{animation:fm-human 8s linear infinite}
+@keyframes fm-x-op{0%{opacity:0.35}7.75%{animation-timing-function:ease-in-out;opacity:0.35}9%{animation-timing-function:ease-in-out;opacity:1}17.5%{opacity:0.35}100%{opacity:0.35}}
+@keyframes fm-x-col{0%{color:#0B1E45}7.75%{animation-timing-function:ease-in-out;color:#0B1E45}9%{animation-timing-function:ease-in-out;color:#FF5A1F}17.5%{color:#0B1E45}100%{color:#0B1E45}}
+.human .x{animation:fm-x-op 8s linear infinite, fm-x-col 8s linear infinite}
+@keyframes fm-mbox{0%{scale:1 1}26.25%{animation-timing-function:ease-out;scale:1 1}28.75%{animation-timing-function:ease-in-out;scale:1.05 1.05}32.5%{scale:1 1}100%{scale:1 1}}
+.microbe{animation:fm-mbox 8s linear infinite}
+@keyframes fm-mic0-t{0%{translate:0px 0px}27.5%{animation-timing-function:ease-out;translate:0px 0px}29.375%{animation-timing-function:ease-in-out;translate:0px -16px}31.875%{animation-timing-function:ease-out;translate:0px 0px}33.75%{animation-timing-function:ease-in-out;translate:0px -8px}35.625%{translate:0px 0px}100%{translate:0px 0px}}
+@keyframes fm-mic0-s{0%{scale:1 1}27.5%{animation-timing-function:ease-out;scale:1 1}30%{animation-timing-function:ease-in-out;scale:1.25 1.25}35%{scale:1 1}100%{scale:1 1}}
+.dots i:nth-child(1){animation:fm-mic0-t 8s linear infinite, fm-mic0-s 8s linear infinite}
+@keyframes fm-mic1-t{0%{translate:0px 0px}28.5%{animation-timing-function:ease-out;translate:0px 0px}30.375%{animation-timing-function:ease-in-out;translate:0px -16px}32.875%{animation-timing-function:ease-out;translate:0px 0px}34.75%{animation-timing-function:ease-in-out;translate:0px -8px}36.625%{translate:0px 0px}100%{translate:0px 0px}}
+@keyframes fm-mic1-s{0%{scale:1 1}28.5%{animation-timing-function:ease-out;scale:1 1}31%{animation-timing-function:ease-in-out;scale:1.25 1.25}36%{scale:1 1}100%{scale:1 1}}
+.dots i:nth-child(2){animation:fm-mic1-t 8s linear infinite, fm-mic1-s 8s linear infinite}
+@keyframes fm-mic2-t{0%{translate:0px 0px}29.5%{animation-timing-function:ease-out;translate:0px 0px}31.375%{animation-timing-function:ease-in-out;translate:0px -16px}33.875%{animation-timing-function:ease-out;translate:0px 0px}35.75%{animation-timing-function:ease-in-out;translate:0px -8px}37.625%{translate:0px 0px}100%{translate:0px 0px}}
+@keyframes fm-mic2-s{0%{scale:1 1}29.5%{animation-timing-function:ease-out;scale:1 1}32%{animation-timing-function:ease-in-out;scale:1.25 1.25}37%{scale:1 1}100%{scale:1 1}}
+.dots i:nth-child(3){animation:fm-mic2-t 8s linear infinite, fm-mic2-s 8s linear infinite}
+@keyframes fm-mic3-t{0%{translate:0px 0px}30.5%{animation-timing-function:ease-out;translate:0px 0px}32.375%{animation-timing-function:ease-in-out;translate:0px -16px}34.875%{animation-timing-function:ease-out;translate:0px 0px}36.75%{animation-timing-function:ease-in-out;translate:0px -8px}38.625%{translate:0px 0px}100%{translate:0px 0px}}
+@keyframes fm-mic3-s{0%{scale:1 1}30.5%{animation-timing-function:ease-out;scale:1 1}33%{animation-timing-function:ease-in-out;scale:1.25 1.25}38%{scale:1 1}100%{scale:1 1}}
+.dots i:nth-child(4){animation:fm-mic3-t 8s linear infinite, fm-mic3-s 8s linear infinite}
+@keyframes fm-mic4-t{0%{translate:0px 0px}31.5%{animation-timing-function:ease-out;translate:0px 0px}33.375%{animation-timing-function:ease-in-out;translate:0px -16px}35.875%{animation-timing-function:ease-out;translate:0px 0px}37.75%{animation-timing-function:ease-in-out;translate:0px -8px}39.625%{translate:0px 0px}100%{translate:0px 0px}}
+@keyframes fm-mic4-s{0%{scale:1 1}31.5%{animation-timing-function:ease-out;scale:1 1}34%{animation-timing-function:ease-in-out;scale:1.25 1.25}39%{scale:1 1}100%{scale:1 1}}
+.dots i:nth-child(5){animation:fm-mic4-t 8s linear infinite, fm-mic4-s 8s linear infinite}
+@keyframes fm-pill-t{0%{animation-timing-function:linear;translate:calc(-130/800*100cqw) 0px}6.25%{animation-timing-function:linear;translate:calc(-130/800*100cqw) 0px}7.5%{animation-timing-function:linear;translate:calc(-147.813/800*100cqw) 0px}8.5%{animation-timing-function:linear;translate:calc(-154/800*100cqw) 0px}8.75%{animation-timing-function:linear;translate:calc(-153.61/800*100cqw) 0px}10%{animation-timing-function:linear;translate:calc(-140.129/800*100cqw) 0px}11.25%{animation-timing-function:linear;translate:calc(-130/800*100cqw) 0px}15%{animation-timing-function:linear;translate:calc(-130/800*100cqw) 0px}16.25%{animation-timing-function:linear;translate:calc(2.325/800*100cqw) 0px}17.5%{animation-timing-function:linear;translate:calc(105.81/800*100cqw) 0px}18.75%{animation-timing-function:linear;translate:calc(181.422/800*100cqw) 0px}20%{animation-timing-function:linear;translate:calc(230.472/800*100cqw) 0px}21.25%{animation-timing-function:linear;translate:calc(254.922/800*100cqw) 0px}22.5%{animation-timing-function:linear;translate:calc(258.069/800*100cqw) 0px}23.75%{animation-timing-function:linear;translate:calc(246.299/800*100cqw) 0px}25%{animation-timing-function:linear;translate:calc(235/800*100cqw) 0px}26.25%{animation-timing-function:linear;translate:calc(235/800*100cqw) 19.534px}27.5%{animation-timing-function:linear;translate:calc(235/800*100cqw) 33.753px}28.75%{animation-timing-function:linear;translate:calc(235/800*100cqw) 40px}93.75%{animation-timing-function:linear;translate:calc(235/800*100cqw) 40px}94.375%{animation-timing-function:linear;translate:calc(-130/800*100cqw) 0px}100%{animation-timing-function:linear;translate:calc(-130/800*100cqw) 0px}}
+@keyframes fm-pill-s{0%{scale:1 1}25%{animation-timing-function:ease-out;scale:1 1}29.375%{scale:0 0}94.375%{animation-timing-function:cubic-bezier(0.45,1.45,0.8,1);scale:0 0}100%{scale:1 1}}
+.duel{container-type:inline-size}
+.mac-pill{position:relative;z-index:3}
+.mac-pill b{animation:fm-pill-t 8s linear infinite, fm-pill-s 8s linear infinite}
+@keyframes fm-glow{0%{animation-timing-function:ease-out;scale:0.85 0.85}15%{animation-timing-function:ease-in-out;scale:1.05 1.05}50%{animation-timing-function:ease-in-out;scale:0.95 0.95}90%{animation-timing-function:ease-in-out;scale:1.05 1.05}100%{scale:0.85 0.85}}
+.packs::before{animation:fm-glow 8s linear infinite}
+@keyframes fm-chip0{0%{scale:1 1}12.5%{animation-timing-function:ease-out;scale:1 1}15.0%{animation-timing-function:ease-in-out;scale:1.1 1.1}19.375%{scale:1 1}100%{scale:1 1}}
+.m2 .chips .chip:nth-child(1){animation:fm-chip0 8s linear infinite}
+@keyframes fm-chip1{0%{scale:1 1}21.25%{animation-timing-function:ease-out;scale:1 1}23.75%{animation-timing-function:ease-in-out;scale:1.1 1.1}28.125%{scale:1 1}100%{scale:1 1}}
+.m2 .chips .chip:nth-child(2){animation:fm-chip1 8s linear infinite}
+.pack{animation:none}
+@keyframes fm-pkc-o{0%{opacity:0}3.75%{animation-timing-function:ease-out;opacity:0}10%{opacity:1}93.125%{animation-timing-function:ease-in-out;opacity:1}98.125%{opacity:0}100%{opacity:0}}
+@keyframes fm-pkc-t{0%{translate:0px 720px}3.75%{animation-timing-function:ease-out;translate:0px 720px}16.25%{animation-timing-function:ease-in-out;translate:0px 0px}32.5%{animation-timing-function:ease-in-out;translate:0px -16px}48.75%{animation-timing-function:ease-in-out;translate:0px 0px}65%{animation-timing-function:ease-in-out;translate:0px -16px}81.25%{translate:0px 0px}90%{animation-timing-function:ease-in;translate:0px 0px}98.125%{translate:0px 720px}100%{translate:0px 720px}}
+.pack.c img{animation:fm-pkc-o 8s linear infinite, fm-pkc-t 8s linear infinite}
+@keyframes fm-tgc-o{0%{opacity:0}15%{animation-timing-function:ease-out;opacity:0}18.75%{opacity:1}90%{animation-timing-function:ease-in-out;opacity:1}93.125%{opacity:0}100%{opacity:0}}
+@keyframes fm-tgc-t{0%{translate:0px 12px}15%{animation-timing-function:ease-out;translate:0px 12px}18.75%{translate:0px 0px}100%{translate:0px 0px}}
+.pack.c > .chip{animation:fm-tgc-o 8s linear infinite, fm-tgc-t 8s linear infinite}
+@keyframes fm-shc-o{0%{opacity:0}11.25%{animation-timing-function:ease-out;opacity:0}16.25%{opacity:1}90%{animation-timing-function:ease-in-out;opacity:1}93.75%{opacity:0}100%{opacity:0}}
+@keyframes fm-shc-s{0%{scale:1 1}16.25%{animation-timing-function:ease-in-out;scale:1 1}32.5%{animation-timing-function:ease-in-out;scale:0.82 0.82}48.75%{animation-timing-function:ease-in-out;scale:1 1}65%{animation-timing-function:ease-in-out;scale:0.82 0.82}81.25%{scale:1 1}100%{scale:1 1}}
+.pack.c .sh{animation:fm-shc-o 8s linear infinite, fm-shc-s 8s linear infinite}
+@keyframes fm-pkb-o{0%{opacity:0}7.25%{animation-timing-function:ease-out;opacity:0}13.5%{opacity:1}93.125%{animation-timing-function:ease-in-out;opacity:1}98.125%{opacity:0}100%{opacity:0}}
+@keyframes fm-pkb-t{0%{translate:0px 720px}7.25%{animation-timing-function:ease-out;translate:0px 720px}19.75%{animation-timing-function:ease-in-out;translate:0px 0px}36%{animation-timing-function:ease-in-out;translate:0px -16px}52.25%{animation-timing-function:ease-in-out;translate:0px 0px}68.5%{animation-timing-function:ease-in-out;translate:0px -16px}84.75%{translate:0px 0px}90%{animation-timing-function:ease-in;translate:0px 0px}98.125%{translate:0px 720px}100%{translate:0px 720px}}
+.pack.b img{animation:fm-pkb-o 8s linear infinite, fm-pkb-t 8s linear infinite}
+@keyframes fm-tgb-o{0%{opacity:0}18.5%{animation-timing-function:ease-out;opacity:0}22.25%{opacity:1}90%{animation-timing-function:ease-in-out;opacity:1}93.125%{opacity:0}100%{opacity:0}}
+@keyframes fm-tgb-t{0%{translate:0px 12px}18.5%{animation-timing-function:ease-out;translate:0px 12px}22.25%{translate:0px 0px}100%{translate:0px 0px}}
+.pack.b > .chip{animation:fm-tgb-o 8s linear infinite, fm-tgb-t 8s linear infinite}
+@keyframes fm-shb-o{0%{opacity:0}14.75%{animation-timing-function:ease-out;opacity:0}19.75%{opacity:1}90%{animation-timing-function:ease-in-out;opacity:1}93.75%{opacity:0}100%{opacity:0}}
+@keyframes fm-shb-s{0%{scale:1 1}19.75%{animation-timing-function:ease-in-out;scale:1 1}36%{animation-timing-function:ease-in-out;scale:0.82 0.82}52.25%{animation-timing-function:ease-in-out;scale:1 1}68.5%{animation-timing-function:ease-in-out;scale:0.82 0.82}84.75%{scale:1 1}100%{scale:1 1}}
+.pack.b .sh{animation:fm-shb-o 8s linear infinite, fm-shb-s 8s linear infinite}
+.pack{position:relative}.pack .sh{position:absolute;left:50%;bottom:-28px;width:240px;height:40px;margin-left:-120px;border-radius:50%;background:rgba(11,30,69,.22);filter:blur(20px);z-index:-1}
+.pack svg,.pack img{filter:none}
+@keyframes fm-float12{0%{animation-timing-function:ease-in-out;translate:0px 0px}50%{animation-timing-function:ease-in-out;translate:0px -12px}100%{translate:0px 0px}}
+.m3 .visual{animation:fm-float12 8s linear infinite}
+@keyframes fm-seg0{0%{width:1px}6.25%{animation-timing-function:ease-out;width:1px}11.875%{width:100%}92.5%{animation-timing-function:ease-in-out;width:100%}98.75%{width:1px}100%{width:1px}}
+@keyframes fm-seg1{0%{width:1px}8.75%{animation-timing-function:ease-out;width:1px}14.375%{width:100%}92.5%{animation-timing-function:ease-in-out;width:100%}98.75%{width:1px}100%{width:1px}}
+@keyframes fm-seg2{0%{width:1px}11.25%{animation-timing-function:ease-out;width:1px}16.875%{width:100%}92.5%{animation-timing-function:ease-in-out;width:100%}98.75%{width:1px}100%{width:1px}}
+@keyframes fm-seg3{0%{width:1px}13.75%{animation-timing-function:ease-out;width:1px}19.375%{width:100%}92.5%{animation-timing-function:ease-in-out;width:100%}98.75%{width:1px}100%{width:1px}}
+@keyframes fm-seg4{0%{width:1px}16.25%{animation-timing-function:ease-out;width:1px}21.875%{width:100%}92.5%{animation-timing-function:ease-in-out;width:100%}98.75%{width:1px}100%{width:1px}}
+@keyframes fm-seg5{0%{width:1px}18.75%{animation-timing-function:ease-out;width:1px}24.375%{width:100%}92.5%{animation-timing-function:ease-in-out;width:100%}98.75%{width:1px}100%{width:1px}}
+.bar i{transform:none;width:100%;justify-self:start}
+.bar:not(.macbar) i:nth-child(1){animation:fm-seg0 8s linear infinite}
+.bar:not(.macbar) i:nth-child(2){animation:fm-seg1 8s linear infinite}
+.bar:not(.macbar) i:nth-child(3){animation:fm-seg2 8s linear infinite}
+.bar.macbar i:nth-child(1){animation:fm-seg3 8s linear infinite}
+.bar.macbar i:nth-child(2){animation:fm-seg4 8s linear infinite}
+.bar.macbar i:nth-child(3){animation:fm-seg5 8s linear infinite}
+@keyframes fm-usp0-bg{0%{background-color:#D4F51A}23.75%{animation-timing-function:ease-in-out;background-color:#D4F51A}27.5%{background-color:#FFF}96.25%{animation-timing-function:ease-in-out;background-color:#FFF}100%{background-color:#D4F51A}}
+@keyframes fm-usp0-s{0%{scale:1.03 1.03}23.75%{animation-timing-function:ease-in-out;scale:1.03 1.03}27.5%{scale:1 1}96.25%{animation-timing-function:ease-in-out;scale:1 1}100%{scale:1.03 1.03}}
+.usp article:nth-child(1){animation:fm-usp0-bg 8s linear infinite, fm-usp0-s 8s linear infinite}
+@keyframes fm-usp1-bg{0%{background-color:#FFF}25%{animation-timing-function:ease-in-out;background-color:#FFF}28.75%{background-color:#D4F51A}48.75%{animation-timing-function:ease-in-out;background-color:#D4F51A}52.5%{background-color:#FFF}100%{background-color:#FFF}}
+@keyframes fm-usp1-s{0%{scale:1 1}25%{animation-timing-function:ease-out;scale:1 1}28.75%{scale:1.03 1.03}48.75%{animation-timing-function:ease-in-out;scale:1.03 1.03}52.5%{scale:1 1}100%{scale:1 1}}
+.usp article:nth-child(2){animation:fm-usp1-bg 8s linear infinite, fm-usp1-s 8s linear infinite}
+@keyframes fm-usp2-bg{0%{background-color:#FFF}50%{animation-timing-function:ease-in-out;background-color:#FFF}53.75%{background-color:#D4F51A}73.75%{animation-timing-function:ease-in-out;background-color:#D4F51A}77.5%{background-color:#FFF}100%{background-color:#FFF}}
+@keyframes fm-usp2-s{0%{scale:1 1}50%{animation-timing-function:ease-out;scale:1 1}53.75%{scale:1.03 1.03}73.75%{animation-timing-function:ease-in-out;scale:1.03 1.03}77.5%{scale:1 1}100%{scale:1 1}}
+.usp article:nth-child(3){animation:fm-usp2-bg 8s linear infinite, fm-usp2-s 8s linear infinite}
+@keyframes fm-usp3-bg{0%{background-color:#FFF}75%{animation-timing-function:ease-in-out;background-color:#FFF}78.75%{background-color:#D4F51A}98.75%{animation-timing-function:ease-in-out;background-color:#D4F51A}100%{background-color:#FFF}}
+@keyframes fm-usp3-s{0%{scale:1 1}75%{animation-timing-function:ease-out;scale:1 1}78.75%{scale:1.03 1.03}98.75%{animation-timing-function:ease-in-out;scale:1.03 1.03}100%{scale:1 1}}
+.usp article:nth-child(4){animation:fm-usp3-bg 8s linear infinite, fm-usp3-s 8s linear infinite}
+.usp article{animation-delay:0s!important}
+@keyframes fm-live{0%{animation-timing-function:ease-in-out;opacity:1}12.5%{animation-timing-function:ease-in-out;opacity:0.25}25%{animation-timing-function:ease-in-out;opacity:1}37.5%{animation-timing-function:ease-in-out;opacity:0.25}50%{animation-timing-function:ease-in-out;opacity:1}62.5%{animation-timing-function:ease-in-out;opacity:0.25}75%{animation-timing-function:ease-in-out;opacity:1}87.5%{animation-timing-function:ease-in-out;opacity:0.25}100%{opacity:1}}
+.premium i{animation:fm-live 8s linear infinite}
+@keyframes fm-x{0%{rotate:0deg}100%{rotate:180deg}}
+.imb h2.title span b{animation:fm-x 8s linear infinite}
+@keyframes fm-carr1{0%{scale:1 1}13.125%{animation-timing-function:ease-out;scale:1 1}16.5%{animation-timing-function:ease-in-out;scale:1.2 1.2}21.25%{scale:1 1}100%{scale:1 1}}
+.compare .arr:nth-of-type(1){animation:fm-carr1 8s linear infinite}
+@keyframes fm-carr2{0%{scale:1 1}23.125%{animation-timing-function:ease-out;scale:1 1}26.5%{animation-timing-function:ease-in-out;scale:1.2 1.2}31.25%{scale:1 1}100%{scale:1 1}}
+.compare .arr:nth-of-type(2){animation:fm-carr2 8s linear infinite}
+@keyframes fm-con{0%{scale:1 1}30.625%{animation-timing-function:ease-out;scale:1 1}34.0%{animation-timing-function:ease-in-out;scale:1.03 1.03}43.75%{scale:1 1}100%{scale:1 1}}
+.compare article.on{animation:fm-con 8s linear infinite}
+@keyframes fm-node0{0%{scale:1 1}8.125%{animation-timing-function:ease-out;scale:1 1}11.5%{animation-timing-function:ease-in-out;scale:1.08 1.08}18.75%{scale:1 1}100%{scale:1 1}}
+.nodes .node:nth-of-type(1){animation:fm-node0 8s linear infinite}
+@keyframes fm-node1{0%{scale:1 1}16.875%{animation-timing-function:ease-out;scale:1 1}20.25%{animation-timing-function:ease-in-out;scale:1.08 1.08}27.5%{scale:1 1}100%{scale:1 1}}
+.nodes .node:nth-of-type(2){animation:fm-node1 8s linear infinite}
+@keyframes fm-node2{0%{scale:1 1}25.625%{animation-timing-function:ease-out;scale:1 1}29.0%{animation-timing-function:ease-in-out;scale:1.08 1.08}36.25%{scale:1 1}100%{scale:1 1}}
+.nodes .node:nth-of-type(3){animation:fm-node2 8s linear infinite}
+@keyframes fm-imp{0%{scale:1 1}38.125%{animation-timing-function:ease-out;scale:1 1}41.5%{animation-timing-function:ease-in-out;scale:1.12 1.12}47.5%{scale:1 1}100%{scale:1 1}}
+.imp{animation:fm-imp 8s linear infinite}
+@keyframes fm-farr0{0%{scale:1 1}14.75%{animation-timing-function:ease-out;scale:1 1}18.125%{animation-timing-function:ease-in-out;scale:1.25 1.25}22.875%{scale:1 1}100%{scale:1 1}}
+.flow article:nth-child(1)::after{animation:fm-farr0 8s linear infinite}
+@keyframes fm-farr1{0%{scale:1 1}29.125%{animation-timing-function:ease-out;scale:1 1}32.5%{animation-timing-function:ease-in-out;scale:1.25 1.25}37.25%{scale:1 1}100%{scale:1 1}}
+.flow article:nth-child(2)::after{animation:fm-farr1 8s linear infinite}
+@keyframes fm-farr2{0%{scale:1 1}43.375%{animation-timing-function:ease-out;scale:1 1}46.75%{animation-timing-function:ease-in-out;scale:1.25 1.25}51.5%{scale:1 1}100%{scale:1 1}}
+.flow article:nth-child(3)::after{animation:fm-farr2 8s linear infinite}
+@keyframes fm-farr3{0%{scale:1 1}57.75%{animation-timing-function:ease-out;scale:1 1}61.125%{animation-timing-function:ease-in-out;scale:1.25 1.25}65.875%{scale:1 1}100%{scale:1 1}}
+.flow article:nth-child(4)::after{animation:fm-farr3 8s linear infinite}
+@keyframes fm-step5{0%{scale:1 1}61.5%{animation-timing-function:ease-out;scale:1 1}64.875%{animation-timing-function:ease-in-out;scale:1.04 1.04}74.625%{scale:1 1}100%{scale:1 1}}
+.flow article.last{animation:fm-step5 8s linear infinite}
+@keyframes fm-mini1{0%{animation-timing-function:ease-in-out;translate:0px 0px}25%{animation-timing-function:ease-in-out;translate:0px -10px}50%{animation-timing-function:ease-in-out;translate:0px 0px}75%{animation-timing-function:ease-in-out;translate:0px -10px}100%{translate:0px 0px}}
+@keyframes fm-mini2{0%{animation-timing-function:ease-in-out;translate:0px -8px}25%{animation-timing-function:ease-in-out;translate:0px 0px}50%{animation-timing-function:ease-in-out;translate:0px -8px}75%{animation-timing-function:ease-in-out;translate:0px 0px}100%{translate:0px -8px}}
+.flow .minis img:nth-child(1){animation:fm-mini1 8s linear infinite}
+.flow .minis img:nth-child(2){animation:fm-mini2 8s linear infinite}
+@keyframes fm-sig-o{0%{animation-timing-function:ease-out;opacity:0}3.75%{opacity:1}72.5%{animation-timing-function:ease-in-out;opacity:1}80%{opacity:0}100%{opacity:0}}
+@keyframes fm-sig-x{0%{left:0px}3.75%{animation-timing-function:linear;left:0px}72.5%{left:calc(100% - 18px)}100%{left:calc(100% - 18px)}}
+.track i{animation:fm-sig-o 8s linear infinite, fm-sig-x 8s linear infinite}
+@keyframes fm-rip0-o{0%{opacity:0}6%{animation-timing-function:ease-out;opacity:0}6.625%{animation-timing-function:ease-out;opacity:1}17.25%{opacity:0}100%{opacity:0}}
+@keyframes fm-rip0-s{0%{scale:1 1}6%{animation-timing-function:ease-out;scale:1 1}17.25%{animation-timing-function:ease-in-out;scale:1.7 1.7}100%{scale:1 1}}
+.flow article:nth-child(1) .n::after{animation:fm-rip0-o 8s linear infinite, fm-rip0-s 8s linear infinite}
+@keyframes fm-rip1-o{0%{opacity:0}20.375%{animation-timing-function:ease-out;opacity:0}21.0%{animation-timing-function:ease-out;opacity:1}31.625%{opacity:0}100%{opacity:0}}
+@keyframes fm-rip1-s{0%{scale:1 1}20.375%{animation-timing-function:ease-out;scale:1 1}31.625%{animation-timing-function:ease-in-out;scale:1.7 1.7}100%{scale:1 1}}
+.flow article:nth-child(2) .n::after{animation:fm-rip1-o 8s linear infinite, fm-rip1-s 8s linear infinite}
+@keyframes fm-rip2-o{0%{opacity:0}34.625%{animation-timing-function:ease-out;opacity:0}35.25%{animation-timing-function:ease-out;opacity:1}45.875%{opacity:0}100%{opacity:0}}
+@keyframes fm-rip2-s{0%{scale:1 1}34.625%{animation-timing-function:ease-out;scale:1 1}45.875%{animation-timing-function:ease-in-out;scale:1.7 1.7}100%{scale:1 1}}
+.flow article:nth-child(3) .n::after{animation:fm-rip2-o 8s linear infinite, fm-rip2-s 8s linear infinite}
+@keyframes fm-rip3-o{0%{opacity:0}49%{animation-timing-function:ease-out;opacity:0}49.625%{animation-timing-function:ease-out;opacity:1}60.25%{opacity:0}100%{opacity:0}}
+@keyframes fm-rip3-s{0%{scale:1 1}49%{animation-timing-function:ease-out;scale:1 1}60.25%{animation-timing-function:ease-in-out;scale:1.7 1.7}100%{scale:1 1}}
+.flow article:nth-child(4) .n::after{animation:fm-rip3-o 8s linear infinite, fm-rip3-s 8s linear infinite}
+@keyframes fm-rip4-o{0%{opacity:0}63.375%{animation-timing-function:ease-out;opacity:0}64.0%{animation-timing-function:ease-out;opacity:1}74.625%{opacity:0}100%{opacity:0}}
+@keyframes fm-rip4-s{0%{scale:1 1}63.375%{animation-timing-function:ease-out;scale:1 1}74.625%{animation-timing-function:ease-in-out;scale:1.7 1.7}100%{scale:1 1}}
+.flow article:nth-child(5) .n::after{animation:fm-rip4-o 8s linear infinite, fm-rip4-s 8s linear infinite}
+.flow article .n::after{animation-delay:0s!important}
+@keyframes fm-mq{0%{translate:0 0}100%{translate:-50% 0}}
+.marquee .t{animation:fm-mq 8s linear infinite}
+@keyframes fm-ps-bg{0%{background-color:#FF5A1F}40%{animation-timing-function:ease-in-out;background-color:#FF5A1F}50%{background-color:#FF4F9A}90%{animation-timing-function:ease-in-out;background-color:#FF4F9A}100%{background-color:#FF5A1F}}
+.pstage{transition:none}.pstage.run{animation:fm-ps-bg 8s linear infinite var(--off,0s)}
+@keyframes fm-gt{0%{translate:0 0}100%{translate:-260px 0}}
+@keyframes fm-gb{0%{translate:0 0}100%{translate:260px 0}}
+.pstage.run .gt{animation:fm-gt 8s linear infinite var(--off,0s)}
+.pstage.run .gb{animation:fm-gb 8s linear infinite var(--off,0s)}
+@keyframes fm-dot-bg{0%{background-color:#D4F51A}40%{animation-timing-function:ease-in-out;background-color:#D4F51A}50%{background-color:#FFF6EC}90%{animation-timing-function:ease-in-out;background-color:#FFF6EC}100%{background-color:#D4F51A}}
+@keyframes fm-dot0{0%{animation-timing-function:ease-in-out;translate:0px 0px}16.25%{animation-timing-function:ease-in-out;translate:0px -16px}32.5%{animation-timing-function:ease-in-out;translate:0px 0px}48.75%{animation-timing-function:ease-in-out;translate:0px 16px}65%{animation-timing-function:ease-in-out;translate:0px 0px}81.25%{animation-timing-function:ease-in-out;translate:0px -9.6px}100%{translate:0px 0px}}
+.pstage.run .dot-fx:nth-of-type(1){animation:fm-dot-bg 8s linear infinite var(--off,0s), fm-dot0 8s linear infinite var(--off,0s)}
+@keyframes fm-dot1{0%{animation-timing-function:ease-in-out;translate:0px 0px}20.625%{animation-timing-function:ease-in-out;translate:0px 20px}36.875%{animation-timing-function:ease-in-out;translate:0px 0px}53.125%{animation-timing-function:ease-in-out;translate:0px -20px}69.375%{animation-timing-function:ease-in-out;translate:0px 0px}85.625%{animation-timing-function:ease-in-out;translate:0px 12px}100%{translate:0px 0px}}
+.pstage.run .dot-fx:nth-of-type(2){animation:fm-dot-bg 8s linear infinite var(--off,0s), fm-dot1 8s linear infinite var(--off,0s)}
+@keyframes fm-dot2{0%{animation-timing-function:ease-in-out;translate:0px 0px}25%{animation-timing-function:ease-in-out;translate:0px -24px}41.25%{animation-timing-function:ease-in-out;translate:0px 0px}57.5%{animation-timing-function:ease-in-out;translate:0px 24px}73.75%{animation-timing-function:ease-in-out;translate:0px 0px}90%{animation-timing-function:ease-in-out;translate:0px -14.4px}100%{translate:0px 0px}}
+.pstage.run .dot-fx:nth-of-type(3){animation:fm-dot-bg 8s linear infinite var(--off,0s), fm-dot2 8s linear infinite var(--off,0s)}
+@keyframes fm-dot3{0%{animation-timing-function:ease-in-out;translate:0px 0px}29.375%{animation-timing-function:ease-in-out;translate:0px 28px}45.625%{animation-timing-function:ease-in-out;translate:0px 0px}61.875%{animation-timing-function:ease-in-out;translate:0px -28px}78.125%{animation-timing-function:ease-in-out;translate:0px 0px}94.375%{animation-timing-function:ease-in-out;translate:0px 16.8px}100%{translate:0px 0px}}
+.pstage.run .dot-fx:nth-of-type(4){animation:fm-dot-bg 8s linear infinite var(--off,0s), fm-dot3 8s linear infinite var(--off,0s)}
+@keyframes fm-dot4{0%{animation-timing-function:ease-in-out;translate:0px 0px}33.75%{animation-timing-function:ease-in-out;translate:0px -32px}50%{animation-timing-function:ease-in-out;translate:0px 0px}66.25%{animation-timing-function:ease-in-out;translate:0px 32px}82.5%{animation-timing-function:ease-in-out;translate:0px 0px}98.75%{animation-timing-function:ease-in-out;translate:0px -19.2px}100%{translate:0px 0px}}
+.pstage.run .dot-fx:nth-of-type(5){animation:fm-dot-bg 8s linear infinite var(--off,0s), fm-dot4 8s linear infinite var(--off,0s)}
+@keyframes fm-dot5{0%{animation-timing-function:ease-in-out;translate:0px 0px}22.5%{animation-timing-function:ease-in-out;translate:0px 36px}45%{animation-timing-function:ease-in-out;translate:0px 0px}67.5%{animation-timing-function:ease-in-out;translate:0px -36px}87.5%{animation-timing-function:ease-in-out;translate:0px 0px}100%{translate:0px 0px}}
+.pstage.run .dot-fx:nth-of-type(6){animation:fm-dot-bg 8s linear infinite var(--off,0s), fm-dot5 8s linear infinite var(--off,0s)}
+.dot-fx{transition:none}
+@keyframes fm-psh{0%{animation-timing-function:ease-in-out;scale:1 1}26.25%{animation-timing-function:ease-in-out;scale:0.82 0.82}40%{animation-timing-function:ease-in-out;scale:1 1}70%{animation-timing-function:ease-in-out;scale:0.82 0.82}90%{scale:1 1}100%{scale:1 1}}
+.pstage.run .psh{animation:fm-psh 8s linear infinite var(--off,0s)}
+.hero-pack .psh{position:absolute;left:50%;bottom:6%;width:360px;height:56px;margin-left:-180px;border-radius:50%;background:rgba(42,18,8,.35);filter:blur(28px)}
+.hero-pack .p,.pstage[data-f] .p.c,.pstage[data-f] .p.b{transition:none;opacity:1;transform:none}.hero-pack .float{animation:none}
+.hero-pack .p svg,.hero-pack .p img{filter:none}
+@keyframes fm-pc-o{0%{opacity:1}40%{animation-timing-function:ease-in-out;opacity:1}46.25%{opacity:0}92.5%{animation-timing-function:ease-out;opacity:0}98.75%{opacity:1}100%{opacity:1}}
+@keyframes fm-pc-r{0%{animation-timing-function:ease-in-out;rotate:6deg}20%{animation-timing-function:ease-in-out;rotate:4deg}40%{rotate:6deg}100%{rotate:6deg}}
+@keyframes fm-pc-t{0%{animation-timing-function:ease-in-out;translate:0px 0px}20%{animation-timing-function:ease-in-out;translate:0px -20px}40%{animation-timing-function:ease-out;translate:0px 0px}47.5%{animation-timing-function:ease-in-out;translate:0px -60px}92.5%{animation-timing-function:ease-out;translate:0px 80px}100%{translate:0px 0px}}
+.pstage.run .p.c{animation:fm-pc-o 8s linear infinite var(--off,0s), fm-pc-r 8s linear infinite var(--off,0s), fm-pc-t 8s linear infinite var(--off,0s)}
+@keyframes fm-pb-o{0%{opacity:0}42.5%{animation-timing-function:ease-out;opacity:0}48.75%{opacity:1}90%{animation-timing-function:ease-in-out;opacity:1}96.25%{opacity:0}100%{opacity:0}}
+@keyframes fm-pb-t{0%{translate:0px 80px}42.5%{animation-timing-function:ease-out;translate:0px 80px}52.5%{animation-timing-function:ease-in-out;translate:0px 0px}70%{animation-timing-function:ease-in-out;translate:0px -20px}90%{animation-timing-function:ease-out;translate:0px 0px}97.5%{translate:0px -60px}100%{translate:0px -60px}}
+.hero-pack .p.b{rotate:-5deg}
+.pstage.run .p.b{animation:fm-pb-o 8s linear infinite var(--off,0s), fm-pb-t 8s linear infinite var(--off,0s)}
+@keyframes fm-plus{0%{color:#FF5A1F}40%{animation-timing-function:ease-in-out;color:#FF5A1F}50%{color:#FF4F9A}90%{animation-timing-function:ease-in-out;color:#FF4F9A}100%{color:#FF5A1F}}
+.pstage.run .eq b{animation:fm-plus 8s linear infinite var(--off,0s)}
+@keyframes fm-cta{0%{background-color:#FF5A1F}40%{animation-timing-function:ease-in-out;background-color:#FF5A1F}50%{background-color:#FF4F9A}90%{animation-timing-function:ease-in-out;background-color:#FF4F9A}100%{background-color:#FF5A1F}}
+.pstage.run .info .btn{animation:fm-cta 8s linear infinite var(--off,0s)}
+@keyframes fm-pillc-bg{0%{background-color:#2A1208}40%{animation-timing-function:ease-in-out;background-color:#2A1208}47.5%{background-color:rgba(42,18,8,0)}90%{animation-timing-function:ease-in-out;background-color:rgba(42,18,8,0)}97.5%{background-color:#2A1208}100%{background-color:#2A1208}}
+@keyframes fm-pillc-tx{0%{color:#FFF6EC}40%{animation-timing-function:ease-in-out;color:#FFF6EC}47.5%{color:#2A1208}90%{animation-timing-function:ease-in-out;color:#2A1208}97.5%{color:#FFF6EC}100%{color:#FFF6EC}}
+@keyframes fm-pillb-bg{0%{background-color:rgba(42,18,8,0)}40%{animation-timing-function:ease-in-out;background-color:rgba(42,18,8,0)}47.5%{background-color:#2A1208}90%{animation-timing-function:ease-in-out;background-color:#2A1208}97.5%{background-color:rgba(42,18,8,0)}100%{background-color:rgba(42,18,8,0)}}
+@keyframes fm-pillb-tx{0%{color:#2A1208}40%{animation-timing-function:ease-in-out;color:#2A1208}47.5%{color:#FFF6EC}90%{animation-timing-function:ease-in-out;color:#FFF6EC}97.5%{color:#2A1208}100%{color:#2A1208}}
+.flv button{transition:none;border-color:#2A1208}
+.pstage.run .flv button[data-f="c"]{animation:fm-pillc-bg 8s linear infinite var(--off,0s), fm-pillc-tx 8s linear infinite var(--off,0s)}
+.pstage.run .flv button[data-f="b"]{animation:fm-pillb-bg 8s linear infinite var(--off,0s), fm-pillb-tx 8s linear infinite var(--off,0s)}
+@keyframes fm-b1{0%{animation-timing-function:ease-in-out;rotate:-12deg}50%{animation-timing-function:ease-in-out;rotate:-2deg}100%{rotate:-12deg}}
+.badge1{transform:none}
+.pstage.run .badge1{animation:fm-b1 8s linear infinite var(--off,0s)}
+@keyframes fm-b2{0%{scale:1 1}30%{animation-timing-function:ease-in-out;scale:1 1}33.75%{animation-timing-function:ease-in-out;scale:1.14 1.14}37.5%{scale:1 1}77.5%{animation-timing-function:ease-in-out;scale:1 1}81.25%{animation-timing-function:ease-in-out;scale:1.14 1.14}85%{scale:1 1}100%{scale:1 1}}
+.badge2{transform:none;rotate:-8deg}
+.pstage.run .badge2{animation:fm-b2 8s linear infinite var(--off,0s)}
+@keyframes fm-cnt1{0%{opacity:1}42.5%{animation-timing-function:ease-in-out;opacity:1}46.25%{opacity:0}92.5%{animation-timing-function:ease-in-out;opacity:0}96.25%{opacity:1}100%{opacity:1}}
+@keyframes fm-cnt2{0%{opacity:0}45%{animation-timing-function:ease-in-out;opacity:0}48.75%{opacity:1}91.25%{animation-timing-function:ease-in-out;opacity:1}95%{opacity:0}100%{opacity:0}}
+.snav .cnt{display:grid}.snav .cnt span{grid-area:1/1}
+.pstage.run .snav .cnt span:nth-child(1){animation:fm-cnt1 8s linear infinite var(--off,0s)}
+.pstage.run .snav .cnt span:nth-child(2){animation:fm-cnt2 8s linear infinite var(--off,0s)}
+@media (max-width:640px){.mac-pill b{animation:none!important;translate:none;scale:1}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
 </style>
 </head>
 <body>
@@ -468,10 +664,10 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
       </div>
       <div class="packs">
         <div class="pack c"><span class="chip" style="background:var(--orange);color:#fff">초코 프로틴</span>
-          <img src="assets/gcm-pack-choco.png" alt="굿케어맥스 초코 프로틴">
+          <img src="assets/gcm-pack-choco.png" alt="굿케어맥스 초코 프로틴"><span class="sh" aria-hidden="true"></span>
         </div>
         <div class="pack b"><span class="chip" style="background:var(--ink);color:#fff">균형영양식</span>
-          <img src="assets/gcm-pack-balanced.png" alt="굿케어맥스 균형영양식">
+          <img src="assets/gcm-pack-balanced.png" alt="굿케어맥스 균형영양식"><span class="sh" aria-hidden="true"></span>
         </div>
       </div>
     </div>
@@ -488,7 +684,7 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
         <p>단쇄 2 · 중쇄 4 · 장쇄 4,<br>3가지 길이를 섞어 든든하게 설계했어요.</p>
         <div class="ratio" aria-label="건강한 밥 흰쌀 2 잡곡쌀 4 콩 4, 굿케어맥스 MAC 단쇄 2 중쇄 4 장쇄 4">
           <div class="row"><span>건강한 밥</span><div class="bar"><i style="background:var(--cream)">흰쌀 2</i><i style="background:#D9C7A3">잡곡쌀 4</i><i style="background:#8B6B4C;color:#fff">콩 4</i></div></div>
-          <div class="row"><span>굿케어맥스 MAC</span><div class="bar mac"><i style="background:var(--lime)">단쇄 2</i><i style="background:#fff">중쇄 4</i><i style="background:var(--ink);color:#fff">장쇄 4</i></div></div>
+          <div class="row"><span>굿케어맥스 MAC</span><div class="bar macbar"><i style="background:var(--lime)">단쇄 2</i><i style="background:#fff">중쇄 4</i><i style="background:var(--ink);color:#fff">장쇄 4</i></div></div>
         </div>
       </div>
       <div class="visual"><div class="slot"><img src="assets/gcm-rice-244.jpg" alt="흰쌀, 잡곡쌀, 콩과 잡곡밥"></div></div>
@@ -621,7 +817,7 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
     <span>GOODCARE MACs</span><span>✦</span><span>이중영양 · DUAL NUTRITION</span><span>✦</span><span>GOODCARE MACs</span><span>✦</span><span>이중영양 · DUAL NUTRITION</span><span>✦</span>
     <span>GOODCARE MACs</span><span>✦</span><span>이중영양 · DUAL NUTRITION</span><span>✦</span><span>GOODCARE MACs</span><span>✦</span><span>이중영양 · DUAL NUTRITION</span><span>✦</span>
   </div></div>
-  <section class="pstage band" id="buy" data-f="c" aria-label="굿케어맥스 라인업">
+  <section class="pstage band run" id="buy" aria-label="굿케어맥스 라인업">
     <span class="gt" aria-hidden="true">GOODCARE MACs</span>
     <span class="gb" aria-hidden="true">DUAL NUTRITION</span>
     <div class="wrap pgrid">
@@ -637,16 +833,19 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
       </div>
       <div class="hero-pack">
         <span class="dot-fx" style="width:46px;height:46px;left:12%;top:14%"></span>
-        <span class="dot-fx" style="width:28px;height:28px;right:16%;top:22%;animation-delay:.6s"></span>
-        <span class="dot-fx" style="width:64px;height:64px;right:8%;bottom:20%;animation-delay:1.2s"></span>
-        <span class="dot-fx" style="width:22px;height:22px;left:18%;bottom:12%;animation-delay:1.8s"></span>
+        <span class="dot-fx" style="width:28px;height:28px;right:16%;top:22%"></span>
+        <span class="dot-fx" style="width:64px;height:64px;right:8%;bottom:20%"></span>
+        <span class="dot-fx" style="width:22px;height:22px;left:18%;bottom:12%"></span>
+        <span class="dot-fx" style="width:16px;height:16px;left:46%;top:8%"></span>
+        <span class="dot-fx" style="width:20px;height:20px;right:30%;bottom:6%"></span>
+        <span class="psh" aria-hidden="true"></span>
         <div class="p c"><div class="float"><img src="assets/gcm-pack-choco.png" alt="굿케어맥스 초코 프로틴"></div></div>
         <div class="p b"><div class="float"><img src="assets/gcm-pack-balanced.png" alt="굿케어맥스 균형영양식"></div></div>
       </div>
       <div class="side">
         <div class="badge1"><b>MACs</b><span>이중영양 설계</span></div>
         <div class="badge2">국내 유일</div>
-        <div class="snav"><span id="cnt">01 / 02</span><button type="button" id="prev" aria-label="이전 제품">←</button><button type="button" id="next" aria-label="다음 제품">→</button></div>
+        <div class="snav"><span class="cnt" aria-hidden="true"><span>01 / 02</span><span>02 / 02</span></span><button type="button" id="prev" aria-label="이전 제품">←</button><button type="button" id="next" aria-label="다음 제품">→</button></div>
       </div>
     </div>
   </section>
@@ -700,17 +899,19 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
 
 <script>
 (function(){
+  // The product stage plays Figma's 8s timeline: 0–3.2s 초코 프로틴, 4–7.2s 균형영양식.
   const st=document.querySelector('.pstage');
-  const cnt=document.getElementById('cnt');
-  const btns=[...document.querySelectorAll('.flv button')];
-  let f='c',timer;
-  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function set(v){f=v;st.dataset.f=v;cnt.textContent=v==='c'?'01 / 02':'02 / 02';btns.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.f===v)));}
-  function loop(){clearInterval(timer);if(!reduce)timer=setInterval(()=>set(f==='c'?'b':'c'),4000);}
-  btns.forEach(b=>b.addEventListener('click',()=>{set(b.dataset.f);loop();}));
-  document.getElementById('prev').addEventListener('click',()=>{set(f==='c'?'b':'c');loop();});
-  document.getElementById('next').addEventListener('click',()=>{set(f==='c'?'b':'c');loop();});
-  loop();
+  const T={c:0,b:4.2};
+  let t0=performance.now();
+  function now(){return ((performance.now()-t0)/1000)%8;}
+  function jump(sec){st.classList.remove('run');st.style.setProperty('--off',(-sec)+'s');void st.offsetWidth;st.classList.add('run');t0=performance.now()-sec*1000;}
+  function current(){const t=now();return (t>=3.6&&t<7.6)?'b':'c';}
+  document.querySelectorAll('.flv button').forEach(b=>b.addEventListener('click',()=>jump(T[b.dataset.f])));
+  const flip=()=>jump(current()==='c'?T.b:T.c);
+  document.getElementById('prev').addEventListener('click',flip);
+  document.getElementById('next').addEventListener('click',flip);
+  const mo=new MutationObserver(()=>{});
+  setInterval(()=>{const c=current();document.querySelectorAll('.flv button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.f===c)));},250);
 })();
 </script>
 
