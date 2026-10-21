@@ -385,6 +385,24 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
 .hero h1{font-size:clamp(44px,6.6vw,118px)}
 .hero .sub{font-size:clamp(20px,2.3vw,36px)}
 @media (max-width:700px){.hero .stage{aspect-ratio:auto;max-height:none}.hero .copy{position:relative}.hero .slot{aspect-ratio:2560/1500}}
+
+/* microbes: real bacteria silhouettes */
+.dots{gap:14px;align-items:center;flex-wrap:nowrap}
+.dots i,.dots i:nth-child(n){width:auto;height:auto;background:none;border-radius:0;display:block;line-height:0}
+.dots i svg{display:block;overflow:visible;width:auto}
+.dots i:nth-child(1) svg{height:34px}.dots i:nth-child(2) svg{height:28px}.dots i:nth-child(3) svg{height:42px}.dots i:nth-child(4) svg{height:36px}.dots i:nth-child(5) svg{height:30px}
+.dots{gap:clamp(8px,1.2vw,16px)}
+.dots i:nth-child(2){margin-top:14px}.dots i:nth-child(4){margin-top:-10px}
+/* MAC as a probiotic capsule */
+.mac-pill b{position:relative;display:inline-flex;align-items:center;padding:0;width:clamp(104px,8.6vw,128px);height:clamp(40px,3.3vw,48px);border-radius:999px;overflow:hidden;
+  background:linear-gradient(90deg,var(--orange) 0 50%,#FFF6EC 50% 100%);
+  box-shadow:0 10px 24px rgba(255,90,31,.42),inset 0 -5px 8px rgba(11,30,69,.16),inset 0 2px 0 rgba(255,255,255,.35)}
+.mac-pill b::before{content:"";position:absolute;left:50%;top:8%;bottom:8%;width:2px;margin-left:-1px;background:rgba(11,30,69,.14)}
+.mac-pill b::after{content:"";position:absolute;left:10%;right:10%;top:16%;height:24%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0))}
+.mac-pill b span{position:relative;z-index:1;width:50%;text-align:center;color:#fff;font:700 clamp(15px,1.25vw,19px)/1 var(--display);letter-spacing:.02em}
+.mac-pill b i{position:relative;z-index:1;width:50%;display:flex;justify-content:center;gap:4px}
+.mac-pill b i em{display:block;width:6px;height:6px;border-radius:50%;background:rgba(11,30,69,.22)}
+.mac-pill b i em:nth-child(2){width:4px;height:4px;margin-top:6px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
 /* ===== Figma Motion (goodcaremacs, 8s loop) — values copied from Figma ===== */
@@ -654,8 +672,8 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
         </div>
         <div class="duel" aria-label="사람은 MAC을 소화하지 못하고, 장 속 미생물이 먹는다는 설명 그림">
           <div class="box human"><h4>사람</h4><p>소화하지 못해요</p><span class="x" aria-hidden="true">✕</span></div>
-          <div class="mac-pill" aria-hidden="true"><b>MAC</b></div>
-          <div class="box microbe"><h4>장 속 미생물</h4><p>맛있게 먹어요</p><div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="mac-pill" aria-hidden="true"><b><span>MAC</span><i><em></em><em></em><em></em></i></b></div>
+          <div class="box microbe"><h4>장 속 미생물</h4><p>맛있게 먹어요</p><div class="dots" aria-hidden="true"><i><svg viewBox="0 0 70 28" width="58" height="23"><path d="M52 14c5-7 9 7 14 0" fill="none" stroke="#D4F51A" stroke-width="2.4" stroke-linecap="round"/><rect x="2" y="4" width="50" height="20" rx="10" fill="#D4F51A"/><circle cx="16" cy="12" r="2.2" fill="rgba(11,30,69,.28)"/><circle cx="28" cy="16" r="1.8" fill="rgba(11,30,69,.28)"/><circle cx="39" cy="11" r="2" fill="rgba(11,30,69,.28)"/></svg></i><i><svg viewBox="0 0 40 24" width="34" height="20"><circle cx="12" cy="12" r="10" fill="#D4F51A"/><circle cx="28" cy="12" r="10" fill="#D4F51A"/><path d="M20 4v16" stroke="rgba(11,30,69,.28)" stroke-width="1.6"/></svg></i><i><svg viewBox="0 0 44 34" width="40" height="31"><path d="M8 26C8 12 20 6 34 10" fill="none" stroke="#D4F51A" stroke-width="12" stroke-linecap="round"/><path d="M34 10c4-2 6-6 8-8" fill="none" stroke="#D4F51A" stroke-width="2.2" stroke-linecap="round"/><circle cx="15" cy="17" r="1.8" fill="rgba(11,30,69,.28)"/></svg></i><i><svg viewBox="0 0 46 30" width="40" height="26"><circle cx="8" cy="22" r="7" fill="#D4F51A"/><circle cx="22" cy="15" r="7" fill="#D4F51A"/><circle cx="36" cy="8" r="7" fill="#D4F51A"/><circle cx="22" cy="15" r="1.8" fill="rgba(11,30,69,.28)"/></svg></i><i><svg viewBox="0 0 60 26" width="56" height="24"><path d="M6 13c6-10 10 10 16 0s10 10 16 0 10 10 16 0" fill="none" stroke="#D4F51A" stroke-width="7" stroke-linecap="round"/></svg></i></div></div>
         </div>
       </div>
     </div>
