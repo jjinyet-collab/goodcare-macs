@@ -26,7 +26,7 @@
 body{margin:0}
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-behavior:smooth}
-body{background:var(--cream);color:var(--ink);font-family:var(--kr);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{word-break:keep-all;background:var(--cream);color:var(--ink);font-family:var(--kr);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
 h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.02em}
 p{margin:0}
@@ -70,7 +70,7 @@ header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgrou
 .hero .slot{position:absolute;inset:0;z-index:0;--slot-bg:#E8501A;background:repeating-linear-gradient(135deg,rgba(255,255,255,.08) 0 14px,rgba(255,255,255,.02) 14px 28px),#E8501A}
 .hero .copy{position:relative;z-index:2;padding-block:clamp(40px,6vw,96px);text-align:center;display:grid;gap:14px;justify-items:center}
 .hero h1{font:700 clamp(48px,7.4vw,124px)/.9 var(--display);letter-spacing:-.04em;color:var(--lime);text-shadow:0 6px 30px rgba(60,15,0,.35)}
-.hero .sub{font:900 clamp(22px,2.6vw,40px)/1.3 var(--kr);color:#FFE600;text-shadow:0 2px 14px rgba(120,30,0,.3)}
+.hero .sub{font:900 clamp(22px,2.6vw,40px)/1.3 var(--kr);color:var(--lime);text-shadow:0 2px 14px rgba(120,30,0,.3)}
 .hero-line{background:var(--paper);color:var(--orange);font:700 14px/1.4 var(--display);text-align:center;padding-block:12px;letter-spacing:.02em}
 
 /* ---------- lineup ---------- */
@@ -375,6 +375,16 @@ footer ul a:hover{text-decoration:underline}
 footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
 
 @media (max-width:700px){.hero .stage{min-height:0;display:block}.hero .slot{position:relative;inset:auto;aspect-ratio:1800/1005}.hero .copy{background:#4A1D0C;padding-block:28px}.hero h1{font-size:44px}.hero .sub{font-size:19px}}
+
+/* hero: extended artwork keeps the whole logo; copy sits on the chocolate */
+.hero.band{padding-left:0;padding-right:0}
+.hero .copy{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.hero .stage{min-height:0;aspect-ratio:2560/1500;max-height:960px;width:100%}
+.hero .slot img{object-position:50% 0%}
+.hero .copy{position:absolute;left:0;right:0;bottom:0;padding-block:0 clamp(28px,4.5vw,72px)}
+.hero h1{font-size:clamp(44px,6.6vw,118px)}
+.hero .sub{font-size:clamp(20px,2.3vw,36px)}
+@media (max-width:700px){.hero .stage{aspect-ratio:auto;max-height:none}.hero .copy{position:relative}.hero .slot{aspect-ratio:2560/1500}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
 /* ===== Figma Motion (goodcaremacs, 8s loop) — values copied from Figma ===== */
@@ -594,7 +604,7 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
   <!-- HERO -->
   <section class="hero band" aria-label="굿케어맥스 소개">
     <div class="stage">
-      <div class="slot"><img src="assets/gcm-hero.jpg" alt="굿케어맥스 MACs 로고와 초콜릿 웨이브"></div>
+      <div class="slot"><img src="assets/gcm-hero-wide.jpg" alt="굿케어맥스 MACs 로고와 초콜릿 웨이브"></div>
       <div class="copy wrap">
         <h1>GOODCARE MACs</h1>
         <p class="sub">균형영양식의 새로운 기준<br>내 몸과 미생물을 위한 이중영양 솔루션</p>
@@ -856,11 +866,11 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
       <h2>GOODCARE MACs Family in The World</h2>
       <p><a class="handle" href="https://www.instagram.com/vilac.official/" target="_blank" rel="noopener">@vilac.official</a></p>
       <div class="strip">
-        <figure><div class="slot"><img src="assets/gcm-lifestyle-green.jpg" alt="굿케어맥스 라이프스타일 컷"></div><figcaption>아침 루틴<small>하루를 여는 한 팩</small></figcaption></figure>
-        <figure><div class="slot"><img src="assets/gcm-hand-choco.jpg" alt="굿케어맥스 초코 프로틴"></div><figcaption>운동 후<small>초코 프로틴으로 든든하게</small></figcaption></figure>
-        <figure><div class="slot cut"><img src="assets/gcm-pack-balanced.png" alt="굿케어맥스 균형영양식"></div><figcaption>바쁜 점심<small>균형영양식 한 팩</small></figcaption></figure>
-        <figure><div class="slot"><img src="assets/gcm-hand-balanced.jpg" alt="굿케어맥스 균형영양식"></div><figcaption>오후의 쉼표<small>장 속 미생물까지 챙기기</small></figcaption></figure>
-        <figure><div class="slot cut"><img src="assets/gcm-pack-choco.png" alt="굿케어맥스 초코 프로틴"></div><figcaption>가방 속 상비<small>어디서나 200mL</small></figcaption></figure>
+        <figure><div class="slot"><img src="assets/day-morning.jpg" alt="아침 햇살이 드는 주방 조리대 위 굿케어맥스 균형영양식"></div><figcaption>아침 루틴<small>하루를 여는 한 팩</small></figcaption></figure>
+        <figure><div class="slot"><img src="assets/day-workout.jpg" alt="운동 후 헬스장 벤치 위 굿케어맥스 초코 프로틴"></div><figcaption>운동 후<small>초코 프로틴으로 든든하게</small></figcaption></figure>
+        <figure><div class="slot"><img src="assets/day-lunch.jpg" alt="사무실 책상 위 굿케어맥스 균형영양식"></div><figcaption>바쁜 점심<small>균형영양식 한 팩</small></figcaption></figure>
+        <figure><div class="slot"><img src="assets/day-afternoon.jpg" alt="오후 햇살이 드는 창가 위 굿케어맥스 초코 프로틴"></div><figcaption>오후의 쉼표<small>장 속 미생물까지 챙기기</small></figcaption></figure>
+        <figure><div class="slot"><img src="assets/day-bag.jpg" alt="공원 벤치 위 가방 앞에 놓인 굿케어맥스 두 종"></div><figcaption>가방 속 상비<small>어디서나 200mL</small></figcaption></figure>
       </div>
     </div>
   </section>
