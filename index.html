@@ -428,6 +428,79 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
 /* subtitle: one line, no box, same width as the title */
 .hero .sub{display:block!important;background:none!important;padding:0!important;border-radius:0!important;color:var(--ink)!important;white-space:nowrap;font-weight:900;letter-spacing:-.01em;line-height:1.2;margin-top:6px}
 @media (max-width:700px){.hero .sub{white-space:normal;font-size:20px!important}}
+
+/* ===== mobile layout (≤700px) ===== */
+@media (max-width:1200px){.flow article:not(:last-child)::after{display:none}}
+.hero h1 .w{display:inline-block;white-space:nowrap;font-weight:inherit}
+@media (max-width:700px){
+  /* hero: portrait art, copy sits on the calm shake surface */
+  .hero .stage{aspect-ratio:2/3!important;max-height:none!important;display:block!important;min-height:0!important}
+  .hero .slot{position:absolute!important;inset:0!important;aspect-ratio:auto!important}
+  .hero .slot img.hero-bg{transform:none!important}
+  .hero-logo{width:56%!important;top:7%!important}
+  .hero .copy{position:absolute!important;left:0;right:0;bottom:0;background:none!important;padding-block:0 8vw!important;gap:10px}
+  .hero h1{font-size:16vw!important;line-height:.9!important}
+  .hero h1 .w{display:block}
+  .hero .sub{font-size:4.6vw!important;white-space:normal!important;max-width:20em;margin-inline:auto}
+  .hero-line{font-size:13px}
+  /* lineup */
+  .lineup .head{margin-bottom:28px}
+  .card .slot{aspect-ratio:4/3}
+  /* MAC story bands: giant words sit low and faint so they never cover the copy */
+  .mac{padding-block:56px}
+  .mac .giant{font-size:40vw!important;top:auto!important;bottom:-2%!important;right:-8%!important;opacity:.14!important}
+  .m1 .giant{opacity:.06!important}
+  .mac-intro h2{font-size:27px}
+  .step h3{font-size:27px}
+  .step p{font-size:17px}
+  .step .count .num{font-size:64px}
+  .packs{padding-top:12px}
+  .pack img{width:38vw!important}
+  .m3 .visual{padding-top:24px}
+  .ratio .row{grid-template-columns:1fr}
+  .bar i{font-size:14px;padding-left:10px}
+  .usp article{padding:24px}
+  .usp .badge{margin-bottom:12px}
+  /* IM.BERT */
+  .imb .wrap{gap:80px}
+  .lockup{flex-wrap:wrap;font-size:14px;gap:8px}
+  .lockup .logo-chip{padding:9px 14px}
+  .lockup .logo-chip img{height:13px!important}
+  .imb h2.title{font-size:11.4vw;margin-top:28px}
+  .intro{grid-template-columns:minmax(0,1fr)!important;margin-top:32px}
+  .intro h3{font-size:24px}
+  .intro p,.checks{font-size:17px}
+  .checks li{align-items:flex-start}
+  .checks li::before{margin-top:2px}
+  .sec-head{display:block;margin-bottom:32px}
+  .sec-head p{margin-top:14px;max-width:none}
+  .sec-head h3{font-size:28px}
+  .compare article{padding:28px}
+  .node{width:min(60vw,220px)}
+  .diagram{padding:28px 18px}
+  .outputs header{padding:16px 22px}
+  .outputs ul,.strain{padding-left:22px;padding-right:22px}
+  .strain div{font-size:16px}
+  .report{padding:20px}
+  /* product stage */
+  .pgrid{grid-template-columns:minmax(0,1fr)!important;min-height:0}
+  .info{padding:26px}
+  .pstage .gt,.pstage .gb{font-size:30vw}
+  .hero-pack{min-height:110vw}
+  .hero-pack .p img{width:58vw!important}
+  .side{display:flex!important;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px}
+  .badge1{width:116px!important;height:116px!important}.badge1 b{font-size:28px!important}.badge1 span{font-size:13px}
+  .badge2{width:100px!important;height:100px!important;font-size:17px!important}
+  .snav{width:100%;justify-content:center}
+  .snav button{width:52px;height:52px}
+  /* gallery: swipeable row showing all five moments */
+  .strip{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));padding-bottom:8px;scrollbar-width:none}
+  .strip::-webkit-scrollbar{display:none}
+  .strip figure,.strip figure:nth-child(n){display:grid!important;flex:0 0 64%;scroll-snap-align:start}
+  .story .slot{min-height:300px}
+  footer .big{font-size:16.5vw}
+  .strip{scroll-padding-inline:max(16px,env(safe-area-inset-left,0px))}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
 /* ===== Figma Motion (goodcaremacs, 8s loop) — values copied from Figma ===== */
@@ -647,9 +720,9 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
   <!-- HERO -->
   <section class="hero band" aria-label="굿케어맥스 소개">
     <div class="stage">
-      <div class="slot"><img class="hero-bg" src="assets/gcm-hero-shake.jpg" alt="피스타치오가 흩뿌려진 아이보리빛 단백질 쉐이크 웨이브"><div class="hero-logo" aria-hidden="true"><img src="assets/gcm-logo-macs.png" alt=""></div></div>
+      <div class="slot"><picture><source media="(max-width: 700px)" srcset="assets/gcm-hero-shake-m.jpg"><img class="hero-bg" src="assets/gcm-hero-shake.jpg" alt="피스타치오가 흩뿌려진 아이보리빛 단백질 쉐이크 웨이브"></picture><div class="hero-logo" aria-hidden="true"><img src="assets/gcm-logo-macs.png" alt=""></div></div>
       <div class="copy wrap">
-        <h1 aria-label="GOODCARE MACs"><span style="--i:0" aria-hidden="true">G</span><span style="--i:1" aria-hidden="true">O</span><span style="--i:2" aria-hidden="true">O</span><span style="--i:3" aria-hidden="true">D</span><span style="--i:4" aria-hidden="true">C</span><span style="--i:5" aria-hidden="true">A</span><span style="--i:6" aria-hidden="true">R</span><span style="--i:7" aria-hidden="true">E</span><span style="--i:8" aria-hidden="true">&nbsp;</span><span style="--i:9" aria-hidden="true">M</span><span style="--i:10" aria-hidden="true">A</span><span style="--i:11" aria-hidden="true">C</span><span style="--i:12" aria-hidden="true">s</span></h1>
+        <h1 aria-label="GOODCARE MACs"><b class="w"><span style="--i:0" aria-hidden="true">G</span><span style="--i:1" aria-hidden="true">O</span><span style="--i:2" aria-hidden="true">O</span><span style="--i:3" aria-hidden="true">D</span><span style="--i:4" aria-hidden="true">C</span><span style="--i:5" aria-hidden="true">A</span><span style="--i:6" aria-hidden="true">R</span><span style="--i:7" aria-hidden="true">E</span></b> <b class="w"><span style="--i:9" aria-hidden="true">M</span><span style="--i:10" aria-hidden="true">A</span><span style="--i:11" aria-hidden="true">C</span><span style="--i:12" aria-hidden="true">s</span></b></h1>
         <p class="sub">균형영양식의 새로운 기준 · 내 몸과 미생물을 위한 이중영양 솔루션</p>
       </div>
     </div>
