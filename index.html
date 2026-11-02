@@ -501,6 +501,16 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
   footer .big{font-size:16.5vw}
   .strip{scroll-padding-inline:max(16px,env(safe-area-inset-left,0px))}
 }
+
+/* ===== MACs cursor follower (mouse/trackpad only) ===== */
+.mac-cursor{position:fixed;left:0;top:0;z-index:9999;pointer-events:none;opacity:0;transition:opacity .25s ease;will-change:transform}
+.mac-cursor span{display:inline-flex;align-items:center;gap:6px;transform:translate(14px,14px) scale(var(--s,1));transform-origin:0 0;transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+  background:var(--ink);color:var(--lime);border:1.5px solid var(--lime);border-radius:999px;padding:7px 14px 7px 10px;font:700 15px/1 var(--display);letter-spacing:.01em;box-shadow:0 8px 20px rgba(11,30,69,.25);white-space:nowrap}
+.mac-cursor span::before{content:"";width:8px;height:8px;border-radius:50%;background:#EE5B2A;animation:mc-blink 1.4s ease-in-out infinite}
+.mac-cursor.on{opacity:1}
+.mac-cursor.hot span{--s:1.25}
+@keyframes mc-blink{50%{transform:scale(.55);opacity:.6}}
+@media (hover:none),(pointer:coarse){.mac-cursor{display:none!important}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
 /* ===== Figma Motion (goodcaremacs, 8s loop) — values copied from Figma ===== */
@@ -1065,5 +1075,22 @@ footer .fine{font-size:14px;opacity:.75;padding-block:0 32px}
 })();
 </script>
 
+<div class="mac-cursor" aria-hidden="true"><span>MACs</span></div>
+<script>
+(function(){
+  // "MACs" label that trails the mouse with a soft lag; grows over links and buttons.
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  const el=document.querySelector('.mac-cursor');
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let tx=-100,ty=-100,x=-100,y=-100,run=false;
+  function tick(){x+=(tx-x)*(still?1:.18);y+=(ty-y)*(still?1:.18);el.style.transform='translate3d('+x+'px,'+y+'px,0)';
+    if(Math.abs(tx-x)>.1||Math.abs(ty-y)>.1)requestAnimationFrame(tick);else run=false;}
+  addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;tx=e.clientX;ty=e.clientY;el.classList.add('on');
+    el.classList.toggle('hot',!!e.target.closest('a,button,.hero-logo,.hero h1'));
+    if(!run){run=true;requestAnimationFrame(tick);}},{passive:true});
+  document.addEventListener('pointerleave',()=>el.classList.remove('on'));
+  addEventListener('blur',()=>el.classList.remove('on'));
+})();
+</script>
 </body>
 </html>
