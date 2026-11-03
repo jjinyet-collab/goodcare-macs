@@ -211,6 +211,128 @@ footer ul{list-style:none;margin:0;padding:0}
   .float.f1{top:96px;left:4%;width:27vw}.float.f2{width:30vw;right:4%;bottom:40px;top:auto}
   body{font-size:17px}
 }
+
+/* ===== MAC story 01–04 ===== */
+.mc{position:relative;overflow:hidden;padding-block:clamp(90px,10vw,160px)}
+.mc1{background:#000}.mc2{background:var(--cobalt)}.mc3{background:var(--orange)}.mc4{background:#000}
+.mc-giant{position:absolute;right:-3%;bottom:-6%;font:900 clamp(150px,27vw,470px)/.85 var(--display);letter-spacing:-.06em;color:#fff;opacity:.06;white-space:nowrap;pointer-events:none;animation:mc-drift 8s ease-in-out infinite}
+.mc2 .mc-giant,.mc3 .mc-giant{opacity:.14}
+@keyframes mc-drift{50%{transform:translateX(-70px)}}
+.mc-intro{display:grid;gap:18px;margin-bottom:clamp(48px,5vw,80px);position:relative;z-index:2}
+.mc-chip{justify-self:start;background:var(--orange);color:#fff;border-radius:999px;padding:9px 18px;font-weight:700;font-size:15px}
+.mc-intro h2{font:900 clamp(30px,3.6vw,58px)/1.28 var(--kr);letter-spacing:-.02em}
+.mc-intro em{font-style:normal;color:var(--orange)}
+.mc-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,4vw,72px);align-items:center;position:relative;z-index:2}
+.mc-step{display:grid;gap:12px;min-width:0}
+.mc-count{display:flex;align-items:baseline;gap:12px}
+.mc-count b{font:900 clamp(72px,7vw,110px)/.9 var(--display);letter-spacing:-.05em;color:var(--orange)}
+.mc-count span{font:800 26px/1 var(--display);opacity:.55}
+.mc2 .mc-count b{color:#fff}.mc3 .mc-count b{color:#000}
+.mc-k{font-weight:500;font-size:22px;opacity:.85}
+.mc-step h3{font:900 clamp(30px,2.8vw,46px)/1.3 var(--kr);letter-spacing:-.02em}
+.mc-step > p:not(.mc-k){font-size:20px;opacity:.88}
+.mc3 .mc-step{color:#000}
+/* 01 duel */
+.duel{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);min-width:0;gap:clamp(10px,2vw,24px);align-items:center;container-type:inline-size}
+.box{border-radius:28px;padding:clamp(22px,2.4vw,36px);min-height:clamp(200px,17vw,270px);display:flex;flex-direction:column;gap:6px;position:relative}
+.box h4{margin:0;font:900 clamp(24px,2.2vw,34px)/1.2 var(--kr)}
+.box p{font-weight:700;font-size:18px;opacity:.7}
+.human{background:#fff;color:#000;animation:hshake 8s infinite}
+.human .x{position:absolute;right:28px;bottom:14px;font:800 72px/1 var(--display);animation:xflash 8s infinite}
+.microbe{background:var(--cobalt);color:#fff;animation:mbox 8s infinite}
+.bugs{display:flex;gap:clamp(8px,1.2vw,16px);align-items:center;margin-top:auto}
+.bugs i{display:block;line-height:0;animation:munch 8s infinite}
+.bugs i svg{display:block;width:auto}
+.bugs i:nth-child(1) svg{height:34px}.bugs i:nth-child(2) svg{height:28px}.bugs i:nth-child(3) svg{height:42px}.bugs i:nth-child(4) svg{height:36px}.bugs i:nth-child(5) svg{height:30px}
+.bugs i:nth-child(2){animation-delay:.08s}.bugs i:nth-child(3){animation-delay:.16s}.bugs i:nth-child(4){animation-delay:.24s}.bugs i:nth-child(5){animation-delay:.32s}
+.cap-wrap{position:relative;z-index:3;width:clamp(64px,6vw,96px);display:grid;place-items:center}
+.cap{position:relative;display:inline-flex;align-items:center;width:clamp(104px,8.6vw,128px);height:clamp(40px,3.3vw,48px);border-radius:999px;overflow:hidden;
+  background:linear-gradient(90deg,var(--orange) 0 50%,#fff 50% 100%);box-shadow:0 10px 24px rgba(255,104,57,.45),inset 0 -5px 8px rgba(0,0,0,.16),inset 0 2px 0 rgba(255,255,255,.35);animation:cap 8s infinite}
+.cap::after{content:"";position:absolute;left:10%;right:10%;top:16%;height:24%;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0))}
+.cap span{position:relative;z-index:1;width:50%;text-align:center;color:#fff;font:800 clamp(15px,1.25vw,19px)/1 var(--display)}
+.cap i{position:relative;z-index:1;width:50%;display:flex;justify-content:center;gap:4px}
+.cap i em{display:block;width:6px;height:6px;border-radius:50%;background:rgba(0,0,0,.2)}
+.cap i em:nth-child(2){width:4px;height:4px;margin-top:6px}
+@keyframes cap{0%,6.25%{transform:translateX(calc(-130/800*100cqw))}8.5%{transform:translateX(calc(-154/800*100cqw))}11.25%,15%{transform:translateX(calc(-130/800*100cqw))}
+  20%{transform:translateX(calc(230/800*100cqw))}22.5%{transform:translateX(calc(258/800*100cqw))}25%{transform:translateX(calc(235/800*100cqw)) scale(1)}29.4%{transform:translateX(calc(235/800*100cqw)) translateY(40px) scale(0)}94%{transform:translateX(calc(-130/800*100cqw)) scale(0)}100%{transform:translateX(calc(-130/800*100cqw)) scale(1)}}
+@keyframes hshake{0%,7.75%,11.9%,100%{transform:none}8.75%{transform:translateX(-8px)}9.75%{transform:translateX(8px)}10.75%{transform:translateX(-5px)}}
+@keyframes xflash{0%,7.75%,17.5%,100%{color:#000;opacity:.3}9%{color:var(--orange);opacity:1}}
+@keyframes mbox{0%,26.25%,32.5%,100%{transform:none}28.75%{transform:scale(1.05)}}
+@keyframes munch{0%,27.5%,35.6%,100%{transform:none}29.4%{transform:translateY(-16px) scale(1.2)}31.9%{transform:none}33.75%{transform:translateY(-8px)}}
+/* 02 packs */
+.mc-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.mc-chips span{border-radius:999px;padding:10px 18px;font-weight:700;font-size:16px;animation:chip 8s infinite}
+.mc-chips .c1{background:#fff;color:var(--cobalt)}.mc-chips .c2{background:var(--orange);color:#fff;animation-delay:.7s}
+@keyframes chip{0%,12.5%,19.4%,100%{transform:none}15%{transform:scale(1.1)}}
+.packs{display:flex;justify-content:center;gap:clamp(16px,3vw,56px);position:relative;padding-top:40px}
+.packs::before{content:"";position:absolute;inset:-10% 5%;background:radial-gradient(closest-side,rgba(255,255,255,.35),rgba(255,255,255,0));animation:glow 8s infinite}
+@keyframes glow{0%{transform:scale(.85)}15%{transform:scale(1.05)}50%{transform:scale(.95)}90%{transform:scale(1.05)}100%{transform:scale(.85)}}
+.pk{position:relative;z-index:1;display:grid;justify-items:center;gap:14px}
+.pk img{width:clamp(130px,15vw,280px);height:auto;animation:pk-rise 8s infinite}
+.pk.c img{rotate:-5deg}.pk.b img{rotate:5deg;animation-delay:.28s}
+.pk-tag{border-radius:999px;padding:9px 18px;font-weight:700;font-size:15px;background:var(--orange);color:#fff;animation:pk-tag 8s infinite}
+.pk.b .pk-tag{background:#000;animation-delay:.28s}
+.pk-sh{position:absolute;left:50%;bottom:-24px;width:220px;height:36px;margin-left:-110px;border-radius:50%;background:rgba(0,10,60,.4);filter:blur(18px);z-index:-1}
+@keyframes pk-rise{0%,3.75%{transform:translateY(720px);opacity:0}10%{opacity:1}16.25%{transform:none}32.5%{transform:translateY(-16px)}48.75%{transform:none}65%{transform:translateY(-16px)}81.25%,90%{transform:none;opacity:1}98%,100%{transform:translateY(720px);opacity:0}}
+@keyframes pk-tag{0%,15%{opacity:0;transform:translateY(12px)}18.75%,90%{opacity:1;transform:none}93%,100%{opacity:0}}
+.mc2{padding-bottom:clamp(110px,11vw,170px)}
+/* 03 ratio + rice */
+.ratio{display:grid;gap:14px;margin-top:18px;max-width:640px}
+.rrow{display:grid;grid-template-columns:140px 1fr;align-items:center;gap:12px}
+.rrow > span{font-weight:700;font-size:16px}
+.rbar{display:grid;grid-template-columns:2fr 4fr 4fr;gap:6px}
+.rbar i{display:block;height:44px;border-radius:12px;font:900 15px/44px var(--kr);font-style:normal;padding-left:12px;white-space:nowrap;overflow:hidden;color:#000;transform-origin:left;animation:fill 8s infinite}
+.rbar i:nth-child(2){animation-delay:.2s}.rbar i:nth-child(3){animation-delay:.4s}
+.rbar.m i:nth-child(1){animation-delay:.6s}.rbar.m i:nth-child(2){animation-delay:.8s}.rbar.m i:nth-child(3){animation-delay:1s}
+@keyframes fill{0%,6%{transform:scaleX(.02)}14%,92%{transform:scaleX(1)}99%,100%{transform:scaleX(.02)}}
+.rice img{width:100%;height:auto;-webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent 100%);mask-image:radial-gradient(closest-side,#000 72%,transparent 100%);animation:fl 8s ease-in-out infinite}
+/* 04 usp */
+.usp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.usp article{background:#fff;color:#000;border-radius:28px;padding:32px;display:grid;gap:8px;align-content:start;animation:usp 8s infinite}
+.usp article:nth-child(2){animation-delay:2s}.usp article:nth-child(3){animation-delay:4s}.usp article:nth-child(4){animation-delay:6s}
+.ub{width:52px;height:52px;border-radius:16px;background:var(--cobalt);color:#fff;display:grid;place-items:center;font:800 20px/1 var(--display);margin-bottom:18px}
+.uk{color:var(--cobalt);font-weight:700;font-size:16px}
+.usp h4{margin:0;font:900 clamp(22px,2vw,30px)/1.3 var(--kr)}
+.usp p{font-size:17px;opacity:.75}
+@keyframes usp{0%,22%{background:var(--orange);color:#fff;transform:scale(1.03)}26%,100%{background:#fff;color:#000;transform:none}}
+.usp article:nth-child(1){animation-delay:0s}
+@media (max-width:980px){.mc-grid{grid-template-columns:1fr}}
+@media (max-width:640px){.duel{grid-template-columns:minmax(0,1fr)}.cap-wrap{width:auto;padding-block:4px}.cap{animation:none}.usp{grid-template-columns:1fr}.rrow{grid-template-columns:1fr}.mc-giant{font-size:40vw}}
+
+/* ===== column board (dark) ===== */
+.colm{padding-block:clamp(110px,11vw,170px)}
+.colm h2{font:900 clamp(56px,7.6vw,120px)/1 var(--display);letter-spacing:-.03em;text-transform:uppercase}
+.colm .lead{margin-top:20px;font-size:clamp(17px,1.4vw,21px);color:rgba(255,255,255,.8)}
+.board{margin-top:clamp(40px,4vw,64px);border-top:2px solid var(--orange)}
+.board-head,.post summary{display:grid;grid-template-columns:72px 120px minmax(0,1fr) 120px 40px;align-items:center;gap:16px;padding:0 20px}
+.board-head{height:52px;border-bottom:1px solid rgba(255,255,255,.2);font:700 14px/1 var(--display);letter-spacing:.08em;color:rgba(255,255,255,.55)}
+.board-head span:nth-child(1),.board-head span:nth-child(2){text-align:center}
+.post{border-bottom:1px solid rgba(255,255,255,.16)}
+.post summary{list-style:none;cursor:pointer;min-height:80px;transition:background .25s}
+.post summary::-webkit-details-marker{display:none}
+.post summary:hover,.post[open] summary{background:#111}
+.b-no{text-align:center;font:800 22px/1 var(--display);color:var(--orange)}
+.b-cat{justify-self:center;font-weight:700;font-size:14px;background:var(--cobalt);border-radius:999px;padding:6px 12px;white-space:nowrap}
+.b-title{font:700 clamp(17px,1.4vw,21px)/1.45 var(--kr)}
+.post summary:hover .b-title{color:var(--orange)}
+.b-meta{font:600 15px/1 var(--display);color:rgba(255,255,255,.5)}
+.b-arrow{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);position:relative;justify-self:end;transition:transform .3s,background .2s,border-color .2s}
+.b-arrow::before{content:"";position:absolute;left:50%;top:44%;width:8px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:translate(-50%,-50%) rotate(45deg)}
+.post[open] .b-arrow{transform:rotate(180deg);background:var(--orange);border-color:var(--orange)}
+.post-body{padding:28px clamp(20px,9vw,212px) 36px;background:#111;display:grid;gap:16px;animation:post-in .35s ease both}
+.post-body h3{font:900 clamp(24px,2.2vw,32px)/1.4 var(--kr);color:var(--orange)}
+.post-body p{font-size:18px;line-height:1.85;max-width:42em;color:rgba(255,255,255,.88)}
+.post-close{justify-self:start;margin-top:6px;border:1.5px solid #fff;background:transparent;color:#fff;border-radius:999px;padding:10px 18px;font:700 15px/1 var(--kr);cursor:pointer}
+.post-close:hover{background:var(--orange);border-color:var(--orange)}
+@keyframes post-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.col-note{margin-top:22px;font-size:14px;color:rgba(255,255,255,.5)}
+@media (max-width:820px){
+  .board-head{display:none}
+  .post summary{grid-template-columns:auto minmax(0,1fr) 30px;grid-template-areas:"no cat arrow" "title title title" "meta meta meta";row-gap:8px;column-gap:10px;padding:18px 4px}
+  .b-no{grid-area:no;text-align:left;font-size:18px}.b-cat{grid-area:cat;justify-self:start;font-size:13px}
+  .b-title{grid-area:title;font-size:18px}.b-meta{grid-area:meta;font-size:14px}.b-arrow{grid-area:arrow}
+  .post-body{padding:22px 16px 28px}.post-body p{font-size:17px}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.swoosh path{stroke-dashoffset:0}.js .rv{transform:none;opacity:1}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -223,10 +345,11 @@ footer ul{list-style:none;margin:0;padding:0}
     <a class="logo" href="#top">GOODCARE <b>MACs</b></a>
     <ul>
       <li><a href="#about" class="on">About</a></li>
+      <li><a href="#mac">MAC</a></li>
       <li><a href="#mosaic">Moments</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#lineup">Line-up</a></li>
-      <li><a href="#partner">Partner</a></li>
+      <li><a href="#column">Column</a></li>
     </ul>
     <button class="burger" type="button" aria-label="메뉴"><i></i><i></i><i></i></button>
   </nav>
@@ -258,6 +381,82 @@ footer ul{list-style:none;margin:0;padding:0}
       <div class="copy rv">
         <p><em>굿케어맥스</em>는 칼로리는 넘치지만 장 속 미생물은 굶주린 요즘의 식탁을 위해,<br>사람의 세포를 위한 균형영양에 <em>장 속 미생물의 밥, MAC</em>을 더했습니다.</p>
         <p>흰쌀·잡곡쌀·콩을 섞은 건강한 밥처럼 다섯 가지 식이섬유를 섞어 한 병에 12.5g을 채우고,<br>이뮤노바이옴의 AI 모델 IM.BERT와 함께 <em>나에게 맞춘 1:1 이중영양</em>까지 이어갑니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAC STORY 01–04 -->
+  <section class="mc mc1 band" id="mac">
+    <span class="mc-giant" aria-hidden="true">MAC</span>
+    <div class="wrap">
+      <div class="mc-intro rv">
+        <span class="mc-chip">균형영양식의 새로운 기준</span>
+        <h2>MAC은 <em>“장 속 미생물의 밥”</em><br>내 몸과 미생물을 위한 이중영양 솔루션, 굿케어맥스</h2>
+      </div>
+      <div class="mc-grid">
+        <div class="mc-step rv">
+          <div class="mc-count"><b>01</b><span>/ 04</span></div>
+          <p class="mc-k">MAC은</p>
+          <h3>장 속 미생물의 밥입니다</h3>
+          <p>사람은 소화하지 못하지만,<br>장 속 미생물은 먹을 수 있는 탄수화물이에요.</p>
+        </div>
+        <div class="duel" aria-label="사람은 MAC을 소화하지 못하고, 장 속 미생물이 먹는다는 설명 그림">
+          <div class="box human"><h4>사람</h4><p>소화하지 못해요</p><span class="x" aria-hidden="true">✕</span></div>
+          <div class="cap-wrap" aria-hidden="true"><b class="cap"><span>MAC</span><i><em></em><em></em><em></em></i></b></div>
+          <div class="box microbe"><h4>장 속 미생물</h4><p>맛있게 먹어요</p><div class="bugs" aria-hidden="true"><i><svg viewBox="0 0 70 28"><path d="M52 14c5-7 9 7 14 0" fill="none" stroke="#FF6839" stroke-width="2.4" stroke-linecap="round"/><rect x="2" y="4" width="50" height="20" rx="10" fill="#FF6839"/><circle cx="16" cy="12" r="2.2" fill="rgba(0,0,0,.25)"/><circle cx="28" cy="16" r="1.8" fill="rgba(0,0,0,.25)"/><circle cx="39" cy="11" r="2" fill="rgba(0,0,0,.25)"/></svg></i><i><svg viewBox="0 0 40 24"><circle cx="12" cy="12" r="10" fill="#FF6839"/><circle cx="28" cy="12" r="10" fill="#FF6839"/><path d="M20 4v16" stroke="rgba(0,0,0,.25)" stroke-width="1.6"/></svg></i><i><svg viewBox="0 0 44 34"><path d="M8 26C8 12 20 6 34 10" fill="none" stroke="#FF6839" stroke-width="12" stroke-linecap="round"/><path d="M34 10c4-2 6-6 8-8" fill="none" stroke="#FF6839" stroke-width="2.2" stroke-linecap="round"/></svg></i><i><svg viewBox="0 0 46 30"><circle cx="8" cy="22" r="7" fill="#FF6839"/><circle cx="22" cy="15" r="7" fill="#FF6839"/><circle cx="36" cy="8" r="7" fill="#FF6839"/></svg></i><i><svg viewBox="0 0 60 26"><path d="M6 13c6-10 10 10 16 0s10 10 16 0 10 10 16 0" fill="none" stroke="#FF6839" stroke-width="7" stroke-linecap="round"/></svg></i></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mc mc2 band">
+    <span class="mc-giant" aria-hidden="true">DUAL</span>
+    <div class="wrap mc-grid">
+      <div class="mc-step rv">
+        <div class="mc-count"><b>02</b><span>/ 04</span></div>
+        <p class="mc-k">굿케어맥스는</p>
+        <h3>장 속 미생물의 밥까지 담은 한 팩</h3>
+        <p>나를 위한 균형영양에 미생물을 위한 MAC을 더해<br>한 팩으로 두 번의 영양을 챙겨요.</p>
+        <div class="mc-chips"><span class="c1">1st 나를 위한 균형영양</span><span class="c2">2nd 미생물을 위한 MAC</span></div>
+      </div>
+      <div class="packs">
+        <div class="pk c"><span class="pk-tag">초코 프로틴</span><img src="assets/gcm-pack-choco.png" alt="굿케어맥스 초코 프로틴"><i class="pk-sh"></i></div>
+        <div class="pk b"><span class="pk-tag">균형영양식</span><img src="assets/gcm-pack-balanced.png" alt="굿케어맥스 균형영양식"><i class="pk-sh"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mc mc3 band">
+    <span class="mc-giant" aria-hidden="true">2:4:4</span>
+    <div class="wrap mc-grid">
+      <div class="mc-step rv">
+        <div class="mc-count"><b>03</b><span>/ 04</span></div>
+        <p class="mc-k">2 : 4 : 4는</p>
+        <h3>건강한 밥처럼<br>흰쌀 · 잡곡쌀 · 콩을 섞은 비율</h3>
+        <p>단쇄 2 · 중쇄 4 · 장쇄 4,<br>3가지 길이를 섞어 든든하게 설계했어요.</p>
+        <div class="ratio" aria-label="건강한 밥 흰쌀 2 잡곡쌀 4 콩 4, 굿케어맥스 MAC 단쇄 2 중쇄 4 장쇄 4">
+          <div class="rrow"><span>건강한 밥</span><div class="rbar"><i style="background:#fff">흰쌀 2</i><i style="background:#F3D9B1">잡곡쌀 4</i><i style="background:#7A4A2A;color:#fff">콩 4</i></div></div>
+          <div class="rrow"><span>굿케어맥스 MAC</span><div class="rbar m"><i style="background:#000;color:#fff">단쇄 2</i><i style="background:#fff">중쇄 4</i><i style="background:var(--cobalt);color:#fff">장쇄 4</i></div></div>
+        </div>
+      </div>
+      <div class="rice"><img src="assets/gcm-rice-244.jpg" alt="흰쌀, 잡곡, 콩과 잡곡밥"></div>
+    </div>
+  </section>
+
+  <section class="mc mc4 band">
+    <span class="mc-giant" aria-hidden="true">ONLY</span>
+    <div class="wrap mc-grid">
+      <div class="mc-step rv">
+        <div class="mc-count"><b>04</b><span>/ 04</span></div>
+        <p class="mc-k">굿케어맥스만의</p>
+        <h3>다른 균형영양식과<br>이렇게 달라요</h3>
+        <p>장 속 미생물까지 생각한 설계부터 근거 있는 원료,<br>하루 섭취 기준까지 꼼꼼하게 담았어요.</p>
+      </div>
+      <div class="usp">
+        <article><span class="ub">01</span><span class="uk">국내 유일</span><h4>‘MACs 이중영양 설계’</h4><p>나의 몸을 위한 영양과 장 속 미생물을 위한 MAC을 한 팩에 함께 설계했어요.</p></article>
+        <article><span class="ub">02</span><span class="uk">식약처 인정</span><h4>기능성 사균체</h4><p>식품의약품안전처가 기능성을 인정한 사균체 원료를 담았어요.</p></article>
+        <article><span class="ub">03</span><span class="uk">유익균 유래 성분</span><h4>포스트바이오틱스</h4><p>유익균이 만들어낸 성분까지 함께 담아 장 속 환경을 생각했어요.</p></article>
+        <article><span class="ub">04</span><span class="uk">자체 기준</span><h4>‘MACs 지수’</h4><p>기능성 유효성분을 하루에 얼마나 섭취하면 좋은지, 일섭취량 기준을 제시해요.</p></article>
       </div>
     </div>
   </section>
@@ -328,21 +527,35 @@ footer ul{list-style:none;margin:0;padding:0}
     </div>
   </section>
 
-  <!-- PARTNER -->
-  <section class="partner band" id="partner">
+  <!-- COLUMN -->
+  <section class="colm band" id="column">
     <div class="wrap">
-      <h2 class="rv">Science <span class="b">&amp;</span> Partners</h2>
-      <p class="lead rv">원료부터 분석까지, 각 분야의 파트너와 함께 한 병을 설계했습니다.</p>
-      <div class="pgrid">
-        <div><span class="logo-im"><img src="assets/immunobiome-logo.png" alt="IMMUNOBIOME"></span><small>IM.BERT AI 분석</small></div>
-        <div><b>VILAC</b><small>제품 개발 · 생산</small></div>
-        <div><b>EF-2001</b><small>사균체 원료</small></div>
-        <div><b>Chicory Inulin</b><small>식이섬유 원료</small></div>
-        <div><b>FOS</b><small>프락토올리고당</small></div>
-        <div><b>Polydextrose</b><small>폴리덱스트로스</small></div>
-        <div><b>PHGG</b><small>구아검가수분해물</small></div>
-        <div><b>Green Banana</b><small>그린바나나 · 오트</small></div>
+      <h2 class="rv">Column<span class="ast o" aria-hidden="true">✱</span></h2>
+      <p class="lead rv">한 병에 담긴 이야기를 소비자 눈높이에 맞춰 다섯 편의 짧은 글로 옮겼어요.</p>
+      <div class="board">
+        <div class="board-head" aria-hidden="true"><span>No.</span><span>분류</span><span>제목</span><span>작성</span><span></span></div>
+        <details class="post" id="column-05">
+          <summary><span class="b-no">05</span><span class="b-cat">우리의 약속</span><span class="b-title">우리가 말하는 것, 말하지 않는 것</span><span class="b-meta">2026.10.30</span><span class="b-arrow" aria-hidden="true"></span></summary>
+          <div class="post-body"><h3>우리가 말하는 것, 말하지 않는 것</h3><p>원료에 대한 연구는 많지만, 원료의 연구 결과가 곧 제품의 효과는 아니에요.</p><p>그래서 굿케어맥스는 한 병에 무엇이 얼마나 들었는지를 정확히 알려드리는 데 집중해요. 식이섬유 12.5g, 사균체 100억 cells 이상, 락토프리. 확인되지 않은 효과는 약속하지 않을게요.</p><button type="button" class="post-close">목록으로 접기</button></div>
+        </details>
+        <details class="post" id="column-04">
+          <summary><span class="b-no">04</span><span class="b-cat">사균체</span><span class="b-title">살아 있는 유산균 대신 ‘사균체’를 담은 이유</span><span class="b-meta">2026.10.30</span><span class="b-arrow" aria-hidden="true"></span></summary>
+          <div class="post-body"><h3>살아 있는 유산균 대신 ‘사균체’를 담은 이유</h3><p>굿케어맥스에는 열처리한 유산균, 사균체 EF-2001이 들어 있어요. 살아 있는 균이 아니어서 상온에서도 안정적이고, 고온 살균 공정을 거쳐도 영향이 적어요.</p><p>한 병에 사균체 100억 cells 이상을 담았고, 이 수치는 원료사의 시험성적서(COA)로 확인해요.</p><button type="button" class="post-close">목록으로 접기</button></div>
+        </details>
+        <details class="post" id="column-03">
+          <summary><span class="b-no">03</span><span class="b-cat">맛과 식감</span><span class="b-title">부드럽게 넘어가는 맛의 비밀</span><span class="b-meta">2026.10.30</span><span class="b-arrow" aria-hidden="true"></span></summary>
+          <div class="post-body"><h3>부드럽게 넘어가는 맛의 비밀</h3><p>식이섬유를 많이 넣으면 텁텁해지거나 가라앉기 쉬워요. 치커리 이눌린은 약 3%일 때 가장 크리미한 식감을 내고, 프락토올리고당은 은은한 단맛을 더해요.</p><p>폴리덱스트로스는 열과 산에 강해 살균 과정을 거쳐도 안정적이고, 난소화성말토덱스트린은 맛이 없고 잘 녹아 가볍게 넘어가요. 여기에 오트와 그린바나나로 고소한 풍미를 더했어요.</p><button type="button" class="post-close">목록으로 접기</button></div>
+        </details>
+        <details class="post" id="column-02">
+          <summary><span class="b-no">02</span><span class="b-cat">배합 설계</span><span class="b-title">왜 한 가지가 아니라 다섯 가지일까요?</span><span class="b-meta">2026.10.30</span><span class="b-arrow" aria-hidden="true"></span></summary>
+          <div class="post-body"><h3>왜 한 가지가 아니라 다섯 가지일까요?</h3><p>식이섬유는 종류마다 장 속에서 발효되는 속도가 달라요. 이눌린과 올리고당은 빠르게, 구아검가수분해물은 완만하게, 폴리덱스트로스와 난소화성말토덱스트린은 천천히 발효돼요.</p><p>그래서 한 가지 원료를 많이 넣는 대신, 속도가 다른 다섯 가지를 고르게 섞어 12.5g을 채웠어요. 흰쌀·잡곡쌀·콩을 섞어 짓는 밥처럼요.</p><button type="button" class="post-close">목록으로 접기</button></div>
+        </details>
+        <details class="post" id="column-01" open>
+          <summary><span class="b-no">01</span><span class="b-cat">식이섬유</span><span class="b-title">식이섬유 12.5g, 몸속에서는 어디로 갈까요?</span><span class="b-meta">2026.10.30</span><span class="b-arrow" aria-hidden="true"></span></summary>
+          <div class="post-body"><h3>식이섬유 12.5g, 몸속에서는 어디로 갈까요?</h3><p>식이섬유는 사람의 소화효소로는 분해되지 않아요. 입과 위, 소장을 그대로 지나 대장까지 도착하고, 그곳에서 장 속 미생물이 먹을 수 있는 ‘밥’이 돼요.</p><p>굿케어맥스가 MAC을 ‘장 속 미생물의 밥’이라고 부르는 이유예요. 한 병에는 이런 식이섬유가 12.5g, 하루 영양성분 기준치(25g)의 절반만큼 들어 있어요.</p><button type="button" class="post-close">목록으로 접기</button></div>
+        </details>
       </div>
+      <p class="col-note">칼럼 속 원료 이야기는 원료에 대한 일반적인 설명이며, 굿케어맥스 제품의 효능·효과를 뜻하지 않아요.</p>
     </div>
   </section>
 </main>
@@ -352,7 +565,7 @@ footer ul{list-style:none;margin:0;padding:0}
     <div class="fgrid">
       <div class="flogo">GC<br>MACs<small>We feed you &amp;<br>your microbes.</small></div>
       <div><h6>Brand.</h6><p>GOODCARE MACs<br>굿케어맥스 · by VILAC</p></div>
-      <div><h6>Explore.</h6><ul><li><a href="#about">About MACs</a></li><li><a href="#process">1:1 Process</a></li><li><a href="#lineup">Line-up</a></li><li><a href="https://www.immunobiome.co.kr/imbert" target="_blank" rel="noopener">IM.BERT ↗</a></li></ul></div>
+      <div><h6>Explore.</h6><ul><li><a href="#about">About MACs</a></li><li><a href="#process">1:1 Process</a></li><li><a href="#lineup">Line-up</a></li><li><a href="#column">Column</a></li><li><a href="https://www.immunobiome.co.kr/imbert" target="_blank" rel="noopener">IM.BERT ↗</a></li></ul></div>
       <button class="to-top" type="button" id="toTop" aria-label="맨 위로"><svg viewBox="0 0 26 44" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 42V3M2 14 13 3l11 11"/></svg></button>
     </div>
     <p class="fine">© VILAC. GOODCARE MACs. 식이섬유 12.5g · 1일 기준치 50%는 완제품 실측 기준, 사균체 수치는 원료사 시험성적서(COA) 기준입니다. IM.BERT 관련 내용은 이뮤노바이옴 소개 자료를 바탕으로 합니다.</p>
@@ -386,6 +599,10 @@ footer ul{list-style:none;margin:0;padding:0}
   const rings=[...document.querySelectorAll('.ring')];let ri=0,timer=null;
   const io=new IntersectionObserver(es=>es.forEach(e=>{clearInterval(timer);if(e.isIntersecting&&!still){timer=setInterval(()=>{rings.forEach((r,i)=>r.classList.toggle('lit',i===ri));ri=(ri+1)%rings.length;},1100);}else rings.forEach(r=>r.classList.remove('lit'));}),{threshold:.3});
   io.observe(document.getElementById('rings'));
+  // column board: one post open at a time
+  const posts=[...document.querySelectorAll('.board .post')];
+  posts.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)posts.forEach(o=>{if(o!==d)o.open=false;});}));
+  document.querySelectorAll('.post-close').forEach(b=>b.addEventListener('click',()=>{const d=b.closest('.post');d.open=false;d.scrollIntoView({block:'nearest',behavior:still?'auto':'smooth'});}));
   document.getElementById('toTop').addEventListener('click',()=>scrollTo({top:0,behavior:still?'auto':'smooth'}));
 })();
 </script>
