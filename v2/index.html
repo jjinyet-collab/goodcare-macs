@@ -592,7 +592,7 @@ main{position:relative}
   function frame(time,reveal){
     const ph=(Math.max(0,time)/15000)%1, sg=ph*3, a=Math.floor(sg)%3, b=(a+1)%3, t=ease(sg-Math.floor(sg));
     const nums=K[a].map((v,i)=>mix(v,K[b][i],t));let j=0;const sx=W/1440,sy=H/1400;
-    ln.setAttribute('d',tpl.replace(/#/g,()=>{const v=nums[j];const r=(j%2?v*sy:v*sx);j++;return r.toFixed(1);}));
+    ln.setAttribute('d',tpl.replace(/#/g,()=>{const v=nums[j];const Z=1.6;const r=(j%2?((v-700)*Z+700)*sy:((v-720)*Z+720)*sx);j++;return r.toFixed(1);}));
     if(reveal<1){const L=ln.getTotalLength();ln.style.strokeDasharray=L;ln.style.strokeDashoffset=L*(1-reveal);}else if(ln.style.strokeDasharray){ln.style.strokeDasharray='';ln.style.strokeDashoffset='';}
   }
   if(still){frame(0,1);}else{const t0=performance.now();(function loop(now){const r=Math.min(1,(now-t0)/2400);frame(now-t0,1-Math.pow(1-r,3));requestAnimationFrame(loop);})(t0);}
