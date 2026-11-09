@@ -351,6 +351,17 @@ footer ul{list-style:none;margin:0;padding:0}
 .hero{isolation:isolate}
 .flow{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block;pointer-events:none;opacity:0;transition:opacity 1.6s ease}
 .flow.on{opacity:1}
+
+/* brand switch + store link in header */
+.nav .logo{margin-right:-6px}
+.bsw{display:flex;gap:2px;background:rgba(255,255,255,.14);border-radius:999px;padding:4px;margin-right:auto}
+.bsw a{padding:7px 14px;border-radius:999px;font:700 14px/1 var(--kr);white-space:nowrap;color:#fff;transition:background .2s,color .2s}
+.bsw a:hover{background:#fff;color:var(--cobalt)}
+header.solid .bsw{background:rgba(255,255,255,.28)}
+.shopbtn{padding:10px 18px;border-radius:999px;background:#fff;color:var(--cobalt);font:800 15px/1 var(--kr);white-space:nowrap}
+header.solid .shopbtn{background:var(--cobalt);color:#fff}
+@media (max-width:1180px){.nav ul a{padding:9px 11px}}
+@media (max-width:620px){.nav{flex-wrap:wrap;height:auto;padding:12px 0;gap:10px}.bsw{order:3;width:100%;justify-content:space-between;margin:0}.bsw a{flex:1;text-align:center}.shopbtn{margin-left:auto;padding:9px 14px}.burger{display:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{transform:none;opacity:1}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -361,6 +372,7 @@ footer ul{list-style:none;margin:0;padding:0}
 <header class="site band" id="hdr">
   <nav class="nav wrap" aria-label="주요 메뉴">
     <a class="logo" href="#top">GOODCARE <b>MACs</b></a>
+    <div class="bsw" role="navigation" aria-label="브랜드 스토어"><a href="shop.html#/list?brand=vilac">비락</a><a href="shop.html#/list?brand=gcm">굿케어맥스</a><a href="shop.html#/list?brand=all">전체</a></div>
     <ul>
       <li><a href="#about" class="on">About</a></li>
       <li><a href="#mac">MAC</a></li>
@@ -369,6 +381,7 @@ footer ul{list-style:none;margin:0;padding:0}
       <li><a href="#lineup">Line-up</a></li>
       <li><a href="#column">Column</a></li>
     </ul>
+    <a class="shopbtn" href="shop.html#/list?brand=gcm">구매하기</a>
     <button class="burger" type="button" aria-label="메뉴"><i></i><i></i><i></i></button>
   </nav>
 </header>
@@ -533,7 +546,7 @@ footer ul{list-style:none;margin:0;padding:0}
     <div class="wrap">
       <div class="lu-head">
         <h2 class="rv">Line<span class="o">-</span>up<span class="ast o" aria-hidden="true">✱</span></h2>
-        <p class="rv">굿케어맥스 2종은 비락 공식 스토어에서, IM.BERT KIT는 1:1 프리미엄 서비스로 만나실 수 있어요.</p>
+        <p class="rv">굿케어맥스 2종은 <a href="shop.html#/list?brand=gcm" style="text-decoration:underline">비락 공식 스토어</a>에서, IM.BERT KIT는 1:1 프리미엄 서비스로 만나실 수 있어요.</p>
       </div>
       <div class="cards">
         <article class="card rv"><div class="tx"><span class="pill">PROTEIN</span><h3>Balanced Protein Chocolate</h3><p>초코 프로틴 · 200mL<br>나를 위한 단백질 + 미생물을 위한 MAC</p></div><div class="ph"><img src="assets/gcm-hand-choco.jpg" alt="손에 든 굿케어맥스 초코 프로틴"></div></article>
