@@ -12,7 +12,7 @@
 /* Store shell: cobalt header with brand switch (비락 / 굿케어맥스 / 전체), light body for reading prices and forms. */
 :root{
   --cobalt:#004BDE;--cobalt-d:#003BB1;--navy:#0E1E40;--orange:#FF6839;--kakao:#FEE500;
-  --bg:#F7F5F0;--card:#fff;--line:#E3E0D8;--ink:#14213D;--sub:#5B6478;--ok:#0E8A4F;--err:#D63B1F;
+  --bg:#FFFFFF;--card:#fff;--line:#E3E0D8;--ink:#14213D;--sub:#5B6478;--ok:#0E8A4F;--err:#D63B1F;
   --display:"Urbanist","Helvetica Neue",Arial,sans-serif;
   --kr:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   color-scheme:light;
@@ -90,7 +90,8 @@ h1.pt{font:800 clamp(28px,3.2vw,40px)/1.25 var(--kr);letter-spacing:-.02em;margi
 /* hero strip on list */
 .lhero{border-radius:24px;overflow:hidden;color:#fff;padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px;align-items:center;margin-bottom:28px}
 .lhero.gcm{background:linear-gradient(120deg,#004BDE,#2F6BF0)}
-.lhero.vilac{background:linear-gradient(120deg,#0E1E40,#24407A)}
+.lhero.vilac{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.lhero.vilac p{opacity:.75}
 .lhero.all{background:linear-gradient(120deg,#004BDE 0%,#0E1E40 100%)}
 .lhero h2{font:800 clamp(26px,3vw,38px)/1.3 var(--kr);margin:0 0 10px;letter-spacing:-.02em}
 .lhero p{margin:0;opacity:.9}
@@ -109,7 +110,7 @@ h1.pt{font:800 clamp(28px,3.2vw,40px)/1.25 var(--kr);letter-spacing:-.02em;margi
 @media (max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
 .pc{background:#fff;border:1px solid #E6E1D8;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
 .pc:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,33,61,.1)}
-.pc .ph{aspect-ratio:1/.92;display:grid;place-items:center;position:relative;padding:14%}
+.pc .ph{background:#fff;border-bottom:1px solid #F0EEEA;aspect-ratio:1/.92;display:grid;place-items:center;position:relative;padding:14%}
 .pc .ph a{display:grid;place-items:center;height:100%;width:100%}
 .pc .ph img{max-height:80%;max-width:80%;width:auto;height:auto;object-fit:contain;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}.pc .ph svg{height:72%;width:auto}
 .pc:hover .ph img{transform:scale(1.04)}
@@ -134,7 +135,7 @@ h1.pt{font:800 clamp(28px,3.2vw,40px)/1.25 var(--kr);letter-spacing:-.02em;margi
 .pd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
 @media (max-width:860px){.pd{grid-template-columns:1fr}}
 .pd .gal{border-radius:24px;aspect-ratio:1;display:grid;place-items:center;padding:40px;position:sticky;top:150px}
-.pd .gal.gcm{background:#EEF3FF}.pd .gal.vilac{background:#F2EFE8}
+.pd .gal.gcm,.pd .gal.vilac{background:#fff;border:1px solid var(--line)}
 .pd .gal img{max-height:86%;width:auto}.pd .gal svg{height:82%;width:auto}
 @media (max-width:860px){.pd .gal{position:static}}
 .pd h1{font:800 clamp(26px,2.6vw,34px)/1.35 var(--kr);margin:6px 0 8px}
@@ -167,7 +168,7 @@ h1.pt{font:800 clamp(28px,3.2vw,40px)/1.25 var(--kr);letter-spacing:-.02em;margi
 @media (max-width:960px){.sticky{position:static}}
 .ci{display:grid;grid-template-columns:28px 92px minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
 .ci .th{width:92px;height:92px;border-radius:14px;display:grid;place-items:center;padding:8px}
-.ci .th.gcm{background:#EEF3FF}.ci .th.vilac{background:#F2EFE8}
+.ci .th.gcm,.ci .th.vilac{background:#fff;border:1px solid var(--line)}
 .ci .th img{max-height:100%;width:auto}.ci .th svg{height:100%;width:auto}
 .ci h3{font-size:16.5px;margin:0 0 2px}
 .ci .r{display:grid;justify-items:end;gap:8px}
@@ -855,7 +856,7 @@ const views={
 
 /* shared bits */
 function card(p,u){const o=p.options[0];const w=u&&u.wish.includes(p.id);const off=Math.round((1-o.price/o.list)*100);
-  return `<article class="pc"><div class="ph" style="background:${p.bg||'#EEE'}"><a href="#/product/${p.id}" aria-label="${esc(p.name)}">${art(p)}</a><div class="badges">${p.badges.map(([t,c])=>`<span class="tag ${c}">${t}</span>`).join('')}${p.soldOut?'<span class="tag g">일시품절</span>':''}</div>
+  return `<article class="pc"><div class="ph"><a href="#/product/${p.id}" aria-label="${esc(p.name)}">${art(p)}</a><div class="badges">${p.badges.map(([t,c])=>`<span class="tag ${c}">${t}</span>`).join('')}${p.soldOut?'<span class="tag g">일시품절</span>':''}</div>
     <button class="wish${w?' on':''}" data-w="${p.id}" aria-label="관심상품${w?' 해제':''}" aria-pressed="${!!w}">${ICON.heart}</button></div>
     <div class="tx"><h3><a href="#/product/${p.id}">${esc(p.name)} <span class="opt-l">(${esc(o.label)})</span></a></h3>
     <div class="price"><s>${won(o.list)}</s><b>${won(o.price)}</b><em>${off}<small>%</small></em></div>
