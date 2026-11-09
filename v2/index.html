@@ -13,7 +13,7 @@
 /* Layout: cobalt hero → black story bands → cobalt footer; orange is the only accent, laid on as pills, swooshes and rings. */
 :root{
   --cobalt:#004BDE; --cobalt-d:#003BB1; --navy:#000B62;
-  --orange:#FF6839; --black:#000; --ink:#111; --white:#fff; --grey:#9A9A9A; --lime:#D4F51A;
+  --orange:#FF6839; --black:#0E1E40; --ink:#111; --white:#fff; --grey:#9A9A9A; --lime:#D4F51A;
   --display:"Urbanist","Helvetica Neue",Arial,sans-serif;
   --kr:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   --wrap:1440px;
@@ -98,7 +98,7 @@ header.solid .burger i{background:var(--cobalt)}
 
 /* ---------- photo mosaic ---------- */
 .mosaic{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(150px,17vw,280px);gap:0}
-.mosaic figure{margin:0;position:relative;overflow:hidden;background:#111}
+.mosaic figure{margin:0;position:relative;overflow:hidden;background:#16295A}
 .mosaic img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);transition:filter .5s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
 .mosaic figure:hover img{filter:none;transform:scale(1.05)}
 .mosaic figcaption{position:absolute;left:16px;bottom:14px;background:var(--orange);color:#fff;border-radius:999px;padding:6px 14px;font:700 14px/1 var(--kr);opacity:0;transform:translateY(10px);transition:.35s}
@@ -180,7 +180,7 @@ header.solid .burger i{background:var(--cobalt)}
 .pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(50px,5vw,80px);border-top:1px solid rgba(255,255,255,.18)}
 .pgrid div{border-bottom:1px solid rgba(255,255,255,.18);padding:clamp(26px,3vw,44px) 12px;display:grid;justify-items:center;gap:8px;transition:background .3s}
 .pgrid div:not(:nth-child(4n)){border-right:1px solid rgba(255,255,255,.18)}
-.pgrid div:hover{background:#0d0d0d}
+.pgrid div:hover{background:#142753}
 .pgrid b{font:800 clamp(22px,2.2vw,34px)/1.1 var(--display);letter-spacing:-.01em}
 .pgrid small{font-size:15px;color:var(--grey)}
 .pgrid .logo-im{background:#fff;border-radius:999px;padding:10px 16px}
@@ -190,7 +190,7 @@ header.solid .burger i{background:var(--cobalt)}
 /* ---------- footer ---------- */
 footer{background:var(--cobalt);padding-block:clamp(60px,6vw,96px) 40px}
 .fgrid{display:grid;grid-template-columns:minmax(0,1.2fr) repeat(2,minmax(0,1fr)) auto;gap:clamp(24px,4vw,64px);align-items:start}
-.flogo{font:900 clamp(64px,8vw,130px)/.88 var(--display);letter-spacing:-.05em;color:var(--orange)}
+.flogo{font:900 clamp(56px,6.4vw,104px)/1.02 var(--kr);letter-spacing:-.04em;color:var(--orange)}
 .flogo small{display:block;font:700 15px/1.45 var(--display);letter-spacing:.06em;color:#fff;margin-top:22px;text-transform:uppercase}
 footer h6{margin:0 0 10px;font:600 16px/1 var(--display);color:rgba(255,255,255,.5)}
 footer p,footer li{font-size:15px;line-height:1.7}
@@ -214,7 +214,7 @@ footer ul{list-style:none;margin:0;padding:0}
 
 /* ===== MAC story 01–04 ===== */
 .mc{position:relative;overflow:hidden;padding-block:clamp(90px,10vw,160px)}
-.mc1{background:#000}.mc2{background:var(--cobalt)}.mc3{background:var(--orange)}.mc4{background:#000}
+.mc1{background:var(--black)}.mc2{background:var(--cobalt)}.mc3{background:var(--orange)}.mc4{background:var(--black)}
 .mc-giant{position:absolute;right:-3%;bottom:-6%;font:900 clamp(150px,27vw,470px)/.85 var(--display);letter-spacing:-.06em;color:#fff;opacity:.06;white-space:nowrap;pointer-events:none;animation:mc-drift 8s ease-in-out infinite}
 .mc2 .mc-giant,.mc3 .mc-giant{opacity:.14}
 @keyframes mc-drift{50%{transform:translateX(-70px)}}
@@ -280,7 +280,7 @@ footer ul{list-style:none;margin:0;padding:0}
 .ratio{display:grid;gap:14px;margin-top:18px;max-width:640px}
 .rrow{display:grid;grid-template-columns:140px 1fr;align-items:center;gap:12px}
 .rrow > span{font-weight:700;font-size:16px}
-.rbar{display:grid;grid-template-columns:2fr 4fr 4fr;gap:6px}
+.rbar{display:grid;grid-template-columns:2fr 6fr 2fr;gap:6px}
 .rbar i{display:block;height:44px;border-radius:12px;font:900 15px/44px var(--kr);font-style:normal;padding-left:12px;white-space:nowrap;overflow:hidden;color:#000;transform-origin:left;animation:fill 8s infinite}
 .rbar i:nth-child(2){animation-delay:.2s}.rbar i:nth-child(3){animation-delay:.4s}
 .rbar.m i:nth-child(1){animation-delay:.6s}.rbar.m i:nth-child(2){animation-delay:.8s}.rbar.m i:nth-child(3){animation-delay:1s}
@@ -310,7 +310,7 @@ footer ul{list-style:none;margin:0;padding:0}
 .post{border-bottom:1px solid rgba(255,255,255,.16)}
 .post summary{list-style:none;cursor:pointer;min-height:80px;transition:background .25s}
 .post summary::-webkit-details-marker{display:none}
-.post summary:hover,.post[open] summary{background:#111}
+.post summary:hover,.post[open] summary{background:#16295A}
 .b-no{text-align:center;font:800 22px/1 var(--display);color:var(--orange)}
 .b-cat{justify-self:center;font-weight:700;font-size:14px;background:var(--cobalt);border-radius:999px;padding:6px 12px;white-space:nowrap}
 .b-title{font:700 clamp(17px,1.4vw,21px)/1.45 var(--kr)}
@@ -319,7 +319,7 @@ footer ul{list-style:none;margin:0;padding:0}
 .b-arrow{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);position:relative;justify-self:end;transition:transform .3s,background .2s,border-color .2s}
 .b-arrow::before{content:"";position:absolute;left:50%;top:44%;width:8px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:translate(-50%,-50%) rotate(45deg)}
 .post[open] .b-arrow{transform:rotate(180deg);background:var(--orange);border-color:var(--orange)}
-.post-body{padding:28px clamp(20px,9vw,212px) 36px;background:#111;display:grid;gap:16px;animation:post-in .35s ease both}
+.post-body{padding:28px clamp(20px,9vw,212px) 36px;background:#16295A;display:grid;gap:16px;animation:post-in .35s ease both}
 .post-body h3{font:900 clamp(24px,2.2vw,32px)/1.4 var(--kr);color:var(--orange)}
 .post-body p{font-size:18px;line-height:1.85;max-width:42em;color:rgba(255,255,255,.88)}
 .post-close{justify-self:start;margin-top:6px;border:1.5px solid #fff;background:transparent;color:#fff;border-radius:999px;padding:10px 18px;font:700 15px/1 var(--kr);cursor:pointer}
@@ -334,6 +334,19 @@ footer ul{list-style:none;margin:0;padding:0}
   .post-body{padding:22px 16px 28px}.post-body p{font-size:17px}
 }
 
+
+/* ===== calm hero: lighter type, glass pills, slow drift (audience: seniors) ===== */
+.hero h1{font-weight:700;letter-spacing:-.02em;text-transform:none;line-height:1}
+.hero h1 .r1,.hero h1 .r2{transform:none}
+.hero h1 .line{animation:calmup 1.8s cubic-bezier(.25,.6,.2,1) both}
+.hero h1 span:nth-child(2) .line{animation-delay:.25s}.hero h1 span:nth-child(3) .line{animation-delay:.5s}
+@keyframes calmup{from{transform:translateY(18px);opacity:0}to{transform:none;opacity:1}}
+.hero .tag{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.38);color:#fff;font-weight:600;font-size:clamp(13px,1.15vw,18px);letter-spacing:.06em;padding:.6em 1.2em;box-shadow:0 10px 30px rgba(0,20,80,.18);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);animation:calmdrift 11s ease-in-out infinite;--k:6px}
+@keyframes calmdrift{50%{transform:translateY(-6px)}}
+.hero .float img{animation:calmfloat 12s ease-in-out infinite}
+.hero .float.f2 img{animation-delay:-6s}
+@keyframes calmfloat{50%{transform:translateY(-10px)}}
+.hero .float{translate:calc(var(--mx,0)*-10px) calc(var(--my,0)*-8px);transition:translate 1.2s cubic-bezier(.2,.8,.2,1)}
 /* ===== hero fluid: WebGL silk gradient that flows like the gut and bends around the cursor ===== */
 .hero{isolation:isolate}
 .flow{position:absolute;inset:0;width:100%;height:100%;z-index:-1;display:block;pointer-events:none;opacity:0;transition:opacity 1.6s ease}
@@ -430,16 +443,16 @@ footer ul{list-style:none;margin:0;padding:0}
   </section>
 
   <section class="mc mc3 band">
-    <span class="mc-giant" aria-hidden="true">2:4:4</span>
+    <span class="mc-giant" aria-hidden="true">2:6:2</span>
     <div class="wrap mc-grid">
       <div class="mc-step rv">
         <div class="mc-count"><b>03</b><span>/ 04</span></div>
-        <p class="mc-k">2 : 4 : 4는</p>
+        <p class="mc-k">2 : 6 : 2는</p>
         <h3>건강한 밥처럼<br>흰쌀 · 잡곡쌀 · 콩을 섞은 비율</h3>
-        <p>단쇄 2 · 중쇄 4 · 장쇄 4,<br>3가지 길이를 섞어 든든하게 설계했어요.</p>
-        <div class="ratio" aria-label="건강한 밥 흰쌀 2 잡곡쌀 4 콩 4, 굿케어맥스 MAC 단쇄 2 중쇄 4 장쇄 4">
-          <div class="rrow"><span>건강한 밥</span><div class="rbar"><i style="background:#fff">흰쌀 2</i><i style="background:#F3D9B1">잡곡쌀 4</i><i style="background:#7A4A2A;color:#fff">콩 4</i></div></div>
-          <div class="rrow"><span>굿케어맥스 MAC</span><div class="rbar m"><i style="background:#000;color:#fff">단쇄 2</i><i style="background:#fff">중쇄 4</i><i style="background:var(--cobalt);color:#fff">장쇄 4</i></div></div>
+        <p>단쇄 2 · 중쇄 6 · 장쇄 2,<br>3가지 길이를 섞어 든든하게 설계했어요.</p>
+        <div class="ratio" aria-label="건강한 밥 흰쌀 2 잡곡쌀 6 콩 2, 굿케어맥스 MAC 단쇄 2 중쇄 6 장쇄 2">
+          <div class="rrow"><span>건강한 밥</span><div class="rbar"><i style="background:#fff">흰쌀 2</i><i style="background:#F3D9B1">잡곡쌀 6</i><i style="background:#7A4A2A;color:#fff">콩 2</i></div></div>
+          <div class="rrow"><span>굿케어맥스 MAC</span><div class="rbar m"><i style="background:#000;color:#fff">단쇄 2</i><i style="background:#fff">중쇄 6</i><i style="background:var(--cobalt);color:#fff">장쇄 2</i></div></div>
         </div>
       </div>
       <div class="rice"><img src="assets/gcm-rice-244.jpg" alt="흰쌀, 잡곡, 콩과 잡곡밥"></div>
@@ -468,7 +481,7 @@ footer ul{list-style:none;margin:0;padding:0}
   <section class="mosaic" id="mosaic" aria-label="굿케어맥스와 함께하는 순간">
     <figure class="m-a"><img src="assets/gcm-lifestyle-green.jpg" alt="초록 소매의 손이 굿케어맥스 초코 프로틴을 든 모습"><figcaption>나와 미생물을 위해</figcaption></figure>
     <figure class="m-b"><img src="assets/day-workout.jpg" alt="헬스장 벤치 위 굿케어맥스 초코 프로틴"><figcaption>운동 후</figcaption></figure>
-    <figure class="m-c"><img src="assets/gcm-rice-244.jpg" alt="흰쌀, 잡곡, 콩과 잡곡밥"><figcaption>2 : 4 : 4</figcaption></figure>
+    <figure class="m-c"><img src="assets/gcm-rice-244.jpg" alt="흰쌀, 잡곡, 콩과 잡곡밥"><figcaption>2 : 6 : 2</figcaption></figure>
     <figure class="m-d"><img src="assets/day-morning.jpg" alt="아침 주방 조리대 위 굿케어맥스 균형영양식"><figcaption>아침 루틴</figcaption></figure>
     <figure class="m-e"><img src="assets/imbert-kit.jpg" alt="IM.BERT KIT 상자를 든 두 손"><figcaption>IM.BERT KIT</figcaption></figure>
     <figure class="m-f"><img src="assets/day-lunch.jpg" alt="사무실 책상 위 굿케어맥스 균형영양식"><figcaption>바쁜 점심</figcaption></figure>
@@ -566,7 +579,7 @@ footer ul{list-style:none;margin:0;padding:0}
 <footer class="band">
   <div class="wrap">
     <div class="fgrid">
-      <div class="flogo">GC<br>MACs<small>We feed you &amp;<br>your microbes.</small></div>
+      <div class="flogo">굿케어<br>맥스<small>We feed you &amp;<br>your microbes.</small></div>
       <div><h6>Brand.</h6><p>GOODCARE MACs<br>굿케어맥스 · by VILAC</p></div>
       <div><h6>Explore.</h6><ul><li><a href="#about">About MACs</a></li><li><a href="#process">1:1 Process</a></li><li><a href="#lineup">Line-up</a></li><li><a href="#column">Column</a></li><li><a href="https://www.immunobiome.co.kr/imbert" target="_blank" rel="noopener">IM.BERT ↗</a></li></ul></div>
       <button class="to-top" type="button" id="toTop" aria-label="맨 위로"><svg viewBox="0 0 26 44" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 42V3M2 14 13 3l11 11"/></svg></button>
@@ -620,18 +633,16 @@ footer ul{list-style:none;margin:0;padding:0}
   float fbm(vec2 p){float v=0.,a=.5;mat2 r=mat2(.8,.6,-.6,.8);for(int i=0;i<5;i++){v+=a*n(p);p=r*p*2.02;a*=.5;}return v;}
   void main(){
     vec2 uv=gl_FragCoord.xy/R;float as=R.x/R.y;vec2 p=vec2(uv.x*as,uv.y)*1.35;
-    vec2 m=vec2(M.x*as,M.y)*1.35;float d=length(p-m);p+=(p-m)*.35*exp(-d*d*3.)*MI;
-    float t=T*.045;
+    vec2 m=vec2(M.x*as,M.y)*1.35;float d=length(p-m);p+=(p-m)*.12*exp(-d*d*2.)*MI;
+    float t=T*.018;
     vec2 q=vec2(fbm(p+vec2(0.,t)),fbm(p+vec2(5.2,1.3)-t));
     vec2 r=vec2(fbm(p+3.*q+vec2(1.7,9.2)+t*.7),fbm(p+3.*q+vec2(8.3,2.8)-t*.6));
     float f=fbm(p+2.6*r);
-    vec3 cob=vec3(0.,.294,.871),deep=vec3(0.,.17,.62),org=vec3(1.,.408,.224),yel=vec3(1.,.8,.25);
-    vec3 c=mix(deep,cob,smoothstep(.2,.7,f));
-    float cur=smoothstep(.55,.92,r.x)*smoothstep(.25,.6,f);
-    c=mix(c,org,cur*.85);
-    c=mix(c,yel,smoothstep(.72,.98,r.x)*smoothstep(.45,.8,f)*.55);
-    c+=vec3(.06,.08,.14)*pow(smoothstep(.55,1.,f),2.);
-    c+=(h(gl_FragCoord.xy+T)-.5)*.035;
+    vec3 cob=vec3(0.,.294,.871),deep=vec3(.02,.18,.58),mist=vec3(.42,.58,.95),cream=vec3(1.,.93,.82);
+    vec3 c=mix(deep,cob,smoothstep(.15,.75,f));
+    c=mix(c,mist,smoothstep(.55,.95,r.x)*smoothstep(.35,.8,f)*.45);
+    c=mix(c,cream,smoothstep(.75,1.,r.x)*smoothstep(.5,.85,f)*.18);
+    c+=(h(gl_FragCoord.xy+floor(T*8.))-.5)*.02;
     gl_FragColor=vec4(c,1.);}`;
   function sh(t,src){const s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);return s;}
   const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);
