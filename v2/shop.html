@@ -248,6 +248,20 @@ footer.ft .pol a{color:#fff;font-weight:600}
 footer.ft .pol a.b{color:var(--orange)}
 footer.ft .biz{line-height:1.9}
 footer.ft .cs{margin-top:14px}
+/* ===== floating inquiry button ===== */
+.ask{position:fixed;right:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,32px);z-index:60;display:grid;justify-items:end;gap:12px}
+.ask-btn{width:64px;height:64px;border-radius:50%;border:0;background:#FF6839;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 14px 30px rgba(0,0,0,.25);transition:transform .2s}
+.ask-btn:hover{transform:scale(1.06)}
+.ask-btn svg{width:28px;height:28px}
+.ask-btn small{position:absolute;bottom:-20px;font:700 12px/1 "Noto Sans KR",sans-serif;color:#FF6839;text-shadow:0 0 6px #fff}
+.ask-panel{width:min(320px,calc(100vw - 32px));background:#fff;color:#14213D;border-radius:20px;padding:20px;box-shadow:0 24px 60px rgba(0,0,0,.3);display:none}
+.ask.open .ask-panel{display:block;animation:fade .2s}
+.ask-panel h3{margin:0 0 4px;font:800 19px/1.3 "Noto Sans KR",sans-serif}
+.ask-panel p{margin:0 0 14px;font-size:14px;color:#5B6478}
+.ask-panel a{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;border:1.5px solid #E3E0D8;margin-top:8px;font:700 15.5px/1.3 "Noto Sans KR",sans-serif}
+.ask-panel a:hover{border-color:#004BDE;background:#F3F6FF}
+.ask-panel a i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-style:normal;font-weight:900;flex:none}
+.ask-panel a span small{display:block;font:500 13px/1.3 "Noto Sans KR",sans-serif;color:#5B6478}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -274,7 +288,7 @@ footer.ft .cs{margin-top:14px}
 <footer class="ft">
   <div class="wrap">
     <div class="lg">VILAC · GOODCARE <b>MACs</b></div>
-    <div class="pol"><a href="#/doc/terms">이용약관</a><a class="b" href="#/doc/privacy">개인정보처리방침</a><a href="#/doc/refund">교환·환불 정책</a><a href="#/guest">비회원 주문조회</a></div>
+    <div class="pol"><a href="#/inquiry">1:1 문의</a><a href="#/doc/terms">이용약관</a><a class="b" href="#/doc/privacy">개인정보처리방침</a><a href="#/doc/refund">교환·환불 정책</a><a href="#/guest">비회원 주문조회</a></div>
     <div class="biz">
       상호 <span class="ph-fill">[(주)비락]</span> · 대표 <span class="ph-fill">[대표자명]</span> · 사업자등록번호 <span class="ph-fill">[000-00-00000]</span><br>
       통신판매업 신고 <span class="ph-fill">[제0000-지역-0000호]</span> · 개인정보보호책임자 <span class="ph-fill">[성명]</span><br>
@@ -739,6 +753,22 @@ const views={
       <div class="err" id="gerr" role="alert"></div><button class="btn block">조회하기</button></form><div id="gres" style="margin-top:22px"></div></div>`);
     V.querySelector('#gf').onsubmit=e=>{e.preventDefault();try{const o=API.guestOrder(V.querySelector('#gi').value,V.querySelector('#gh').value,V.querySelector('#gpw').value);V.querySelector('#gerr').textContent='';V.querySelector('#gres').innerHTML=orderCard(o);bindOrderCards();}catch(x){V.querySelector('#gerr').textContent=x.message;}};
   },
+  inquiry(){
+    const u=API.me();
+    render(`<div class="form"><h1 class="pt" style="text-align:center">1:1 문의</h1><p class="pt-sub" style="text-align:center">영업일 기준 1~2일 안에 알림톡·이메일로 답변드려요.</p>
+      <form id="qf" novalidate><div class="fld"><label for="qt">문의 유형</label><select class="in" id="qt"><option>상품 문의</option><option>주문·결제</option><option>배송</option><option>교환·반품·환불</option><option>정기배송</option><option>IM.BERT 서비스</option><option>기타</option></select></div>
+      <div class="fld"><label for="qn">이름</label><input class="in" id="qn" value="${esc(u?u.name:'')}"></div>
+      <div class="fld"><label for="qh">휴대폰</label><input class="in" id="qh" inputmode="tel" value="${esc(u?u.phone:'')}"></div>
+      <div class="fld"><label for="qe">이메일 (선택)</label><input class="in" id="qe" type="email" value="${esc(u?u.email:'')}"></div>
+      <div class="fld"><label for="qo">주문번호 (선택)</label><input class="in" id="qo" placeholder="VL…"></div>
+      <div class="fld"><label for="qm">문의 내용</label><textarea class="in" id="qm" rows="6" style="height:auto;padding:14px 16px" placeholder="궁금한 점을 적어주세요."></textarea></div>
+      <label style="display:flex;gap:8px;align-items:center;font-size:15px;margin-bottom:16px"><input type="checkbox" id="qa" style="width:20px;height:20px;accent-color:var(--cobalt)"> [필수] 문의 처리를 위한 개인정보 수집·이용에 동의합니다</label>
+      <div class="err" id="qerr" role="alert"></div><button class="btn block">문의 남기기</button></form></div>`);
+    V.querySelector('#qf').onsubmit=e=>{e.preventDefault();const g=id=>V.querySelector('#'+id).value.trim();const er=V.querySelector('#qerr');
+      if(g('qn').length<2||!/^01[016789]-?\d{3,4}-?\d{4}$/.test(g('qh'))||g('qm').length<5||!V.querySelector('#qa').checked){er.textContent='이름·휴대폰·문의 내용(5자 이상)·동의를 확인해 주세요.';return;}
+      const qs=DB.get('inquiries',[]);qs.unshift({id:uid('Q'),uid:u?u.id:null,type:g('qt'),name:g('qn'),phone:fmtPhone(g('qh')),email:g('qe'),order:g('qo'),msg:g('qm'),at:new Date().toISOString(),status:'접수'});DB.set('inquiries',qs);
+      render(`<div class="empty box"><b style="font-size:20px">문의가 접수됐어요</b><p>영업일 기준 1~2일 안에 답변드릴게요.</p><a class="btn" href="#/list?brand=${curBrand}">스토어로 돌아가기</a></div>`);};
+  },
   imbert(){render(`<div class="box" style="max-width:760px;margin:0 auto"><span class="tag">AT-HOME TEST</span><h1 class="pt" style="margin-top:10px">IM.BERT 1:1 맞춤 상담</h1><p>집에서 하는 장내 미생물 검사와 AI 리포트, 그리고 1:1 이중영양 설계는 상담 후 진행돼요.</p>
     <div class="fld" style="margin-top:20px"><label for="in1">이름</label><input class="in" id="in1"></div><div class="fld"><label for="in2">연락처</label><input class="in" id="in2" inputmode="tel"></div>
     <label style="display:flex;gap:8px;align-items:center;font-size:15px;margin-bottom:16px"><input type="checkbox" id="in3" style="width:20px;height:20px;accent-color:var(--cobalt)"> [필수] 상담을 위한 개인정보 수집·이용에 동의합니다</label>
@@ -805,6 +835,23 @@ if(LS.get('promoOff','')===today())document.getElementById('promo').remove();
 else document.getElementById('promoX').onclick=()=>{LS.set('promoOff',today());document.getElementById('promo').remove();};
 if(CONFIG.mode!=='demo')document.getElementById('demoBar').remove();
 route();
+</script>
+<div class="ask" id="ask">
+  <div class="ask-panel" id="askPanel" role="dialog" aria-label="문의하기">
+    <h3>무엇을 도와드릴까요?</h3><p>평일 09:00~18:00 · 점심 12:00~13:00</p>
+    <a href="#" data-kakao><i style="background:#FEE500;color:#191919">K</i><span>카카오톡 상담<small>채널 추가하고 바로 문의</small></span></a>
+    <a href="#/inquiry"><i style="background:#EAF0FF;color:#004BDE">✎</i><span>1:1 문의 남기기<small>답변은 알림톡·이메일로</small></span></a>
+    <a href="#/imbert"><i style="background:#FFEDE6;color:#C8441B">B</i><span>IM.BERT 맞춤 상담 신청<small>장내 미생물 검사 · 1:1 설계</small></span></a>
+    <a href="tel:000-0000-0000"><i style="background:#F1EFEA;color:#14213D">☎</i><span>고객센터 전화<small>[000-0000-0000]</small></span></a>
+  </div>
+  <button type="button" class="ask-btn" id="askBtn" aria-expanded="false" aria-controls="askPanel" aria-label="문의하기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></button>
+</div>
+<script>
+(function(){const a=document.getElementById('ask'),b=document.getElementById('askBtn');
+b.onclick=()=>{const o=a.classList.toggle('open');b.setAttribute('aria-expanded',o);};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){a.classList.remove('open');b.setAttribute('aria-expanded',false);}});
+document.addEventListener('click',e=>{if(!a.contains(e.target)){a.classList.remove('open');b.setAttribute('aria-expanded',false);}});
+a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySelector('.ask-panel p');p.textContent='카카오톡 채널 주소가 정해지면 연결돼요.';};})();
 </script>
 
 </body>
