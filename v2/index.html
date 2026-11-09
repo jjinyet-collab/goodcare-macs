@@ -501,6 +501,17 @@ header.site:not(.solid) .logo b{color:#5A1330}
 .gut-replay.on{opacity:1}
 @media (max-width:760px){.gut-scroll{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.gut-scroll::-webkit-scrollbar{display:none}.gut-frame{width:760px}}
 @media (prefers-reduced-motion:reduce){.gb-ring,.rn *{animation:none!important}}
+
+/* About MACs copy now sits on top of the track section, left aligned */
+.gut{padding-top:clamp(170px,16vw,240px)!important}
+.gut-head{text-align:left!important;max-width:var(--wrap);margin:0 auto;padding-inline:max(16px,4vw);scroll-margin-top:90px}
+.gh-t{margin:0;font:900 clamp(52px,7vw,112px)/1 var(--display);letter-spacing:-.03em;color:#fff;text-transform:uppercase}
+.gh-t .ast{color:#5C122C}
+.gh-copy{margin-top:clamp(28px,3vw,48px);display:grid;gap:22px;max-width:62em}
+.gh-copy p{margin:0;font:500 clamp(19px,1.75vw,27px)/1.7 var(--kr);color:#fff;word-break:keep-all}
+.gh-copy em{font-style:normal;font-weight:900;color:#5C122C}
+.gut-scroll{margin-top:clamp(40px,5vw,80px)!important}
+@media (max-width:760px){.gh-copy p br{display:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{transform:none;opacity:1}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -539,8 +550,12 @@ header.site:not(.solid) .logo b{color:#5A1330}
   <div class="mq mq-w" aria-label="MACs · Fiber 12.5g · Postbiotics · IM.BERT · Lactose-free · 2:6:2"><div class="t" aria-hidden="true"><span>MACs</span><i>✱</i><span>Fiber 12.5g</span><i>✱</i><span>Postbiotics</span><i>✱</i><span>IM.BERT</span><i>✱</i><span>Lactose-free</span><i>✱</i><span>2:6:2</span><i>✱</i><span>MACs</span><i>✱</i><span>Fiber 12.5g</span><i>✱</i><span>Postbiotics</span><i>✱</i><span>IM.BERT</span><i>✱</i><span>Lactose-free</span><i>✱</i><span>2:6:2</span><i>✱</i><span>MACs</span><i>✱</i><span>Fiber 12.5g</span><i>✱</i><span>Postbiotics</span><i>✱</i><span>IM.BERT</span><i>✱</i><span>Lactose-free</span><i>✱</i><span>2:6:2</span><i>✱</i><span>MACs</span><i>✱</i><span>Fiber 12.5g</span><i>✱</i><span>Postbiotics</span><i>✱</i><span>IM.BERT</span><i>✱</i><span>Lactose-free</span><i>✱</i><span>2:6:2</span><i>✱</i></div></div>
 
   <!-- JOYFUL CARE RITUAL -->
-  <section class="gut" id="gut" aria-label="2:6:2 MAC 달리기">
-    <div class="gut-head wrap"><p class="gut-q">사람의 세포를 위한 균형영양에<br><b>장 속 미생물의 밥, MAC</b>을 더했습니다.</p><p class="gut-s">나와 내 안의 미생물이 함께 건강한 하루,<br>굿케어맥스는 매일의 웰니스 라이프를 지향합니다.</p></div>
+  <section class="gut" id="gut" aria-label="About MACs · 2:6:2 MAC 달리기">
+    <div class="gut-head wrap" id="about">
+      <h2 class="gh-t">About MACs<span class="ast" aria-hidden="true">✱</span></h2>
+      <div class="gh-copy"><p><em>굿케어맥스</em>는 칼로리는 넘치지만 장 속 미생물은 굶주린 요즘의 식탁을 위해,<br>사람의 세포를 위한 균형영양에 <em>장 속 미생물의 밥, MAC</em>을 더했습니다.</p>
+        <p>흰쌀·잡곡쌀·콩을 섞은 건강한 밥처럼 다섯 가지 식이섬유를 섞어 한 병에 12.5g을 채우고,<br>이뮤노바이옴의 AI 모델 IM.BERT와 함께 <em>나에게 맞춘 1:1 이중영양</em>까지 이어갑니다.</p></div>
+    </div>
     <div class="gut-scroll" id="gutScroll"><div class="gut-frame" id="gutFrame">
       <svg class="gut-svg" viewBox="0 0 1552 936" aria-hidden="true">
         <defs><pattern id="gutDither" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="#E2120A" opacity=".55"/><rect x="3" y="3" width="2" height="2" fill="#FFB25A" opacity=".35"/></pattern></defs>
@@ -571,15 +586,7 @@ header.site:not(.solid) .logo b{color:#5A1330}
   </section>
 
   <!-- ABOUT -->
-  <section class="about band" id="about">
-    <div class="wrap">
-      <h2 class="rv">About MACs<span class="ast" aria-hidden="true">✱</span></h2>
-      <div class="copy rv">
-        <p><em>굿케어맥스</em>는 칼로리는 넘치지만 장 속 미생물은 굶주린 요즘의 식탁을 위해,<br>사람의 세포를 위한 균형영양에 <em>장 속 미생물의 밥, MAC</em>을 더했습니다.</p>
-        <p>흰쌀·잡곡쌀·콩을 섞은 건강한 밥처럼 다섯 가지 식이섬유를 섞어 한 병에 12.5g을 채우고,<br>이뮤노바이옴의 AI 모델 IM.BERT와 함께 <em>나에게 맞춘 1:1 이중영양</em>까지 이어갑니다.</p>
-      </div>
-    </div>
-  </section>
+
 
   <!-- MAC STORY 01–04 -->
   <section class="mc mc1 band" id="mac">
