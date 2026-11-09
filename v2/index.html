@@ -460,14 +460,14 @@ header.site:not(.solid) .logo b{color:#5A1330}
 .friends .ch.mac:hover,.friends .ch.mac:focus-visible,.friends .ch.mac.tip{z-index:6}
 
 /* ===== 2:6:2 gut ride: chains travel a winding gut as you scroll ===== */
-.gut{position:relative;height:260vh;background:#FF8A4C;color:#14213D}
+.gut{position:relative;height:260vh;background:#FF7512;color:#14213D}
 .gut-stage{position:sticky;top:0;height:100vh;overflow:hidden}
 .gut-head{position:absolute;left:0;right:0;top:clamp(80px,11vh,120px);text-align:center;z-index:3;pointer-events:none}
 .gut-head p{margin:10px 0 0;font-size:clamp(16px,1.4vw,19px);color:#fff;font-weight:600}
 .gut .fr-k{color:#fff}.gut .fr-k b{color:#5A1330}
 .gut-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-#gutBand{stroke:#F75E03}
-#gutDots{display:none}
+#gutBand{stroke:#F7752F}
+#gutDots{stroke:url(#gutDither)}
 .gut-train{cursor:pointer}
 .gut-train .lobe{transition:none}
 .gut-tag{position:absolute;z-index:4;translate:-50% -50%;background:var(--tc);color:#fff;border-radius:18px;padding:12px 18px;text-align:center;opacity:0;scale:.7;transition:opacity .35s,scale .45s cubic-bezier(.3,1.6,.5,1);pointer-events:none;white-space:nowrap}
@@ -476,6 +476,12 @@ header.site:not(.solid) .logo b{color:#5A1330}
 .gut-tag.on{opacity:1;scale:1}
 .gut-tag[data-k="0"]{--tc:#FF214D}.gut-tag[data-k="1"]{--tc:#7334F5}.gut-tag[data-k="2"]{--tc:#00AC66}
 .gut-hint{position:absolute;left:50%;bottom:28px;translate:-50% 0;margin:0;font:700 14px/1 var(--kr);color:#fff;transition:opacity .4s;z-index:3}
+.gut-badge{position:absolute;right:clamp(16px,6vw,110px);bottom:clamp(24px,8vh,90px);width:clamp(130px,14vw,224px);aspect-ratio:1;z-index:3}
+.gut-badge img{position:absolute;inset:13%;width:74%;height:74%;border-radius:50%}
+.gb-ring{width:100%;height:100%;animation:gb-spin 22s linear infinite;overflow:visible}
+.gb-ring text{font:800 15px var(--kr);fill:#5C122C;letter-spacing:.5px}
+@keyframes gb-spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.gb-ring{animation:none}}
 @media (max-width:760px){.gut{height:300vh}.gut-head{top:128px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{transform:none;opacity:1}html{scroll-behavior:auto}}
 </style>
@@ -519,6 +525,7 @@ header.site:not(.solid) .logo b{color:#5A1330}
     <div class="gut-stage">
       <div class="gut-head wrap"><h2 class="fr-k"><b>2:6:2</b> MAC and Friends</h2><p>처음부터 끝까지 가는 숫자</p></div>
       <svg class="gut-svg" id="gutSvg" aria-hidden="true">
+        <defs><pattern id="gutDither" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="#FFC64D" opacity=".32"/><rect x="3" y="3" width="2" height="2" fill="#FFC64D" opacity=".2"/></pattern></defs>
         <path id="gutBand" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         <path id="gutDots" fill="none" stroke-linecap="round"/>
         <g id="gutTrains"></g>
@@ -526,6 +533,10 @@ header.site:not(.solid) .logo b{color:#5A1330}
       <div class="gut-tag" data-k="0"><b>단쇄 2</b><span>앞쪽에서 먼저</span></div>
       <div class="gut-tag" data-k="1"><b>중쇄 6</b><span>가운데를 지나</span></div>
       <div class="gut-tag" data-k="2"><b>장쇄 2</b><span>끝까지 닿도록</span></div>
+      <div class="gut-badge" aria-hidden="true">
+        <svg viewBox="0 0 224 224" class="gb-ring"><defs><path id="gbCirc" d="M112 112 m-92 0 a92 92 0 1 1 184 0 a92 92 0 1 1 -184 0"/></defs><text><textPath href="#gbCirc">식이섬유 12.5g · 2:6:2 설계 · 굿케어맥스 · 식이섬유 12.5g · 2:6:2 설계 · 굿케어맥스 ·</textPath></text></svg>
+        <img src="assets/gcm-logo-circle.png" alt="">
+      </div>
       <p class="gut-hint" id="gutHint">스크롤하면 MAC 친구들이 지나가요 →</p>
     </div>
   </section>
@@ -878,7 +889,7 @@ a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySe
   const svg=document.getElementById('gutSvg'),band=document.getElementById('gutBand'),dots=document.getElementById('gutDots'),tg=document.getElementById('gutTrains');
   const tags=[...sec.querySelectorAll('.gut-tag')],hint=document.getElementById('gutHint');
   const NS='http://www.w3.org/2000/svg';
-  const T=[{n:2,col:'#FF214D',stop:.27,start:0},{n:6,col:'#7334F5',stop:.57,start:.10},{n:2,col:'#00AC66',stop:.86,start:.22}];
+  const T=[{n:2,col:'#FF214D',stop:.17,start:0},{n:6,col:'#7334F5',stop:.47,start:.10},{n:2,col:'#00AC66',stop:.71,start:.22}];
   const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
   let W=0,H=0,L=0,R=0;
   T.forEach((t,k)=>{const g=document.createElementNS(NS,'g');g.setAttribute('class','gut-train');g.setAttribute('role','img');g.setAttribute('aria-label',tags[k].querySelector('b').textContent);
@@ -888,13 +899,12 @@ a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySe
     g.addEventListener('pointerenter',()=>{t.poke=1;});g.addEventListener('click',()=>{t.poke=1.6;});
     tg.appendChild(g);t.g=g;t.poke=0;});
   function build(){
-    W=svg.clientWidth;H=svg.clientHeight;svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-    // soft horizontal gut: a smooth sine wave from left edge to right edge
-    const narrow=W<700,cy=H*(narrow?.6:.6),A=H*(narrow?.13:.17),cycles=narrow?.8:1.5,x0=-W*.08,x1=W*1.08,N=160;
-    let d='';for(let i=0;i<=N;i++){const t=i/N,x=x0+(x1-x0)*t,y=cy+A*Math.sin(t*cycles*Math.PI*2+Math.PI*.15);d+=(i?' L ':'M ')+x.toFixed(1)+' '+y.toFixed(1);}
+    W=1552;H=936;svg.setAttribute('viewBox','0 0 1552 936');svg.setAttribute('preserveAspectRatio',innerWidth<700?'xMidYMid meet':'xMidYMid slice');
+    // Figma "Frame 1" / Vector 1, reversed to travel left -> right
+    const d='M -138 142.02 C 437.21 137.64 235.51 836.02 622.24 789.28 C 913.82 754.05 718.58 178.82 999.44 124.15 C 1253.55 74.69 1203.88 470.06 1404.37 499.54 C 1690.5 541.62 1789.64 4.63 1804.58 -96.89';
     band.setAttribute('d',d);dots.setAttribute('d',d);
-    const sw=W<700?Math.max(54,W*.15):Math.max(78,Math.min(W*.2,H*.19));band.setAttribute('stroke-width',sw);dots.setAttribute('stroke-width',Math.max(6,sw*.07));dots.style.strokeDasharray=`0 ${Math.max(18,sw*.28)}`;
-    L=band.getTotalLength();R=sw*.3;
+    const sw=266;band.setAttribute('stroke-width',sw);dots.setAttribute('stroke-width',sw);
+    L=band.getTotalLength();R=sw*.2;
     T.forEach(t=>{t.lobes.forEach(c=>c.setAttribute('r',R));t.body.setAttribute('stroke-width',R*1.35);const f=t.face;f.querySelector('.e1').setAttribute('r',R*.08);f.querySelector('.e2').setAttribute('r',R*.08);f.querySelector('.m').setAttribute('stroke-width',R*.07);});
     draw(true);
   }
@@ -920,7 +930,7 @@ a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySe
       {const tail=Math.max(0,head-(t.n-1)*gap),hs=Math.max(0,head);let bd='';if(hs-tail>1){for(let q=0;q<=24;q++){const pt=band.getPointAtLength(tail+(hs-tail)*q/24);bd+=(q?' L ':'M ')+pt.x.toFixed(1)+' '+pt.y.toFixed(1);}}t.body.setAttribute('d',bd);t.body.style.opacity=head>R*.2?1:0;}
       // stop tag
       const arrived=u>.985;const sp=band.getPointAtLength(t.stop*L);const tag=tags[k];
-      tag.style.left=(sp.x/W*100)+'%';tag.style.top=((sp.y-R*2.4)/H*100)+'%';tag.classList.toggle('on',arrived);
+      {const m=svg.getScreenCTM(),sr=svg.getBoundingClientRect();if(m){const X=m.a*sp.x+m.e-sr.left;let Y=m.d*(sp.y-R*2.2)+m.f-sr.top;if(Y<sr.height*.26)Y=m.d*(sp.y+R*2.4)+m.f-sr.top;tag.style.left=X+'px';tag.style.top=Y+'px';}}tag.classList.toggle('on',arrived);
     });
     hint.style.opacity=shown>.05?0:1;
   }
