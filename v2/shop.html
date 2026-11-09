@@ -315,10 +315,10 @@ const CONFIG={
 /* ---------- catalog (예시 상품·가격 — 실제 SKU로 교체) ---------- */
 const MILK=(fill,band,label)=>`<svg viewBox="0 0 120 200" role="img" aria-label="${label.split(' ').slice(1).join(' ')}"><path d="M30 34 60 14 90 34Z" fill="${fill}"/><rect x="56" y="6" width="14" height="14" rx="3" fill="#fff" stroke="#ccc"/><rect x="30" y="34" width="60" height="156" rx="6" fill="#fff" stroke="#ddd"/><rect x="30" y="98" width="60" height="58" fill="${band}"/><text x="60" y="76" text-anchor="middle" font-family="Noto Sans KR" font-weight="900" font-size="15" fill="${band}">VILAC</text><text x="60" y="132" text-anchor="middle" font-family="Noto Sans KR" font-weight="700" font-size="11" fill="#fff">${label.split(' ')[0]}</text></svg>`;
 const PRODUCTS=[
-  {id:'gcm-banana',brand:'gcm',cat:'nutrition',name:'굿케어맥스 그린바나나오트',sub:'Nutrition Formula · 200mL · 식이섬유 12.5g',img:'assets/gcm-pack-banana.png',badges:[['BEST','o']],
+  {id:'gcm-banana',brand:'gcm',cat:'nutrition',name:'굿케어맥스 그린바나나 오트',sub:'Nutrition Formula · 200mL · 식이섬유 12.5g',img:'assets/gcm-pack-banana2.png',badges:[['BEST','o']],
    desc:'그린바나나와 오트로 맛을 낸 균형영양식에 장 속 미생물을 위한 MAC을 더했어요.',
    options:[{id:'24',label:'200mL × 24팩',price:52800,list:62400},{id:'48',label:'200mL × 48팩',price:99800,list:124800}],subscribe:true,reviews:128},
-  {id:'gcm-pistachio',brand:'gcm',cat:'nutrition',name:'굿케어맥스 피스타치오',sub:'Nutrition Formula · 200mL · 식이섬유 12.5g',img:'assets/gcm-pack-pistachio-tbd.svg',badges:[['NEW','']],
+  {id:'gcm-pistachio',brand:'gcm',cat:'nutrition',name:'굿케어맥스 피스타치오',sub:'Nutrition Formula · 200mL · 식이섬유 12.5g',img:'assets/gcm-pack-pistachio.png',badges:[['NEW','']],
    desc:'고소한 피스타치오 맛 균형영양식에 장 속 미생물을 위한 MAC을 더했어요.',
    options:[{id:'24',label:'200mL × 24팩',price:52800,list:62400},{id:'48',label:'200mL × 48팩',price:99800,list:124800}],subscribe:true,reviews:41},
   {id:'vilac-right-180',brand:'vilac',cat:'white',name:'올바른 우유 180mL (멸균)',sub:'흰우유 · 상온 보관',svg:MILK('#0B6FD0','#0B6FD0','흰우유 올바른 우유'),badges:[['BEST','o']],
@@ -513,9 +513,9 @@ const views={
     if(sort==='low')ps=[...ps].sort((a,c)=>a.options[0].price-c.options[0].price);
     if(sort==='high')ps=[...ps].sort((a,c)=>c.options[0].price-a.options[0].price);
     if(sort==='rev')ps=[...ps].sort((a,c)=>c.reviews-a.reviews);
-    const hero={gcm:['나와 장 속 미생물을 위한<br>한 병의 균형영양','굿케어맥스 공식 스토어',`<img src="assets/gcm-pack-banana.png" alt=""><img src="assets/gcm-pack-pistachio-tbd.svg" alt="">`],
+    const hero={gcm:['나와 장 속 미생물을 위한<br>한 병의 균형영양','굿케어맥스 공식 스토어',`<img src="assets/gcm-pack-banana2.png" alt=""><img src="assets/gcm-pack-pistachio.png" alt="">`],
       vilac:['매일 아침,<br>비락의 올바른 우유','비락 공식 스토어',MILK('#0B6FD0','#0B6FD0','흰우유 올바른 우유')+MILK('#2BA36B','#2BA36B','유당분해 올바른 소화가 잘되는 우유')],
-      all:['비락과 굿케어맥스를<br>한 번에 담아보세요','VILAC 통합 스토어',`<img src="assets/gcm-pack-banana.png" alt="">`+MILK('#0B6FD0','#0B6FD0','흰우유 올바른 우유')]}[b];
+      all:['비락과 굿케어맥스를<br>한 번에 담아보세요','VILAC 통합 스토어',`<img src="assets/gcm-pack-banana2.png" alt="">`+MILK('#0B6FD0','#0B6FD0','흰우유 올바른 우유')]}[b];
     const u=API.me();
     const base=`#/list?brand=${b}${cat?'&cat='+cat:''}`;
     render(`<section class="lhero ${b}"><div><div style="font-weight:700;opacity:.8;margin-bottom:8px">${hero[1]}</div><h2>${hero[0]}</h2><p>3만원 이상 무료배송 · 정기배송 5% 할인</p></div><div class="art" aria-hidden="true">${hero[2]}</div></section>
