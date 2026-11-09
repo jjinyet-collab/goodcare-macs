@@ -362,13 +362,10 @@ const PRODUCTS=[
   {id:'v-protein',bg:'#FFD9E4',brand:'vilac',cat:'drink',name:'퍼펙트프로틴',sub:'국내산 1급A원유, 동식물성 5:5 균형단백질',img:'https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_84Fqk52O_0d61aaf4dbae4481425a5683ff7c3c672b7acd46.png',badges:[],
    desc:'국내산 1급A원유, 동식물성 5:5 균형단백질.',
    options:[{id:'box',label:'1박스',price:29900,list:35000}],reviews:340},
-  {id:'v-coco-vanilla',bg:'#EADBCB',brand:'vilac',cat:'coco',name:'코코브루니 바닐라 클래식',sub:'쫀득한 텍스처와 부드러운 바닐라의 만남',img:'https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_iKdG78Oz_640603d7d852d5457f3b4daf1b2afada42a05fe4.png',badges:[['BEST','o']],
-   desc:'쫀득한 텍스처와 부드러운 바닐라의 만남.',
-   options:[{id:'box',label:'1박스',price:23900,list:27600}],reviews:36},
   {id:'v-coco-vinchaud',bg:'#EADBCB',brand:'vilac',cat:'coco',name:'코코브루니 뱅쇼',sub:'포도의 깊은 맛에 시트러스와 계피를 더한',img:'https://www.vilac.co.kr/superboard/data/product/thumb/31012358_wZO30LM8_c37feffdb61b3fca14993114bbb50233ad7d33ae.png',badges:[],
    desc:'포도의 깊은 맛에 시트러스와 계피를 더한.',
    options:[{id:'box',label:'1박스',price:25900,list:29900}],reviews:270},
-  {id:'v-coco-milktea',bg:'#EADBCB',brand:'vilac',cat:'coco',name:'코코브루니 로얄밀크티',sub:'고소하고 부드러운 맛의 밀크티',img:'https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_doXSEB2u_186922638a7184a3d8170e4acca2df0690677db7.png',badges:[],
+  {id:'v-coco-milktea',bg:'#EADBCB',brand:'vilac',cat:'coco',name:'코코브루니 로얄밀크티',sub:'고소하고 부드러운 맛의 밀크티',img:'https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_doXSEB2u_186922638a7184a3d8170e4acca2df0690677db7.png',badges:[['BEST','o']],
    desc:'고소하고 부드러운 맛의 밀크티.',
    options:[{id:'box',label:'1박스',price:23900,list:27600}],reviews:162},
   {id:'v-coco-vlatte',bg:'#EADBCB',brand:'vilac',cat:'coco',name:'코코브루니 콜드브루 바닐라라떼',sub:'부드럽고 깊은 풍미의 바닐라라떼',img:'https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_Xyb6nDv0_451becd28a05149a14515e17fc98f4f158b1a651.jpg',badges:[],
@@ -395,6 +392,12 @@ const PRODUCTS=[
   {id:'v-veg365',bg:'#DDF2C8',brand:'vilac',cat:'juice',name:'야채사랑365',sub:'신선하고 영양이 풍부한 유기농 야채&과일',img:'https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_3VDb25fh_01b2b9b9e21d31f183b6e714834538fc71852fd8.png',badges:[],
    desc:'신선하고 영양이 풍부한 유기농 야채&과일.',
    options:[{id:'box',label:'1박스',price:19900,list:23400}],reviews:273},
+  {id:'v-veg-carrotbeet',bg:'#DDF2C8',brand:'vilac',cat:'juice',name:'야채사랑 당근비트',sub:'다양한 유기농 야채와 과일',img:'https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_GfqMyYi7_ab3710e50bed574dac5fc711c44af7a605a443cf.png',badges:[['유기농','']],
+   desc:'다양한 유기농 야채와 과일.',
+   options:[{id:'box',label:'1박스',price:19900,list:23400}],reviews:118},
+  {id:'v-veg-abc',bg:'#DDF2C8',brand:'vilac',cat:'juice',name:'야채사랑 ABC',sub:'100% 유기농 사과·비트·당근의 황금비율',img:'https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_igOk501e_655a055d22876919e6fb835186a054524f528de2.png',badges:[['유기농','']],
+   desc:'100% 유기농 사과·비트·당근의 황금비율.',
+   options:[{id:'box',label:'1박스',price:19900,list:23400}],reviews:96},
   {id:'v-vinegar',bg:'#DDF2C8',brand:'vilac',cat:'juice',name:'오늘의 사과초모식초',sub:'100% 유기농 애플사이다비니거',img:'https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_ixbM9oRC_6d45f633ce2955874b7b99aa4f68b429dd160dab.png',badges:[],
    desc:'100% 유기농 애플사이다비니거.',
    options:[{id:'box',label:'1박스',price:24900,list:29000}],reviews:233},
@@ -565,7 +568,7 @@ function paintUtil(){
   const lo=document.getElementById('lo');if(lo)lo.onclick=()=>{API.logout();toast('로그아웃했어요.');paintUtil();route();};
   document.querySelectorAll('.bsw a').forEach(a=>a.classList.toggle('on',a.dataset.b===curBrand));
   const m={gcm:[['전체상품','#/list?brand=gcm'],['IM.BERT 1:1 상담','#/imbert'],['브랜드 이야기','index.html']],
-    vilac:[['전체상품','#/list?brand=vilac'],['우유','#/list?brand=vilac&cat=milk'],['코코브루니','#/list?brand=vilac&cat=coco'],['유기농 주스','#/list?brand=vilac&cat=juice'],['식혜','#/list?brand=vilac&cat=sikhye'],['라떼·건강음료','#/list?brand=vilac&cat=drink']],
+    vilac:[['전체상품','#/list?brand=vilac'],['우유','#/list?brand=vilac&cat=milk'],['코코브루니','#/list?brand=vilac&cat=coco'],['유기농 주스·야채사랑','#/list?brand=vilac&cat=juice'],['식혜','#/list?brand=vilac&cat=sikhye'],['라떼·건강음료','#/list?brand=vilac&cat=drink']],
     all:[['전체상품','#/list?brand=all'],['비락','#/list?brand=vilac'],['굿케어맥스','#/list?brand=gcm']]}[curBrand];
   document.getElementById('menu').innerHTML=m.map(([t,h])=>`<li><a href="${h}"${location.hash===h?' class="on"':''}>${t}</a></li>`).join('');
 }
@@ -584,7 +587,7 @@ const views={
     if(sort==='high')ps=[...ps].sort((a,c)=>c.options[0].price-a.options[0].price);
     if(sort==='rev')ps=[...ps].sort((a,c)=>c.reviews-a.reviews);
     const hero={gcm:['나와 장 속 미생물을 위한<br>한 병의 균형영양','굿케어맥스 공식 스토어',`<img src="assets/gcm-pack-banana2.png" alt=""><img src="assets/gcm-pack-pistachio.png" alt="">`],
-      vilac:['매일 아침,<br>비락의 올바른 우유','비락 공식 스토어',`<img src="https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_b5VtU0A4_9d2ecee63907f47d8ff86be0e19dfc6f3ae847ee.jpeg" alt=""><img src="https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_iKdG78Oz_640603d7d852d5457f3b4daf1b2afada42a05fe4.png" alt="">`],
+      vilac:['매일 아침,<br>비락의 올바른 우유','비락 공식 스토어',`<img src="https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_b5VtU0A4_9d2ecee63907f47d8ff86be0e19dfc6f3ae847ee.jpeg" alt=""><img src="https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_3VDb25fh_01b2b9b9e21d31f183b6e714834538fc71852fd8.png" alt="">`],
       all:['비락과 굿케어맥스를<br>한 번에 담아보세요','VILAC 통합 스토어',`<img src="assets/gcm-pack-banana2.png" alt=""><img src="https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_YAMgxG27_e8175f121f0980457c7c9ba68eac0abcec962c25.png" alt="">`]}[b];
     const u=API.me();
     const base=`#/list?brand=${b}${cat?'&cat='+cat:''}`;
