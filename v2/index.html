@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="GOODCARE MACs 굿케어맥스 — 내 몸과 장 속 미생물을 위한 이중영양">
-<meta property="og:image" content="assets/gcm-hand-choco.jpg">
+<meta property="og:image" content="assets/gcm-joyful-ritual.jpg">
 <title>GOODCARE MACs Active</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -163,6 +163,7 @@ header.solid .burger i{background:var(--cobalt)}
 .card p{font-size:16px;color:#444;line-height:1.6}
 .card .ph{aspect-ratio:1/1;overflow:hidden;margin-top:auto}
 .card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.card .ph.pack{display:grid;place-items:center}.card .ph.pack img{width:auto;height:72%;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(0,30,90,.18))}
 .card:hover .ph img{transform:scale(1.06)}
 @media (max-width:900px){.cards{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
 
@@ -362,6 +363,8 @@ header.solid .bsw{background:rgba(255,255,255,.28)}
 header.solid .shopbtn{background:var(--cobalt);color:#fff}
 @media (max-width:1180px){.nav ul a{padding:9px 11px}}
 @media (max-width:620px){.nav{flex-wrap:wrap;height:auto;padding:12px 0;gap:10px}.bsw{order:3;width:100%;justify-content:space-between;margin:0}.bsw a{flex:1;text-align:center}.shopbtn{margin-left:auto;padding:9px 14px}.burger{display:none}}
+html,body{overflow-x:clip}
+.ritual{line-height:0;background:#F3EFE6}.ritual img{width:100%;height:auto;display:block}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{transform:none;opacity:1}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -391,16 +394,20 @@ header.solid .shopbtn{background:var(--cobalt);color:#fff}
   <section class="hero band" aria-label="GOODCARE MACs">
     <canvas class="flow" id="flow" aria-hidden="true"></canvas>
     <span class="tag t1">MACs</span>
-    <span class="tag t2">Protein</span>
+    <span class="tag t2">Fiber 12.5g</span>
     <span class="tag t3">Postbiotics</span>
     <span class="tag t4">IM.BERT</span>
     <span class="tag t5">Lactose-free</span>
-    <div class="float f1" aria-hidden="true"><img src="assets/gcm-pack-choco.png" alt=""></div>
-    <div class="float f2" aria-hidden="true"><img src="assets/gcm-pack-balanced.png" alt=""></div>
+    <div class="float f2" aria-hidden="true"><img src="assets/gcm-pack-banana.png" alt=""></div>
     <div class="stack wrap">
       <h1><span class="r1"><span class="line">Goodcare</span></span><span class="r2"><span class="line">Dual</span></span><span><span class="line">Nutrition</span></span></h1>
       <p class="tl">We feed <b>you</b> &amp; <b>your microbes</b></p>
     </div>
+  </section>
+
+  <!-- JOYFUL CARE RITUAL -->
+  <section class="ritual" aria-label="Joyful Care Ritual">
+    <img src="assets/gcm-joyful-ritual.jpg" alt="Joyful Care Ritual — 잔디밭에서 웃고 있는 가족과 반려견, 가운데 굿케어맥스 MAC 로고. 비락 굿케어맥스는 일상 속 건강한 균형 식사를 돕는 영양 음료로, 식이섬유를 더해 바쁜 날에도 맛있고 간편하게 필요한 영양을 챙길 수 있어요.">
   </section>
 
   <!-- ABOUT -->
@@ -449,8 +456,8 @@ header.solid .shopbtn{background:var(--cobalt);color:#fff}
         <div class="mc-chips"><span class="c1">1st 나를 위한 균형영양</span><span class="c2">2nd 미생물을 위한 MAC</span></div>
       </div>
       <div class="packs">
-        <div class="pk c"><span class="pk-tag">초코 프로틴</span><img src="assets/gcm-pack-choco.png" alt="굿케어맥스 초코 프로틴"><i class="pk-sh"></i></div>
-        <div class="pk b"><span class="pk-tag">균형영양식</span><img src="assets/gcm-pack-balanced.png" alt="굿케어맥스 균형영양식"><i class="pk-sh"></i></div>
+        <div class="pk c"><span class="pk-tag">그린바나나오트</span><img src="assets/gcm-pack-banana.png" alt="굿케어맥스 그린바나나오트"><i class="pk-sh"></i></div>
+        <div class="pk b"><span class="pk-tag">피스타치오</span><img src="assets/gcm-pack-pistachio-tbd.svg" alt="굿케어맥스 피스타치오"><i class="pk-sh"></i></div>
       </div>
     </div>
   </section>
@@ -492,14 +499,14 @@ header.solid .shopbtn{background:var(--cobalt);color:#fff}
 
   <!-- MOSAIC -->
   <section class="mosaic" id="mosaic" aria-label="굿케어맥스와 함께하는 순간">
-    <figure class="m-a"><img src="assets/gcm-lifestyle-green.jpg" alt="초록 소매의 손이 굿케어맥스 초코 프로틴을 든 모습"><figcaption>나와 미생물을 위해</figcaption></figure>
-    <figure class="m-b"><img src="assets/day-workout.jpg" alt="헬스장 벤치 위 굿케어맥스 초코 프로틴"><figcaption>운동 후</figcaption></figure>
+    <figure class="m-a"><img src="assets/gcm-joyful-ritual.jpg" alt="잔디밭에서 웃고 있는 가족과 반려견" style="object-position:30% 30%"><figcaption>Joyful Care Ritual</figcaption></figure>
+    <figure class="m-b"><img src="assets/gcm-hand-balanced.jpg" alt="손에 든 굿케어맥스"><figcaption>한 손에 한 끼</figcaption></figure>
     <figure class="m-c"><img src="assets/gcm-rice-244.jpg" alt="흰쌀, 잡곡, 콩과 잡곡밥"><figcaption>2 : 6 : 2</figcaption></figure>
     <figure class="m-d"><img src="assets/day-morning.jpg" alt="아침 주방 조리대 위 굿케어맥스 균형영양식"><figcaption>아침 루틴</figcaption></figure>
     <figure class="m-e"><img src="assets/imbert-kit.jpg" alt="IM.BERT KIT 상자를 든 두 손"><figcaption>IM.BERT KIT</figcaption></figure>
     <figure class="m-f"><img src="assets/day-lunch.jpg" alt="사무실 책상 위 굿케어맥스 균형영양식"><figcaption>바쁜 점심</figcaption></figure>
     <figure class="m-g"><img src="assets/day-bag.jpg" alt="공원 벤치 위 가방 앞 굿케어맥스 두 종"><figcaption>가방 속 상비</figcaption></figure>
-    <figure class="m-h"><img src="assets/day-afternoon.jpg" alt="오후 창가 위 굿케어맥스 초코 프로틴"><figcaption>오후의 쉼표</figcaption></figure>
+    <figure class="m-h"><img src="assets/imbert-keyvisual.jpg" alt="IM.BERT 장내 미생물 분석 키비주얼"><figcaption>나에게 맞춘 설계</figcaption></figure>
   </section>
 
   <!-- STATEMENT + STATS -->
@@ -549,8 +556,8 @@ header.solid .shopbtn{background:var(--cobalt);color:#fff}
         <p class="rv">굿케어맥스 2종은 <a href="shop.html#/list?brand=gcm" style="text-decoration:underline">비락 공식 스토어</a>에서, IM.BERT KIT는 1:1 프리미엄 서비스로 만나실 수 있어요.</p>
       </div>
       <div class="cards">
-        <article class="card rv"><div class="tx"><span class="pill">PROTEIN</span><h3>Balanced Protein Chocolate</h3><p>초코 프로틴 · 200mL<br>나를 위한 단백질 + 미생물을 위한 MAC</p></div><div class="ph"><img src="assets/gcm-hand-choco.jpg" alt="손에 든 굿케어맥스 초코 프로틴"></div></article>
-        <article class="card rv"><div class="tx"><span class="pill">NUTRITION</span><h3>Balanced Nutrition</h3><p>균형영양식 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph"><img src="assets/gcm-hand-balanced.jpg" alt="손에 든 굿케어맥스 균형영양식"></div></article>
+        <article class="card rv"><div class="tx"><span class="pill">FIBER 12.5g</span><h3>Green Banana Oat</h3><p>그린바나나오트 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph pack" style="background:#FFE3EE"><img src="assets/gcm-pack-banana.png" alt="굿케어맥스 그린바나나오트"></div></article>
+        <article class="card rv"><div class="tx"><span class="pill">FIBER 12.5g</span><h3>Pistachio</h3><p>피스타치오 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph pack" style="background:#EEF5E2"><img src="assets/gcm-pack-pistachio-tbd.svg" alt="굿케어맥스 피스타치오"></div></article>
         <article class="card rv"><div class="tx"><span class="pill">AT-HOME TEST</span><h3>IM.BERT KIT</h3><p>집에서 하는 장내 미생물 검사<br>AI 리포트와 1:1 이중영양 설계</p></div><div class="ph"><img src="assets/imbert-report.jpg" alt="IM.BERT AI 분석 리포트 책자"></div></article>
       </div>
     </div>
