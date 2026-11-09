@@ -459,33 +459,44 @@ header.site:not(.solid) .logo b{color:#5A1330}
 .friends .ch.mac:hover::after,.friends .ch.mac:focus-visible::after,.friends .ch.mac.tip::after{opacity:1;translate:-50% 0}
 .friends .ch.mac:hover,.friends .ch.mac:focus-visible,.friends .ch.mac.tip{z-index:6}
 
-/* ===== 2:6:2 gut ride: chains travel a winding gut as you scroll ===== */
-.gut{position:relative;height:260vh;background:#FF7512;color:#14213D;margin-top:-80px}
-.gut-stage{position:sticky;top:0;height:100vh;overflow:hidden}
-.gut-head{position:absolute;left:0;right:0;top:clamp(104px,13vh,140px);text-align:center;z-index:3;pointer-events:none}
+/* ===== 2:6:2 run: Figma "Frame 1" — MAC friends run the gut track and stop at their goals ===== */
+.gut{position:relative;background:#FF7512;color:#fff;margin-top:-80px;padding:clamp(130px,12vw,170px) 0 clamp(40px,4vw,60px);overflow:hidden}
+.gut-head{text-align:center;position:relative;z-index:2}
 .gut-head p{margin:0}
 .gut-q{font:800 clamp(24px,2.9vw,44px)/1.35 var(--kr);letter-spacing:-.02em;color:#fff}
 .gut-q b{color:#5C122C}
 .gut-s{margin-top:14px!important;font:600 clamp(15px,1.3vw,19px)/1.6 var(--kr);color:#fff;opacity:.92}
-.gut .fr-k{color:#fff}.gut .fr-k b{color:#5A1330}
+.gut-scroll{margin-top:clamp(10px,2vw,30px);overflow:hidden}
+.gut-frame{position:relative;width:100%;aspect-ratio:1552/936}
 .gut-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-#gutBand{stroke:#F7752F}
-#gutDots{stroke:url(#gutDither)}
-.gut-train{cursor:pointer}
-.gut-train .lobe{transition:none}
-.gut-tag{position:absolute;z-index:4;translate:-50% -50%;background:var(--tc);color:#fff;border-radius:18px;padding:12px 18px;text-align:center;opacity:0;scale:.7;transition:opacity .35s,scale .45s cubic-bezier(.3,1.6,.5,1);pointer-events:none;white-space:nowrap}
-.gut-tag b{display:block;font:900 clamp(18px,1.8vw,26px)/1.1 var(--kr)}
-.gut-tag span{display:block;font:600 clamp(12px,1vw,14px)/1.3 var(--kr);opacity:.9;margin-top:4px}
-.gut-tag.on{opacity:1;scale:1}
-.gut-tag[data-k="0"]{--tc:#FF214D}.gut-tag[data-k="1"]{--tc:#7334F5}.gut-tag[data-k="2"]{--tc:#00AC66}
-.gut-hint{position:absolute;left:50%;bottom:28px;translate:-50% 0;margin:0;font:700 14px/1 var(--kr);color:#fff;transition:opacity .4s;z-index:3}
-.gut-badge{position:absolute;right:clamp(16px,6vw,110px);bottom:clamp(24px,8vh,90px);width:clamp(130px,14vw,224px);aspect-ratio:1;z-index:3}
+.goal{position:absolute;aspect-ratio:126/62;display:grid;place-items:center;background:#FFEADD;border:clamp(2px,.3vw,5px) solid #F15D00;border-radius:999px;font:800 clamp(10px,1.2vw,19px)/1 var(--display);color:#111;box-sizing:border-box}
+.rb{position:absolute;aspect-ratio:248/140;opacity:0;scale:.6;transform-origin:15% 100%;transition:opacity .3s,scale .55s cubic-bezier(.3,1.7,.5,1);z-index:3}
+.rb::before{content:"";position:absolute;left:0;top:0;width:100%;height:78.6%;background:#fff;border-radius:clamp(10px,2.6vw,40px)}
+.rb::after{content:"";position:absolute;left:12.9%;top:60%;width:17%;height:40%;background:#fff;clip-path:polygon(0 0,100% 0,0 100%)}
+.rb span{position:absolute;left:0;top:0;width:100%;height:78.6%;display:grid;place-items:center;font:800 clamp(10px,1.3vw,21px)/1 var(--kr);color:#F15D00;z-index:1;white-space:nowrap}
+.rb.on{opacity:1;scale:1}
+.rn{position:absolute;left:0;top:0;z-index:4;will-change:transform;cursor:pointer}
+.rn-svg{display:block;width:100%;height:auto;overflow:visible}
+.rn .leg,.rn .arm,.rn .bd,.rn .face{transform-box:fill-box}
+.rn .leg{transform-origin:50% 0}
+.rn .a1{transform-origin:0 50%}.rn .a2{transform-origin:100% 50%}
+.rn.run .l1{animation:rn-leg .32s ease-in-out infinite alternate}
+.rn.run .l2{animation:rn-leg .32s ease-in-out -.32s infinite alternate}
+.rn.run .a1{animation:rn-arm .32s ease-in-out infinite alternate}
+.rn.run .a2{animation:rn-arm .32s ease-in-out -.32s infinite alternate}
+.rn.cheer .a1{animation:rn-cheer .5s ease-in-out 3 alternate}.rn.cheer .a2{animation:rn-cheer2 .5s ease-in-out 3 alternate}
+@keyframes rn-leg{from{rotate:-24deg}to{rotate:24deg}}
+@keyframes rn-arm{from{rotate:-22deg}to{rotate:22deg}}
+@keyframes rn-cheer{to{rotate:-50deg}}@keyframes rn-cheer2{to{rotate:50deg}}
+.gut-badge{position:absolute;aspect-ratio:1;z-index:2}
 .gut-badge img{position:absolute;left:50%;top:50%;width:74%;height:74%;translate:-50% -50%;border-radius:50%}
 .gb-ring{position:absolute;inset:0;width:100%;height:100%;animation:gb-spin 22s linear infinite;overflow:visible;transform-origin:50% 50%;transform-box:view-box}
 .gb-ring text{font:800 14px var(--kr);fill:#5C122C}
 @keyframes gb-spin{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.gb-ring{animation:none}}
-@media (max-width:760px){.gut{height:300vh}.gut-head{top:128px}}
+.gut-replay{position:absolute;left:2%;bottom:3%;z-index:5;border:0;border-radius:999px;background:#fff;color:#F15D00;font:800 clamp(12px,1vw,15px)/1 var(--kr);padding:10px 16px;cursor:pointer;opacity:0;transition:opacity .4s}
+.gut-replay.on{opacity:1}
+@media (max-width:760px){.gut-scroll{overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.gut-scroll::-webkit-scrollbar{display:none}.gut-frame{width:760px}}
+@media (prefers-reduced-motion:reduce){.gb-ring,.rn *{animation:none!important}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{transform:none;opacity:1}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -524,24 +535,26 @@ header.site:not(.solid) .logo b{color:#5A1330}
   <div class="mq mq-w" aria-label="MACs · Fiber 12.5g · Postbiotics · IM.BERT · Lactose-free · 2:6:2"><div class="t" aria-hidden="true"><span>MACs</span><i>✱</i><span>Fiber 12.5g</span><i>✱</i><span>Postbiotics</span><i>✱</i><span>IM.BERT</span><i>✱</i><span>Lactose-free</span><i>✱</i><span>2:6:2</span><i>✱</i><span>MACs</span><i>✱</i><span>Fiber 12.5g</span><i>✱</i><span>Postbiotics</span><i>✱</i><span>IM.BERT</span><i>✱</i><span>Lactose-free</span><i>✱</i><span>2:6:2</span><i>✱</i><span>MACs</span><i>✱</i><span>Fiber 12.5g</span><i>✱</i><span>Postbiotics</span><i>✱</i><span>IM.BERT</span><i>✱</i><span>Lactose-free</span><i>✱</i><span>2:6:2</span><i>✱</i><span>MACs</span><i>✱</i><span>Fiber 12.5g</span><i>✱</i><span>Postbiotics</span><i>✱</i><span>IM.BERT</span><i>✱</i><span>Lactose-free</span><i>✱</i><span>2:6:2</span><i>✱</i></div></div>
 
   <!-- JOYFUL CARE RITUAL -->
-  <section class="gut" id="gut" aria-label="2:6:2 MAC and Friends">
-    <div class="gut-stage">
-      <div class="gut-head wrap"><p class="gut-q">사람의 세포를 위한 균형영양에<br><b>장 속 미생물의 밥, MAC</b>을 더했습니다.</p><p class="gut-s">나와 내 안의 미생물이 함께 건강한 하루,<br>굿케어맥스는 매일의 웰니스 라이프를 지향합니다.</p></div>
-      <svg class="gut-svg" id="gutSvg" aria-hidden="true">
+  <section class="gut" id="gut" aria-label="2:6:2 MAC 달리기">
+    <div class="gut-head wrap"><p class="gut-q">사람의 세포를 위한 균형영양에<br><b>장 속 미생물의 밥, MAC</b>을 더했습니다.</p><p class="gut-s">나와 내 안의 미생물이 함께 건강한 하루,<br>굿케어맥스는 매일의 웰니스 라이프를 지향합니다.</p></div>
+    <div class="gut-scroll" id="gutScroll"><div class="gut-frame" id="gutFrame">
+      <svg class="gut-svg" viewBox="0 0 1552 936" aria-hidden="true">
         <defs><pattern id="gutDither" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="#FFC64D" opacity=".32"/><rect x="3" y="3" width="2" height="2" fill="#FFC64D" opacity=".2"/></pattern></defs>
-        <path id="gutBand" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <path id="gutDots" fill="none" stroke-linecap="round"/>
-        <g id="gutTrains"></g>
+        <path d="M1804.58 -96.8936C1789.64 4.63368 1690.5 541.621 1404.37 499.541C1203.88 470.055 1253.55 74.6914 999.438 124.151C718.576 178.817 913.823 754.047 622.237 789.283C235.511 836.016 437.214 137.643 -138 142.016" stroke="#F7752F" stroke-width="266" fill="none"/>
+        <path d="M1804.58 -96.8936C1789.64 4.63368 1690.5 541.621 1404.37 499.541C1203.88 470.055 1253.55 74.6914 999.438 124.151C718.576 178.817 913.823 754.047 622.237 789.283C235.511 836.016 437.214 137.643 -138 142.016" stroke="url(#gutDither)" stroke-width="266" fill="none"/>
+        <path id="gutTrack" d="M -138 142.016 C 437.214 137.643 235.511 836.016 622.237 789.283 C 913.823 754.047 718.576 178.817 999.438 124.151 C 1253.55 74.6914 1203.88 470.055 1404.37 499.541 C 1690.5 541.621 1789.64 4.63368 1804.58 -96.8936" stroke="#F4D1A7" stroke-width="10" stroke-linejoin="round" fill="none"/>
+        <path d="M485.6 557.4L261.6 695.4M899.6 21.4L1023.6 259.4" stroke="#F4D1A7" stroke-width="6"/>
       </svg>
-      <div class="gut-tag" data-k="0"><b>단쇄 2</b><span>앞쪽에서 먼저</span></div>
-      <div class="gut-tag" data-k="1"><b>중쇄 6</b><span>가운데를 지나</span></div>
-      <div class="gut-tag" data-k="2"><b>장쇄 2</b><span>끝까지 닿도록</span></div>
-      <div class="gut-badge" aria-hidden="true">
+      <span class="goal" style="left:29.253%;top:56.410%;width:8.119%">Goal</span>
+      <span class="goal" style="left:62.049%;top:23.718%;width:8.119%">Goal</span>
+      <div class="rb" data-k="0" style="left:82.088%;top:5.128%;width:15.979%"><span>#장거리 식이섬유 2</span></div><div class="rb" data-k="1" style="left:18.428%;top:20.085%;width:15.979%"><span>#단거리 식이섬유 2</span></div><div class="rb" data-k="2" style="left:53.866%;top:66.667%;width:15.979%"><span>#중거리 식이섬유 6</span></div>
+      <div class="rn" data-k="0" data-gx="1137" data-gy="224" data-w="151" data-h="149" style="width:9.729%" role="img" aria-label="장거리 식이섬유 2"><svg class="rn-svg" viewBox="0 0 151 149" aria-hidden="true"> <path class="leg l1" d="M46.2111 139.783C40.6435 137.927 41.47 129.337 42.5792 125.274L46.348 113.971L46.9022 112.309L49.23 105.328L64.806 110.521L59.1528 127.475C62.7252 128.174 70.4869 131.255 72.9553 137.988C75.4238 144.722 69.6315 146.484 66.4267 146.524L46.2111 139.783Z" fill="white"/> <path class="leg l2" d="M102.723 144.43C97.0304 145.859 93.1085 138.172 91.8592 134.15L88.9593 122.594L88.5328 120.894L86.7417 113.756L102.667 109.76L107.017 127.095C110.404 125.763 118.605 124.187 124.307 128.537C130.009 132.887 126.073 137.487 123.392 139.244L102.723 144.43Z" fill="white"/> <path class="arm a1" d="M137.204 78.2826L115.436 71.6863L112.138 82.2404C117.635 83.9995 130.344 88.0452 137.204 90.156C145.779 92.7946 154.354 85.6705 149.077 78.2826C143.8 70.8948 138.963 75.2044 137.204 78.2826Z" fill="white"/> <path class="arm a2" d="M13.494 82.2404L35.2619 75.6441L38.5601 86.1982C33.0631 87.9573 20.3542 92.003 13.494 94.1138C4.91877 96.7524 -3.65646 89.6283 1.6206 82.2404C6.89767 74.8525 11.735 79.1621 13.494 82.2404Z" fill="white"/> <path class="bd" d="M132.916 65.7496C132.916 95.987 123.681 120.499 78.1665 120.499C32.6519 120.499 23.417 95.987 23.417 65.7496C23.417 35.5123 30.8336 0 78.1668 0C125.5 0 132.916 35.5123 132.916 65.7496Z" fill="url(#rgB)"/> <g class="face"><path d="M75.7019 51.0554C76.4961 51.0554 77.2577 51.3709 77.8193 51.9325C78.3808 52.494 78.6963 53.2556 78.6963 54.0498C78.6963 54.844 78.3808 55.6056 77.8193 56.1672C77.2577 56.7287 76.4961 57.0442 75.7019 57.0442C74.9077 57.0442 74.1461 56.7287 73.5846 56.1672C73.023 55.6056 72.7075 54.844 72.7075 54.0498C72.7075 53.2556 73.023 52.494 73.5846 51.9325C74.1461 51.3709 74.9077 51.0554 75.7019 51.0554Z" fill="#252021"/><path d="M99.657 51.0554C100.451 51.0554 101.213 51.3709 101.774 51.9325C102.336 52.494 102.651 53.2556 102.651 54.0498C102.651 54.844 102.336 55.6056 101.774 56.1672C101.213 56.7287 100.451 57.0442 99.657 57.0442C98.8628 57.0442 98.1012 56.7287 97.5396 56.1672C96.9781 55.6056 96.6626 54.844 96.6626 54.0498C96.6626 53.2556 96.9781 52.494 97.5396 51.9325C98.1012 51.3709 98.8628 51.0554 99.657 51.0554Z" fill="#252021"/><path d="M81.6904 62.4341C85.6829 68.0236 89.6755 68.0236 93.668 62.4341" stroke="#252021" stroke-width="6" stroke-linecap="round"/></g> <defs><linearGradient id="rgB" x1="78.1665" y1="0" x2="78.1665" y2="120.499" gradientUnits="userSpaceOnUse"><stop stop-color="#21B5FF"/><stop offset="1" stop-color="#A9BEFF"/></linearGradient></defs> </svg></div><div class="rn" data-k="1" data-gx="209" data-gy="375" data-w="151" data-h="138" style="width:9.729%" role="img" aria-label="단거리 식이섬유 2"><svg class="rn-svg" viewBox="0 0 151 138" aria-hidden="true"> <path class="leg l1" d="M46.2111 128.783C40.6435 126.927 41.47 118.337 42.5792 114.274L46.348 102.971L46.9022 101.309L49.23 94.3276L64.806 99.5212L59.1528 116.475C62.7252 117.174 70.4869 120.255 72.9553 126.988C75.4238 133.722 69.6315 135.484 66.4267 135.524L46.2111 128.783Z" fill="white"/> <path class="leg l2" d="M102.723 133.43C97.0307 134.859 93.1088 127.172 91.8594 123.15L88.9595 111.594L88.5331 109.894L86.7419 102.756L102.667 98.7601L107.017 116.095C110.405 114.763 118.605 113.187 124.307 117.537C130.009 121.887 126.073 126.487 123.392 128.244L102.723 133.43Z" fill="white"/> <path class="arm a1" d="M137.204 67.2826L115.436 60.6863L112.138 71.2404C117.635 72.9995 130.344 77.0452 137.204 79.156C145.779 81.7946 154.354 74.6705 149.077 67.2826C143.8 59.8948 138.963 64.2044 137.204 67.2826Z" fill="white"/> <path class="arm a2" d="M13.494 71.2404L35.2619 64.6441L38.5601 75.1982C33.0631 76.9573 20.3542 81.003 13.494 83.1138C4.91877 85.7524 -3.65646 78.6283 1.6206 71.2404C6.89767 63.8525 11.735 68.1621 13.494 71.2404Z" fill="white"/> <path class="bd" d="M132.916 54.7496C132.916 84.987 123.681 109.499 78.1668 109.499C32.6521 109.499 23.4172 84.987 23.4172 54.7496C23.4172 24.5123 47.9294 6.10352e-05 78.1668 6.10352e-05C108.404 6.10352e-05 132.916 24.5123 132.916 54.7496Z" fill="url(#rgG)"/> <g class="face"><path d="M75.7017 40.0554C76.4958 40.0554 77.2575 40.3709 77.819 40.9325C78.3806 41.494 78.6961 42.2556 78.6961 43.0498C78.6961 43.844 78.3806 44.6056 77.819 45.1672C77.2575 45.7287 76.4958 46.0442 75.7017 46.0442C74.9075 46.0442 74.1459 45.7287 73.5843 45.1672C73.0228 44.6056 72.7073 43.844 72.7073 43.0498C72.7073 42.2556 73.0228 41.494 73.5843 40.9325C74.1459 40.3709 74.9075 40.0554 75.7017 40.0554Z" fill="#252021"/><path d="M99.6567 40.0554C100.451 40.0554 101.213 40.3709 101.774 40.9325C102.336 41.494 102.651 42.2556 102.651 43.0498C102.651 43.844 102.336 44.6056 101.774 45.1672C101.213 45.7287 100.451 46.0442 99.6567 46.0442C98.8626 46.0442 98.1009 45.7287 97.5394 45.1672C96.9778 44.6056 96.6624 43.844 96.6624 43.0498C96.6624 42.2556 96.9778 41.494 97.5394 40.9325C98.1009 40.3709 98.8626 40.0554 99.6567 40.0554Z" fill="#252021"/><path d="M81.6902 51.4341C85.6827 57.0236 89.6752 57.0236 93.6677 51.4341" stroke="#252021" stroke-width="6" stroke-linecap="round"/></g> <defs><linearGradient id="rgG" x1="78.1668" y1="0" x2="49.0002" y2="101.5" gradientUnits="userSpaceOnUse"><stop stop-color="#BBFF46"/><stop offset="1" stop-color="#88E20B"/></linearGradient></defs> </svg></div><div class="rn" data-k="2" data-gx="603" data-gy="630" data-w="151" data-h="139" style="width:9.729%" role="img" aria-label="중거리 식이섬유 6"><svg class="rn-svg" viewBox="0 0 151 139" aria-hidden="true"> <path class="leg l1" d="M46.2111 130.335C40.6435 128.479 41.47 119.889 42.5792 115.826L46.348 104.523L46.9022 102.861L49.23 95.8795L64.806 101.073L59.1528 118.027C62.7252 118.726 70.4869 121.807 72.9553 128.54C75.4238 135.273 69.6315 137.036 66.4267 137.076L46.2111 130.335Z" fill="white"/> <path class="leg l2" d="M102.723 134.982C97.0304 136.411 93.1085 128.724 91.8592 124.702L88.9593 113.145L88.5328 111.446L86.7417 104.308L102.667 100.312L107.017 117.646C110.404 116.315 118.605 114.739 124.307 119.089C130.009 123.438 126.073 128.039 123.392 129.796L102.723 134.982Z" fill="white"/> <path class="arm a1" d="M137.204 68.8345L115.436 62.2382L112.138 72.7923C117.635 74.5513 130.344 78.5971 137.204 80.7079C145.779 83.3464 154.354 76.2224 149.077 68.8345C143.8 61.4466 138.963 65.7562 137.204 68.8345Z" fill="white"/> <path class="arm a2" d="M13.494 72.7923L35.2619 66.196L38.5601 76.7501C33.0631 78.5091 20.3542 82.5549 13.494 84.6657C4.91877 87.3042 -3.65646 80.1802 1.6206 72.7923C6.89767 65.4044 11.735 69.714 13.494 72.7923Z" fill="white"/> <path class="bd" d="M132.916 56.3015C145 111.051 123.681 111.051 78.1664 111.051C32.6517 111.051 6.99966 111.051 23.4168 56.3015C5.99967 -13.4481 47.929 1.5519 78.1664 1.5519C108.404 1.5519 142 -14.4482 132.916 56.3015Z" fill="url(#rgY)"/> <g class="face"><path d="M75.7019 41.6073C76.4961 41.6073 77.2577 41.9228 77.8193 42.4843C78.3808 43.0459 78.6963 43.8075 78.6963 44.6017C78.6963 45.3958 78.3808 46.1575 77.8193 46.719C77.2577 47.2806 76.4961 47.5961 75.7019 47.5961C74.9077 47.5961 74.1461 47.2806 73.5846 46.719C73.023 46.1575 72.7075 45.3958 72.7075 44.6017C72.7075 43.8075 73.023 43.0459 73.5846 42.4843C74.1461 41.9228 74.9077 41.6073 75.7019 41.6073Z" fill="#252021"/><path d="M99.657 41.6073C100.451 41.6073 101.213 41.9228 101.774 42.4843C102.336 43.0459 102.651 43.8075 102.651 44.6017C102.651 45.3958 102.336 46.1575 101.774 46.719C101.213 47.2806 100.451 47.5961 99.657 47.5961C98.8628 47.5961 98.1012 47.2806 97.5396 46.719C96.9781 46.1575 96.6626 45.3958 96.6626 44.6017C96.6626 43.8075 96.9781 43.0459 97.5396 42.4843C98.1012 41.9228 98.8628 41.6073 99.657 41.6073Z" fill="#252021"/><path d="M81.6904 52.986C85.6829 58.5755 89.6755 58.5755 93.668 52.986" stroke="#252021" stroke-width="6" stroke-linecap="round"/></g> <defs><linearGradient id="rgY" x1="77.3419" y1="0" x2="77.3419" y2="111.051" gradientUnits="userSpaceOnUse"><stop stop-color="#F8FF38"/><stop offset="1" stop-color="#FFE138"/></linearGradient></defs> </svg></div>
+      <div class="gut-badge" style="left:80.477%;top:71.047%;width:13.789%" aria-hidden="true">
         <svg viewBox="0 0 224 224" class="gb-ring"><defs><path id="gbCirc" d="M112 112 m-98 0 a98 98 0 1 1 196 0 a98 98 0 1 1 -196 0"/></defs><text dominant-baseline="central"><textPath href="#gbCirc" textLength="612" lengthAdjust="spacing">식이섬유 12.5g · 2:6:2 설계 · 굿케어맥스 · 식이섬유 12.5g · 2:6:2 설계 · 굿케어맥스 ·</textPath></text></svg>
         <img src="assets/gcm-logo-circle.png" alt="">
       </div>
-      <p class="gut-hint" id="gutHint">스크롤하면 MAC 친구들이 지나가요 →</p>
-    </div>
+      <button type="button" class="gut-replay" id="gutReplay">↻ 다시 달리기</button>
+    </div></div>
   </section>
 
   <!-- ABOUT -->
@@ -886,59 +899,45 @@ a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySe
 
 <script>
 (function(){
-  // 2:6:2 gut ride — the short (2), medium (6) and long (2) chains ride a winding gut;
-  // scroll moves them: the short chain stops early, the medium one mid-way, the long one reaches the end.
+  // MAC friends race: they leave the start one by one (top to bottom in the Figma frame),
+  // run along the gut track, and stop at their own goals with their bubbles popping up.
   const sec=document.getElementById('gut');if(!sec)return;
-  const svg=document.getElementById('gutSvg'),band=document.getElementById('gutBand'),dots=document.getElementById('gutDots'),tg=document.getElementById('gutTrains');
-  const tags=[...sec.querySelectorAll('.gut-tag')],hint=document.getElementById('gutHint');
-  const NS='http://www.w3.org/2000/svg';
-  const T=[{n:2,col:'#FF214D',stop:.17,start:0},{n:6,col:'#7334F5',stop:.47,start:.10},{n:2,col:'#00AC66',stop:.71,start:.22}];
+  const frame=document.getElementById('gutFrame'),scroller=document.getElementById('gutScroll'),track=document.getElementById('gutTrack'),replay=document.getElementById('gutReplay');
+  const runners=[...frame.querySelectorAll('.rn')],bubbles=[...frame.querySelectorAll('.rb')];
+  const VW=1552,VH=936,L=track.getTotalLength();
   const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W=0,H=0,L=0,R=0;
-  T.forEach((t,k)=>{const g=document.createElementNS(NS,'g');g.setAttribute('class','gut-train');g.setAttribute('role','img');g.setAttribute('aria-label',tags[k].querySelector('b').textContent);
-    t.body=document.createElementNS(NS,'path');t.body.setAttribute('fill','none');t.body.setAttribute('stroke',t.col);t.body.setAttribute('stroke-linecap','round');t.body.setAttribute('stroke-linejoin','round');g.appendChild(t.body);
-    t.lobes=[];for(let j=0;j<t.n;j++){const c=document.createElementNS(NS,'circle');c.setAttribute('class','lobe');c.setAttribute('fill',t.col);g.appendChild(c);t.lobes.push(c);}
-    t.face=document.createElementNS(NS,'g');t.face.innerHTML='<circle class="e1" fill="#252021"/><circle class="e2" fill="#252021"/><path class="m" fill="none" stroke="#252021" stroke-linecap="round"/>';g.appendChild(t.face);
-    g.addEventListener('pointerenter',()=>{t.poke=1;});g.addEventListener('click',()=>{t.poke=1.6;});
-    tg.appendChild(g);t.g=g;t.poke=0;});
-  function build(){
-    W=1552;H=936;svg.setAttribute('viewBox','0 0 1552 936');svg.setAttribute('preserveAspectRatio',innerWidth<700?'xMidYMid meet':'xMidYMid slice');
-    // Figma "Frame 1" / Vector 1, reversed to travel left -> right
-    const d='M -138 142.02 C 437.21 137.64 235.51 836.02 622.24 789.28 C 913.82 754.05 718.58 178.82 999.44 124.15 C 1253.55 74.69 1203.88 470.06 1404.37 499.54 C 1690.5 541.62 1789.64 4.63 1804.58 -96.89';
-    band.setAttribute('d',d);dots.setAttribute('d',d);
-    const sw=266;band.setAttribute('stroke-width',sw);dots.setAttribute('stroke-width',sw);
-    L=band.getTotalLength();R=sw*.2;
-    T.forEach(t=>{t.lobes.forEach(c=>c.setAttribute('r',R));t.body.setAttribute('stroke-width',R*1.35);const f=t.face;f.querySelector('.e1').setAttribute('r',R*.08);f.querySelector('.e2').setAttribute('r',R*.08);f.querySelector('.m').setAttribute('stroke-width',R*.07);});
-    draw(true);
-  }
-  const ease=x=>x<0?0:x>1?1:1-Math.pow(1-x,3);
-  let prog=0,shown=0;
-  function progress(){const r=sec.getBoundingClientRect();return Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));}
-  function draw(force){
-    const p=progress();shown+=(p-shown)*(force?1:.12);
-    const now=performance.now()/1000;
-    T.forEach((t,k)=>{
-      const u=ease((shown-t.start)/(.82-t.start));const head=Math.max(0,t.stop*L*u);
-      t.poke*=.9;
-      const gap=R*1.5;
-      t.lobes.forEach((c,j)=>{const s=head-j*gap;const vis=s>-R*.5;const pt=band.getPointAtLength(Math.max(0,Math.min(L,s)));
-        const pt2=band.getPointAtLength(Math.max(0,Math.min(L,s+2)));let nx=-(pt2.y-pt.y),ny=pt2.x-pt.x;const nl=Math.hypot(nx,ny)||1;nx/=nl;ny/=nl;
-        const wob=still?0:Math.sin(now*3+j*.9+k)*R*.06+Math.sin(now*9+j)*R*.12*t.poke;
-        c.setAttribute('cx',(pt.x+nx*wob).toFixed(1));c.setAttribute('cy',(pt.y+ny*wob).toFixed(1));c.style.opacity=vis?1:0;
-        if(j===0){const a=Math.atan2(pt2.y-pt.y,pt2.x-pt.x);t.face.setAttribute('transform',`translate(${pt.x.toFixed(1)} ${pt.y.toFixed(1)}) rotate(${(a*180/Math.PI-90).toFixed(1)})`);t.face.style.opacity=vis?1:0;
-          const e=R*.22,blink=(!still&&Math.sin(now*1.3+k*2)>.985)?.15:1;t.face.querySelector('.e1').setAttribute('transform',`translate(${-e} ${R*.12}) scale(1 ${blink})`);t.face.querySelector('.e2').setAttribute('transform',`translate(${e} ${R*.12}) scale(1 ${blink})`);
-          t.face.querySelector('.m').setAttribute('d',`M ${-R*.13} ${R*.32} Q 0 ${R*.48} ${R*.13} ${R*.32}`);}
-      });
-      // soft neck between lobes: stroke along the path from tail to head
-      {const tail=Math.max(0,head-(t.n-1)*gap),hs=Math.max(0,head);let bd='';if(hs-tail>1){for(let q=0;q<=24;q++){const pt=band.getPointAtLength(tail+(hs-tail)*q/24);bd+=(q?' L ':'M ')+pt.x.toFixed(1)+' '+pt.y.toFixed(1);}}t.body.setAttribute('d',bd);t.body.style.opacity=head>R*.2?1:0;}
-      // stop tag
-      const arrived=u>.985;const sp=band.getPointAtLength(t.stop*L);const tag=tags[k];
-      {const m=svg.getScreenCTM(),sr=svg.getBoundingClientRect();if(m){const X=m.a*sp.x+m.e-sr.left;let Y=m.d*(sp.y-R*2.2)+m.f-sr.top;if(Y<sr.height*.26)Y=m.d*(sp.y+R*2.4)+m.f-sr.top;tag.style.left=X+'px';tag.style.top=Y+'px';}}tag.classList.toggle('on',arrived);
+  // goal = point on the track nearest each character's feet in Figma
+  const R=runners.map((el,k)=>{const gx=+el.dataset.gx,gy=+el.dataset.gy,w=+el.dataset.w,h=+el.dataset.h;const fx=gx+w/2,fy=gy+h-3;
+    let best=0,bd=1e9;for(let s=0;s<=L;s+=4){const p=track.getPointAtLength(s);const d=(p.x-fx)**2+(p.y-fy)**2;if(d<bd){bd=d;best=s;}}
+    return {el,k,gx,gy,w,h,goal:best,fdx:fx-track.getPointAtLength(best).x,fdy:fy-track.getPointAtLength(best).y,t0:0,done:false};});
+  const ORDER=[0,1,2];               // blue (top) → green → yellow (bottom)
+  const DELAY=900,SPEED=.48;         // ms between starts, track px per ms
+  let start=0,running=false;
+  function place(r,s,blend,hop){const p=track.getPointAtLength(Math.max(0,s));
+    const x=p.x+r.fdx*blend-r.w/2,y=p.y+r.fdy*blend-r.h+3-hop;
+    r.el.style.transform=`translate(${(x/VW*frame.clientWidth).toFixed(1)}px,${(y/VH*frame.clientHeight).toFixed(1)}px)`;}
+  function setFinal(){R.forEach(r=>{place(r,r.goal,1,0);r.el.classList.remove('run');});bubbles.forEach(b=>b.classList.add('on'));replay.classList.add('on');}
+  function reset(){R.forEach(r=>{r.done=false;r.el.classList.remove('run','cheer');place(r,-1,0,0);r.el.style.opacity=0;});bubbles.forEach(b=>b.classList.remove('on'));replay.classList.remove('on');}
+  function go(){if(still){setFinal();R.forEach(r=>r.el.style.opacity=1);return;}reset();start=performance.now();running=true;requestAnimationFrame(tick);}
+  function tick(now){
+    let all=true;
+    ORDER.forEach((idx,n)=>{const r=R[idx];const t=now-start-n*DELAY;
+      if(t<0){all=false;return;}
+      r.el.style.opacity=1;
+      const dist=Math.min(r.goal,t*SPEED*(1+0.15*Math.sin(t/260)));const blend=Math.max(0,1-(r.goal-dist)/120);
+      const hop=r.done?0:Math.abs(Math.sin(t/160))*14;
+      place(r,dist,blend,hop);
+      if(dist>=r.goal&&!r.done){r.done=true;r.el.classList.remove('run');r.el.classList.add('cheer');bubbles[idx].classList.add('on');}
+      else if(!r.done){r.el.classList.add('run');all=false;
+        if(scroller.scrollWidth>scroller.clientWidth){const px=track.getPointAtLength(dist).x/VW*frame.clientWidth;scroller.scrollLeft+=(px-scroller.clientWidth/2-scroller.scrollLeft)*.08;}}
     });
-    hint.style.opacity=shown>.05?0:1;
+    if(!all)requestAnimationFrame(tick);else{running=false;replay.classList.add('on');if(scroller.scrollWidth>scroller.clientWidth)scroller.scrollTo({left:(scroller.scrollWidth-scroller.clientWidth)/2,behavior:'smooth'});}
   }
-  build();addEventListener('resize',build);
-  (function loop(){draw(false);requestAnimationFrame(loop);})();
+  reset();
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){go();o.disconnect();}},{threshold:.35}).observe(frame);
+  replay.addEventListener('click',()=>{if(!running)go();});
+  runners.forEach(el=>el.addEventListener('click',()=>{el.classList.remove('cheer');void el.offsetWidth;el.classList.add('cheer');}));
+  addEventListener('resize',()=>{if(!running)R.forEach(r=>r.done&&place(r,r.goal,1,0));});
 })();
 </script>
 
