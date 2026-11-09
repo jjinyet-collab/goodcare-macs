@@ -299,7 +299,7 @@ const CONFIG={
 };
 
 /* ---------- catalog (예시 상품·가격 — 실제 SKU로 교체) ---------- */
-const MILK=(fill,band,label)=>`<svg viewBox="0 0 120 200" role="img" aria-label="${label}"><path d="M30 34 60 14 90 34Z" fill="${fill}"/><rect x="56" y="6" width="14" height="14" rx="3" fill="#fff" stroke="#ccc"/><rect x="30" y="34" width="60" height="156" rx="6" fill="#fff" stroke="#ddd"/><rect x="30" y="98" width="60" height="58" fill="${band}"/><text x="60" y="76" text-anchor="middle" font-family="Noto Sans KR" font-weight="900" font-size="15" fill="${band}">VILAC</text><text x="60" y="132" text-anchor="middle" font-family="Noto Sans KR" font-weight="700" font-size="12" fill="#fff">${label.split(' ')[0]}</text></svg>`;
+const MILK=(fill,band,label)=>`<svg viewBox="0 0 120 200" role="img" aria-label="${label.split(' ').slice(1).join(' ')}"><path d="M30 34 60 14 90 34Z" fill="${fill}"/><rect x="56" y="6" width="14" height="14" rx="3" fill="#fff" stroke="#ccc"/><rect x="30" y="34" width="60" height="156" rx="6" fill="#fff" stroke="#ddd"/><rect x="30" y="98" width="60" height="58" fill="${band}"/><text x="60" y="76" text-anchor="middle" font-family="Noto Sans KR" font-weight="900" font-size="15" fill="${band}">VILAC</text><text x="60" y="132" text-anchor="middle" font-family="Noto Sans KR" font-weight="700" font-size="11" fill="#fff">${label.split(' ')[0]}</text></svg>`;
 const PRODUCTS=[
   {id:'gcm-balanced',brand:'gcm',name:'굿케어맥스 균형영양식',sub:'Balanced Nutrition · 200mL',img:'assets/gcm-pack-balanced.png',badges:[['BEST','o']],
    desc:'균형영양에 장 속 미생물을 위한 MAC 12.5g을 더한 한 끼 영양식이에요.',
@@ -310,18 +310,15 @@ const PRODUCTS=[
   {id:'gcm-protein-choco',brand:'gcm',name:'굿케어맥스 프로틴 초코',sub:'Balanced Protein Chocolate · 200mL',img:'assets/gcm-pack-choco.png',badges:[['출시 예정','g']],
    desc:'나를 위한 단백질과 미생물을 위한 MAC을 한 병에 담았어요.',
    options:[{id:'24',label:'200mL × 24팩',price:54000,list:64800}],comingSoon:true,reviews:0},
-  {id:'vilac-right-180',brand:'vilac',name:'올바른 우유 180mL',sub:'에콜린 팩 · 냉장',svg:MILK('#0B6FD0','#0B6FD0','올바른 우유'),badges:[['BEST','o']],
-   desc:'매일 아침 한 팩, 비락의 기본 흰 우유예요.',
-   options:[{id:'24',label:'180mL × 24팩',price:21600,list:25200},{id:'48',label:'180mL × 48팩',price:41800,list:50400}],subscribe:true,reviews:356},
-  {id:'vilac-lowfat-900',brand:'vilac',name:'비락 저지방 우유 900mL',sub:'냉장',svg:MILK('#2BA36B','#2BA36B','저지방 우유'),badges:[],
-   desc:'지방은 줄이고 고소함은 남겼어요.',
-   options:[{id:'4',label:'900mL × 4개',price:15800,list:17600},{id:'8',label:'900mL × 8개',price:30400,list:35200}],subscribe:true,reviews:87},
-  {id:'vilac-sterile-200',brand:'vilac',name:'비락 멸균 우유 200mL',sub:'상온 보관',svg:MILK('#E2622E','#E2622E','멸균 우유'),badges:[['상온','']],
-   desc:'상온 보관이 가능해 캠핑·사무실에 두기 좋아요.',
-   options:[{id:'24',label:'200mL × 24팩',price:19900,list:23900}],reviews:203},
-  {id:'vilac-choco-180',brand:'vilac',name:'비락 초코 우유 180mL',sub:'냉장',svg:MILK('#6B3E22','#6B3E22','초코 우유'),badges:[],
-   desc:'달콤한 간식 우유예요.',
-   options:[{id:'24',label:'180mL × 24팩',price:23500,list:26400}],soldOut:true,reviews:64}
+  {id:'vilac-right-180',brand:'vilac',cat:'white',name:'올바른 우유 180mL (멸균)',sub:'흰우유 · 상온 보관',svg:MILK('#0B6FD0','#0B6FD0','흰우유 올바른 우유'),badges:[['BEST','o']],
+   desc:'국산 원유로 만든 비락의 기본 흰 우유예요. 멸균 팩이라 상온에 두고 마실 수 있어요.',
+   options:[{id:'24',label:'180mL × 24팩',price:19900,list:23900},{id:'36',label:'180mL × 36팩',price:28800,list:35800}],subscribe:true,reviews:356},
+  {id:'vilac-lactose-180',brand:'vilac',cat:'lactose',name:'올바른 소화가 잘되는 우유 180mL',sub:'유당분해 우유 · 상온 보관',svg:MILK('#2BA36B','#2BA36B','유당분해 올바른 소화가 잘되는 우유'),badges:[['유당분해','']],
+   desc:'유당을 분해해 우유를 마시면 속이 불편했던 분도 편하게 마실 수 있어요.',
+   options:[{id:'12',label:'180mL × 12팩',price:12900,list:14400},{id:'24',label:'180mL × 24팩',price:24800,list:28800}],subscribe:true,reviews:142},
+  {id:'vilac-classic-180',brand:'vilac',cat:'white',name:'올바른 클래식 우유',sub:'흰우유 · 상온 보관',svg:MILK('#1C2E6B','#1C2E6B','클래식 올바른 클래식 우유'),badges:[],
+   desc:'고소하고 깔끔한 맛의 클래식 흰 우유예요.',
+   options:[{id:'12',label:'12팩 (1박스)',price:11900,list:16000}],reviews:88}
 ];
 const BRAND={gcm:'굿케어맥스',vilac:'비락',all:'전체'};
 const won=n=>(Math.round(n)||0).toLocaleString('ko-KR')+'원';
@@ -404,7 +401,7 @@ const API={
 /* ---------- cart: guest cart lives in the browser; merges into member cart at login ---------- */
 const Cart={
   key(){const u=API.me();return u?'cart.'+u.id:'cart.guest';},
-  all(){return DB.get(this.key(),[]);},
+  all(){return DB.get(this.key(),[]).filter(x=>{const p=P(x.pid);return p&&p.options.some(o=>o.id===x.oid);});},
   save(c){DB.set(this.key(),c);paintUtil();},
   add(pid,oid,qty,sub){const p=P(pid);if(!p||p.soldOut||p.comingSoon)return false;const c=this.all();const f=c.find(x=>x.pid===pid&&x.oid===oid&&!!x.sub===!!sub);
     if(f)f.qty=Math.min(99,f.qty+qty);else c.push({key:uid('K'),pid,oid,qty,sub:!!sub,checked:true});this.save(c);return true;},
@@ -486,7 +483,7 @@ function paintUtil(){
   const lo=document.getElementById('lo');if(lo)lo.onclick=()=>{API.logout();toast('로그아웃했어요.');paintUtil();route();};
   document.querySelectorAll('.bsw a').forEach(a=>a.classList.toggle('on',a.dataset.b===curBrand));
   const m={gcm:[['전체상품','#/list?brand=gcm'],['균형영양식','#/list?brand=gcm&cat=nutrition'],['프로틴','#/list?brand=gcm&cat=protein'],['정기배송','#/list?brand=gcm&cat=sub'],['IM.BERT 1:1 상담','#/imbert'],['브랜드 이야기','index.html']],
-    vilac:[['전체상품','#/list?brand=vilac'],['냉장 우유','#/list?brand=vilac&cat=cold'],['상온 우유','#/list?brand=vilac&cat=ambient'],['정기배송','#/list?brand=vilac&cat=sub']],
+    vilac:[['전체상품','#/list?brand=vilac'],['흰우유','#/list?brand=vilac&cat=white'],['소화가 잘되는 우유','#/list?brand=vilac&cat=lactose'],['정기배송','#/list?brand=vilac&cat=sub']],
     all:[['전체상품','#/list?brand=all'],['비락','#/list?brand=vilac'],['굿케어맥스','#/list?brand=gcm'],['정기배송','#/list?brand=all&cat=sub']]}[curBrand];
   document.getElementById('menu').innerHTML=m.map(([t,h])=>`<li><a href="${h}"${location.hash===h?' class="on"':''}>${t}</a></li>`).join('');
 }
@@ -502,15 +499,14 @@ const views={
     if(cat==='nutrition')ps=ps.filter(p=>p.id.includes('balanced')||p.id.includes('diabetic'));
     if(cat==='protein')ps=ps.filter(p=>p.id.includes('protein'));
     if(cat==='sub')ps=ps.filter(p=>p.subscribe);
-    if(cat==='cold')ps=ps.filter(p=>p.sub.includes('냉장'));
-    if(cat==='ambient')ps=ps.filter(p=>p.sub.includes('상온'));
+    if(cat==='white'||cat==='lactose')ps=ps.filter(p=>p.cat===cat);
     const sort=q.get('sort')||'rec';
     if(sort==='low')ps=[...ps].sort((a,c)=>a.options[0].price-c.options[0].price);
     if(sort==='high')ps=[...ps].sort((a,c)=>c.options[0].price-a.options[0].price);
     if(sort==='rev')ps=[...ps].sort((a,c)=>c.reviews-a.reviews);
     const hero={gcm:['나와 장 속 미생물을 위한<br>한 병의 균형영양','굿케어맥스 공식 스토어',`<img src="assets/gcm-pack-choco.png" alt=""><img src="assets/gcm-pack-balanced.png" alt="">`],
-      vilac:['매일 아침,<br>비락의 올바른 우유','비락 공식 스토어',MILK('#0B6FD0','#0B6FD0','올바른 우유')+MILK('#2BA36B','#2BA36B','저지방 우유')],
-      all:['비락과 굿케어맥스를<br>한 번에 담아보세요','VILAC 통합 스토어',`<img src="assets/gcm-pack-balanced.png" alt="">`+MILK('#0B6FD0','#0B6FD0','올바른 우유')]}[b];
+      vilac:['매일 아침,<br>비락의 올바른 우유','비락 공식 스토어',MILK('#0B6FD0','#0B6FD0','흰우유 올바른 우유')+MILK('#2BA36B','#2BA36B','유당분해 올바른 소화가 잘되는 우유')],
+      all:['비락과 굿케어맥스를<br>한 번에 담아보세요','VILAC 통합 스토어',`<img src="assets/gcm-pack-balanced.png" alt="">`+MILK('#0B6FD0','#0B6FD0','흰우유 올바른 우유')]}[b];
     const u=API.me();
     const base=`#/list?brand=${b}${cat?'&cat='+cat:''}`;
     render(`<section class="lhero ${b}"><div><div style="font-weight:700;opacity:.8;margin-bottom:8px">${hero[1]}</div><h2>${hero[0]}</h2><p>3만원 이상 무료배송 · 정기배송 5% 할인</p></div><div class="art" aria-hidden="true">${hero[2]}</div></section>
@@ -545,7 +541,7 @@ const views={
         <tr><th>원재료명 및 함량</th><td><span class="ph-fill">[원재료 표기]</span></td></tr><tr><th>영양성분</th><td><span class="ph-fill">[영양성분표]</span></td></tr>
         <tr><th>보관방법</th><td>${p.sub.includes('냉장')?'냉장 보관(0~10℃)':'직사광선을 피해 서늘한 곳에 보관'}</td></tr>
         <tr><th>소비자 상담</th><td><span class="ph-fill">[고객센터 번호]</span></td></tr></table>
-        <h2 style="margin-top:36px">배송 · 교환 · 환불</h2><p class="muted">냉장 식품 특성상 단순 변심에 의한 교환·환불은 수령 후 개봉 전에만 가능해요. 상품 하자·오배송은 수령 후 7일 이내 고객센터로 알려주세요. <a href="#/doc/refund" style="text-decoration:underline">자세히 보기</a></p></section>`);
+        <h2 style="margin-top:36px">배송 · 교환 · 환불</h2><p class="muted">식품 특성상 단순 변심에 의한 교환·환불은 수령 후 개봉 전에만 가능해요. 상품 하자·오배송은 수령 후 7일 이내 고객센터로 알려주세요. <a href="#/doc/refund" style="text-decoration:underline">자세히 보기</a></p></section>`);
     const wb=V.querySelector('#wishBtn');wb.onclick=()=>{if(!API.me())return needLogin(location.hash);const on=API.toggleWish(p.id);wb.textContent=on?'♥ 관심상품에 담겼어요':'♡ 관심상품';toast(on?'관심상품에 담았어요.':'관심상품에서 뺐어요.');};
     const nt=V.querySelector('#notify');if(nt){nt.onclick=()=>{if(!API.me())return needLogin(location.hash);toast('알림을 신청했어요. 카카오 알림톡으로 알려드릴게요.');};return;}
     const qn=V.querySelector('#qn');
@@ -754,9 +750,9 @@ const views={
     <button class="btn block" id="inb">상담 신청하기</button></div>`);
     V.querySelector('#inb').onclick=()=>{if(V.querySelector('#in1').value.trim().length<2||!/^01\d-?\d{3,4}-?\d{4}$/.test(V.querySelector('#in2').value.trim())||!V.querySelector('#in3').checked)return toast('이름·연락처·동의를 확인해 주세요.');toast('상담 신청을 받았어요. 영업일 기준 1~2일 안에 연락드릴게요.');};},
   doc(q,[,k]){
-    const D={terms:['이용약관',[['제1조 (목적)','이 약관은 <span class="ph-fill">[(주)비락]</span>(이하 “회사”)이 운영하는 VILAC Store(이하 “몰”)에서 제공하는 전자상거래 서비스의 이용 조건과 절차, 회사와 이용자의 권리·의무를 정합니다.'],['제2조 (회원가입)','이용자는 회사가 정한 양식에 따라 정보를 입력하고 약관에 동의하여 회원가입을 신청하며, 카카오 계정으로도 가입할 수 있습니다. 만 14세 미만은 가입할 수 없습니다.'],['제3조 (구매신청 및 계약 성립)','이용자는 상품 선택, 배송지 입력, 결제수단 선택 후 결제를 완료하여 구매를 신청합니다. 회사가 결제 완료를 확인한 때 계약이 성립합니다.'],['제4조 (청약철회)','이용자는 상품을 받은 날부터 7일 이내에 청약을 철회할 수 있습니다. 다만 냉장·신선식품 등 시간이 지나 재판매가 어려운 경우, 이용자 책임으로 상품이 훼손된 경우에는 제한될 수 있습니다.'],['제5조 (정기배송)','정기배송은 정해진 주기에 등록된 결제수단으로 자동 결제되며, 회원은 다음 결제일 2일 전까지 마이페이지에서 변경·해지할 수 있습니다.'],['부칙','이 약관은 <span class="ph-fill">[시행일]</span>부터 시행합니다.']]],
+    const D={terms:['이용약관',[['제1조 (목적)','이 약관은 <span class="ph-fill">[(주)비락]</span>(이하 “회사”)이 운영하는 VILAC Store(이하 “몰”)에서 제공하는 전자상거래 서비스의 이용 조건과 절차, 회사와 이용자의 권리·의무를 정합니다.'],['제2조 (회원가입)','이용자는 회사가 정한 양식에 따라 정보를 입력하고 약관에 동의하여 회원가입을 신청하며, 카카오 계정으로도 가입할 수 있습니다. 만 14세 미만은 가입할 수 없습니다.'],['제3조 (구매신청 및 계약 성립)','이용자는 상품 선택, 배송지 입력, 결제수단 선택 후 결제를 완료하여 구매를 신청합니다. 회사가 결제 완료를 확인한 때 계약이 성립합니다.'],['제4조 (청약철회)','이용자는 상품을 받은 날부터 7일 이내에 청약을 철회할 수 있습니다. 다만 식품처럼 시간이 지나 재판매가 어려운 경우, 이용자 책임으로 상품이 훼손된 경우에는 제한될 수 있습니다.'],['제5조 (정기배송)','정기배송은 정해진 주기에 등록된 결제수단으로 자동 결제되며, 회원은 다음 결제일 2일 전까지 마이페이지에서 변경·해지할 수 있습니다.'],['부칙','이 약관은 <span class="ph-fill">[시행일]</span>부터 시행합니다.']]],
       privacy:['개인정보처리방침',[['1. 수집 항목','회원가입: 이메일, 비밀번호, 이름, 휴대폰 번호 / 카카오 가입: 카카오 회원번호, 닉네임, 이메일, (선택) 휴대폰 번호 / 주문: 주문자·수령인 이름, 연락처, 주소, 결제 정보(결제대행사 보관)'],['2. 이용 목적','회원 관리, 주문·배송·결제 처리, 고객 상담, (동의한 경우) 혜택·이벤트 안내'],['3. 보유 기간','회원 탈퇴 시까지. 다만 전자상거래법에 따라 계약·청약철회 기록 5년, 대금결제·재화 공급 기록 5년, 소비자 불만·분쟁 처리 기록 3년 보관'],['4. 제3자 제공','배송업체 <span class="ph-fill">[택배사명]</span>: 수령인 이름·연락처·주소 (배송 완료 후 파기)'],['5. 처리 위탁','결제대행 <span class="ph-fill">[PG사명]</span>, 알림 발송 <span class="ph-fill">[카카오 알림톡 대행사]</span>, 서버 운영 <span class="ph-fill">[호스팅사]</span>'],['6. 개인정보보호책임자','<span class="ph-fill">[성명 · 직책 · 연락처 · 이메일]</span>']]],
-      refund:['교환·환불 정책',[['교환·반품 신청 기간','상품 수령 후 7일 이내. 상품 하자·오배송은 수령 후 3개월 이내, 그 사실을 안 날부터 30일 이내'],['교환·반품이 어려운 경우','냉장 유제품을 개봉했거나 보관 부주의로 변질된 경우, 시간이 지나 재판매가 어려운 경우'],['반품 배송비','단순 변심: 왕복 6,000원 (고객 부담) · 하자·오배송: 회사 부담'],['환불','반품 상품 확인 후 3영업일 이내 결제 수단으로 환불. 카드 결제는 카드사 사정에 따라 3~7일 걸릴 수 있어요.'],['주문 취소','상품 준비 전에는 마이페이지에서 바로 취소할 수 있어요. 출고 이후에는 반품으로 진행돼요.'],['반품 주소','<span class="ph-fill">[물류센터 주소]</span>']]]}[k];
+      refund:['교환·환불 정책',[['교환·반품 신청 기간','상품 수령 후 7일 이내. 상품 하자·오배송은 수령 후 3개월 이내, 그 사실을 안 날부터 30일 이내'],['교환·반품이 어려운 경우','유제품을 개봉했거나 보관 부주의로 변질된 경우, 시간이 지나 재판매가 어려운 경우'],['반품 배송비','단순 변심: 왕복 6,000원 (고객 부담) · 하자·오배송: 회사 부담'],['환불','반품 상품 확인 후 3영업일 이내 결제 수단으로 환불. 카드 결제는 카드사 사정에 따라 3~7일 걸릴 수 있어요.'],['주문 취소','상품 준비 전에는 마이페이지에서 바로 취소할 수 있어요. 출고 이후에는 반품으로 진행돼요.'],['반품 주소','<span class="ph-fill">[물류센터 주소]</span>']]]}[k];
     if(!D)return views.notfound();
     render(`<div class="doc"><h1 class="pt">${D[0]}</h1><p class="pt-sub">노란색 표시는 회사 정보로 채워야 하는 부분이에요.</p>${D[1].map(([h,t])=>`<h2>${h}</h2><p>${t}</p>`).join('')}</div>`);
   },
