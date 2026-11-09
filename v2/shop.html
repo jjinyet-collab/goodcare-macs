@@ -106,22 +106,28 @@ h1.pt{font:800 clamp(28px,3.2vw,40px)/1.25 var(--kr);letter-spacing:-.02em;margi
 .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
 @media (max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
-.pc{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
-.pc:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(20,33,61,.1)}
-.pc .ph{aspect-ratio:1;display:grid;place-items:center;position:relative;padding:18px}
-.pc .ph.gcm{background:#EEF3FF}.pc .ph.vilac{background:#F2EFE8}
-.pc .ph img{max-height:82%;width:auto}.pc .ph svg{height:78%;width:auto}
+.pc{background:#fff;border:1px solid #E6E1D8;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.pc:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,33,61,.1)}
+.pc .ph{aspect-ratio:1/.92;display:grid;place-items:center;position:relative;padding:14%}
+.pc .ph a{display:grid;place-items:center;height:100%;width:100%}
+.pc .ph img{max-height:80%;max-width:80%;width:auto;height:auto;object-fit:contain;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}.pc .ph svg{height:72%;width:auto}
+.pc:hover .ph img{transform:scale(1.04)}
 .pc .badges{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap}
-.wish{position:absolute;right:10px;top:10px;width:40px;height:40px;border-radius:50%;border:0;background:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.wish svg{width:20px;height:20px;fill:none;stroke:#8A90A0;stroke-width:2}
-.wish.on svg{fill:var(--orange);stroke:var(--orange)}
-.pc .tx{padding:16px 18px 18px;display:grid;gap:4px;flex:1}
-.pc .br{font-size:13px;font-weight:700;color:var(--cobalt)}
-.pc h3{margin:0;font-size:17px;line-height:1.45;font-weight:700}
-.pc .meta{font-size:13.5px;color:var(--sub)}
-.pc .price{margin-top:4px}
-.pc .act{padding:0 18px 18px}
-@media (max-width:760px){.pc .tx{padding:12px 12px 14px}.pc .act{padding:0 12px 12px}.pc h3{font-size:15.5px}}
+.wish{position:absolute;right:10px;top:10px;width:30px;height:30px;border-radius:50%;border:0;background:#fff;display:grid;place-items:center;cursor:pointer}
+.wish svg{width:16px;height:16px;fill:#C8C8C8;stroke:none}
+.wish.on svg{fill:var(--orange)}
+.pc .tx{padding:16px 18px 16px;display:grid;gap:8px;flex:1}
+.pc h3{margin:0;font-size:16px;line-height:1.5;font-weight:700;color:#3A3A3A}
+.pc h3 .opt-l{font-weight:500;color:#666}
+.pc .price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pc .price s{color:#9AA0AC;font-size:14px}
+.pc .price b{font:800 17px var(--kr);color:#222}
+.pc .price em{font:800 20px var(--display);color:#FF3E8A;font-style:normal}.pc .price em small{font-size:.7em}
+.pc .ft{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.pc .rv{font-size:13px;color:#E08A00}
+.cart-i{width:30px;height:30px;border:0;background:none;display:grid;place-items:center;cursor:pointer;color:#333;border-radius:8px;font-size:15px}
+.cart-i:hover{background:#F1EFEA}.cart-i svg{width:20px;height:20px}
+@media (max-width:760px){.pc .tx{padding:12px}.pc h3{font-size:14.5px}.pc .price b{font-size:15px}.pc .price em{font-size:17px}}
 
 /* detail */
 .pd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
@@ -315,21 +321,30 @@ const CONFIG={
 /* ---------- catalog (예시 상품·가격 — 실제 SKU로 교체) ---------- */
 const MILK=(fill,band,label)=>`<svg viewBox="0 0 120 200" role="img" aria-label="${label.split(' ').slice(1).join(' ')}"><path d="M30 34 60 14 90 34Z" fill="${fill}"/><rect x="56" y="6" width="14" height="14" rx="3" fill="#fff" stroke="#ccc"/><rect x="30" y="34" width="60" height="156" rx="6" fill="#fff" stroke="#ddd"/><rect x="30" y="98" width="60" height="58" fill="${band}"/><text x="60" y="76" text-anchor="middle" font-family="Noto Sans KR" font-weight="900" font-size="15" fill="${band}">VILAC</text><text x="60" y="132" text-anchor="middle" font-family="Noto Sans KR" font-weight="700" font-size="11" fill="#fff">${label.split(' ')[0]}</text></svg>`;
 const PRODUCTS=[
-  {id:'gcm-banana',brand:'gcm',cat:'nutrition',name:'굿케어맥스 그린바나나 오트',sub:'Nutrition Formula · 200mL · 식이섬유 12.5g',img:'assets/gcm-pack-banana2.png',badges:[['BEST','o']],
+  {id:'gcm-banana',bg:'#FFC4DE',brand:'gcm',cat:'nutrition',name:'굿케어맥스 그린바나나 오트',sub:'Nutrition Formula · 200mL · 식이섬유 12.5g',img:'assets/gcm-pack-banana2.png',badges:[['BEST','o']],
    desc:'그린바나나와 오트로 맛을 낸 균형영양식에 장 속 미생물을 위한 MAC을 더했어요.',
-   options:[{id:'24',label:'200mL × 24팩',price:52800,list:62400},{id:'48',label:'200mL × 48팩',price:99800,list:124800}],subscribe:true,reviews:128},
-  {id:'gcm-pistachio',brand:'gcm',cat:'nutrition',name:'굿케어맥스 피스타치오',sub:'Nutrition Formula · 200mL · 식이섬유 12.5g',img:'assets/gcm-pack-pistachio.png',badges:[['NEW','']],
+   options:[{id:'24',label:'200mL × 24팩',price:52800,list:62400},{id:'48',label:'200mL × 48팩',price:99800,list:124800}],reviews:128},
+  {id:'gcm-pistachio',bg:'#B7ECF2',brand:'gcm',cat:'nutrition',name:'굿케어맥스 피스타치오',sub:'Nutrition Formula · 200mL · 식이섬유 12.5g',img:'assets/gcm-pack-pistachio.png',badges:[['NEW','']],
    desc:'고소한 피스타치오 맛 균형영양식에 장 속 미생물을 위한 MAC을 더했어요.',
-   options:[{id:'24',label:'200mL × 24팩',price:52800,list:62400},{id:'48',label:'200mL × 48팩',price:99800,list:124800}],subscribe:true,reviews:41},
-  {id:'vilac-right-180',brand:'vilac',cat:'white',name:'올바른 우유 180mL (멸균)',sub:'흰우유 · 상온 보관',svg:MILK('#0B6FD0','#0B6FD0','흰우유 올바른 우유'),badges:[['BEST','o']],
+   options:[{id:'24',label:'200mL × 24팩',price:52800,list:62400},{id:'48',label:'200mL × 48팩',price:99800,list:124800}],reviews:41},
+  {id:'vilac-right-180',bg:'#C6E2FF',brand:'vilac',cat:'white',name:'올바른 우유 180mL (멸균)',sub:'흰우유 · 상온 보관',svg:MILK('#0B6FD0','#0B6FD0','흰우유 올바른 우유'),badges:[['BEST','o']],
    desc:'국산 원유로 만든 비락의 기본 흰 우유예요. 멸균 팩이라 상온에 두고 마실 수 있어요.',
-   options:[{id:'24',label:'180mL × 24팩',price:19900,list:23900},{id:'36',label:'180mL × 36팩',price:28800,list:35800}],subscribe:true,reviews:356},
-  {id:'vilac-lactose-180',brand:'vilac',cat:'lactose',name:'올바른 소화가 잘되는 우유 180mL',sub:'유당분해 우유 · 상온 보관',svg:MILK('#2BA36B','#2BA36B','유당분해 올바른 소화가 잘되는 우유'),badges:[['유당분해','']],
+   options:[{id:'24',label:'180mL × 24팩',price:19900,list:23900},{id:'36',label:'180mL × 36팩',price:28800,list:35800}],reviews:356},
+  {id:'vilac-lactose-180',bg:'#CDEFD9',brand:'vilac',cat:'lactose',name:'올바른 소화가 잘되는 우유 180mL',sub:'유당분해 우유 · 상온 보관',svg:MILK('#2BA36B','#2BA36B','유당분해 올바른 소화가 잘되는 우유'),badges:[['유당분해','']],
    desc:'유당을 분해해 우유를 마시면 속이 불편했던 분도 편하게 마실 수 있어요.',
-   options:[{id:'12',label:'180mL × 12팩',price:12900,list:14400},{id:'24',label:'180mL × 24팩',price:24800,list:28800}],subscribe:true,reviews:142},
-  {id:'vilac-classic-180',brand:'vilac',cat:'white',name:'올바른 클래식 우유',sub:'흰우유 · 상온 보관',svg:MILK('#1C2E6B','#1C2E6B','클래식 올바른 클래식 우유'),badges:[],
+   options:[{id:'12',label:'180mL × 12팩',price:12900,list:14400},{id:'24',label:'180mL × 24팩',price:24800,list:28800}],reviews:142},
+  {id:'vilac-classic-180',bg:'#D3D9F4',brand:'vilac',cat:'white',name:'올바른 클래식 우유',sub:'흰우유 · 상온 보관',svg:MILK('#1C2E6B','#1C2E6B','클래식 올바른 클래식 우유'),badges:[],
    desc:'고소하고 깔끔한 맛의 클래식 흰 우유예요.',
-   options:[{id:'12',label:'12팩 (1박스)',price:11900,list:16000}],reviews:88}
+   options:[{id:'12',label:'12팩 (1박스)',price:11900,list:16000}],reviews:88},
+  {id:'vilac-cocobruni',bg:'#E9D2C1',brand:'vilac',cat:'choco',name:'비락 코코브루니',sub:'초코 음료 · 상온 보관',svg:MILK('#5B3A29','#5B3A29','코코브루니 비락 코코브루니'),badges:[['NEW','']],
+   desc:'진한 코코아의 달콤한 맛. (상품 정보는 브랜드스토어 기준으로 교체 필요)',
+   options:[{id:'24',label:'190mL × 24팩',price:18900,list:22800}],reviews:57},
+  {id:'vilac-organic-abc',bg:'#FFD0D6',brand:'vilac',cat:'juice',name:'비락 유기농 ABC 주스',sub:'사과·비트·당근 · 상온 보관',svg:MILK('#C2263B','#C2263B','ABC주스 비락 유기농 ABC 주스'),badges:[['유기농','']],
+   desc:'유기농 사과·비트·당근을 담은 주스예요.',
+   options:[{id:'24',label:'125mL × 24팩',price:21900,list:26400}],reviews:96},
+  {id:'vilac-sikhye',bg:'#F7E5B5',brand:'vilac',cat:'sikhye',name:'비락 식혜',sub:'238mL 캔 · 상온 보관',svg:MILK('#B8862E','#B8862E','식혜 비락 식혜'),badges:[['BEST','o']],
+   desc:'밥알이 살아 있는 전통 식혜예요.',
+   options:[{id:'6',label:'238mL × 6캔',price:4210,list:4680},{id:'24',label:'238mL × 24캔',price:15900,list:18720}],reviews:412},
 ];
 const BRAND={gcm:'굿케어맥스',vilac:'비락',all:'전체'};
 const won=n=>(Math.round(n)||0).toLocaleString('ko-KR')+'원';
@@ -493,9 +508,9 @@ function paintUtil(){
     `<a href="#/cart" class="cartbtn" aria-label="장바구니 ${n}개">${ICON.cart}<span class="tx">장바구니</span>${n?`<i>${n>99?'99+':n}</i>`:''}</a>`;
   const lo=document.getElementById('lo');if(lo)lo.onclick=()=>{API.logout();toast('로그아웃했어요.');paintUtil();route();};
   document.querySelectorAll('.bsw a').forEach(a=>a.classList.toggle('on',a.dataset.b===curBrand));
-  const m={gcm:[['전체상품','#/list?brand=gcm'],['정기배송','#/list?brand=gcm&cat=sub'],['IM.BERT 1:1 상담','#/imbert'],['브랜드 이야기','index.html']],
-    vilac:[['전체상품','#/list?brand=vilac'],['흰우유','#/list?brand=vilac&cat=white'],['소화가 잘되는 우유','#/list?brand=vilac&cat=lactose'],['정기배송','#/list?brand=vilac&cat=sub']],
-    all:[['전체상품','#/list?brand=all'],['비락','#/list?brand=vilac'],['굿케어맥스','#/list?brand=gcm'],['정기배송','#/list?brand=all&cat=sub']]}[curBrand];
+  const m={gcm:[['전체상품','#/list?brand=gcm'],['IM.BERT 1:1 상담','#/imbert'],['브랜드 이야기','index.html']],
+    vilac:[['전체상품','#/list?brand=vilac'],['흰우유','#/list?brand=vilac&cat=white'],['소화가 잘되는 우유','#/list?brand=vilac&cat=lactose'],['코코브루니','#/list?brand=vilac&cat=choco'],['유기농 주스','#/list?brand=vilac&cat=juice'],['식혜','#/list?brand=vilac&cat=sikhye']],
+    all:[['전체상품','#/list?brand=all'],['비락','#/list?brand=vilac'],['굿케어맥스','#/list?brand=gcm']]}[curBrand];
   document.getElementById('menu').innerHTML=m.map(([t,h])=>`<li><a href="${h}"${location.hash===h?' class="on"':''}>${t}</a></li>`).join('');
 }
 function needLogin(next){go('#/login?next='+encodeURIComponent(next));}
@@ -507,8 +522,7 @@ const views={
   list(q){
     const b=q.get('brand')||'gcm';curBrand=b;LS.set('brand',b);const cat=q.get('cat')||'';
     let ps=PRODUCTS.filter(p=>b==='all'||p.brand===b);
-    if(cat==='sub')ps=ps.filter(p=>p.subscribe);
-    if(cat==='white'||cat==='lactose')ps=ps.filter(p=>p.cat===cat);
+    if(['white','lactose','choco','juice','sikhye'].includes(cat))ps=ps.filter(p=>p.cat===cat);
     const sort=q.get('sort')||'rec';
     if(sort==='low')ps=[...ps].sort((a,c)=>a.options[0].price-c.options[0].price);
     if(sort==='high')ps=[...ps].sort((a,c)=>c.options[0].price-a.options[0].price);
@@ -518,7 +532,7 @@ const views={
       all:['비락과 굿케어맥스를<br>한 번에 담아보세요','VILAC 통합 스토어',`<img src="assets/gcm-pack-banana2.png" alt="">`+MILK('#0B6FD0','#0B6FD0','흰우유 올바른 우유')]}[b];
     const u=API.me();
     const base=`#/list?brand=${b}${cat?'&cat='+cat:''}`;
-    render(`<section class="lhero ${b}"><div><div style="font-weight:700;opacity:.8;margin-bottom:8px">${hero[1]}</div><h2>${hero[0]}</h2><p>3만원 이상 무료배송 · 정기배송 5% 할인</p></div><div class="art" aria-hidden="true">${hero[2]}</div></section>
+    render(`<section class="lhero ${b}"><div><div style="font-weight:700;opacity:.8;margin-bottom:8px">${hero[1]}</div><h2>${hero[0]}</h2><p>3만원 이상 무료배송 · 회원가입 2,000원 쿠폰</p></div><div class="art" aria-hidden="true">${hero[2]}</div></section>
       <div class="bar"><span>${BRAND[b]} 상품 <b style="color:var(--ink)">${ps.length}</b>개</span>
         <label><span class="sr">정렬</span><select id="sort">${[['rec','추천순'],['rev','리뷰 많은순'],['low','낮은 가격순'],['high','높은 가격순']].map(([v,t])=>`<option value="${v}"${v===sort?' selected':''}>${t}</option>`).join('')}</select></label></div>
       ${ps.length?`<div class="grid">${ps.map(p=>card(p,u)).join('')}</div>`:`<div class="empty box"><b>조건에 맞는 상품이 없어요.</b><p>다른 카테고리를 골라보세요.</p></div>`}`);
@@ -756,7 +770,7 @@ const views={
   inquiry(){
     const u=API.me();
     render(`<div class="form"><h1 class="pt" style="text-align:center">1:1 문의</h1><p class="pt-sub" style="text-align:center">영업일 기준 1~2일 안에 알림톡·이메일로 답변드려요.</p>
-      <form id="qf" novalidate><div class="fld"><label for="qt">문의 유형</label><select class="in" id="qt"><option>상품 문의</option><option>주문·결제</option><option>배송</option><option>교환·반품·환불</option><option>정기배송</option><option>IM.BERT 서비스</option><option>기타</option></select></div>
+      <form id="qf" novalidate><div class="fld"><label for="qt">문의 유형</label><select class="in" id="qt"><option>상품 문의</option><option>주문·결제</option><option>배송</option><option>교환·반품·환불</option><option>IM.BERT 서비스</option><option>기타</option></select></div>
       <div class="fld"><label for="qn">이름</label><input class="in" id="qn" value="${esc(u?u.name:'')}"></div>
       <div class="fld"><label for="qh">휴대폰</label><input class="in" id="qh" inputmode="tel" value="${esc(u?u.phone:'')}"></div>
       <div class="fld"><label for="qe">이메일 (선택)</label><input class="in" id="qe" type="email" value="${esc(u?u.email:'')}"></div>
@@ -775,7 +789,7 @@ const views={
     <button class="btn block" id="inb">상담 신청하기</button></div>`);
     V.querySelector('#inb').onclick=()=>{if(V.querySelector('#in1').value.trim().length<2||!/^01\d-?\d{3,4}-?\d{4}$/.test(V.querySelector('#in2').value.trim())||!V.querySelector('#in3').checked)return toast('이름·연락처·동의를 확인해 주세요.');toast('상담 신청을 받았어요. 영업일 기준 1~2일 안에 연락드릴게요.');};},
   doc(q,[,k]){
-    const D={terms:['이용약관',[['제1조 (목적)','이 약관은 <span class="ph-fill">[(주)비락]</span>(이하 “회사”)이 운영하는 VILAC Store(이하 “몰”)에서 제공하는 전자상거래 서비스의 이용 조건과 절차, 회사와 이용자의 권리·의무를 정합니다.'],['제2조 (회원가입)','이용자는 회사가 정한 양식에 따라 정보를 입력하고 약관에 동의하여 회원가입을 신청하며, 카카오 계정으로도 가입할 수 있습니다. 만 14세 미만은 가입할 수 없습니다.'],['제3조 (구매신청 및 계약 성립)','이용자는 상품 선택, 배송지 입력, 결제수단 선택 후 결제를 완료하여 구매를 신청합니다. 회사가 결제 완료를 확인한 때 계약이 성립합니다.'],['제4조 (청약철회)','이용자는 상품을 받은 날부터 7일 이내에 청약을 철회할 수 있습니다. 다만 식품처럼 시간이 지나 재판매가 어려운 경우, 이용자 책임으로 상품이 훼손된 경우에는 제한될 수 있습니다.'],['제5조 (정기배송)','정기배송은 정해진 주기에 등록된 결제수단으로 자동 결제되며, 회원은 다음 결제일 2일 전까지 마이페이지에서 변경·해지할 수 있습니다.'],['부칙','이 약관은 <span class="ph-fill">[시행일]</span>부터 시행합니다.']]],
+    const D={terms:['이용약관',[['제1조 (목적)','이 약관은 <span class="ph-fill">[(주)비락]</span>(이하 “회사”)이 운영하는 VILAC Store(이하 “몰”)에서 제공하는 전자상거래 서비스의 이용 조건과 절차, 회사와 이용자의 권리·의무를 정합니다.'],['제2조 (회원가입)','이용자는 회사가 정한 양식에 따라 정보를 입력하고 약관에 동의하여 회원가입을 신청하며, 카카오 계정으로도 가입할 수 있습니다. 만 14세 미만은 가입할 수 없습니다.'],['제3조 (구매신청 및 계약 성립)','이용자는 상품 선택, 배송지 입력, 결제수단 선택 후 결제를 완료하여 구매를 신청합니다. 회사가 결제 완료를 확인한 때 계약이 성립합니다.'],['제4조 (청약철회)','이용자는 상품을 받은 날부터 7일 이내에 청약을 철회할 수 있습니다. 다만 식품처럼 시간이 지나 재판매가 어려운 경우, 이용자 책임으로 상품이 훼손된 경우에는 제한될 수 있습니다.'],['부칙','이 약관은 <span class="ph-fill">[시행일]</span>부터 시행합니다.']]],
       privacy:['개인정보처리방침',[['1. 수집 항목','회원가입: 이메일, 비밀번호, 이름, 휴대폰 번호 / 카카오 가입: 카카오 회원번호, 닉네임, 이메일, (선택) 휴대폰 번호 / 주문: 주문자·수령인 이름, 연락처, 주소, 결제 정보(결제대행사 보관)'],['2. 이용 목적','회원 관리, 주문·배송·결제 처리, 고객 상담, (동의한 경우) 혜택·이벤트 안내'],['3. 보유 기간','회원 탈퇴 시까지. 다만 전자상거래법에 따라 계약·청약철회 기록 5년, 대금결제·재화 공급 기록 5년, 소비자 불만·분쟁 처리 기록 3년 보관'],['4. 제3자 제공','배송업체 <span class="ph-fill">[택배사명]</span>: 수령인 이름·연락처·주소 (배송 완료 후 파기)'],['5. 처리 위탁','결제대행 <span class="ph-fill">[PG사명]</span>, 알림 발송 <span class="ph-fill">[카카오 알림톡 대행사]</span>, 서버 운영 <span class="ph-fill">[호스팅사]</span>'],['6. 개인정보보호책임자','<span class="ph-fill">[성명 · 직책 · 연락처 · 이메일]</span>']]],
       refund:['교환·환불 정책',[['교환·반품 신청 기간','상품 수령 후 7일 이내. 상품 하자·오배송은 수령 후 3개월 이내, 그 사실을 안 날부터 30일 이내'],['교환·반품이 어려운 경우','유제품을 개봉했거나 보관 부주의로 변질된 경우, 시간이 지나 재판매가 어려운 경우'],['반품 배송비','단순 변심: 왕복 6,000원 (고객 부담) · 하자·오배송: 회사 부담'],['환불','반품 상품 확인 후 3영업일 이내 결제 수단으로 환불. 카드 결제는 카드사 사정에 따라 3~7일 걸릴 수 있어요.'],['주문 취소','상품 준비 전에는 마이페이지에서 바로 취소할 수 있어요. 출고 이후에는 반품으로 진행돼요.'],['반품 주소','<span class="ph-fill">[물류센터 주소]</span>']]]}[k];
     if(!D)return views.notfound();
@@ -785,12 +799,12 @@ const views={
 };
 
 /* shared bits */
-function card(p,u){const o=p.options[0];const w=u&&u.wish.includes(p.id);
-  return `<article class="pc"><div class="ph ${p.brand}"><a href="#/product/${p.id}" aria-label="${esc(p.name)}">${art(p)}</a><div class="badges">${p.badges.map(([t,c])=>`<span class="tag ${c}">${t}</span>`).join('')}${p.soldOut?'<span class="tag g">일시품절</span>':''}</div>
+function card(p,u){const o=p.options[0];const w=u&&u.wish.includes(p.id);const off=Math.round((1-o.price/o.list)*100);
+  return `<article class="pc"><div class="ph" style="background:${p.bg||'#EEE'}"><a href="#/product/${p.id}" aria-label="${esc(p.name)}">${art(p)}</a><div class="badges">${p.badges.map(([t,c])=>`<span class="tag ${c}">${t}</span>`).join('')}${p.soldOut?'<span class="tag g">일시품절</span>':''}</div>
     <button class="wish${w?' on':''}" data-w="${p.id}" aria-label="관심상품${w?' 해제':''}" aria-pressed="${!!w}">${ICON.heart}</button></div>
-    <div class="tx"><div class="br">${BRAND[p.brand]}</div><h3><a href="#/product/${p.id}">${esc(p.name)}</a></h3><div class="meta">${esc(o.label)}</div>
-    <div class="price"><em>${Math.round((1-o.price/o.list)*100)}%</em><s>${won(o.list)}</s><br><b>${won(o.price)}</b></div><div class="meta">리뷰 ${p.reviews.toLocaleString()}</div></div>
-    <div class="act">${p.comingSoon?`<a class="btn line block sm" href="#/product/${p.id}">출시 알림 받기</a>`:p.soldOut?`<a class="btn line block sm" href="#/product/${p.id}">재입고 알림</a>`:`<button class="btn block sm" data-add="${p.id}">장바구니 담기</button>`}</div></article>`;}
+    <div class="tx"><h3><a href="#/product/${p.id}">${esc(p.name)} <span class="opt-l">(${esc(o.label)})</span></a></h3>
+    <div class="price"><s>${won(o.list)}</s><b>${won(o.price)}</b><em>${off}<small>%</small></em></div>
+    <div class="ft"><span class="rv">★ 리뷰 (${p.reviews.toLocaleString()})</span>${p.comingSoon||p.soldOut?`<a class="cart-i" href="#/product/${p.id}" aria-label="${p.soldOut?'재입고 알림':'출시 알림'}">🔔</a>`:`<button class="cart-i" data-add="${p.id}" aria-label="${esc(p.name)} 장바구니 담기">${ICON.cart}</button>`}</div></div></article>`;}
 function bindCards(){
   V.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{const p=P(b.dataset.add);Cart.add(p.id,p.options[0].id,1,false);toast(`장바구니에 담았어요 · ${p.name}`);});
   V.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{if(!API.me())return needLogin(location.hash);const on=API.toggleWish(b.dataset.w);b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);toast(on?'관심상품에 담았어요.':'관심상품에서 뺐어요.');});
