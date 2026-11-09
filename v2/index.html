@@ -509,8 +509,13 @@ header.site:not(.solid) .logo b{color:#5A1330}
 .gh-t .ast{color:#5C122C}
 .gh-copy{margin-top:clamp(28px,3vw,48px);display:grid;gap:22px;max-width:62em}
 .gh-copy p{margin:0;font:500 clamp(19px,1.75vw,27px)/1.7 var(--kr);color:#fff;word-break:keep-all}
-.gh-copy em{font-style:normal;font-weight:900;color:#5C122C}
-.gh-copy .gh-lead{font-weight:900;font-size:clamp(30px,3.6vw,56px);line-height:1.25;letter-spacing:-.02em;margin-bottom:6px}
+.gh-copy em{font-style:normal;font-weight:900;color:#fff;padding:0 .12em;margin:0 -.04em;
+  background:linear-gradient(transparent 64%,rgba(212,245,26,.85) 64%,rgba(212,245,26,.85) 100%) no-repeat 0 0/0% 100%;text-shadow:0 1px 0 rgba(150,40,0,.35);
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .9s cubic-bezier(.65,0,.35,1)}
+.gh-copy.hl em{background-size:100% 100%}
+.gh-copy.hl p:nth-child(2) em{transition-delay:.25s}.gh-copy.hl p:nth-child(3) em{transition-delay:.5s}.gh-copy.hl p:nth-child(4) em{transition-delay:.75s}
+@media (prefers-reduced-motion:reduce){.gh-copy em{background-size:100% 100%;transition:none}}
+.gh-copy .gh-lead{font-weight:900;color:#fff;font-size:clamp(30px,3.6vw,56px);line-height:1.25;letter-spacing:-.02em;margin-bottom:6px}
 .gut-scroll{margin-top:clamp(40px,5vw,80px)!important}
 @media (max-width:760px){.gh-copy p br{display:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{transform:none;opacity:1}html{scroll-behavior:auto}}
@@ -974,6 +979,11 @@ a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySe
   els.forEach(el=>el.addEventListener('click',()=>{el.classList.remove('cheer');void el.offsetWidth;el.classList.add('cheer');}));
   addEventListener('resize',()=>{if(!running)R.forEach(r=>r.done&&place(r,r.goal,0,false));});
 })();
+</script>
+
+<script>
+(function(){const c=document.querySelector('.gh-copy');if(!c)return;
+  new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){c.classList.add('hl');o.disconnect();}},{threshold:.4}).observe(c);})();
 </script>
 
 </body>
