@@ -460,10 +460,13 @@ header.site:not(.solid) .logo b{color:#5A1330}
 .friends .ch.mac:hover,.friends .ch.mac:focus-visible,.friends .ch.mac.tip{z-index:6}
 
 /* ===== 2:6:2 gut ride: chains travel a winding gut as you scroll ===== */
-.gut{position:relative;height:260vh;background:#FF7512;color:#14213D}
+.gut{position:relative;height:260vh;background:#FF7512;color:#14213D;margin-top:-80px}
 .gut-stage{position:sticky;top:0;height:100vh;overflow:hidden}
-.gut-head{position:absolute;left:0;right:0;top:clamp(80px,11vh,120px);text-align:center;z-index:3;pointer-events:none}
-.gut-head p{margin:10px 0 0;font-size:clamp(16px,1.4vw,19px);color:#fff;font-weight:600}
+.gut-head{position:absolute;left:0;right:0;top:clamp(104px,13vh,140px);text-align:center;z-index:3;pointer-events:none}
+.gut-head p{margin:0}
+.gut-q{font:800 clamp(24px,2.9vw,44px)/1.35 var(--kr);letter-spacing:-.02em;color:#fff}
+.gut-q b{color:#5C122C}
+.gut-s{margin-top:14px!important;font:600 clamp(15px,1.3vw,19px)/1.6 var(--kr);color:#fff;opacity:.92}
 .gut .fr-k{color:#fff}.gut .fr-k b{color:#5A1330}
 .gut-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 #gutBand{stroke:#F7752F}
@@ -477,9 +480,9 @@ header.site:not(.solid) .logo b{color:#5A1330}
 .gut-tag[data-k="0"]{--tc:#FF214D}.gut-tag[data-k="1"]{--tc:#7334F5}.gut-tag[data-k="2"]{--tc:#00AC66}
 .gut-hint{position:absolute;left:50%;bottom:28px;translate:-50% 0;margin:0;font:700 14px/1 var(--kr);color:#fff;transition:opacity .4s;z-index:3}
 .gut-badge{position:absolute;right:clamp(16px,6vw,110px);bottom:clamp(24px,8vh,90px);width:clamp(130px,14vw,224px);aspect-ratio:1;z-index:3}
-.gut-badge img{position:absolute;inset:13%;width:74%;height:74%;border-radius:50%}
-.gb-ring{width:100%;height:100%;animation:gb-spin 22s linear infinite;overflow:visible}
-.gb-ring text{font:800 15px var(--kr);fill:#5C122C;letter-spacing:.5px}
+.gut-badge img{position:absolute;left:50%;top:50%;width:74%;height:74%;translate:-50% -50%;border-radius:50%}
+.gb-ring{position:absolute;inset:0;width:100%;height:100%;animation:gb-spin 22s linear infinite;overflow:visible;transform-origin:50% 50%;transform-box:view-box}
+.gb-ring text{font:800 14px var(--kr);fill:#5C122C}
 @keyframes gb-spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.gb-ring{animation:none}}
 @media (max-width:760px){.gut{height:300vh}.gut-head{top:128px}}
@@ -523,7 +526,7 @@ header.site:not(.solid) .logo b{color:#5A1330}
   <!-- JOYFUL CARE RITUAL -->
   <section class="gut" id="gut" aria-label="2:6:2 MAC and Friends">
     <div class="gut-stage">
-      <div class="gut-head wrap"><h2 class="fr-k"><b>2:6:2</b> MAC and Friends</h2><p>처음부터 끝까지 가는 숫자</p></div>
+      <div class="gut-head wrap"><p class="gut-q">사람의 세포를 위한 균형영양에<br><b>장 속 미생물의 밥, MAC</b>을 더했습니다.</p><p class="gut-s">나와 내 안의 미생물이 함께 건강한 하루,<br>굿케어맥스는 매일의 웰니스 라이프를 지향합니다.</p></div>
       <svg class="gut-svg" id="gutSvg" aria-hidden="true">
         <defs><pattern id="gutDither" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="2" height="2" fill="#FFC64D" opacity=".32"/><rect x="3" y="3" width="2" height="2" fill="#FFC64D" opacity=".2"/></pattern></defs>
         <path id="gutBand" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -534,7 +537,7 @@ header.site:not(.solid) .logo b{color:#5A1330}
       <div class="gut-tag" data-k="1"><b>중쇄 6</b><span>가운데를 지나</span></div>
       <div class="gut-tag" data-k="2"><b>장쇄 2</b><span>끝까지 닿도록</span></div>
       <div class="gut-badge" aria-hidden="true">
-        <svg viewBox="0 0 224 224" class="gb-ring"><defs><path id="gbCirc" d="M112 112 m-92 0 a92 92 0 1 1 184 0 a92 92 0 1 1 -184 0"/></defs><text><textPath href="#gbCirc">식이섬유 12.5g · 2:6:2 설계 · 굿케어맥스 · 식이섬유 12.5g · 2:6:2 설계 · 굿케어맥스 ·</textPath></text></svg>
+        <svg viewBox="0 0 224 224" class="gb-ring"><defs><path id="gbCirc" d="M112 112 m-98 0 a98 98 0 1 1 196 0 a98 98 0 1 1 -196 0"/></defs><text dominant-baseline="central"><textPath href="#gbCirc" textLength="612" lengthAdjust="spacing">식이섬유 12.5g · 2:6:2 설계 · 굿케어맥스 · 식이섬유 12.5g · 2:6:2 설계 · 굿케어맥스 ·</textPath></text></svg>
         <img src="assets/gcm-logo-circle.png" alt="">
       </div>
       <p class="gut-hint" id="gutHint">스크롤하면 MAC 친구들이 지나가요 →</p>
