@@ -423,6 +423,7 @@ html,body{overflow-x:clip}
 .hero .tl{font-size:clamp(27px,2.54vw,37.5px)}
 @media (max-width:760px){.hero .tl{font-size:23.4px}}
 .hero .tl{background:none;padding:0;border-radius:0;color:#fff}
+.hero .tl{white-space:nowrap;max-width:none;text-wrap:nowrap}
 .hero .tl b{color:#5A1330;font-weight:800}
 .hero .duo{display:block;position:relative;z-index:1;margin-top:clamp(-40px,-3vw,-16px);line-height:0}
 .hero .duo img{width:100%;height:auto;display:block;-webkit-mask-image:linear-gradient(transparent 0,#000 22%);mask-image:linear-gradient(transparent 0,#000 22%)}
@@ -990,6 +991,21 @@ a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySe
 <script>
 (function(){const c=document.querySelector('.gh-copy');if(!c)return;
   new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){c.classList.add('hl');o.disconnect();}},{threshold:.4}).observe(c);})();
+</script>
+<script>
+/* 히어로 서브타이틀을 GOODCARE MACs 타이틀 너비에 맞춤 */
+(function(){
+  var t=document.querySelector('.hero .mark .line'),p=document.querySelector('.hero .tl');
+  if(!t||!p)return;
+  function fit(){
+    p.style.fontSize='';
+    var tw=t.getBoundingClientRect().width,pw=p.scrollWidth,fs=parseFloat(getComputedStyle(p).fontSize);
+    if(tw&&pw)p.style.fontSize=(fs*tw/pw).toFixed(2)+'px';
+  }
+  fit();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+  addEventListener('load',fit);addEventListener('resize',fit);
+})();
 </script>
 
 </body>
