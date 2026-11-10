@@ -167,6 +167,14 @@ header.solid .burger i{background:var(--cobalt)}
 .card .ph.pack{display:grid;place-items:center}.card .ph.pack img{width:auto;height:58%;object-fit:contain}
 .card:hover .ph img{transform:scale(1.06)}
 @media (max-width:900px){.cards{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+.lu-r{display:flex;align-items:center;gap:clamp(16px,2vw,32px);flex-wrap:wrap;justify-content:flex-end}
+.lu-head .lu-r p{max-width:24em}
+.lu-buy{display:inline-flex;align-items:center;gap:.5em;background:var(--orange);color:#fff;border-radius:999px;padding:18px 34px;font:800 clamp(17px,1.4vw,21px)/1 var(--display);white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:transform .25s,background .25s}
+.lu-buy:hover{transform:translateY(-3px);background:#ff6f1a}
+.lu-buy span{transition:transform .25s}.lu-buy:hover span{transform:translateX(4px)}
+a.card{text-decoration:none}
+@media (max-width:760px){.lu-r{justify-content:flex-start}.lu-buy{width:100%;justify-content:center}}
+
 
 /* ---------- marquee ---------- */
 .mq{background:var(--orange);overflow:hidden;padding-block:20px;transform:rotate(-2deg);margin-block:-24px;position:relative;z-index:4;box-shadow:0 20px 40px rgba(0,0,0,.4)}
@@ -603,6 +611,24 @@ header.site:not(.solid) .logo b{color:#5A1330}
     </div></div>
   </section>
 
+  <!-- LINE-UP -->
+  <section class="line-up band" id="lineup">
+    <div class="wrap">
+      <div class="lu-head">
+        <h2 class="rv">Line<span class="o">-</span>up<span class="ast o" aria-hidden="true">✱</span></h2>
+        <div class="lu-r rv">
+          <p class="rv">굿케어맥스 2종은 <a href="shop.html#/list?brand=gcm" style="text-decoration:underline">비락 공식 스토어</a>에서, IM.BERT KIT는 1:1 프리미엄 서비스로 만나실 수 있어요.</p>
+          <a class="lu-buy" href="shop.html#/list?brand=gcm">구매하기 <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="cards">
+        <a class="card rv" href="shop.html#/product/gcm-banana"><div class="tx"><span class="pill">FIBER 12.5g</span><h3>Green Banana Oat</h3><p>그린바나나 오트 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph pack" style="background:#FFC4DE"><img src="assets/gcm-pack-banana2.png" alt="굿케어맥스 그린바나나 오트"></div></a>
+        <a class="card rv" href="shop.html#/product/gcm-pistachio"><div class="tx"><span class="pill">FIBER 12.5g</span><h3>Pistachio</h3><p>피스타치오 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph pack" style="background:#B7ECF2"><img src="assets/gcm-pack-pistachio.png" alt="굿케어맥스 피스타치오"></div></a>
+        <a class="card rv" href="shop.html#/imbert"><div class="tx"><span class="pill">AT-HOME TEST</span><h3>IM.BERT KIT</h3><p>집에서 하는 장내 미생물 검사<br>AI 리포트와 1:1 이중영양 설계</p></div><div class="ph"><img src="assets/imbert-report.jpg" alt="IM.BERT AI 분석 리포트 책자"></div></a>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
 
 
@@ -733,20 +759,6 @@ header.site:not(.solid) .logo b{color:#5A1330}
     <span>GOODCARE MACs</span><span>✱</span><span>이중영양</span><span>✱</span><span>Dual Nutrition</span><span>✱</span><span>장 속 미생물의 밥</span><span>✱</span>
   </div></div>
 
-  <!-- LINE-UP -->
-  <section class="line-up band" id="lineup">
-    <div class="wrap">
-      <div class="lu-head">
-        <h2 class="rv">Line<span class="o">-</span>up<span class="ast o" aria-hidden="true">✱</span></h2>
-        <p class="rv">굿케어맥스 2종은 <a href="shop.html#/list?brand=gcm" style="text-decoration:underline">비락 공식 스토어</a>에서, IM.BERT KIT는 1:1 프리미엄 서비스로 만나실 수 있어요.</p>
-      </div>
-      <div class="cards">
-        <article class="card rv"><div class="tx"><span class="pill">FIBER 12.5g</span><h3>Green Banana Oat</h3><p>그린바나나 오트 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph pack" style="background:#FFC4DE"><img src="assets/gcm-pack-banana2.png" alt="굿케어맥스 그린바나나 오트"></div></article>
-        <article class="card rv"><div class="tx"><span class="pill">FIBER 12.5g</span><h3>Pistachio</h3><p>피스타치오 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph pack" style="background:#B7ECF2"><img src="assets/gcm-pack-pistachio.png" alt="굿케어맥스 피스타치오"></div></article>
-        <article class="card rv"><div class="tx"><span class="pill">AT-HOME TEST</span><h3>IM.BERT KIT</h3><p>집에서 하는 장내 미생물 검사<br>AI 리포트와 1:1 이중영양 설계</p></div><div class="ph"><img src="assets/imbert-report.jpg" alt="IM.BERT AI 분석 리포트 책자"></div></article>
-      </div>
-    </div>
-  </section>
 
   <!-- COLUMN -->
   <section class="colm band" id="column">
