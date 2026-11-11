@@ -173,6 +173,21 @@ header.solid .burger i{background:var(--cobalt)}
 .lu-buy:hover{transform:translateY(-3px);background:#ff6f1a}
 .lu-buy span{transition:transform .25s}.lu-buy:hover span{transform:translateX(4px)}
 a.card{text-decoration:none}
+.lu-head .lu-r p{max-width:30em}
+.card .c-buy{display:flex;align-items:center;justify-content:center;gap:.4em;margin:0;padding:18px;background:var(--orange);color:#fff;font:800 18px/1 var(--display);transition:background .25s}
+.card:hover .c-buy{background:#ff6f1a}
+.card .c-buy span{transition:transform .25s}.card:hover .c-buy span{transform:translateX(4px)}
+.card .ph{margin-top:auto}
+.buyban{padding-top:clamp(84px,8vw,120px)}
+.bb-in{display:flex;align-items:center;gap:clamp(16px,2.4vw,36px);background:var(--orange);border-radius:28px;padding:clamp(18px,2vw,26px) clamp(20px,2.6vw,40px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.bb-art{display:flex;gap:4px;flex:none}.bb-art img{height:clamp(64px,6vw,92px);width:auto;filter:drop-shadow(0 8px 14px rgba(0,0,0,.18))}
+.bb-tx{flex:1;display:grid;gap:6px;color:#fff}
+.bb-tx b{font:800 clamp(20px,2vw,28px)/1.25 var(--display);letter-spacing:-.02em}
+.bb-tx span{font-size:clamp(14px,1.1vw,16px);opacity:.92}
+.bb-btn{flex:none;display:inline-flex;align-items:center;gap:.4em;background:#5A1330;color:#fff;border-radius:999px;padding:15px 28px;font:800 clamp(16px,1.3vw,19px)/1 var(--display);white-space:nowrap;transition:transform .25s}
+.bb-btn:hover{transform:translateY(-2px)}
+@media (max-width:760px){.bb-in{flex-wrap:wrap}.bb-art img{height:58px}.bb-tx{min-width:0;flex:1 1 60%}.bb-btn{width:100%;justify-content:center}}
+
 @media (max-width:760px){.lu-r{justify-content:flex-start}.lu-buy{width:100%;justify-content:center}}
 
 
@@ -312,6 +327,7 @@ footer ul{list-style:none;margin:0;padding:0}
 
 /* ===== column board (dark) ===== */
 .colm{padding-block:clamp(110px,11vw,170px)}
+.buyban+.colm{padding-top:clamp(70px,7vw,110px)}
 .colm h2{font:900 clamp(56px,7.6vw,120px)/1 var(--display);letter-spacing:-.03em;text-transform:uppercase}
 .colm .lead{margin-top:20px;font-size:clamp(17px,1.4vw,21px);color:rgba(255,255,255,.8)}
 .board{margin-top:clamp(40px,4vw,64px);border-top:2px solid var(--orange)}
@@ -544,7 +560,6 @@ header.site:not(.solid) .logo b{color:#5A1330}
 <header class="site band" id="hdr">
   <nav class="nav wrap" aria-label="주요 메뉴">
     <a class="logo" href="#top">GOODCARE <b>MACs</b></a>
-    <div class="bsw" role="navigation" aria-label="브랜드 스토어"><a href="shop.html#/list?brand=vilac">비락</a><a href="shop.html#/list?brand=gcm">굿케어맥스</a><a href="shop.html#/list?brand=all">전체</a></div>
     <ul>
       <li><a href="#about" class="on">About</a></li>
       <li><a href="#mac">MAC</a></li>
@@ -618,13 +633,12 @@ header.site:not(.solid) .logo b{color:#5A1330}
         <h2 class="rv">Line<span class="o">-</span>up<span class="ast o" aria-hidden="true">✱</span></h2>
         <div class="lu-r rv">
           <p class="rv">굿케어맥스 2종은 <a href="shop.html#/list?brand=gcm" style="text-decoration:underline">비락 공식 스토어</a>에서, IM.BERT KIT는 1:1 프리미엄 서비스로 만나실 수 있어요.</p>
-          <a class="lu-buy" href="shop.html#/list?brand=gcm">구매하기 <span aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="cards">
-        <a class="card rv" href="shop.html#/product/gcm-banana"><div class="tx"><span class="pill">FIBER 12.5g</span><h3>Green Banana Oat</h3><p>그린바나나 오트 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph pack" style="background:#FFC4DE"><img src="assets/gcm-pack-banana2.png" alt="굿케어맥스 그린바나나 오트"></div></a>
-        <a class="card rv" href="shop.html#/product/gcm-pistachio"><div class="tx"><span class="pill">FIBER 12.5g</span><h3>Pistachio</h3><p>피스타치오 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph pack" style="background:#B7ECF2"><img src="assets/gcm-pack-pistachio.png" alt="굿케어맥스 피스타치오"></div></a>
-        <a class="card rv" href="shop.html#/imbert"><div class="tx"><span class="pill">AT-HOME TEST</span><h3>IM.BERT KIT</h3><p>집에서 하는 장내 미생물 검사<br>AI 리포트와 1:1 이중영양 설계</p></div><div class="ph"><img src="assets/imbert-report.jpg" alt="IM.BERT AI 분석 리포트 책자"></div></a>
+        <a class="card rv" href="shop.html#/product/gcm-banana"><div class="tx"><span class="pill">FIBER 12.5g</span><h3>Green Banana Oat</h3><p>그린바나나 오트 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph pack" style="background:#FFC4DE"><img src="assets/gcm-pack-banana2.png" alt="굿케어맥스 그린바나나 오트"></div><span class="c-buy">구매하기 <span aria-hidden="true">→</span></span></a>
+        <a class="card rv" href="shop.html#/product/gcm-pistachio"><div class="tx"><span class="pill">FIBER 12.5g</span><h3>Pistachio</h3><p>피스타치오 · 200mL<br>균형영양 + 미생물을 위한 MAC</p></div><div class="ph pack" style="background:#B7ECF2"><img src="assets/gcm-pack-pistachio.png" alt="굿케어맥스 피스타치오"></div><span class="c-buy">구매하기 <span aria-hidden="true">→</span></span></a>
+        <a class="card rv" href="shop.html#/imbert"><div class="tx"><span class="pill">AT-HOME TEST</span><h3>IM.BERT KIT</h3><p>집에서 하는 장내 미생물 검사<br>AI 리포트와 1:1 이중영양 설계</p></div><div class="ph"><img src="assets/imbert-report.jpg" alt="IM.BERT AI 분석 리포트 책자"></div><span class="c-buy">상담 신청하기 <span aria-hidden="true">→</span></span></a>
       </div>
     </div>
   </section>
@@ -759,6 +773,15 @@ header.site:not(.solid) .logo b{color:#5A1330}
     <span>GOODCARE MACs</span><span>✱</span><span>이중영양</span><span>✱</span><span>Dual Nutrition</span><span>✱</span><span>장 속 미생물의 밥</span><span>✱</span>
   </div></div>
 
+
+  <!-- BUY BANNER -->
+  <section class="buyban band" aria-label="굿케어맥스 구매하기">
+    <div class="wrap bb-in">
+      <div class="bb-art" aria-hidden="true"><img src="assets/gcm-pack-banana2.png" alt=""><img src="assets/gcm-pack-pistachio.png" alt=""></div>
+      <div class="bb-tx"><b>오늘부터 미생물까지 챙기는 영양</b><span>굿케어맥스 그린바나나 오트 · 피스타치오 · 3만원 이상 무료배송</span></div>
+      <a class="bb-btn" href="shop.html#/list?brand=gcm">구매하기 <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
 
   <!-- COLUMN -->
   <section class="colm band" id="column">
