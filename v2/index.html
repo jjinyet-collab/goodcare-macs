@@ -570,6 +570,52 @@ header.site:not(.solid) .logo b{color:#5A1330}
 .gut-scroll{margin-top:clamp(40px,5vw,80px)!important}
 @media (max-width:760px){.gh-copy p br{display:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{transform:none;opacity:1}html{scroll-behavior:auto}}
+
+/* ===== MAC FAQ: its own clean screen — white ground, black text, orange/cobalt points ===== */
+.fq-view{position:fixed;inset:0;z-index:70;background:#fff;color:#111;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html.fq-open,html.fq-open body{overflow:hidden}
+.fq-in{max-width:820px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));padding-block:28px 80px}
+.fq-top{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.fq-logo{font:900 20px/1 var(--display);letter-spacing:-.02em;color:#111}.fq-logo b{color:var(--orange)}
+.fq-close{border:1px solid #d6d9e0;background:#fff;color:#111;border-radius:999px;padding:9px 16px;font:500 14px/1 var(--kr);cursor:pointer}
+.fq-close:hover{border-color:var(--orange);color:var(--orange)}
+.fq-sec{margin-top:clamp(56px,9vw,96px)}
+.fq-eb{font:800 13px/1 var(--display);letter-spacing:.16em;color:var(--orange)}
+.fq-sec h2{margin-top:14px;font:800 clamp(38px,5.2vw,52px)/1.25 var(--kr);color:#111;letter-spacing:-.03em}
+.fq-sec h2 em{font-style:normal;color:var(--orange)}
+.fq-lead{margin-top:16px;font-size:17px;line-height:1.8;color:#111;max-width:40em}
+.fq-lead strong,.why strong,.fq-a strong,.rt strong{color:var(--cobalt);font-weight:800}
+.why{margin-top:40px;display:grid;gap:0;border-top:2px solid #111}
+.why li{list-style:none;display:grid;grid-template-columns:3.4em minmax(0,1fr);gap:12px;padding:28px 0;border-bottom:1px solid #e3e5ea}
+.why-n{font:900 30px/1 var(--display);color:var(--orange);letter-spacing:-.03em}
+.why h3{font:800 clamp(30px,3.4vw,36px)/1.35 var(--kr);letter-spacing:-.02em;color:#111}
+.why p{margin-top:10px;font-size:16.5px;line-height:1.85;color:#111}
+.why .fq-src{margin-top:8px}
+.why ol{margin:0;padding:0}
+.fq-list{margin-top:36px;border-top:2px solid #111}
+.fq{border-bottom:1px solid #e3e5ea}
+.fq summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:2.6em minmax(0,1fr) 1.2em;gap:8px;align-items:baseline;padding:22px 0;color:#111}
+.fq summary::-webkit-details-marker{display:none}
+.fq summary b{font:800 16px/1 var(--display);color:var(--orange)}
+.fq summary span{font:700 clamp(20px,2vw,23px)/1.45 var(--kr)}
+.fq summary:hover span{color:var(--cobalt)}
+.fq summary i{font-style:normal;font:400 24px/1 var(--display);color:#111;text-align:right;transition:transform .2s}
+.fq[open] summary i{transform:rotate(45deg);color:var(--orange)}
+.fq-a{padding:0 0 26px 2.6em;display:grid;gap:12px;font-size:16.5px;line-height:1.85;color:#111}
+.fq-a p{margin:0}
+.fq-src{font-size:13.5px;line-height:1.7;color:#555}
+.fq-src a{color:#555;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.rt{margin-top:28px;background:#F1F5FB;border:2px solid #BFD6EE;border-radius:12px;padding:clamp(24px,4vw,44px);display:grid;gap:18px;color:#111}
+.rt h3{font:800 clamp(30px,3.4vw,36px)/1.35 var(--kr);letter-spacing:-.02em;color:#14213D}
+.rt p{margin:0;font-size:17px;line-height:1.9}
+.rt h4{margin:6px 0 0;font:800 19px/1.4 var(--kr);color:#14213D}
+.rt-day{display:grid;gap:10px;margin:0;padding:0}
+.rt-day li{list-style:none;display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:12px;font-size:16.5px;line-height:1.75}
+.rt-day li b{font:800 15px/1.75 var(--kr);color:var(--orange)}
+.rt .fq-src{color:#555}
+.fq-note{margin-top:32px;font-size:13px;line-height:1.7;color:#555}
+@media (max-width:600px){.fq-a{padding-left:0}.fq summary{grid-template-columns:2.2em minmax(0,1fr) 1.2em}.why li{grid-template-columns:1fr;gap:6px}.rt-day li{grid-template-columns:1fr;gap:0}}
 </style>
 </head>
 <body>
@@ -586,6 +632,7 @@ header.site:not(.solid) .logo b{color:#5A1330}
       <li><a href="#process">Process</a></li>
       <li><a href="#lineup">Line-up</a></li>
       <li><a href="#column">Column</a></li>
+      <li><a href="#faq">FAQ</a></li>
     </ul>
     <a class="shopbtn" href="shop.html#/list?brand=gcm">구매하기</a>
     <button class="burger" type="button" aria-label="메뉴"><i></i><i></i><i></i></button>
@@ -841,6 +888,100 @@ header.site:not(.solid) .logo b{color:#5A1330}
       <p class="col-note">칼럼 속 원료 이야기는 원료에 대한 일반적인 설명이며, 굿케어맥스 제품의 효능·효과를 뜻하지 않아요.</p>
     </div>
   </section>
+
+  <!-- FAQ (opens as its own screen) -->
+  <section class="fq-view" id="faq" aria-label="MAC FAQ" hidden>
+    <div class="fq-in">
+      <div class="fq-top"><span class="fq-logo">GOODCARE <b>MACs</b></span><button type="button" class="fq-close" id="fqClose">닫기 ✕</button></div>
+
+      <div class="fq-sec">
+        <span class="fq-eb">WHY MAC</span>
+        <h2>왜 <em>MAC</em>을 챙겨야 할까요?</h2>
+        <p class="fq-lead">끼니는 챙기는데, 정작 <strong>장 속 미생물의 밥</strong>은 잊기 쉬워요. 굿케어맥스가 한 병에 무엇을, 왜 담았는지 네 가지로 정리했어요.</p>
+        <ol class="why">
+          <li><span class="why-n">01</span><div><h3>식이섬유, 생각보다 덜 먹고 있어요</h3>
+            <p>식이섬유 하루 기준치는 25g이에요. 그런데 정제된 밥과 빵, 가공식품이 많은 요즘 식단으로는 이만큼 채우기가 쉽지 않아요. 미국 연구에서는 권장량을 채우는 사람이 <strong>10%도 안 된다</strong>고 보고했을 정도예요.</p>
+            <p class="fq-src">Buddington RK et al. Nutrients. 2017;9(12):1372.</p></div></li>
+          <li><span class="why-n">02</span><div><h3>장 속 미생물에게도 밥이 필요해요</h3>
+            <p>MAC은 우리 몸은 소화하지 못하지만 <strong>장 속 미생물은 먹을 수 있는 탄수화물</strong>이에요. 평소 식이섬유를 적게 먹던 건강한 성인이 4주 동안 매일 이눌린을 챙겨 먹자, 장내 비피더스균 비율이 높아진 연구가 있어요.</p>
+            <p class="fq-src">Reimer RA et al. Am J Clin Nutr. 2020;111(6):1286-1296.</p></div></li>
+          <li><span class="why-n">03</span><div><h3>미생물마다 좋아하는 밥이 달라요, 그래서 <span style="color:var(--orange)">2:6:2</span></h3>
+            <p>식이섬유는 사슬 길이에 따라 발효되는 속도가 달라요. 짧은 사슬은 빠르게, 긴 사슬은 천천히 발효돼서 장을 지나는 동안 <strong>시간차를 두고 여러 미생물의 밥</strong>이 돼요. 실제로 이눌린을 먹었을 때 장 속에서는 한두 균이 아니라 여러 미생물 그룹이 각자 다르게 반응했어요.</p>
+            <p>굿케어맥스는 한 가지를 많이 넣는 대신 단쇄 2 · 중쇄 6 · 장쇄 2로 섞어, <strong>장 속 생태계 전체</strong>가 나눠 먹을 수 있게 설계했어요.</p>
+            <p class="fq-src">Vandeputte D et al. Gut. 2017;66(11):1968-1974.</p></div></li>
+          <li><span class="why-n">04</span><div><h3>한 병에 두 번의 영양</h3>
+            <p>MAC만 따로 챙기려면 번거롭고 값도 만만치 않아요. 그래서 굿케어맥스는 <strong>나를 위한 균형영양</strong>에 비타민·무기질을 갖추고, 여기에 <strong>미생물을 위한 MAC 12.5g</strong>(하루 기준치의 50%)과 사균체 100억 cells 이상을 더했어요. 한 끼를 챙기는 동시에 장 속 미생물의 밥까지 챙기는 거죠.</p></div></li>
+        </ol>
+      </div>
+
+      <div class="fq-sec">
+        <span class="fq-eb">FAQ</span>
+        <h2>자주 묻는 질문</h2>
+        <p class="fq-lead">답변에는 국제 학술지에 실린 사람 대상 연구에서 확인된 내용만 담았어요.</p>
+        <div class="fq-list">
+          <details class="fq" open><summary><b>Q1</b><span>MAC은 어떤 일을 하나요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>MAC은 우리 몸은 소화하지 못하지만, 장 속 미생물은 먹을 수 있는 탄수화물이에요. 위와 소장을 그대로 지나 대장까지 내려가면, 거기 사는 미생물들이 이걸 먹고 발효해요. 내가 먹는 한 끼 안에 <strong>장 속 미생물의 밥</strong>을 같이 챙겨 주는 셈이죠.</p>
+              <p>평소 식이섬유를 적게 먹는 건강한 성인 50명이 치커리 이눌린이 든 간식바를 4주간 먹은 연구에서는, 하루 7g 그룹의 장내 비피더스균 비율이 대조군보다 높아졌어요. 하루 3g 그룹도 정밀 분석(qPCR)에서 증가가 확인됐고요.</p>
+              <p class="fq-src">Reimer RA et al. Am J Clin Nutr. 2020;111(6):1286-1296. <a href="https://doi.org/10.1093/ajcn/nqaa074" target="_blank" rel="noopener">doi:10.1093/ajcn/nqaa074</a></p>
+            </div></details>
+          <details class="fq"><summary><b>Q2</b><span>비피더스균 말고 다른 미생물도 달라지나요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>네, 생각보다 콕 집어서 달라져요. 장 속 미생물 전체를 유전자 분석으로 훑어본 연구에서, 이눌린을 먹었을 때 꾸준히 변한 건 세 그룹이었어요. 비피더스균과 아나에로스티페스는 늘고, 빌로필라는 줄었죠.</p>
+              <p>미생물 전체 구성의 변화 폭은 크지 않았고, 대변 속 대사물질에도 유의한 변화는 없었다고 함께 보고됐어요. 장이 통째로 바뀌는 게 아니라, 특정 미생물들이 조용히 반응한다고 보는 게 정확해요.</p>
+              <p class="fq-src">Vandeputte D et al. Gut. 2017;66(11):1968-1974. <a href="https://doi.org/10.1136/gutjnl-2016-313271" target="_blank" rel="noopener">doi:10.1136/gutjnl-2016-313271</a></p>
+            </div></details>
+          <details class="fq"><summary><b>Q3</b><span>미생물이 MAC을 먹으면 뭐가 만들어지나요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>미생물이 식이섬유를 발효하면 짧은사슬지방산이라는 물질이 생겨요. 그중 하나가 낙산(부티르산)인데, 이걸 만드는 미생물을 ‘낙산 생성균’이라고 불러요.</p>
+              <p>건강한 성인 10명이 구아검 가수분해물(PHGG)을 하루 6g씩 2주 동안 먹은 연구에서는, 비피더스균과 함께 낙산 생성균들, 그리고 낙산을 만드는 데 쓰이는 유전자의 양이 늘어난 게 확인됐어요.</p>
+              <p class="fq-src">Ohashi Y et al. Benef Microbes. 2015;6(4):451-455. <a href="https://doi.org/10.3920/BM2014.0118" target="_blank" rel="noopener">doi:10.3920/BM2014.0118</a></p>
+            </div></details>
+          <details class="fq"><summary><b>Q4</b><span>프리바이오틱스, 프로바이오틱스와는 뭐가 달라요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>프로바이오틱스는 미생물 자체를 넣어 주는 거예요. 프리바이오틱스는 특정 유익균이 골라 먹는 먹이 성분이고요.</p>
+              <p>MAC은 여기서 한 걸음 더 넓게, 장 속에 사는 여러 미생물이 실제로 먹을 수 있는 탄수화물 전체를 가리키는 말이에요. 미생물마다 잘 먹는 사슬 길이가 달라서, 굿케어맥스는 길이가 다른 식이섬유를 <strong>2:6:2</strong>로 섞었어요.</p>
+            </div></details>
+          <details class="fq"><summary><b>Q5</b><span>식이섬유 먹으면 속이 더부룩하지 않을까요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>식이섬유 섭취가 부족한 건강한 성인 97명이 올리고프락토스를 4주 단위로 늘려 하루 15g까지 먹은 연구에서, 소리·압박감·통증·가스 같은 불편감은 섭취군과 위약군 모두 낮은 수준이었어요.</p>
+              <p>다만 사람마다 장 속 미생물이 달라서 처음 며칠은 가스가 조금 늘 수 있어요. 처음엔 천천히, 몸이 익숙해지면 꾸준히 드시는 걸 권해요.</p>
+              <p class="fq-src">Buddington RK et al. Nutrients. 2017;9(12):1372. <a href="https://doi.org/10.3390/nu9121372" target="_blank" rel="noopener">doi:10.3390/nu9121372</a></p>
+            </div></details>
+          <details class="fq"><summary><b>Q6</b><span>얼마나 먹어야 하나요? 한 병이면 충분해요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>위 연구들에서 사용한 양은 하루 3g에서 15g 사이였어요. 굿케어맥스 한 병에는 식이섬유가 <strong>12.5g</strong> 들어 있어서, 하루 영양성분 기준치(25g)의 절반을 한 번에 채울 수 있어요.</p>
+            </div></details>
+          <details class="fq"><summary><b>Q7</b><span>꾸준히 먹어야 하나요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>장 속 미생물의 변화는 먹는 동안 서서히 나타나요. 지금까지 소개한 연구들도 짧게는 2주, 길게는 3개월 동안 매일 먹으며 변화를 지켜봤어요.</p>
+              <p>건강한 성인 44명이 PHGG를 하루 5g씩 12주 동안 먹은 이중맹검 연구에서는, 위약 그룹과 달리 장내 비피더스균 비율이 유의하게 늘었어요.</p>
+              <p class="fq-src">Yasukawa Z et al. Nutrients. 2019;11(9):2170. <a href="https://doi.org/10.3390/nu11092170" target="_blank" rel="noopener">doi:10.3390/nu11092170</a></p>
+            </div></details>
+        </div>
+      </div>
+
+      <div class="fq-sec">
+        <span class="fq-eb">DAILY ROUTINE</span>
+        <div class="rt">
+          <h3>장 속 미생물을 위한 ‘하루 두 번의 영양’ 루틴</h3>
+          <p>장 속 미생물에게는 <strong>한 가지를 많이</strong>보다 <strong>여러 가지를 골고루</strong>가 더 반가워요. 1만 명 넘는 사람의 장내 미생물을 분석한 연구에서, <strong>일주일에 30가지 이상의 식물성 식품</strong>을 먹은 사람들은 10가지 이하를 먹은 사람들보다 장내 미생물이 더 다양했어요.</p>
+          <h4>이렇게 시작해 보세요</h4>
+          <ul class="rt-day">
+            <li><b>아침</b><span>바쁜 아침엔 굿케어맥스 한 병으로 한 끼 영양과 MAC 12.5g을 함께 챙겨요.</span></li>
+            <li><b>점심</b><span>접시의 절반을 채소, 통곡물, 콩으로 채워요. 흰쌀만 먹기보다 잡곡을 섞어 보세요.</span></li>
+            <li><b>오후 간식</b><span>과일은 껍질째, 견과류는 한 줌. 매일 종류를 바꾸면 일주일 가짓수가 금세 늘어요.</span></li>
+            <li><b>저녁</b><span>버섯, 해조류, 양파·마늘처럼 평소 덜 먹던 재료를 하나씩 더해요.</span></li>
+            <li><b>외출할 때</b><span>가방에 한 병 넣어 두면 끼니를 놓친 날에도 미생물의 밥은 놓치지 않아요.</span></li>
+          </ul>
+          <p>식이섬유를 갑자기 많이 늘리기보다 며칠에 걸쳐 천천히 늘리고, 물도 충분히 함께 드세요. <strong>나를 위한 한 끼, 미생물을 위한 한 끼.</strong> 오늘 한 병으로 시작해 보세요.</p>
+          <p class="fq-src">McDonald D et al. American Gut: an Open Platform for Citizen Science Microbiome Research. mSystems. 2018;3(3):e00031-18.</p>
+        </div>
+      </div>
+
+      <p class="fq-note">소개한 연구는 이눌린·올리고프락토스·구아검 가수분해물 등 원료 단독 또는 일반 식생활에 대한 연구이며, 굿케어맥스 제품으로 수행한 시험 결과가 아니에요. 이 제품은 질병의 예방 및 치료를 위한 의약품이 아닙니다.</p>
+    </div>
+  </section>
 </main>
 
 <footer class="band">
@@ -848,7 +989,7 @@ header.site:not(.solid) .logo b{color:#5A1330}
     <div class="fgrid">
       <div class="flogo">굿케어<br>맥스<small>We feed you &amp;<br>your microbes.</small></div>
       <div><h6>Brand.</h6><p>GOODCARE MACs<br>굿케어맥스 · by VILAC</p></div>
-      <div><h6>Explore.</h6><ul><li><a href="#about">About MACs</a></li><li><a href="#process">1:1 Process</a></li><li><a href="#lineup">Line-up</a></li><li><a href="#column">Column</a></li><li><a href="https://www.immunobiome.co.kr/imbert" target="_blank" rel="noopener">IM.BERT ↗</a></li></ul></div>
+      <div><h6>Explore.</h6><ul><li><a href="#about">About MACs</a></li><li><a href="#process">1:1 Process</a></li><li><a href="#lineup">Line-up</a></li><li><a href="#column">Column</a></li><li><a href="#faq">FAQ</a></li><li><a href="https://www.immunobiome.co.kr/imbert" target="_blank" rel="noopener">IM.BERT ↗</a></li></ul></div>
       <button class="to-top" type="button" id="toTop" aria-label="맨 위로"><svg viewBox="0 0 26 44" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 42V3M2 14 13 3l11 11"/></svg></button>
     </div>
     <p class="fine">© VILAC. GOODCARE MACs. 식이섬유 12.5g · 1일 기준치 50%는 완제품 실측 기준, 사균체 수치는 원료사 시험성적서(COA) 기준입니다. IM.BERT 관련 내용은 이뮤노바이옴 소개 자료를 바탕으로 합니다.</p>
@@ -881,8 +1022,8 @@ header.site:not(.solid) .logo b{color:#5A1330}
   const io=new IntersectionObserver(es=>es.forEach(e=>{clearInterval(timer);if(e.isIntersecting&&!still){timer=setInterval(()=>{rings.forEach((r,i)=>r.classList.toggle('lit',i===ri));ri=(ri+1)%rings.length;},1100);}else rings.forEach(r=>r.classList.remove('lit'));}),{threshold:.3});
   io.observe(document.getElementById('rings'));
   // column board: one post open at a time
-  const posts=[...document.querySelectorAll('.board .post')];
-  posts.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)posts.forEach(o=>{if(o!==d)o.open=false;});}));
+  document.querySelectorAll('.board').forEach(bd=>{const posts=[...bd.querySelectorAll('.post')];
+    posts.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)posts.forEach(o=>{if(o!==d)o.open=false;});}));});
   document.querySelectorAll('.post-close').forEach(b=>b.addEventListener('click',()=>{const d=b.closest('.post');d.open=false;d.scrollIntoView({block:'nearest',behavior:still?'auto':'smooth'});}));
   document.getElementById('toTop').addEventListener('click',()=>scrollTo({top:0,behavior:still?'auto':'smooth'}));
 })();
@@ -1068,6 +1209,19 @@ a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySe
   fit();
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
   addEventListener('load',fit);addEventListener('resize',fit);
+})();
+</script>
+
+<script>
+(function(){
+  // FAQ opens as its own clean screen on #faq and closes back to where the reader was
+  const v=document.getElementById('faq'),cl=document.getElementById('fqClose'),root=document.documentElement;let back=0;
+  function sync(){const on=location.hash==='#faq';if(on&&v.hidden){back=scrollY;}v.hidden=!on;root.classList.toggle('fq-open',on);if(on)v.scrollTop=0;}
+  document.querySelectorAll('a[href="#faq"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();if(location.hash==='#faq')sync();else location.hash='faq';}));
+  function close(){if(location.hash==='#faq'){history.replaceState(null,'',location.pathname+location.search);}sync();scrollTo(0,back);}
+  cl.addEventListener('click',close);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!v.hidden)close();});
+  addEventListener('hashchange',sync);sync();
 })();
 </script>
 
