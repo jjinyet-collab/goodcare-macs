@@ -142,7 +142,7 @@ h1,h2,h3,h4,p{margin:0}
 .race .rh{position:relative;padding:0 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .race .rh b{font:900 18px/1.3 var(--kr)}.race .rh small{display:block;font-size:12.5px;opacity:.9;font-weight:500;margin-top:2px}
 .race .replay{flex:none;background:rgba(255,255,255,.2);border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700}
-.track{position:relative;margin-top:14px;height:250px;background:#F75F0E}
+.track{position:relative;margin-top:14px;height:250px;background:#F75F0E;cursor:pointer}
 .track .lane{position:absolute;left:0;right:0;height:5px;background:#fff;opacity:.92}
 .track .goal{position:absolute;top:0;bottom:0;width:0;border-left:3px dashed rgba(255,255,255,.75)}
 .track .goal span{position:absolute;bottom:6px;left:6px;font:900 11px/1 var(--display);letter-spacing:.1em}
@@ -765,6 +765,8 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
     },300));}
   new IntersectionObserver(function(es,o){if(es[0].isIntersecting){run();o.disconnect();}},{threshold:.45}).observe(race);
   document.getElementById('replay').addEventListener('click',run);
+  track.addEventListener('click',run);track.setAttribute('role','button');track.setAttribute('tabindex','0');track.setAttribute('aria-label','눌러서 MAC 달리기 다시 보기');
+  track.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();run();}});
   reset();
 
   // stats count-up
