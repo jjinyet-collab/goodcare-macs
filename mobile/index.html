@@ -359,6 +359,12 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
 .soon-steps{opacity:.55}
 .soon-btn{background:var(--soft);color:#888;box-shadow:none;cursor:default}
 .pc.soon .ph img{filter:grayscale(.3)}
+.soon-ov{position:absolute;inset:0;z-index:1;background:rgba(10,16,36,.58);display:grid;place-content:center;text-align:center;color:#fff;gap:6px}
+.soon-ov b{font:900 22px/1.05 var(--display);letter-spacing:.06em}
+.soon-ov small{font-size:12px;font-weight:700;opacity:.9}
+.drag{cursor:grab;user-select:none;-webkit-user-select:none}
+.drag.dragging{cursor:grabbing;scroll-snap-type:none!important;scroll-behavior:auto}
+.drag img{-webkit-user-drag:none;user-drag:none}
 /* reveal */
 .js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .js .rv.in{opacity:1;transform:none}
@@ -420,7 +426,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
       <div class="rail">
         <a class="pc" href="shop.html#/product/gcm-banana"><div class="ph" style="background:#FFC4DE"><span class="tag o">BEST</span><img src="assets/gcm-pack-banana2.png" alt="굿케어맥스 그린바나나 오트"><span class="cart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span></div><h3>굿케어맥스 그린바나나 오트</h3><p class="lp">62,400원</p><p class="pr"><b>15%</b>52,800원</p><p class="rv">200mL × 24팩 · 리뷰 128</p></a>
         <a class="pc" href="shop.html#/product/gcm-pistachio"><div class="ph" style="background:#B7ECF2"><span class="tag">NEW</span><img src="assets/gcm-pack-pistachio.png" alt="굿케어맥스 피스타치오"><span class="cart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span></div><h3>굿케어맥스 피스타치오</h3><p class="lp">62,400원</p><p class="pr"><b>15%</b>52,800원</p><p class="rv">200mL × 24팩 · 리뷰 41</p></a>
-        <a class="pc soon" href="#process"><div class="ph" style="background:#E9ECF8"><span class="tag o">COMING SOON</span><img class="cover" src="assets/imbert-report.jpg" alt="IM.BERT AI 분석 리포트"></div><h3>IM.BERT 1:1 맞춤 설계</h3><p class="lp" style="text-decoration:none">&nbsp;</p><p class="pr" style="color:var(--o)">Coming soon</p><p class="rv">장내 미생물 분석 맞춤 설계</p></a>
+        <a class="pc soon" href="#process"><div class="ph" style="background:#E9ECF8"><img class="cover" src="assets/imbert-report.jpg" alt="IM.BERT AI 분석 리포트"><span class="soon-ov" aria-hidden="true"><b>COMING<br>SOON</b><small>곧 만나요</small></span></div><h3>IM.BERT 1:1 맞춤 설계</h3><p class="lp" style="text-decoration:none">&nbsp;</p><p class="pr" style="color:var(--o)">Coming soon</p><p class="rv">장내 미생물 분석 맞춤 설계</p></a>
       </div>
     </section>
 
@@ -768,6 +774,18 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
   posts.forEach(function(d){d.addEventListener('toggle',function(){if(d.open)posts.forEach(function(o){if(o!==d)o.open=false;});});});
   document.querySelectorAll('.post-close').forEach(function(b){b.addEventListener('click',function(){var d=b.closest('.post');d.open=false;d.scrollIntoView({block:'nearest'});});});
 
+
+  // mouse drag → horizontal scroll (touch already swipes natively)
+  document.querySelectorAll('.rail,.story,.slides').forEach(function(el){
+    el.classList.add('drag');var down=false,sx=0,sl=0,moved=false;
+    el.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;down=true;moved=false;sx=e.clientX;sl=el.scrollLeft;});
+    addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>5){moved=true;el.classList.add('dragging');}if(moved){el.scrollLeft=sl-dx;e.preventDefault();}});
+    addEventListener('pointerup',function(){if(!down)return;down=false;if(!moved)return;
+      var snap=el.firstElementChild;var w=snap?snap.getBoundingClientRect().width+parseFloat(getComputedStyle(el).columnGap||getComputedStyle(el).gap||0):el.clientWidth;
+      var target=Math.round(el.scrollLeft/w)*w;el.classList.remove('dragging');el.scrollTo({left:target,behavior:'smooth'});});
+    el.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
+    el.addEventListener('dragstart',function(e){e.preventDefault();});
+  });
   // tabs: active on scroll + keep visible
   var tabs=[].slice.call(document.querySelectorAll('.tabs a')),secs=tabs.map(function(a){return document.getElementById(a.dataset.t);});
   var hd=document.querySelector('.hd');
