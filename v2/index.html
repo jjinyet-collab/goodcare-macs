@@ -621,6 +621,18 @@ html.fq-open,html.fq-open body{overflow:hidden}
 .rt-day li b{font:800 15px/1.75 var(--kr);color:var(--orange)}
 .rt .fq-src{color:#555}
 .fq-note{margin-top:32px;font-size:13px;line-height:1.7;color:#555}
+/* 04/04 USP cards open the FAQ explainer */
+.usp article{position:relative;transition:transform .25s,box-shadow .25s}
+.usp article:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.usp .u-more{justify-self:start;margin-top:10px;font:700 14px/1 var(--kr);color:#fff;background:#111;border-radius:999px;padding:10px 16px;display:inline-flex;gap:.35em;align-items:center}
+.usp .u-more::after{content:"";position:absolute;inset:0;border-radius:28px}
+.usp .u-more span{transition:transform .25s}.usp article:hover .u-more span{transform:translateX(4px)}
+.usp .u-more:focus-visible{outline:none}.usp article:has(.u-more:focus-visible){outline:3px solid var(--orange);outline-offset:3px}
+.only li{scroll-margin-top:20px}
+.only .uk2{display:inline-block;margin-bottom:6px;font:800 13px/1 var(--kr);color:var(--cobalt);letter-spacing:.02em}
+.tip{margin-top:14px;background:#FFF4EC;border-left:4px solid var(--orange);border-radius:10px;padding:16px 18px;display:grid;gap:6px}
+.tip b{font:800 12.5px/1 var(--display);letter-spacing:.14em;color:var(--orange)}
+.tip p{margin:0!important;font-size:16px!important;line-height:1.8!important}
 @media (max-width:600px){.fq-a{padding-left:0}.fq summary{grid-template-columns:2.2em minmax(0,1fr) 1.2em}.why li{grid-template-columns:1fr;gap:6px}.rt-day li{grid-template-columns:1fr;gap:0}}
 </style>
 </head>
@@ -790,10 +802,10 @@ html.fq-open,html.fq-open body{overflow:hidden}
         <p class="src-note">*원물에 대한 설명 및 건강정보 입니다.</p>
       </div>
       <div class="usp">
-        <article><span class="ub">01</span><span class="uk">국내 유일</span><h4>‘MACs 이중영양 설계’</h4><p>나의 몸을 위한 영양과 장 속 미생물을 위한 MAC을 한 팩에 함께 설계했어요.</p></article>
-        <article><span class="ub">02</span><span class="uk">식약처 인정</span><h4>기능성 사균체</h4><p>식품의약품안전처가 기능성을 인정한 사균체 원료를 담았어요.</p></article>
-        <article><span class="ub">03</span><span class="uk">유익균 유래 성분</span><h4>포스트바이오틱스</h4><p>유익균이 만들어낸 성분까지 함께 담아 장 속 환경을 생각했어요.</p></article>
-        <article><span class="ub">04</span><span class="uk">자체 기준</span><h4>‘MACs 지수’</h4><p>기능성 유효성분을 하루에 얼마나 섭취하면 좋은지, 일섭취량 기준을 제시해요.</p></article>
+        <article><span class="ub">01</span><span class="uk">국내 유일</span><h4>‘MACs 이중영양 설계’</h4><p>나의 몸을 위한 영양과 장 속 미생물을 위한 MAC을 한 팩에 함께 설계했어요.</p><a class="u-more" href="#faq" data-fq="fq-u1">자세히 보기 <span aria-hidden="true">→</span></a></article>
+        <article><span class="ub">02</span><span class="uk">식약처 인정</span><h4>기능성 사균체</h4><p>식품의약품안전처가 기능성을 인정한 사균체 원료를 담았어요.</p><a class="u-more" href="#faq" data-fq="fq-u2">자세히 보기 <span aria-hidden="true">→</span></a></article>
+        <article><span class="ub">03</span><span class="uk">유익균 유래 성분</span><h4>포스트바이오틱스</h4><p>유익균이 만들어낸 성분까지 함께 담아 장 속 환경을 생각했어요.</p><a class="u-more" href="#faq" data-fq="fq-u3">자세히 보기 <span aria-hidden="true">→</span></a></article>
+        <article><span class="ub">04</span><span class="uk">자체 기준</span><h4>‘MACs 지수’</h4><p>기능성 유효성분을 하루에 얼마나 섭취하면 좋은지, 일섭취량 기준을 제시해요.</p><a class="u-more" href="#faq" data-fq="fq-u4">자세히 보기 <span aria-hidden="true">→</span></a></article>
       </div>
     </div>
   </section>
@@ -923,6 +935,31 @@ html.fq-open,html.fq-open body{overflow:hidden}
             <p class="fq-src">Vandeputte D et al. Gut. 2017;66(11):1968-1974.</p></div></li>
           <li><span class="why-n">04</span><div><h3>한 병에 두 번의 영양</h3>
             <p>MAC만 따로 챙기려면 번거롭고 값도 만만치 않아요. 그래서 굿케어맥스는 <strong>나를 위한 균형영양</strong>에 비타민·무기질을 갖추고, 여기에 <strong>미생물을 위한 MAC 12.5g</strong>(하루 기준치의 50%)과 사균체 100억 cells 이상을 더했어요. 한 끼를 챙기는 동시에 장 속 미생물의 밥까지 챙기는 거죠.</p></div></li>
+        </ol>
+      </div>
+
+      <div class="fq-sec" id="fq-only">
+        <span class="fq-eb">ONLY GOODCARE MACs</span>
+        <h2>굿케어맥스만의 <em>네 가지</em></h2>
+        <p class="fq-lead">브랜드 페이지에서 소개한 네 가지를 조금 더 풀어 설명하고, 일상에서 바로 해 볼 수 있는 <strong>웰니스 라이프 팁</strong>을 함께 담았어요.</p>
+        <ol class="why only">
+          <li id="fq-u1"><span class="why-n">01</span><div><span class="uk2">국내 유일</span><h3>‘MACs 이중영양 설계’</h3>
+            <p>보통 균형영양식은 <strong>나에게 필요한 영양</strong>, 곧 탄수화물·단백질·지방과 비타민·무기질을 채우는 데 집중해요. 굿케어맥스는 여기에 <strong>장 속 미생물이 먹는 MAC</strong>을 한 팩에 함께 설계했어요. 한 번 마시면 나를 위한 한 끼와 미생물을 위한 한 끼가 동시에 채워져서 ‘이중영양’이에요.</p>
+            <p>MAC은 길이가 다른 식이섬유를 단쇄 2 · 중쇄 6 · 장쇄 2로 섞어, 한 팩에 <strong>12.5g</strong>(하루 기준치의 50%)을 담았어요.</p>
+            <div class="tip"><b>WELLNESS TIP</b><p>끼니를 거르기 쉬운 시간을 먼저 찾아 보세요. 아침을 자주 건너뛴다면 전날 밤 한 팩을 눈에 잘 띄는 곳에 꺼내 두기만 해도, 나의 한 끼와 미생물의 밥을 함께 놓치지 않게 돼요.</p></div></div></li>
+          <li id="fq-u2"><span class="why-n">02</span><div><span class="uk2">식약처 인정</span><h3>기능성 사균체</h3>
+            <p>사균체는 유익균을 열처리해 생명 활동을 멈춘 균체예요. 살아 있어야 하는 균이 아니라서 <strong>보관하고 유통하는 동안 균 수가 줄어들 걱정이 적고</strong>, 매일 마시는 음료에 담기 좋아요.</p>
+            <p>굿케어맥스에는 식품의약품안전처가 기능성을 인정한 사균체 원료를 <strong>100억 cells 이상</strong> 담았어요. 원료의 구체적인 기능성 내용은 제품 표시사항에서 확인할 수 있어요.</p>
+            <div class="tip"><b>WELLNESS TIP</b><p>좋은 습관은 이미 하는 일에 붙이면 오래가요. 양치 후, 출근 가방을 챙길 때처럼 매일 하는 행동 바로 다음을 ‘한 팩 마시는 시간’으로 정해 보세요.</p></div></div></li>
+          <li id="fq-u3"><span class="why-n">03</span><div><span class="uk2">유익균 유래 성분</span><h3>포스트바이오틱스</h3>
+            <p>국제 프로바이오틱스·프리바이오틱스 과학협회(ISAPP)는 포스트바이오틱스를 <strong>‘몸에 이로움을 주는, 생명 활동이 없는 미생물이나 그 구성 성분’</strong>으로 정의해요. 사균체도, 유익균이 만들어 낸 성분도 여기에 속해요.</p>
+            <p>살아 있는 균인 프로바이오틱스, 균의 먹이인 프리바이오틱스와 MAC에 이어, 장 속 환경을 돌보는 또 하나의 축이라고 보면 쉬워요.</p>
+            <p class="fq-src">Salminen S et al. Nat Rev Gastroenterol Hepatol. 2021;18(9):649-667. <a href="https://doi.org/10.1038/s41575-021-00440-6" target="_blank" rel="noopener">doi:10.1038/s41575-021-00440-6</a></p>
+            <div class="tip"><b>WELLNESS TIP</b><p>식탁에 익숙한 발효식품을 하루 한 가지 곁들여 보세요. 김치, 된장국, 플레인 요거트면 충분해요. 건강한 성인들이 10주 동안 발효식품을 늘려 먹은 무작위 연구에서 장내 미생물의 다양성이 높아졌어요.</p><p class="fq-src">Wastyk HC et al. Cell. 2021;184(16):4137-4153. <a href="https://doi.org/10.1016/j.cell.2021.06.019" target="_blank" rel="noopener">doi:10.1016/j.cell.2021.06.019</a></p></div></div></li>
+          <li id="fq-u4"><span class="why-n">04</span><div><span class="uk2">자체 기준</span><h3>‘MACs 지수’</h3>
+            <p>좋은 원료를 넣는 것만큼 중요한 건 <strong>얼마나 먹느냐</strong>예요. MACs 지수는 기능성 유효성분을 하루에 얼마나 섭취하면 좋은지, 굿케어맥스가 스스로 정해 제시하는 <strong>일섭취량 기준</strong>이에요.</p>
+            <p>예를 들어 식이섬유는 하루 기준치 25g 가운데 절반인 12.5g을 한 팩으로 채우도록 맞췄어요. 매일 얼마나 챙겼는지 숫자로 가늠할 수 있게 하는 게 목표예요.</p>
+            <div class="tip"><b>WELLNESS TIP</b><p>나머지 절반은 식탁에서 채워요. 흰쌀 대신 잡곡밥, 반찬 하나는 나물이나 해조류, 간식은 껍질째 먹는 과일이나 견과 한 줌. 식이섬유를 늘릴 땐 물도 함께 충분히 마셔 주세요.</p></div></div></li>
         </ol>
       </div>
 
@@ -1232,6 +1269,7 @@ a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySe
   function sync(){const on=location.hash==='#faq';if(on&&v.hidden){back=scrollY;}v.hidden=!on;root.classList.toggle('fq-open',on);if(on)v.scrollTop=0;}
   document.querySelectorAll('a[href="#faq"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();if(location.hash==='#faq')sync();else location.hash='faq';}));
   function close(){if(location.hash==='#faq'){history.replaceState(null,'',location.pathname+location.search);}sync();scrollTo(0,back);}
+  document.querySelectorAll('a[data-fq]').forEach(a=>a.addEventListener('click',()=>{const go=()=>{const t=document.getElementById(a.dataset.fq);if(t&&!v.hidden)v.scrollTop=t.getBoundingClientRect().top-v.getBoundingClientRect().top+v.scrollTop-20;};setTimeout(go,60);setTimeout(go,200);}));
   cl.addEventListener('click',close);
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!v.hidden)close();});
   addEventListener('hashchange',sync);sync();
