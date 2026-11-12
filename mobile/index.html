@@ -113,7 +113,7 @@ h1,h2,h3,h4,p{margin:0}
 .pc .ph img{height:84%;width:auto;filter:drop-shadow(0 10px 14px rgba(0,0,0,.18));transition:transform .4s}
 .pc .ph img.cover{width:100%;height:100%;object-fit:cover;filter:none}
 .pc:hover .ph img{transform:scale(1.05) rotate(-2deg)}
-.pc .tag{position:absolute;left:8px;top:8px;background:#111;color:#fff;font:800 10.5px/1 var(--display);padding:5px 7px;border-radius:5px;letter-spacing:.04em}
+.pc .tag{position:absolute;z-index:1;left:8px;top:8px;background:#111;color:#fff;font:800 10.5px/1 var(--display);padding:5px 7px;border-radius:5px;letter-spacing:.04em}
 .pc .tag.o{background:var(--o)}
 .pc .cart{position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.12)}
 .pc .cart svg{width:17px;height:17px}
@@ -352,6 +352,13 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
 .drawer nav a::after{content:"›";color:#bbb}
 .drawer .d-q{margin:auto 16px 20px;font-size:12.5px;color:var(--sub)}
 
+.soon-b{position:absolute;z-index:2;right:14px;top:14px;width:86px;height:86px;border-radius:50%;background:var(--o);color:#fff;display:grid;place-content:center;text-align:center;font:900 15px/1.1 var(--display);letter-spacing:.04em;transform:rotate(-10deg);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.slide .soon-b{top:16px;right:16px}
+.kit{position:relative}
+.soon-eb{color:var(--o)!important;font-weight:800!important;letter-spacing:.12em}
+.soon-steps{opacity:.55}
+.soon-btn{background:var(--soft);color:#888;box-shadow:none;cursor:default}
+.pc.soon .ph img{filter:grayscale(.3)}
 /* reveal */
 .js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .js .rv.in{opacity:1;transform:none}
@@ -401,7 +408,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
         <a class="slide" href="shop.html#/list?brand=gcm"><img src="assets/gcm-duo-orange.jpg" alt="굿케어맥스 그린바나나 오트와 피스타치오" style="object-position:50% 50%"><span class="badge">식이섬유<b>12.5g</b>하루 50%</span><div class="cap"><small>NEW</small><h2>나만 챙기던 영양에서,<br>미생물까지 챙기는 영양으로.</h2></div></a>
         <a class="slide" href="#about"><img src="assets/gcm-joyful-ritual.jpg" alt="잔디밭에서 웃고 있는 가족과 반려견" style="object-position:32% 40%"><div class="cap"><small>JOYFUL CARE RITUAL</small><h2>한 팩에 두 번의 영양,<br>굿케어맥스</h2></div></a>
         <a class="slide" href="#products"><img src="assets/day-morning.jpg" alt="아침 주방 조리대 위 굿케어맥스" style="object-position:50% 60%"><div class="cap"><small>MORNING ROUTINE</small><h2>바쁜 아침엔 한 팩으로<br>나의 한 끼 + 미생물의 밥</h2></div></a>
-        <a class="slide" href="#process"><img src="assets/imbert-keyvisual.jpg" alt="IM.BERT 장내 미생물 분석 키비주얼" style="object-position:30% 50%"><div class="cap"><small>IM.BERT × GOODCARE MACs</small><h2>장내 미생물 분석으로<br>나에게 맞춘 이중영양 설계</h2></div></a>
+        <a class="slide" href="#process"><img src="assets/imbert-keyvisual.jpg" alt="IM.BERT 장내 미생물 분석 키비주얼" style="object-position:30% 50%"><span class="soon-b">COMING<br>SOON</span><div class="cap"><small>COMING SOON</small><h2>장내 미생물 분석으로<br>나에게 맞춘 이중영양 설계</h2></div></a>
       </div>
       <div class="dots" id="dots"></div>
       <span class="num" id="num">1 / 4</span>
@@ -413,7 +420,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
       <div class="rail">
         <a class="pc" href="shop.html#/product/gcm-banana"><div class="ph" style="background:#FFC4DE"><span class="tag o">BEST</span><img src="assets/gcm-pack-banana2.png" alt="굿케어맥스 그린바나나 오트"><span class="cart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span></div><h3>굿케어맥스 그린바나나 오트</h3><p class="lp">62,400원</p><p class="pr"><b>15%</b>52,800원</p><p class="rv">200mL × 24팩 · 리뷰 128</p></a>
         <a class="pc" href="shop.html#/product/gcm-pistachio"><div class="ph" style="background:#B7ECF2"><span class="tag">NEW</span><img src="assets/gcm-pack-pistachio.png" alt="굿케어맥스 피스타치오"><span class="cart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span></div><h3>굿케어맥스 피스타치오</h3><p class="lp">62,400원</p><p class="pr"><b>15%</b>52,800원</p><p class="rv">200mL × 24팩 · 리뷰 41</p></a>
-        <a class="pc" href="shop.html#/imbert"><div class="ph" style="background:#E9ECF8"><span class="tag">1:1 PREMIUM</span><img class="cover" src="assets/imbert-report.jpg" alt="IM.BERT AI 분석 리포트"></div><h3>IM.BERT KIT 맞춤 설계</h3><p class="lp">&nbsp;</p><p class="pr">상담 후 안내</p><p class="rv">장내 미생물 검사 · AI 리포트</p></a>
+        <a class="pc soon" href="#process"><div class="ph" style="background:#E9ECF8"><span class="tag o">COMING SOON</span><img class="cover" src="assets/imbert-report.jpg" alt="IM.BERT AI 분석 리포트"></div><h3>IM.BERT 1:1 맞춤 설계</h3><p class="lp" style="text-decoration:none">&nbsp;</p><p class="pr" style="color:var(--o)">Coming soon</p><p class="rv">장내 미생물 분석 맞춤 설계</p></a>
       </div>
     </section>
 
@@ -489,19 +496,18 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
 
     <!-- PROCESS -->
     <section class="sec" id="process">
-      <p class="eb">IM.BERT × GOODCARE MACs</p>
-      <h2 class="ttl">키트부터 나에게 맞춘<br><em>1:1 이중영양</em>까지</h2>
-      <div class="kit rv"><img src="assets/imbert-kit.jpg" alt="IM.BERT KIT 상자를 든 두 손"></div>
-      <p class="fq-lead">검사 키트 수령부터 AI 리포트까지는 이뮤노바이옴이, 리포트를 바탕으로 한 이중영양 설계는 굿케어맥스가 맡아요.</p>
-      <div class="steps">
+      <p class="eb soon-eb">COMING SOON</p>
+      <h2 class="ttl">나에게 맞춘<br><em>1:1 이중영양 설계</em>, 곧 만나요</h2>
+      <div class="kit rv"><img src="assets/imbert-kit.jpg" alt="IM.BERT KIT 상자를 든 두 손"><span class="soon-b">COMING<br>SOON</span></div>
+      <p class="fq-lead">장내 미생물 검사부터 AI 리포트, 리포트를 바탕으로 한 1:1 이중영양 설계까지 이어지는 맞춤 서비스를 준비하고 있어요.</p>
+      <div class="steps soon-steps">
         <div class="stp"><b>01</b><span>키트 수령<small>집으로 검사 키트가 도착해요</small></span></div>
         <div class="stp"><b>02</b><span>자택 간편 채취<small>집에서 간단하게 채취해요</small></span></div>
         <div class="stp"><b>03</b><span>IM.BERT 정밀 분석<small>장내 미생물을 분석해요</small></span></div>
         <div class="stp"><b>04</b><span>AI 맞춤 리포트<small>나의 결과를 리포트로 받아요</small></span></div>
         <div class="stp g"><b>05</b><span>1:1 이중영양 설계<small>굿케어맥스가 맞춤 설계해요</small></span></div>
       </div>
-      <div class="who"><span><i style="background:var(--navy)"></i>01–04 분석 · 진단 by IMMUNOBIOME</span><span><i style="background:var(--o)"></i>05 맞춤 설계 by GOODCARE MACs</span></div>
-      <a class="btn dark" href="shop.html#/imbert">IM.BERT 맞춤 상담 신청 →</a>
+      <span class="btn soon-btn" role="status">Coming soon · 서비스 오픈 준비 중이에요</span>
     </section>
 
     <!-- MOMENTS -->
@@ -514,7 +520,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
         <figure><img src="assets/day-afternoon.jpg" alt="오후의 굿케어맥스"><figcaption>오후 한 팩</figcaption></figure>
         <figure><img src="assets/day-workout.jpg" alt="운동 후 굿케어맥스"><figcaption>운동 후</figcaption></figure>
         <figure><img src="assets/day-bag.jpg" alt="공원 벤치 위 가방 앞 굿케어맥스 두 종"><figcaption>가방 속 상비</figcaption></figure>
-        <figure class="w"><img src="assets/imbert-keyvisual.jpg" alt="IM.BERT 키비주얼"><figcaption>나에게 맞춘 설계</figcaption></figure>
+        <figure class="w"><img src="assets/imbert-keyvisual.jpg" alt="IM.BERT 키비주얼"><figcaption>나에게 맞춘 설계 · Coming soon</figcaption></figure>
       </div>
     </section>
 
@@ -670,14 +676,14 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
     <section class="cs" aria-label="고객센터">
       <img src="assets/gcm-logo-circle.png" alt="">
       <small>고객센터</small><b>000-0000-0000</b><p>평일 09:00~18:00 · 점심 12:00~13:00<br>주말·공휴일 휴무</p>
-      <div class="row"><a href="shop.html#/inquiry">1:1 문의하기</a><a href="shop.html#/imbert">IM.BERT 상담</a></div>
+      <div class="row"><a href="shop.html#/inquiry">1:1 문의하기</a><a href="#faq">FAQ</a></div>
     </section>
 
     <footer class="ft">
       <p class="fl">GOODCARE <b>MACs</b></p>
-      <nav><a href="shop.html#/doc/terms">이용약관</a><a href="shop.html#/doc/privacy">개인정보처리방침</a><a href="shop.html#/doc/refund">교환·환불</a><a href="https://www.immunobiome.co.kr/imbert" target="_blank" rel="noopener">IM.BERT ↗</a></nav>
+      <nav><a href="shop.html#/doc/terms">이용약관</a><a href="shop.html#/doc/privacy">개인정보처리방침</a><a href="shop.html#/doc/refund">교환·환불</a></nav>
       <p class="biz"><span>상호 : [비락 주식회사]</span><span>대표 : [대표자명]</span><br><span>사업자등록번호 : [000-00-00000]</span><span>통신판매업 : [제0000-지역-0000호]</span><br><span>주소 : [사업장 주소]</span></p>
-      <p style="margin-top:10px">© VILAC. GOODCARE MACs. 식이섬유 12.5g · 1일 기준치 50%는 완제품 실측 기준, 사균체 수치는 원료사 시험성적서(COA) 기준입니다. IM.BERT 관련 내용은 이뮤노바이옴 소개 자료를 바탕으로 합니다.</p>
+      <p style="margin-top:10px">© VILAC. GOODCARE MACs. 식이섬유 12.5g · 1일 기준치 50%는 완제품 실측 기준, 사균체 수치는 원료사 시험성적서(COA) 기준입니다.</p>
     </footer>
 
     <div class="bbar" id="bbar">
@@ -698,7 +704,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
   <div class="d-top"><span class="logo"><img src="assets/gcm-logo-circle.png" alt="">GOODCARE <b>MACs</b></span><button type="button" class="d-x" id="drClose" aria-label="메뉴 닫기">✕</button></div>
   <div class="d-acc"><b>반가워요!</b><div><a href="shop.html#/login">로그인</a><a href="shop.html#/signup">회원가입</a></div></div>
   <nav>
-    <a href="#products">제품</a><a href="#about">About MACs</a><a href="#story">MAC 이야기</a><a href="#process">IM.BERT 1:1 맞춤</a><a href="#moments">함께하는 순간</a><a href="#column">칼럼</a><a href="#faq">FAQ</a>
+    <a href="#products">제품</a><a href="#about">About MACs</a><a href="#story">MAC 이야기</a><a href="#process">1:1 맞춤 설계 · Coming soon</a><a href="#moments">함께하는 순간</a><a href="#column">칼럼</a><a href="#faq">FAQ</a>
     <a href="shop.html#/cart">장바구니</a><a href="shop.html#/my/orders">주문조회</a>
   </nav>
   <p class="d-q">고객센터 000-0000-0000 · 평일 09:00~18:00</p>
