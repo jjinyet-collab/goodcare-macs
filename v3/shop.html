@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GOODCARE MACs Store</title>
+<meta name="description" content="굿케어맥스 공식 스토어 — 장바구니, 회원·카카오 로그인, 주문·결제 흐름">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* Store shell: 굿케어맥스 단독 스토어 cobalt header, light body for reading prices and forms. */
+:root{
+  --cobalt:#004BDE;--cobalt-d:#003BB1;--navy:#0E1E40;--orange:#FF6839;--kakao:#FEE500;
+  --bg:#FFFFFF;--card:#fff;--line:#E3E0D8;--ink:#14213D;--sub:#5B6478;--ok:#0E8A4F;--err:#D63B1F;
+  --display:"Urbanist","Helvetica Neue",Arial,sans-serif;
+  --kr:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{margin:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--kr);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-left,0px))}
+.hide{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* promo + demo bars */
+.promo{background:var(--navy);color:#fff;font-size:14px;text-align:center;padding:9px 40px;position:relative}
+.promo b{color:var(--orange)}
+.promo button{position:absolute;right:12px;top:50%;translate:0 -50%;background:none;border:0;color:#fff;opacity:.7;cursor:pointer;font-size:20px;line-height:1}
+.demo{background:#FFF3C4;color:#6A4A00;font-size:13.5px;text-align:center;padding:7px 16px}
+
+/* header */
+header.st{background:var(--cobalt);color:#fff;position:sticky;top:0;z-index:40}
+.hrow{display:flex;align-items:center;gap:18px;height:76px}
+.logo{font:900 24px/1 var(--display);letter-spacing:-.03em;white-space:nowrap}
+.logo b{color:var(--orange)}
+.bsw{display:flex;gap:4px;background:rgba(255,255,255,.12);border-radius:999px;padding:4px}
+.bsw a{padding:7px 16px;border-radius:999px;font-weight:700;font-size:15px;white-space:nowrap;transition:background .2s,color .2s}
+.bsw a:hover{background:rgba(255,255,255,.18)}
+.bsw a.on{background:#fff;color:var(--cobalt)}
+.util{margin-left:auto;display:flex;align-items:center;gap:6px}
+.util a,.util button{display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:none;border:0;color:#fff;font-size:15px;font-weight:500;cursor:pointer;white-space:nowrap}
+.util a:hover,.util button:hover{background:rgba(255,255,255,.14)}
+.util svg{width:22px;height:22px}
+.cartbtn{position:relative}
+.cartbtn i{position:absolute;top:2px;right:2px;min-width:18px;height:18px;border-radius:9px;background:var(--orange);color:#fff;font:800 11px/18px var(--display);text-align:center;font-style:normal;padding:0 4px}
+.menu{border-top:1px solid rgba(255,255,255,.18)}
+.menu ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;height:50px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.menu a{display:block;padding:6px 14px;border-radius:999px;font-size:15px;font-weight:500;opacity:.9;white-space:nowrap}
+.menu a:hover,.menu a.on{background:rgba(255,255,255,.16);opacity:1}
+@media (max-width:760px){
+  .hrow{flex-wrap:wrap;height:auto;padding:12px 0;gap:10px 12px}
+  .logo{font-size:21px}
+  .bsw{order:3;width:100%;justify-content:space-between}
+  .bsw a{flex:1;text-align:center;padding:8px 6px}
+  .util .tx{display:none}
+  .util a,.util button{padding:8px}
+}
+
+/* layout pieces */
+main{min-height:60vh;padding:36px 0 80px}
+main:focus{outline:none}
+h1.pt{font:800 clamp(28px,3.2vw,40px)/1.25 var(--kr);letter-spacing:-.02em;margin:0 0 6px}
+.pt-sub{color:var(--sub);margin:0 0 28px}
+.crumb{font-size:14px;color:var(--sub);margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 24px;border-radius:14px;border:1.5px solid var(--cobalt);background:var(--cobalt);color:#fff;font-weight:700;font-size:17px;cursor:pointer;transition:filter .15s,background .15s}
+.btn:hover{filter:brightness(1.08)}
+.btn.line{background:#fff;color:var(--cobalt)}
+.btn.org{background:var(--orange);border-color:var(--orange)}
+.btn.kakao{background:var(--kakao);border-color:var(--kakao);color:#191919}
+.btn.block{width:100%}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.sm{min-height:42px;padding:0 16px;font-size:15px;border-radius:10px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px}
+.muted{color:var(--sub)}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:#EAF0FF;color:var(--cobalt)}
+.tag.o{background:#FFEDE6;color:#C8441B}.tag.g{background:#E8E8E8;color:#555}
+.price s{color:#9AA0AC;font-size:.85em;margin-right:6px}
+.price b{font:800 1.15em var(--display)}
+.price em{color:var(--orange);font-style:normal;font-weight:800;margin-right:6px}
+
+/* hero strip on list */
+.lhero{border-radius:24px;overflow:hidden;color:#fff;padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px;align-items:center;margin-bottom:28px}
+.lhero.gcm{background:linear-gradient(120deg,#004BDE,#2F6BF0)}
+.lhero.vilac{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.lhero.vilac p{opacity:.75}
+.lhero.all{background:linear-gradient(120deg,#004BDE 0%,#0E1E40 100%)}
+.lhero h2{font:800 clamp(26px,3vw,38px)/1.3 var(--kr);margin:0 0 10px;letter-spacing:-.02em}
+.lhero p{margin:0;opacity:.9}
+.lhero .art{display:flex;justify-content:flex-end;gap:10px;align-items:flex-end;min-height:140px}
+.lhero .art img,.lhero .art svg{height:clamp(120px,14vw,190px);width:auto;filter:drop-shadow(0 16px 24px rgba(0,0,0,.25))}
+@media (max-width:700px){.lhero{grid-template-columns:1fr}.lhero .art{justify-content:center}}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.chips button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 16px;font-size:15px;font-weight:600;cursor:pointer}
+.chips button.on{border-color:var(--cobalt);background:var(--cobalt);color:#fff}
+.bar{display:flex;justify-content:space-between;align-items:center;margin:0 0 14px;font-size:15px;color:var(--sub)}
+.bar select{border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:#fff}
+
+/* product grid */
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+.pc{background:#fff;border:1px solid #E6E1D8;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.pc:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,33,61,.1)}
+.pc .ph{background:#fff;border-bottom:1px solid #F0EEEA;aspect-ratio:1/.92;display:grid;place-items:center;position:relative;padding:14%}
+.pc .ph a{display:grid;place-items:center;height:100%;width:100%}
+.pc .ph img{max-height:80%;max-width:80%;width:auto;height:auto;object-fit:contain;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}.pc .ph svg{height:72%;width:auto}
+.pc:hover .ph img{transform:scale(1.04)}
+.pc .badges{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.wish{position:absolute;right:10px;top:10px;width:30px;height:30px;border-radius:50%;border:0;background:#fff;display:grid;place-items:center;cursor:pointer}
+.wish svg{width:16px;height:16px;fill:#C8C8C8;stroke:none}
+.wish.on svg{fill:var(--orange)}
+.pc .tx{padding:16px 18px 16px;display:grid;gap:8px;flex:1}
+.pc h3{margin:0;font-size:16px;line-height:1.5;font-weight:700;color:#3A3A3A}
+.pc h3 .opt-l{font-weight:500;color:#666}
+.pc .price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pc .price s{color:#9AA0AC;font-size:14px}
+.pc .price b{font:800 17px var(--kr);color:#222}
+.pc .price em{font:800 20px var(--display);color:#FF3E8A;font-style:normal}.pc .price em small{font-size:.7em}
+.pc .ft{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+.pc .rv{font-size:13px;color:#E08A00}
+.cart-i{width:30px;height:30px;border:0;background:none;display:grid;place-items:center;cursor:pointer;color:#333;border-radius:8px;font-size:15px}
+.cart-i:hover{background:#F1EFEA}.cart-i svg{width:20px;height:20px}
+@media (max-width:760px){.pc .tx{padding:12px}.pc h3{font-size:14.5px}.pc .price b{font-size:15px}.pc .price em{font-size:17px}}
+
+/* detail */
+.pd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+@media (max-width:860px){.pd{grid-template-columns:1fr}}
+.pd .gal{border-radius:24px;aspect-ratio:1;display:grid;place-items:center;padding:40px;position:sticky;top:150px}
+.pd .gal.gcm,.pd .gal.vilac{background:#fff;border:1px solid var(--line)}
+.pd .gal img{max-height:86%;width:auto}.pd .gal svg{height:82%;width:auto}
+@media (max-width:860px){.pd .gal{position:static}}
+.pd h1{font:800 clamp(26px,2.6vw,34px)/1.35 var(--kr);margin:6px 0 8px}
+.pd .price{font-size:22px;margin:8px 0 18px}
+.dl{display:grid;grid-template-columns:110px 1fr;gap:10px 14px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:15.5px;margin-bottom:18px}
+.dl dt{color:var(--sub)}.dl dd{margin:0}
+.fld{display:grid;gap:8px;margin-bottom:16px}
+.fld>label,.fld>.lb{font-weight:700;font-size:15.5px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer;background:#fff}
+.opt input{accent-color:var(--cobalt);width:20px;height:20px}
+.opt:has(input:checked){border-color:var(--cobalt);background:#F3F6FF}
+.opt .l{display:flex;align-items:center;gap:10px}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.qty button{width:44px;height:44px;border:0;background:#fff;font-size:20px;cursor:pointer}
+.qty input{width:52px;text-align:center;border:0;height:44px;font-weight:700}
+.sumline{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-top:2px solid var(--ink);margin-top:6px}
+.sumline b{font:800 26px var(--display);color:var(--cobalt)}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.info{margin-top:56px}
+.info h2{font-size:22px;margin:0 0 14px}
+.tbl{width:100%;border-collapse:collapse;font-size:15px;background:#fff;border-radius:14px;overflow:hidden}
+.tbl th,.tbl td{border-bottom:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
+.tbl th{width:30%;background:#FAF8F3;font-weight:600;color:var(--sub)}
+
+/* cart / checkout */
+.two{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:28px;align-items:start}
+@media (max-width:960px){.two{grid-template-columns:1fr}}
+.sticky{position:sticky;top:150px}
+@media (max-width:960px){.sticky{position:static}}
+.ci{display:grid;grid-template-columns:28px 92px minmax(0,1fr) auto;gap:16px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.ci .th{width:92px;height:92px;border-radius:14px;display:grid;place-items:center;padding:8px}
+.ci .th.gcm,.ci .th.vilac{background:#fff;border:1px solid var(--line)}
+.ci .th img{max-height:100%;width:auto}.ci .th svg{height:100%;width:auto}
+.ci h3{font-size:16.5px;margin:0 0 2px}
+.ci .r{display:grid;justify-items:end;gap:8px}
+.ci input[type=checkbox]{width:20px;height:20px;accent-color:var(--cobalt)}
+.x{border:0;background:none;color:var(--sub);cursor:pointer;font-size:14px;text-decoration:underline}
+@media (max-width:600px){.ci{grid-template-columns:24px 72px minmax(0,1fr)}.ci .th{width:72px;height:72px}.ci .r{grid-column:2/-1;justify-items:start;grid-auto-flow:column;align-items:center;justify-content:space-between}}
+.sum{display:grid;gap:10px;font-size:16px}
+.sum div{display:flex;justify-content:space-between}
+.sum .tot{border-top:2px solid var(--ink);padding-top:14px;margin-top:4px;font-weight:700}
+.sum .tot b{font:800 26px var(--display);color:var(--cobalt)}
+.note{font-size:14px;color:var(--sub);background:#FAF8F3;border-radius:12px;padding:12px 14px}
+.empty{text-align:center;padding:64px 20px}
+.empty p{color:var(--sub);margin:8px 0 22px}
+
+/* forms */
+.form{max-width:520px;margin:0 auto}
+.in{width:100%;height:54px;border:1.5px solid var(--line);border-radius:12px;padding:0 16px;background:#fff;font-size:17px}
+.in:focus{border-color:var(--cobalt);outline:none}
+.in.bad{border-color:var(--err)}
+.hint{font-size:13.5px;color:var(--sub)}
+.err{font-size:13.5px;color:var(--err);min-height:0}
+.row2{display:grid;grid-template-columns:1fr auto;gap:8px}
+.or{display:flex;align-items:center;gap:12px;color:var(--sub);font-size:14px;margin:22px 0}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.links{display:flex;justify-content:center;gap:18px;font-size:15px;color:var(--sub);margin-top:18px}
+.links a{text-decoration:underline}
+.agree{border:1.5px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+.agree label{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;font-size:15.5px}
+.agree label+label{border-top:1px solid var(--line)}
+.agree .all{background:#F3F6FF;font-weight:700}
+.agree input{width:20px;height:20px;accent-color:var(--cobalt);flex:none}
+.agree a{margin-left:auto;font-size:13.5px;color:var(--sub);text-decoration:underline}
+.pm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:600px){.pm{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pm label{border:1.5px solid var(--line);border-radius:12px;padding:14px 10px;text-align:center;cursor:pointer;font-weight:600;font-size:15px;background:#fff}
+.pm input{position:absolute;opacity:0}
+.pm label:has(input:checked){border-color:var(--cobalt);background:#F3F6FF;color:var(--cobalt)}
+.sec{margin-bottom:22px}
+.sec h2{font-size:19px;margin:0 0 14px;display:flex;justify-content:space-between;align-items:center}
+
+/* mypage */
+.mp{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:860px){.mp{grid-template-columns:1fr}}
+.mpnav{display:grid;gap:4px}
+.mpnav a{padding:12px 16px;border-radius:12px;font-weight:600}
+.mpnav a.on{background:var(--cobalt);color:#fff}
+@media (max-width:860px){.mpnav{grid-auto-flow:column;overflow-x:auto}.mpnav a{white-space:nowrap}}
+.stat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.stat div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center}
+.stat b{display:block;font:800 26px var(--display);color:var(--cobalt)}
+@media (max-width:600px){.stat{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ord{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:12px}
+.ord .hd{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:14.5px;color:var(--sub);margin-bottom:10px}
+.st-badge{font-weight:800;font-size:14px;padding:3px 10px;border-radius:999px;background:#EAF0FF;color:var(--cobalt)}
+.st-badge.CANCELLED{background:#EEE;color:#666}.st-badge.PAID{background:#E5F5EC;color:var(--ok)}
+.steps{display:flex;gap:6px;margin:12px 0 4px;font-size:13px}
+.steps span{flex:1;text-align:center;padding:6px 4px;border-radius:8px;background:#F1EFEA;color:#8A8F9C}
+.steps span.on{background:var(--cobalt);color:#fff}
+
+/* doc pages */
+.doc{max-width:860px}
+.doc h2{font-size:20px;margin:28px 0 10px}
+.doc p,.doc li{color:#333}
+.ph-fill{background:#FFF3C4;padding:0 4px;border-radius:4px}
+
+/* modal + toast */
+.dim{position:fixed;inset:0;background:rgba(10,18,40,.55);z-index:80;display:grid;place-items:center;padding:16px;animation:fade .2s}
+.modal{background:#fff;border-radius:22px;max-width:440px;width:100%;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.3);max-height:90vh;overflow:auto}
+.modal h3{margin:0 0 6px;font-size:21px}
+.kk-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.kk-head i{width:40px;height:40px;border-radius:12px;background:var(--kakao);display:grid;place-items:center;font-style:normal;font-weight:900}
+.pay-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.pay-amt{font:800 30px var(--display);color:var(--cobalt);margin:4px 0 16px}
+.spin{width:44px;height:44px;border-radius:50%;border:4px solid #E3E8F6;border-top-color:var(--cobalt);animation:sp 1s linear infinite;margin:10px auto 16px}
+@keyframes sp{to{transform:rotate(360deg)}}
+@keyframes fade{from{opacity:0}}
+.toast{position:fixed;left:50%;bottom:28px;translate:-50% 0;background:var(--ink);color:#fff;padding:14px 22px;border-radius:14px;z-index:90;font-size:15.5px;box-shadow:0 12px 30px rgba(0,0,0,.25);animation:fade .2s;max-width:calc(100% - 32px);text-align:center}
+
+/* footer */
+footer.ft{background:var(--navy);color:#C9D1E6;font-size:14px;padding:44px 0 56px}
+footer.ft .lg{font:900 22px var(--display);color:#fff;margin-bottom:14px}
+footer.ft .lg b{color:var(--orange)}
+footer.ft .pol{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:16px}
+footer.ft .pol a{color:#fff;font-weight:600}
+footer.ft .pol a.b{color:var(--orange)}
+footer.ft .biz{line-height:1.9}
+footer.ft .cs{margin-top:14px}
+/* ===== floating inquiry button ===== */
+.ask{position:fixed;right:clamp(16px,2.4vw,32px);bottom:clamp(16px,2.4vw,32px);z-index:60;display:grid;justify-items:end;gap:12px}
+.ask-btn{width:64px;height:64px;border-radius:50%;border:0;background:#FF6839;color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 14px 30px rgba(0,0,0,.25);transition:transform .2s}
+.ask-btn:hover{transform:scale(1.06)}
+.ask-btn svg{width:28px;height:28px}
+.ask-btn small{position:absolute;bottom:-20px;font:700 12px/1 "Noto Sans KR",sans-serif;color:#FF6839;text-shadow:0 0 6px #fff}
+.ask-panel{width:min(320px,calc(100vw - 32px));background:#fff;color:#14213D;border-radius:20px;padding:20px;box-shadow:0 24px 60px rgba(0,0,0,.3);display:none}
+.ask.open .ask-panel{display:block;animation:fade .2s}
+.ask-panel h3{margin:0 0 4px;font:800 19px/1.3 "Noto Sans KR",sans-serif}
+.ask-panel p{margin:0 0 14px;font-size:14px;color:#5B6478}
+.ask-panel a{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;border:1.5px solid #E3E0D8;margin-top:8px;font:700 15.5px/1.3 "Noto Sans KR",sans-serif}
+.ask-panel a:hover{border-color:#004BDE;background:#F3F6FF}
+.ask-panel a i{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-style:normal;font-weight:900;flex:none}
+.ask-panel a span small{display:block;font:500 13px/1.3 "Noto Sans KR",sans-serif;color:#5B6478}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+<div class="promo" id="promo"><b>3만원 이상 무료배송</b> · 회원가입하면 <b>2,000원 쿠폰</b> 즉시 지급<button type="button" aria-label="닫기" id="promoX">×</button></div>
+</head>
+<body>
+<div class="demo" id="demoBar">테스트 모드예요. 실제 결제·로그인은 일어나지 않고, 주문 정보는 이 브라우저에만 저장돼요. 상품·가격은 예시예요.</div>
+
+<header class="st">
+  <div class="wrap hrow">
+    <a class="logo" href="index.html" title="굿케어맥스 브랜드 페이지">GOODCARE <b>MACs</b></a>
+    <div class="util" id="util"></div>
+  </div>
+  <nav class="menu" aria-label="쇼핑 메뉴"><div class="wrap"><ul id="menu"></ul></div></nav>
+</header>
+
+<main id="view" class="wrap" tabindex="-1"></main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="lg">VILAC · GOODCARE <b>MACs</b></div>
+    <div class="pol"><a href="#/inquiry">1:1 문의</a><a href="#/doc/terms">이용약관</a><a class="b" href="#/doc/privacy">개인정보처리방침</a><a href="#/doc/refund">교환·환불 정책</a><a href="#/guest">비회원 주문조회</a></div>
+    <div class="biz">
+      상호 <span class="ph-fill">[(주)비락]</span> · 대표 <span class="ph-fill">[대표자명]</span> · 사업자등록번호 <span class="ph-fill">[000-00-00000]</span><br>
+      통신판매업 신고 <span class="ph-fill">[제0000-지역-0000호]</span> · 개인정보보호책임자 <span class="ph-fill">[성명]</span><br>
+      주소 <span class="ph-fill">[본사 주소]</span> · 반품 주소 <span class="ph-fill">[물류센터 주소]</span>
+    </div>
+    <div class="cs">고객센터 <span class="ph-fill">[000-0000-0000]</span> · 평일 09:00~18:00 (점심 12:00~13:00, 주말·공휴일 휴무) · <span class="ph-fill">[cs@vilac.co.kr]</span></div>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   STORE CONFIG
+   mode 'demo'  : everything runs in this browser (localStorage) — for design review.
+   mode 'live'  : set apiBase + kakaoJsKey + tossClientKey; the same UI calls the server.
+   ===================================================================== */
+const CONFIG={
+  mode:'demo',
+  apiBase:'',              // e.g. https://api.vilac-store.kr  (live)
+  kakaoJsKey:'',           // Kakao Developers > 앱 키 > JavaScript 키 (live)
+  tossClientKey:'',        // 토스페이먼츠 클라이언트 키 (test_ck_… / live_ck_…)
+  freeShipping:30000, shippingFee:3000, signupCoupon:2000, pointRate:.01
+};
+
+/* ---------- catalog (예시 상품·가격 — 실제 SKU로 교체) ---------- */
+const MILK=(fill,band,label)=>`<svg viewBox="0 0 120 200" role="img" aria-label="${label.split(' ').slice(1).join(' ')}"><path d="M30 34 60 14 90 34Z" fill="${fill}"/><rect x="56" y="6" width="14" height="14" rx="3" fill="#fff" stroke="#ccc"/><rect x="30" y="34" width="60" height="156" rx="6" fill="#fff" stroke="#ddd"/><rect x="30" y="98" width="60" height="58" fill="${band}"/><text x="60" y="76" text-anchor="middle" font-family="Noto Sans KR" font-weight="900" font-size="15" fill="${band}">VILAC</text><text x="60" y="132" text-anchor="middle" font-family="Noto Sans KR" font-weight="700" font-size="11" fill="#fff">${label.split(' ')[0]}</text></svg>`;
+const PRODUCTS=[
+  {id:'gcm-banana',bg:'#FFC4DE',brand:'gcm',cat:'nutrition',name:'굿케어맥스 그린바나나 오트',sub:'Nutrition Formula · 200mL · 식이섬유 12.5g',img:'assets/gcm-pack-banana2.png',badges:[['BEST','o']],
+   desc:'그린바나나와 오트로 맛을 낸 균형영양식에 장 속 미생물을 위한 MAC을 더했어요.',
+   options:[{id:'24',label:'200mL × 24팩',price:52800,list:62400},{id:'48',label:'200mL × 48팩',price:99800,list:124800}],reviews:128},
+  {id:'gcm-pistachio',bg:'#B7ECF2',brand:'gcm',cat:'nutrition',name:'굿케어맥스 피스타치오',sub:'Nutrition Formula · 200mL · 식이섬유 12.5g',img:'assets/gcm-pack-pistachio.png',badges:[['NEW','']],
+   desc:'고소한 피스타치오 맛 균형영양식에 장 속 미생물을 위한 MAC을 더했어요.',
+   options:[{id:'24',label:'200mL × 24팩',price:52800,list:62400},{id:'48',label:'200mL × 48팩',price:99800,list:124800}],reviews:41},
+];
+const BRAND={gcm:'굿케어맥스',vilac:'비락',all:'전체'};
+const won=n=>(Math.round(n)||0).toLocaleString('ko-KR')+'원';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const P=id=>PRODUCTS.find(p=>p.id===id);
+const art=(p,cls='')=>p.img?`<img src="${p.img}" alt="${esc(p.name)}" class="${cls}" loading="lazy">`:p.svg;
+
+/* =====================================================================
+   DATA LAYER — demo backend in localStorage. In live mode each method maps
+   1:1 to a server endpoint (see LOGIC.md); prices/amounts are ALWAYS
+   recomputed on the server, never trusted from the browser.
+   ===================================================================== */
+const LS={get(k,d){try{const v=localStorage.getItem('vs.'+k);return v?JSON.parse(v):d;}catch(e){return d;}},set(k,v){try{localStorage.setItem('vs.'+k,JSON.stringify(v));}catch(e){}}};
+const mem={};const DB={get(k,d){return k in mem?mem[k]:(mem[k]=LS.get(k,d));},set(k,v){mem[k]=v;LS.set(k,v);}};
+async function sha(s){if(crypto.subtle){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('vs:'+s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}return 'x'+s.length;}
+const uid=p=>p+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,6).toUpperCase();
+const today=()=>{const d=new Date();return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0');};
+
+const API={
+  me(){const s=DB.get('session',null);if(!s)return null;return DB.get('users',[]).find(u=>u.id===s.uid)||null;},
+  _save(u){const us=DB.get('users',[]);const i=us.findIndex(x=>x.id===u.id);if(i<0)us.push(u);else us[i]=u;DB.set('users',us);},
+  _login(u){DB.set('session',{uid:u.id,at:Date.now()});Cart.mergeGuest();},
+  async signup(f){
+    const us=DB.get('users',[]);
+    if(us.some(u=>u.email===f.email))throw new Error('이미 가입된 이메일이에요. 로그인해 주세요.');
+    const u={id:uid('U'),provider:'email',email:f.email,pw:await sha(f.pw),name:f.name,phone:f.phone,
+      agree:{terms:true,privacy:true,age14:true,marketing:!!f.marketing,at:new Date().toISOString()},
+      coupons:[{id:uid('C'),name:'신규가입 쿠폰',amount:CONFIG.signupCoupon,min:10000,used:false}],points:0,wish:[],addr:[],created:today()};
+    this._save(u);this._login(u);return u;},
+  async login(email,pw){
+    const u=DB.get('users',[]).find(x=>x.email===email&&x.provider==='email');
+    if(!u||u.pw!==await sha(pw))throw new Error('이메일 또는 비밀번호가 맞지 않아요.');
+    this._login(u);return u;},
+  // Kakao: browser gets an auth code → server exchanges it for a token and profile → finds or creates the member.
+  kakao(profile){
+    const us=DB.get('users',[]);let u=us.find(x=>x.provider==='kakao'&&x.kakaoId===profile.id);
+    let isNew=false;
+    if(!u){isNew=true;u={id:uid('U'),provider:'kakao',kakaoId:profile.id,email:profile.email||'',name:profile.nickname||'',phone:'',agree:null,
+      coupons:[{id:uid('C'),name:'신규가입 쿠폰',amount:CONFIG.signupCoupon,min:10000,used:false}],points:0,wish:[],addr:[],created:today()};this._save(u);}
+    this._login(u);return {user:u,needsInfo:isNew||!u.agree||!u.phone};},
+  completeProfile(f){const u=this.me();Object.assign(u,{name:f.name,phone:f.phone,agree:{terms:true,privacy:true,age14:true,marketing:!!f.marketing,at:new Date().toISOString()}});this._save(u);return u;},
+  logout(){DB.set('session',null);},
+  withdraw(){const u=this.me();if(!u)return;DB.set('users',DB.get('users',[]).filter(x=>x.id!==u.id));DB.set('session',null);},
+  toggleWish(pid){const u=this.me();if(!u)return null;const i=u.wish.indexOf(pid);i<0?u.wish.push(pid):u.wish.splice(i,1);this._save(u);return i<0;},
+  /* pricing is computed here (server side in live) */
+  quote(items,couponId,usePoints){
+    const u=this.me();let sub=0,list=0;const lines=[];
+    for(const it of items){const p=P(it.pid),o=p&&p.options.find(x=>x.id===it.oid);if(!p||!o||p.soldOut||p.comingSoon)continue;
+      const unit=it.sub?Math.round(o.price*.95/10)*10:o.price;sub+=unit*it.qty;list+=o.list*it.qty;lines.push({...it,name:p.name,opt:o.label,unit,amount:unit*it.qty,brand:p.brand});}
+    const shipFee=sub===0?0:(sub>=CONFIG.freeShipping?0:CONFIG.shippingFee);
+    let coupon=0;const c=u&&couponId?u.coupons.find(x=>x.id===couponId&&!x.used):null;if(c&&sub>=c.min)coupon=Math.min(c.amount,sub);
+    const pts=u?Math.max(0,Math.min(usePoints|0,u.points,sub-coupon)):0;
+    return {lines,sub,list,shipFee,coupon,couponId:coupon?c.id:null,points:pts,total:sub+shipFee-coupon-pts};},
+  createOrder({items,couponId,usePoints,orderer,ship,method,guestPw}){
+    const q=this.quote(items,couponId,usePoints);if(!q.lines.length)throw new Error('주문할 수 있는 상품이 없어요.');
+    const u=this.me();
+    const o={id:'VL'+new Date().toISOString().slice(2,10).replace(/-/g,'')+'-'+Math.random().toString(36).slice(2,7).toUpperCase(),
+      uid:u?u.id:null,guestPw:u?null:guestPw,orderer,ship,method,...q,status:'PENDING',created:new Date().toISOString(),history:[{s:'PENDING',at:new Date().toISOString()}]};
+    const os=DB.get('orders',[]);os.unshift(o);DB.set('orders',os);return o;},
+  // after the PG window returns: server calls the PG confirm API and checks amount === order.total
+  confirmPayment(orderId,paymentKey,amount){
+    const os=DB.get('orders',[]);const o=os.find(x=>x.id===orderId);if(!o)throw new Error('주문을 찾을 수 없어요.');
+    if(o.status!=='PENDING')return o;
+    if(Number(amount)!==o.total){o.status='FAILED';o.history.push({s:'FAILED',at:new Date().toISOString(),why:'amount mismatch'});DB.set('orders',os);throw new Error('결제 금액이 주문 금액과 달라 결제를 취소했어요.');}
+    o.status='PAID';o.paymentKey=paymentKey;o.history.push({s:'PAID',at:new Date().toISOString()});DB.set('orders',os);
+    const u=this.me();if(u){if(o.couponId){const c=u.coupons.find(x=>x.id===o.couponId);if(c)c.used=true;}u.points=u.points-o.points+Math.floor(o.sub*CONFIG.pointRate);this._save(u);}
+    Cart.removeOrdered(o.lines);return o;},
+  failPayment(orderId,why){const os=DB.get('orders',[]);const o=os.find(x=>x.id===orderId);if(o&&o.status==='PENDING'){o.status='FAILED';o.history.push({s:'FAILED',at:new Date().toISOString(),why});DB.set('orders',os);}},
+  cancelOrder(orderId,reason){
+    const os=DB.get('orders',[]);const o=os.find(x=>x.id===orderId);
+    if(!o||!['PAID','PREPARING'].includes(o.status))throw new Error('배송 준비 전 주문만 바로 취소할 수 있어요.');
+    o.status='CANCELLED';o.history.push({s:'CANCELLED',at:new Date().toISOString(),why:reason});DB.set('orders',os);
+    const u=this.me();if(u&&o.uid===u.id){if(o.couponId){const c=u.coupons.find(x=>x.id===o.couponId);if(c)c.used=false;}u.points=Math.max(0,u.points+o.points-Math.floor(o.sub*CONFIG.pointRate));this._save(u);}
+    return o;},
+  myOrders(){const u=this.me();return u?DB.get('orders',[]).filter(o=>o.uid===u.id):[];},
+  order(id){return DB.get('orders',[]).find(o=>o.id===id)||null;},
+  guestOrder(id,phone,pw){const o=DB.get('orders',[]).find(x=>x.id===id.trim().toUpperCase()&&!x.uid);if(!o||o.orderer.phone.replace(/\D/g,'')!==phone.replace(/\D/g,'')||o.guestPw!==pw)throw new Error('주문 정보를 찾을 수 없어요. 주문번호·휴대폰·주문 비밀번호를 확인해 주세요.');return o;}
+};
+
+/* ---------- cart: guest cart lives in the browser; merges into member cart at login ---------- */
+const Cart={
+  key(){const u=API.me();return u?'cart.'+u.id:'cart.guest';},
+  all(){return DB.get(this.key(),[]).filter(x=>{const p=P(x.pid);return p&&p.options.some(o=>o.id===x.oid);});},
+  save(c){DB.set(this.key(),c);paintUtil();},
+  add(pid,oid,qty,sub){const p=P(pid);if(!p||p.soldOut||p.comingSoon)return false;const c=this.all();const f=c.find(x=>x.pid===pid&&x.oid===oid&&!!x.sub===!!sub);
+    if(f)f.qty=Math.min(99,f.qty+qty);else c.push({key:uid('K'),pid,oid,qty,sub:!!sub,checked:true});this.save(c);return true;},
+  set(key,patch){const c=this.all();const f=c.find(x=>x.key===key);if(f)Object.assign(f,patch);this.save(c);},
+  remove(keys){this.save(this.all().filter(x=>!keys.includes(x.key)));},
+  count(){return this.all().reduce((a,b)=>a+b.qty,0);},
+  mergeGuest(){const g=DB.get('cart.guest',[]);if(!g.length)return;const k=this.key();const c=DB.get(k,[]);
+    for(const it of g){const f=c.find(x=>x.pid===it.pid&&x.oid===it.oid&&x.sub===it.sub);if(f)f.qty=Math.min(99,f.qty+it.qty);else c.push(it);}DB.set(k,c);DB.set('cart.guest',[]);},
+  removeOrdered(lines){const keys=lines.map(l=>l.key).filter(Boolean);if(keys.length)this.remove(keys);}
+};
+
+/* ---------- Kakao login adapter ---------- */
+const Kakao_={
+  async start(){
+    if(CONFIG.mode==='live'&&CONFIG.kakaoJsKey){
+      // live: redirect to Kakao consent; Kakao returns ?code= to /oauth/kakao on the server
+      await loadScript('https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js');
+      if(!window.Kakao.isInitialized())window.Kakao.init(CONFIG.kakaoJsKey);
+      window.Kakao.Auth.authorize({redirectUri:CONFIG.apiBase+'/oauth/kakao',scope:'profile_nickname,account_email,phone_number',state:location.hash});
+      return null;
+    }
+    // demo: simulated Kakao consent sheet
+    return new Promise(res=>{
+      const d=modal(`<div class="kk-head"><i>K</i><div><b>카카오계정으로 로그인</b><div class="muted" style="font-size:14px">VILAC Store가 다음 정보를 요청해요</div></div></div>
+        <div class="agree" style="margin-bottom:16px"><label><input type="checkbox" checked disabled> [필수] 닉네임</label><label><input type="checkbox" checked disabled> [필수] 카카오계정(이메일)</label><label><input type="checkbox" id="kkPhone" checked> [선택] 휴대폰 번호</label></div>
+        <p class="note" style="margin:0 0 16px">테스트 모드라 실제 카카오 계정에 연결하지 않고 가상 계정으로 로그인해요.</p>
+        <div class="btns"><button class="btn line" data-x>취소</button><button class="btn kakao" id="kkOk">동의하고 계속하기</button></div>`);
+      d.querySelector('[data-x]').onclick=()=>{close();res(null);};
+      d.querySelector('#kkOk').onclick=()=>{close();res({id:'kakao_demo_1',nickname:'카카오 고객',email:'kakao.demo@kakao.com'});};
+    });
+  }
+};
+
+/* ---------- payment adapter (Toss Payments; PortOne/이니시스 swap in here) ---------- */
+const Pay={
+  async request(o){
+    if(CONFIG.mode==='live'&&CONFIG.tossClientKey){
+      await loadScript('https://js.tosspayments.com/v2/standard');
+      const toss=window.TossPayments(CONFIG.tossClientKey);
+      const payment=toss.payment({customerKey:o.uid||window.TossPayments.ANONYMOUS});
+      const map={CARD:'CARD',KAKAOPAY:'CARD',TOSSPAY:'CARD',TRANSFER:'TRANSFER',VBANK:'VIRTUAL_ACCOUNT'};
+      const base=location.href.split('#')[0];
+      return payment.requestPayment({method:map[o.method],amount:{currency:'KRW',value:o.total},orderId:o.id,orderName:o.lines[0].name+(o.lines.length>1?` 외 ${o.lines.length-1}건`:''),
+        customerName:o.orderer.name,customerMobilePhone:o.orderer.phone.replace(/\D/g,''),
+        successUrl:base+'#/pay/success',failUrl:base+'#/pay/fail'});
+    }
+    // demo: simulated PG window
+    const d=modal(`<div class="pay-h"><b>결제하기 · 테스트</b><span class="tag">${esc(METHODS[o.method])}</span></div>
+      <div class="muted" style="font-size:14px">주문번호 ${esc(o.id)}</div><div class="pay-amt">${won(o.total)}</div>
+      <div class="spin" aria-hidden="true"></div><p style="text-align:center;margin:0 0 18px">결제가 끝날 때까지 이 창을 닫지 마세요.</p>
+      <div class="btns"><button class="btn line" data-r="fail">결제 실패로 테스트</button><button class="btn" data-r="ok">결제 승인</button></div>`);
+    d.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{close();
+      if(b.dataset.r==='ok')go(`#/pay/success?paymentKey=demo_${Date.now()}&orderId=${o.id}&amount=${o.total}`);
+      else go(`#/pay/fail?code=USER_CANCEL&message=${encodeURIComponent('결제를 취소했어요.')}&orderId=${o.id}`);});
+  }
+};
+const METHODS={CARD:'신용·체크카드',KAKAOPAY:'카카오페이',TOSSPAY:'토스페이',NAVERPAY:'네이버페이',TRANSFER:'계좌이체',VBANK:'무통장(가상계좌)'};
+const STATUS={PENDING:'결제 대기',PAID:'결제 완료',PREPARING:'상품 준비중',SHIPPING:'배송중',DELIVERED:'배송 완료',CANCELLED:'주문 취소',FAILED:'결제 실패',RETURN_REQ:'반품 신청'};
+
+/* ---------- ui helpers ---------- */
+function loadScript(src){return new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>no(new Error('스크립트를 불러오지 못했어요.'));document.head.appendChild(s);});}
+let dimEl=null;
+function modal(html){close();dimEl=document.createElement('div');dimEl.className='dim';dimEl.innerHTML=`<div class="modal" role="dialog" aria-modal="true">${html}</div>`;document.body.appendChild(dimEl);const m=dimEl.firstChild;setTimeout(()=>{const f=m.querySelector('button,input');f&&f.focus();},30);return m;}
+function close(){if(dimEl){dimEl.remove();dimEl=null;}}
+let tt;function toast(msg){document.querySelectorAll('.toast').forEach(t=>t.remove());const t=document.createElement('div');t.className='toast';t.role='status';t.textContent=msg;document.body.appendChild(t);clearTimeout(tt);tt=setTimeout(()=>t.remove(),2600);}
+function go(h){if(location.hash===h)route();else location.hash=h;}
+function parse(){const h=location.hash.slice(1)||'/list?brand=gcm';const [path,qs]=h.split('?');return {parts:path.split('/').filter(Boolean),q:new URLSearchParams(qs||'')};}
+const V=document.getElementById('view');
+function render(html){V.innerHTML=html;window.scrollTo({top:0});}
+const ICON={user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>',
+  cart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2.4 11h11.2L21 7H6.2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>',
+  heart:'<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg>'};
+let curBrand='gcm';
+function paintUtil(){
+  const u=API.me();const n=Cart.count();
+  document.getElementById('util').innerHTML=(u?`<a href="#/my">${ICON.user}<span class="tx">${esc(u.name||'회원')}님</span></a><button type="button" id="lo"><span class="tx">로그아웃</span><span class="sr">로그아웃</span></button>`
+    :`<a href="#/login">${ICON.user}<span class="tx">로그인</span></a><a href="#/signup" class="tx-only"><span class="tx">회원가입</span></a>`)+
+    `<a href="#/cart" class="cartbtn" aria-label="장바구니 ${n}개">${ICON.cart}<span class="tx">장바구니</span>${n?`<i>${n>99?'99+':n}</i>`:''}</a>`;
+  const lo=document.getElementById('lo');if(lo)lo.onclick=()=>{API.logout();toast('로그아웃했어요.');paintUtil();route();};
+  document.querySelectorAll('.bsw a').forEach(a=>a.classList.toggle('on',a.dataset.b===curBrand));
+  const m={gcm:[['전체상품','#/list?brand=gcm'],['IM.BERT 1:1 상담','#/imbert'],['브랜드 이야기','index.html']],
+    vilac:[['전체상품','#/list?brand=vilac'],['우유','#/list?brand=vilac&cat=milk'],['코코브루니','#/list?brand=vilac&cat=coco'],['유기농 주스·야채사랑','#/list?brand=vilac&cat=juice'],['식혜','#/list?brand=vilac&cat=sikhye'],['라떼·건강음료','#/list?brand=vilac&cat=drink']],
+    all:[['전체상품','#/list?brand=all'],['비락','#/list?brand=vilac'],['굿케어맥스','#/list?brand=gcm']]}[curBrand];
+  document.getElementById('menu').innerHTML=m.map(([t,h])=>`<li><a href="${h}"${location.hash===h?' class="on"':''}>${t}</a></li>`).join('');
+}
+function needLogin(next){go('#/login?next='+encodeURIComponent(next));}
+
+/* =====================================================================
+   VIEWS
+   ===================================================================== */
+const views={
+  list(q){
+    const b='gcm';curBrand=b;const cat=q.get('cat')||'';
+    let ps=PRODUCTS.filter(p=>b==='all'||p.brand===b);
+    if(['milk','coco','juice','sikhye','drink'].includes(cat))ps=ps.filter(p=>p.cat===cat);
+    const sort=q.get('sort')||'rec';
+    if(sort==='low')ps=[...ps].sort((a,c)=>a.options[0].price-c.options[0].price);
+    if(sort==='high')ps=[...ps].sort((a,c)=>c.options[0].price-a.options[0].price);
+    if(sort==='rev')ps=[...ps].sort((a,c)=>c.reviews-a.reviews);
+    const hero={gcm:['나와 장 속 미생물을 위한<br>한 병의 균형영양','굿케어맥스 공식 스토어',`<img src="assets/gcm-pack-banana2.png" alt=""><img src="assets/gcm-pack-pistachio.png" alt="">`],
+      vilac:['매일 아침,<br>비락의 올바른 우유','비락 공식 스토어',`<img src="https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_b5VtU0A4_9d2ecee63907f47d8ff86be0e19dfc6f3ae847ee.jpeg" alt=""><img src="https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_3VDb25fh_01b2b9b9e21d31f183b6e714834538fc71852fd8.png" alt="">`],
+      all:['비락과 굿케어맥스를<br>한 번에 담아보세요','VILAC 통합 스토어',`<img src="assets/gcm-pack-banana2.png" alt=""><img src="https://www.vilac.co.kr/superboard/data/product/thumb/3697238908_YAMgxG27_e8175f121f0980457c7c9ba68eac0abcec962c25.png" alt="">`]}[b];
+    const u=API.me();
+    const base=`#/list?brand=${b}${cat?'&cat='+cat:''}`;
+    render(`<section class="lhero ${b}"><div><div style="font-weight:700;opacity:.8;margin-bottom:8px">${hero[1]}</div><h2>${hero[0]}</h2><p>3만원 이상 무료배송 · 회원가입 2,000원 쿠폰</p></div><div class="art" aria-hidden="true">${hero[2]}</div></section>
+      <div class="bar"><span>${BRAND[b]} 상품 <b style="color:var(--ink)">${ps.length}</b>개</span>
+        <label><span class="sr">정렬</span><select id="sort">${[['rec','추천순'],['rev','리뷰 많은순'],['low','낮은 가격순'],['high','높은 가격순']].map(([v,t])=>`<option value="${v}"${v===sort?' selected':''}>${t}</option>`).join('')}</select></label></div>
+      ${ps.length?`<div class="grid">${ps.map(p=>card(p,u)).join('')}</div>`:`<div class="empty box"><b>조건에 맞는 상품이 없어요.</b><p>다른 카테고리를 골라보세요.</p></div>`}`);
+    V.querySelector('#sort').onchange=e=>go(base+'&sort='+e.target.value);
+    bindCards();
+  },
+  product(q,[,id]){
+    const p=P(id);if(!p)return views.notfound();curBrand=p.brand;
+    const u=API.me();const wished=u&&u.wish.includes(p.id);const o0=p.options[0];
+    render(`<div class="crumb"><a href="#/list?brand=${p.brand}">${BRAND[p.brand]}</a> › ${esc(p.name)}</div>
+      <div class="pd"><div class="gal ${p.brand}">${art(p)}</div>
+      <div><div class="br" style="color:var(--cobalt);font-weight:700">${BRAND[p.brand]}</div><h1>${esc(p.name)}</h1><div class="muted">${esc(p.sub)}</div>
+        <div class="price" id="pp"></div>
+        <dl class="dl"><dt>배송비</dt><dd>3,000원 · 3만원 이상 무료</dd><dt>배송</dt><dd>평일 오후 2시 이전 결제 시 당일 출고</dd><dt>적립</dt><dd>결제 금액의 1% (회원)</dd><dt>리뷰</dt><dd>${p.reviews.toLocaleString()}개</dd></dl>
+        <p>${esc(p.desc)}</p>
+        ${p.comingSoon?`<div class="note">출시 예정 상품이에요. 출시되면 알림을 보내드릴게요.</div><button class="btn block line" style="margin-top:14px" id="notify">출시 알림 받기</button>`:
+         p.soldOut?`<div class="note">일시 품절이에요. 재입고되면 알려드릴게요.</div><button class="btn block line" style="margin-top:14px" id="notify">재입고 알림 받기</button>`:
+        `<div class="fld"><span class="lb">구성</span><div class="opts">${p.options.map((o,i)=>`<label class="opt"><span class="l"><input type="radio" name="opt" value="${o.id}"${i?'':' checked'}>${esc(o.label)}</span><span class="price"><s>${won(o.list)}</s><b>${won(o.price)}</b></span></label>`).join('')}</div></div>
+        ${p.subscribe?`<div class="fld"><span class="lb">구매 방법</span><div class="opts"><label class="opt"><span class="l"><input type="radio" name="buy" value="once" checked>한 번 구매</span></label><label class="opt"><span class="l"><input type="radio" name="buy" value="sub">정기배송 <span class="tag o">5% 할인</span></span><span class="muted" style="font-size:14px">2·4주마다, 언제든 해지</span></label></div></div>`:''}
+        <div class="fld"><span class="lb">수량</span><div class="qty"><button type="button" data-q="-1" aria-label="수량 빼기">−</button><input id="qn" value="1" inputmode="numeric" aria-label="수량"><button type="button" data-q="1" aria-label="수량 더하기">+</button></div></div>
+        <div class="sumline"><span>총 상품금액</span><b id="ptot"></b></div>
+        <div class="btns"><button class="btn line" id="toCart">장바구니</button><button class="btn org" id="buyNow">바로 구매</button></div>`}
+        <button class="btn line block" style="margin-top:10px;border-color:var(--line);color:var(--ink)" id="wishBtn">${wished?'♥ 관심상품에 담겼어요':'♡ 관심상품'}</button>
+      </div></div>
+      <section class="info"><h2>상품정보 제공고시</h2><table class="tbl">
+        <tr><th>식품의 유형</th><td><span class="ph-fill">[식품유형 — 예: 균형영양조제식품 / 우유]</span></td></tr>
+        <tr><th>제조원 · 소재지</th><td><span class="ph-fill">[제조사명 · 주소]</span></td></tr>
+        <tr><th>제조연월일 · 소비기한</th><td>제품 별도 표기</td></tr><tr><th>포장단위별 내용물의 용량</th><td>${esc(p.options.map(o=>o.label).join(' / '))}</td></tr>
+        <tr><th>원재료명 및 함량</th><td><span class="ph-fill">[원재료 표기]</span></td></tr><tr><th>영양성분</th><td><span class="ph-fill">[영양성분표]</span></td></tr>
+        <tr><th>보관방법</th><td>${p.sub.includes('냉장')?'냉장 보관(0~10℃)':'직사광선을 피해 서늘한 곳에 보관'}</td></tr>
+        <tr><th>소비자 상담</th><td><span class="ph-fill">[고객센터 번호]</span></td></tr></table>
+        <h2 style="margin-top:36px">배송 · 교환 · 환불</h2><p class="muted">식품 특성상 단순 변심에 의한 교환·환불은 수령 후 개봉 전에만 가능해요. 상품 하자·오배송은 수령 후 7일 이내 고객센터로 알려주세요. <a href="#/doc/refund" style="text-decoration:underline">자세히 보기</a></p></section>`);
+    const wb=V.querySelector('#wishBtn');wb.onclick=()=>{if(!API.me())return needLogin(location.hash);const on=API.toggleWish(p.id);wb.textContent=on?'♥ 관심상품에 담겼어요':'♡ 관심상품';toast(on?'관심상품에 담았어요.':'관심상품에서 뺐어요.');};
+    const nt=V.querySelector('#notify');if(nt){nt.onclick=()=>{if(!API.me())return needLogin(location.hash);toast('알림을 신청했어요. 카카오 알림톡으로 알려드릴게요.');};return;}
+    const qn=V.querySelector('#qn');
+    const sel=()=>({oid:V.querySelector('[name=opt]:checked').value,sub:(V.querySelector('[name=buy]:checked')||{}).value==='sub',qty:Math.max(1,Math.min(99,parseInt(qn.value)||1))});
+    const upd=()=>{const s=sel();qn.value=s.qty;const o=p.options.find(x=>x.id===s.oid);const unit=s.sub?Math.round(o.price*.95/10)*10:o.price;
+      V.querySelector('#pp').innerHTML=`<em>${Math.round((1-o.price/o.list)*100)}%</em><s>${won(o.list)}</s><b>${won(unit)}</b>${s.sub?' <span class="tag o">정기배송가</span>':''}`;V.querySelector('#ptot').textContent=won(unit*s.qty);};
+    V.querySelectorAll('[name=opt],[name=buy]').forEach(r=>r.onchange=upd);qn.oninput=upd;
+    V.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{qn.value=(parseInt(qn.value)||1)+ +b.dataset.q;upd();});upd();
+    V.querySelector('#toCart').onclick=()=>{const s=sel();Cart.add(p.id,s.oid,s.qty,s.sub);
+      const m=modal(`<h3>장바구니에 담았어요</h3><p class="muted" style="margin:0 0 18px">${esc(p.name)} · ${s.qty}개</p><div class="btns"><button class="btn line" data-x>계속 쇼핑</button><a class="btn" href="#/cart" data-x>장바구니 보기</a></div>`);
+      m.querySelectorAll('[data-x]').forEach(x=>x.addEventListener('click',close));};
+    V.querySelector('#buyNow').onclick=()=>{const s=sel();DB.set('buynow',[{key:null,pid:p.id,oid:s.oid,qty:s.qty,sub:s.sub,checked:true}]);
+      API.me()?go('#/checkout?from=now'):go('#/login?next='+encodeURIComponent('#/checkout?from=now')+'&guest=1');};
+  },
+  cart(){
+    const c=Cart.all();
+    if(!c.length)return render(`<h1 class="pt">장바구니</h1><div class="empty box"><b style="font-size:20px">장바구니가 비어 있어요</b><p>마음에 드는 상품을 담아보세요.</p><a class="btn" href="#/list?brand=${curBrand}">쇼핑하러 가기</a></div>`);
+    const sel=c.filter(x=>x.checked);const q=API.quote(sel);
+    const left=CONFIG.freeShipping-q.sub;
+    render(`<h1 class="pt">장바구니</h1><p class="pt-sub">${API.me()?'':'로그인하면 장바구니가 저장되고 2,000원 쿠폰을 받을 수 있어요.'}</p>
+      <div class="two"><div class="box" style="padding:8px 24px 20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)"><label style="display:flex;gap:10px;align-items:center;font-weight:700"><input type="checkbox" id="all" style="width:20px;height:20px;accent-color:var(--cobalt)"${sel.length===c.length?' checked':''}> 전체 선택 (${sel.length}/${c.length})</label><button class="x" id="delSel">선택 삭제</button></div>
+        ${c.map(it=>{const p=P(it.pid),o=p.options.find(x=>x.id===it.oid);const bad=p.soldOut||p.comingSoon;const unit=it.sub?Math.round(o.price*.95/10)*10:o.price;
+          return `<div class="ci"><input type="checkbox" data-ck="${it.key}"${it.checked&&!bad?' checked':''}${bad?' disabled':''} aria-label="${esc(p.name)} 선택">
+            <a class="th ${p.brand}" href="#/product/${p.id}">${art(p)}</a>
+            <div><div style="font-size:13px;color:var(--cobalt);font-weight:700">${BRAND[p.brand]}</div><h3>${esc(p.name)}</h3><div class="muted" style="font-size:14.5px">${esc(o.label)}${it.sub?' · <span class="tag o">정기배송</span>':''}</div>${bad?'<div class="err">품절된 상품이라 주문할 수 없어요.</div>':''}</div>
+            <div class="r"><div class="qty"><button type="button" data-d="${it.key}" data-v="-1" aria-label="빼기">−</button><input value="${it.qty}" data-qi="${it.key}" inputmode="numeric" aria-label="수량"><button type="button" data-d="${it.key}" data-v="1" aria-label="더하기">+</button></div><b>${won(unit*it.qty)}</b><button class="x" data-rm="${it.key}">삭제</button></div></div>`;}).join('')}
+      </div>
+      <aside class="box sticky"><h2 style="margin:0 0 16px;font-size:19px">결제 예정 금액</h2>
+        <div class="sum"><div><span>상품 금액</span><span>${won(q.sub)}</span></div><div><span>배송비</span><span>${q.shipFee?won(q.shipFee):'무료'}</span></div><div class="tot"><span>합계</span><b>${won(q.total)}</b></div></div>
+        ${q.sub&&left>0?`<p class="note" style="margin:14px 0 0">${won(left)} 더 담으면 무료배송이에요.</p>`:''}
+        <button class="btn org block" style="margin-top:16px" id="order"${q.lines.length?'':' disabled'}>${q.lines.length}개 상품 주문하기</button></aside></div>`);
+    V.querySelector('#all').onchange=e=>{Cart.save(Cart.all().map(x=>({...x,checked:e.target.checked&&!P(x.pid).soldOut&&!P(x.pid).comingSoon})));route();};
+    V.querySelectorAll('[data-ck]').forEach(x=>x.onchange=()=>{Cart.set(x.dataset.ck,{checked:x.checked});route();});
+    V.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{const it=Cart.all().find(x=>x.key===b.dataset.d);Cart.set(it.key,{qty:Math.max(1,Math.min(99,it.qty+ +b.dataset.v))});route();});
+    V.querySelectorAll('[data-qi]').forEach(i=>i.onchange=()=>{Cart.set(i.dataset.qi,{qty:Math.max(1,Math.min(99,parseInt(i.value)||1))});route();});
+    V.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{Cart.remove([b.dataset.rm]);route();});
+    V.querySelector('#delSel').onclick=()=>{const k=Cart.all().filter(x=>x.checked).map(x=>x.key);if(!k.length)return toast('삭제할 상품을 골라주세요.');Cart.remove(k);route();};
+    V.querySelector('#order').onclick=()=>{DB.set('buynow',null);API.me()?go('#/checkout?from=cart'):go('#/login?next='+encodeURIComponent('#/checkout?from=cart')+'&guest=1');};
+  },
+  login(q){
+    if(API.me())return go(q.get('next')||'#/my');
+    const next=q.get('next')||'#/my';const guest=q.get('guest');
+    render(`<div class="form"><h1 class="pt" style="text-align:center">로그인</h1><p class="pt-sub" style="text-align:center">비락 · 굿케어맥스 통합 회원</p>
+      <button class="btn kakao block" id="kk"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#191919" d="M12 3C6.5 3 2 6.5 2 10.8c0 2.8 1.9 5.2 4.7 6.6l-1 3.6c-.1.3.3.6.6.4l4.2-2.8c.5.1 1 .1 1.5.1 5.5 0 10-3.5 10-7.9S17.5 3 12 3z"/></svg>카카오로 3초 만에 시작하기</button>
+      <div class="or">또는 이메일로 로그인</div>
+      <form id="lf" novalidate><div class="fld"><label for="le">이메일</label><input class="in" id="le" type="email" autocomplete="email" required></div>
+      <div class="fld"><label for="lp">비밀번호</label><input class="in" id="lp" type="password" autocomplete="current-password" required></div>
+      <div class="err" id="lerr" role="alert"></div><button class="btn block" style="margin-top:8px">로그인</button></form>
+      <div class="links"><a href="#/signup?next=${encodeURIComponent(next)}">회원가입</a><a href="#/find">비밀번호 찾기</a><a href="#/guest">비회원 주문조회</a></div>
+      ${guest?`<div class="or">회원가입 없이</div><button class="btn line block" id="gbuy">비회원으로 주문하기</button><p class="hint" style="text-align:center;margin-top:8px">비회원은 쿠폰·적립금 혜택을 받을 수 없어요.</p>`:''}</div>`);
+    V.querySelector('#kk').onclick=async()=>{const prof=await Kakao_.start();if(!prof)return;const r=API.kakao(prof);paintUtil();
+      if(r.needsInfo)go('#/kakao-info?next='+encodeURIComponent(next));else{toast('카카오로 로그인했어요.');go(next);}};
+    V.querySelector('#lf').onsubmit=async e=>{e.preventDefault();const em=V.querySelector('#le').value.trim(),pw=V.querySelector('#lp').value;const er=V.querySelector('#lerr');
+      if(!em||!pw){er.textContent='이메일과 비밀번호를 입력해 주세요.';return;}
+      try{await API.login(em,pw);paintUtil();toast('로그인했어요.');go(next);}catch(x){er.textContent=x.message;}};
+    const g=V.querySelector('#gbuy');if(g)g.onclick=()=>go(next+(next.includes('?')?'&':'?')+'guest=1');
+  },
+  signup(q){
+    if(API.me())return go('#/my');const next=q.get('next')||'#/my';
+    render(`<div class="form"><h1 class="pt" style="text-align:center">회원가입</h1><p class="pt-sub" style="text-align:center">가입하면 2,000원 쿠폰을 바로 드려요</p>
+      <button class="btn kakao block" id="kk">카카오로 간편 가입</button><div class="or">또는 이메일로 가입</div>
+      <form id="sf" novalidate>
+        <div class="fld"><label for="se">이메일</label><input class="in" id="se" type="email" autocomplete="email"><div class="err" data-e="se"></div></div>
+        <div class="fld"><label for="sp">비밀번호</label><input class="in" id="sp" type="password" autocomplete="new-password"><div class="hint">영문·숫자·특수문자 중 2가지 이상, 8~20자</div><div class="err" data-e="sp"></div></div>
+        <div class="fld"><label for="sp2">비밀번호 확인</label><input class="in" id="sp2" type="password" autocomplete="new-password"><div class="err" data-e="sp2"></div></div>
+        <div class="fld"><label for="sn">이름</label><input class="in" id="sn" autocomplete="name"><div class="err" data-e="sn"></div></div>
+        <div class="fld"><label for="sh">휴대폰 번호</label><div class="row2"><input class="in" id="sh" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000"><button type="button" class="btn line sm" id="otp" style="min-height:54px">인증번호 받기</button></div>
+          <div class="row2 hide" id="otpRow" style="margin-top:8px"><input class="in" id="oc" inputmode="numeric" placeholder="인증번호 6자리"><button type="button" class="btn sm" id="otpOk" style="min-height:54px">확인</button></div><div class="hint" id="otpHint"></div><div class="err" data-e="sh"></div></div>
+        ${agreeBox()}
+        <div class="err" id="serr" role="alert"></div><button class="btn block" style="margin-top:14px">가입하기</button></form></div>`);
+    bindAgree();
+    let verified=false,code='';
+    V.querySelector('#otp').onclick=()=>{const ph=fmtPhone(V.querySelector('#sh').value);V.querySelector('#sh').value=ph;if(!/^01[016789]-\d{3,4}-\d{4}$/.test(ph))return setErr('sh','휴대폰 번호를 확인해 주세요.');setErr('sh','');
+      code=String(Math.floor(100000+Math.random()*900000));V.querySelector('#otpRow').classList.remove('hide');V.querySelector('#otpHint').textContent=CONFIG.mode==='demo'?`테스트 인증번호: ${code} (실서비스는 문자로 발송)`:'문자로 인증번호를 보냈어요. 3분 안에 입력해 주세요.';};
+    V.querySelector('#otpOk').onclick=()=>{if(V.querySelector('#oc').value.trim()===code){verified=true;V.querySelector('#otpHint').textContent='✓ 인증됐어요.';V.querySelector('#otpRow').classList.add('hide');}else setErr('sh','인증번호가 맞지 않아요.');};
+    V.querySelector('#kk').onclick=()=>V.querySelector('#kk').closest('.form')&&views._kakao(next);
+    V.querySelector('#sf').onsubmit=async e=>{e.preventDefault();let ok=true;const g=id=>V.querySelector('#'+id).value.trim();
+      ['se','sp','sp2','sn','sh'].forEach(k=>setErr(k,''));
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(g('se'))){setErr('se','이메일 형식을 확인해 주세요.');ok=false;}
+      const pw=V.querySelector('#sp').value;const kinds=[/[a-zA-Z]/,/\d/,/[^a-zA-Z\d]/].filter(r=>r.test(pw)).length;
+      if(pw.length<8||pw.length>20||kinds<2){setErr('sp','비밀번호 조건을 확인해 주세요.');ok=false;}
+      if(pw!==V.querySelector('#sp2').value){setErr('sp2','비밀번호가 서로 달라요.');ok=false;}
+      if(g('sn').length<2){setErr('sn','이름을 입력해 주세요.');ok=false;}
+      if(!verified){setErr('sh','휴대폰 인증을 완료해 주세요.');ok=false;}
+      const a=readAgree();if(!a.ok){V.querySelector('#serr').textContent='필수 약관에 동의해 주세요.';ok=false;}else V.querySelector('#serr').textContent='';
+      if(!ok){const f=V.querySelector('.err:not(:empty)');f&&f.scrollIntoView({block:'center',behavior:'smooth'});return;}
+      try{await API.signup({email:g('se'),pw,name:g('sn'),phone:fmtPhone(g('sh')),marketing:a.marketing});paintUtil();
+        modal(`<h3>가입을 환영해요 🎉</h3><p class="muted" style="margin:0 0 18px">신규가입 쿠폰 ${won(CONFIG.signupCoupon)}을 드렸어요. 마이페이지에서 확인할 수 있어요.</p><button class="btn block" id="wOk">계속하기</button>`).querySelector('#wOk').onclick=()=>{close();go(next);};
+      }catch(x){V.querySelector('#serr').textContent=x.message;}};
+  },
+  async _kakao(next){const prof=await Kakao_.start();if(!prof)return;const r=API.kakao(prof);paintUtil();if(r.needsInfo)go('#/kakao-info?next='+encodeURIComponent(next));else go(next);},
+  'kakao-info'(q){
+    const u=API.me();if(!u)return go('#/login');const next=q.get('next')||'#/my';
+    render(`<div class="form"><h1 class="pt" style="text-align:center">거의 다 됐어요</h1><p class="pt-sub" style="text-align:center">주문·배송 안내를 위해 아래 정보만 확인해 주세요.</p>
+      <form id="kf" novalidate><div class="fld"><label for="kn">이름</label><input class="in" id="kn" value="${esc(u.name)}"><div class="err" data-e="kn"></div></div>
+      <div class="fld"><label for="kh">휴대폰 번호</label><input class="in" id="kh" inputmode="tel" value="${esc(u.phone)}" placeholder="010-0000-0000"><div class="err" data-e="kh"></div></div>
+      ${agreeBox()}<div class="err" id="kerr" role="alert"></div><button class="btn block" style="margin-top:14px">동의하고 가입 완료</button></form></div>`);
+    bindAgree();
+    V.querySelector('#kf').onsubmit=e=>{e.preventDefault();let ok=true;const n=V.querySelector('#kn').value.trim(),h=fmtPhone(V.querySelector('#kh').value);
+      setErr('kn','');setErr('kh','');if(n.length<2){setErr('kn','이름을 입력해 주세요.');ok=false;}if(!/^01[016789]-\d{3,4}-\d{4}$/.test(h)){setErr('kh','휴대폰 번호를 확인해 주세요.');ok=false;}
+      const a=readAgree();if(!a.ok){V.querySelector('#kerr').textContent='필수 약관에 동의해 주세요.';ok=false;}if(!ok)return;
+      API.completeProfile({name:n,phone:h,marketing:a.marketing});paintUtil();toast(`가입 완료! ${won(CONFIG.signupCoupon)} 쿠폰을 드렸어요.`);go(next);};
+  },
+  find(){render(`<div class="form"><h1 class="pt" style="text-align:center">비밀번호 찾기</h1><p class="pt-sub" style="text-align:center">가입한 이메일로 재설정 링크를 보내드려요.</p>
+    <form id="ff"><div class="fld"><label for="fe">이메일</label><input class="in" id="fe" type="email"></div><button class="btn block">재설정 링크 보내기</button></form>
+    <p class="hint" style="text-align:center;margin-top:14px">카카오로 가입했다면 카카오 로그인을 이용해 주세요.</p></div>`);
+    V.querySelector('#ff').onsubmit=e=>{e.preventDefault();toast('입력한 이메일이 가입되어 있다면 재설정 링크를 보냈어요.');};},
+  checkout(q){
+    const u=API.me();const guest=!u;if(guest&&!q.get('guest'))return go('#/login?next='+encodeURIComponent('#/checkout?from='+(q.get('from')||'cart'))+'&guest=1');
+    const items=(q.get('from')==='now'?DB.get('buynow',null):null)||Cart.all().filter(x=>x.checked);
+    let st={couponId:null,points:0};
+    const qt=()=>API.quote(items,st.couponId,st.points);
+    if(!qt().lines.length)return go('#/cart');
+    const addr=u&&u.addr[0]||{};
+    const cps=u?u.coupons.filter(c=>!c.used):[];
+    render(`<h1 class="pt">주문 · 결제</h1><p class="pt-sub">${guest?'비회원 주문이에요. 주문조회에 쓸 비밀번호를 정해 주세요.':''}</p>
+    <form id="cf" class="two" novalidate><div>
+      <section class="box sec"><h2>주문 상품 <span class="muted" style="font-size:15px;font-weight:500">${qt().lines.length}건</span></h2>${qt().lines.map(l=>{const p=P(l.pid);return `<div class="ci" style="grid-template-columns:72px minmax(0,1fr) auto"><span class="th ${p.brand}" style="width:72px;height:72px">${art(p)}</span><div><h3>${esc(l.name)}</h3><div class="muted" style="font-size:14px">${esc(l.opt)} · ${l.qty}개${l.sub?' · 정기배송':''}</div></div><b>${won(l.amount)}</b></div>`;}).join('')}</section>
+      <section class="box sec"><h2>주문자</h2>
+        <div class="fld"><label for="on">이름</label><input class="in" id="on" value="${esc(u?u.name:'')}"><div class="err" data-e="on"></div></div>
+        <div class="fld"><label for="oh">휴대폰</label><input class="in" id="oh" inputmode="tel" value="${esc(u?u.phone:'')}" placeholder="010-0000-0000"><div class="err" data-e="oh"></div></div>
+        <div class="fld"><label for="oe">이메일 (주문 안내)</label><input class="in" id="oe" type="email" value="${esc(u?u.email:'')}"></div>
+        ${guest?`<div class="fld"><label for="gp">주문조회 비밀번호</label><input class="in" id="gp" type="password" placeholder="숫자 4~6자리" inputmode="numeric"><div class="err" data-e="gp"></div></div>`:''}</section>
+      <section class="box sec"><h2>배송지 ${u?'<label style="font-size:15px;font-weight:500;display:flex;gap:6px;align-items:center"><input type="checkbox" id="same" style="accent-color:var(--cobalt)"> 주문자와 같음</label>':''}</h2>
+        <div class="fld"><label for="rn">받는 분</label><input class="in" id="rn" value="${esc(addr.name||'')}"><div class="err" data-e="rn"></div></div>
+        <div class="fld"><label for="rh">연락처</label><input class="in" id="rh" inputmode="tel" value="${esc(addr.phone||'')}"><div class="err" data-e="rh"></div></div>
+        <div class="fld"><label for="zip">주소</label><div class="row2"><input class="in" id="zip" placeholder="우편번호" value="${esc(addr.zip||'')}" readonly><button type="button" class="btn line sm" id="zipBtn" style="min-height:54px">주소 검색</button></div>
+          <input class="in" id="a1" placeholder="기본 주소" value="${esc(addr.a1||'')}" style="margin-top:8px" readonly><input class="in" id="a2" placeholder="상세 주소 (동·호수)" value="${esc(addr.a2||'')}" style="margin-top:8px"><div class="err" data-e="a1"></div></div>
+        <div class="fld"><label for="memo">배송 요청사항</label><select class="in" id="memo"><option>문 앞에 놓아주세요</option><option>경비실에 맡겨주세요</option><option>배송 전 연락 바랍니다</option><option>택배함에 넣어주세요</option></select></div>
+        ${u?'<label style="display:flex;gap:8px;align-items:center;font-size:15px"><input type="checkbox" id="saveAddr" checked style="accent-color:var(--cobalt)"> 기본 배송지로 저장</label>':''}</section>
+      ${u?`<section class="box sec"><h2>할인</h2>
+        <div class="fld"><label for="cp">쿠폰</label><select class="in" id="cp"><option value="">${cps.length?'쿠폰 선택':'사용할 수 있는 쿠폰이 없어요'}</option>${cps.map(c=>`<option value="${c.id}">${esc(c.name)} · ${won(c.amount)} (${won(c.min)} 이상)</option>`).join('')}</select></div>
+        <div class="fld"><label for="pt">적립금 <span class="muted" style="font-weight:400">보유 ${won(u.points)}</span></label><div class="row2"><input class="in" id="pt" inputmode="numeric" value="0"><button type="button" class="btn line sm" id="ptAll" style="min-height:54px">모두 사용</button></div></div></section>`:''}
+      <section class="box sec"><h2>결제 수단</h2><div class="pm">${Object.entries(METHODS).map(([k,v],i)=>`<label><input type="radio" name="pm" value="${k}"${i?'':' checked'}>${v}</label>`).join('')}</div>
+        <p class="hint" style="margin-top:10px">결제는 PG사 결제창에서 안전하게 진행돼요. 카드 정보는 VILAC Store에 저장되지 않아요.</p></section>
+    </div>
+    <aside class="box sticky"><h2 style="margin:0 0 16px;font-size:19px">최종 결제 금액</h2><div class="sum" id="sum"></div>
+      <div class="agree" style="margin-top:16px"><label class="all"><input type="checkbox" id="payAgree"> 주문 내용을 확인했으며 결제에 동의합니다 (필수)</label></div>
+      <div class="hint" style="margin-top:8px">· 개인정보 제3자 제공(배송업체)·결제대행 서비스 이용약관에 동의합니다. <a href="#/doc/privacy" style="text-decoration:underline">보기</a></div>
+      <div class="err" id="cerr" role="alert" style="margin-top:8px"></div>
+      <button class="btn org block" style="margin-top:14px" id="payBtn">결제하기</button></aside></form>`);
+    const paint=()=>{const r=qt();V.querySelector('#sum').innerHTML=`<div><span>상품 금액</span><span>${won(r.sub)}</span></div><div><span>배송비</span><span>${r.shipFee?won(r.shipFee):'무료'}</span></div>${r.coupon?`<div><span>쿠폰 할인</span><span style="color:var(--orange)">−${won(r.coupon)}</span></div>`:''}${r.points?`<div><span>적립금</span><span style="color:var(--orange)">−${won(r.points)}</span></div>`:''}<div class="tot"><span>합계</span><b>${won(r.total)}</b></div>${u?`<div class="muted" style="font-size:14px"><span>적립 예정</span><span>${won(Math.floor(r.sub*CONFIG.pointRate))}</span></div>`:''}`;V.querySelector('#payBtn').textContent=won(r.total)+' 결제하기';};
+    paint();
+    const cp=V.querySelector('#cp');if(cp)cp.onchange=()=>{st.couponId=cp.value||null;const r=qt();if(cp.value&&!r.coupon)toast('최소 주문금액이 부족해 쿠폰을 쓸 수 없어요.');paint();};
+    const pt=V.querySelector('#pt');if(pt){pt.onchange=()=>{st.points=Math.max(0,parseInt(pt.value)||0);const r=qt();pt.value=r.points;st.points=r.points;paint();};V.querySelector('#ptAll').onclick=()=>{pt.value=u.points;pt.onchange();};}
+    const same=V.querySelector('#same');if(same)same.onchange=()=>{if(same.checked){V.querySelector('#rn').value=V.querySelector('#on').value;V.querySelector('#rh').value=V.querySelector('#oh').value;}};
+    V.querySelector('#zipBtn').onclick=()=>findAddress();
+    ['oh','rh'].forEach(id=>{const el=V.querySelector('#'+id);el.onblur=()=>{el.value=fmtPhone(el.value);};});
+    V.querySelector('#cf').onsubmit=async e=>{e.preventDefault();const g=id=>(V.querySelector('#'+id)||{value:''}).value.trim();let ok=true;
+      ['on','oh','rn','rh','a1','gp'].forEach(k=>setErr(k,''));const ph=/^01[016789]-\d{3,4}-\d{4}$/;
+      if(g('on').length<2){setErr('on','이름을 입력해 주세요.');ok=false;}
+      if(!ph.test(fmtPhone(g('oh')))){setErr('oh','휴대폰 번호를 확인해 주세요.');ok=false;}
+      if(guest&&!/^\d{4,6}$/.test(g('gp'))){setErr('gp','숫자 4~6자리로 정해 주세요.');ok=false;}
+      if(g('rn').length<2){setErr('rn','받는 분을 입력해 주세요.');ok=false;}
+      if(!ph.test(fmtPhone(g('rh')))){setErr('rh','연락처를 확인해 주세요.');ok=false;}
+      if(!g('zip')||!g('a1')){setErr('a1','주소 검색으로 주소를 입력해 주세요.');ok=false;}
+      if(!V.querySelector('#payAgree').checked){V.querySelector('#cerr').textContent='결제 동의에 체크해 주세요.';ok=false;}else V.querySelector('#cerr').textContent='';
+      if(!ok){const f=V.querySelector('.err:not(:empty)');f&&f.scrollIntoView({block:'center',behavior:'smooth'});return;}
+      const ship={name:g('rn'),phone:fmtPhone(g('rh')),zip:g('zip'),a1:g('a1'),a2:g('a2'),memo:g('memo')};
+      if(u&&V.querySelector('#saveAddr')&&V.querySelector('#saveAddr').checked){u.addr=[ship];API._save(u);}
+      try{const o=API.createOrder({items,couponId:st.couponId,usePoints:st.points,orderer:{name:g('on'),phone:fmtPhone(g('oh')),email:g('oe')},ship,method:V.querySelector('[name=pm]:checked').value,guestPw:g('gp')});
+        await Pay.request(o);}catch(x){V.querySelector('#cerr').textContent=x.message;}};
+  },
+  pay(q,[,r]){
+    const id=q.get('orderId');
+    if(r==='success'){try{const o=API.confirmPayment(id,q.get('paymentKey'),q.get('amount'));if(q.get('paymentKey'))DB.set('buynow',null);paintUtil();go('#/complete/'+o.id);}
+      catch(x){render(`<div class="empty box"><b style="font-size:20px">결제를 완료하지 못했어요</b><p>${esc(x.message)}</p><a class="btn" href="#/cart">장바구니로</a></div>`);}return;}
+    API.failPayment(id,q.get('code'));
+    render(`<div class="empty box"><b style="font-size:20px">결제가 완료되지 않았어요</b><p>${esc(q.get('message')||'결제 중 문제가 생겼어요.')}<br>장바구니 상품은 그대로 남아 있어요.</p><div style="display:flex;gap:10px;justify-content:center"><a class="btn line" href="#/cart">장바구니</a><a class="btn" href="#/checkout?from=cart">다시 결제하기</a></div></div>`);
+  },
+  complete(q,[,id]){
+    const o=API.order(id);if(!o)return views.notfound();
+    render(`<div class="box" style="max-width:720px;margin:0 auto;text-align:center"><div style="font-size:52px">✓</div><h1 class="pt">주문이 완료됐어요</h1><p class="pt-sub">주문 내역은 카카오 알림톡과 이메일로도 보내드려요.</p>
+      <table class="tbl" style="text-align:left"><tr><th>주문번호</th><td><b>${esc(o.id)}</b></td></tr><tr><th>결제 금액</th><td>${won(o.total)} · ${esc(METHODS[o.method])}</td></tr><tr><th>상품</th><td>${o.lines.map(l=>esc(l.name)+' · '+esc(l.opt)+' × '+l.qty).join('<br>')}</td></tr><tr><th>배송지</th><td>${esc(o.ship.name)} · ${esc(o.ship.a1)} ${esc(o.ship.a2)}</td></tr></table>
+      ${o.uid?'':'<p class="note" style="margin-top:16px">비회원 주문은 주문번호와 주문조회 비밀번호로 조회할 수 있어요. 주문번호를 꼭 메모해 두세요.</p>'}
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:22px"><a class="btn line" href="#/list?brand=${curBrand}">쇼핑 계속하기</a><a class="btn" href="${o.uid?'#/my/orders':'#/guest'}">주문 내역 보기</a></div></div>`);
+  },
+  my(q,[,tab='home']){
+    const u=API.me();if(!u)return needLogin(location.hash);
+    const os=API.myOrders();const nav=[['home','마이페이지'],['orders','주문·배송 조회'],['wish','관심상품'],['coupons','쿠폰·적립금'],['profile','회원정보']];
+    let body='';
+    if(tab==='home'||tab==='orders'){const list=tab==='home'?os.slice(0,3):os;
+      body=(tab==='home'?`<div class="stat"><div><b>${os.filter(o=>['PAID','PREPARING'].includes(o.status)).length}</b>결제 완료</div><div><b>${os.filter(o=>o.status==='SHIPPING').length}</b>배송중</div><div><b>${u.coupons.filter(c=>!c.used).length}</b>쿠폰</div><div><b>${u.points.toLocaleString()}</b>적립금</div></div><h2 style="font-size:19px">최근 주문</h2>`:'')+
+        (list.length?list.map(orderCard).join(''):`<div class="empty box"><b>아직 주문이 없어요</b><p>첫 주문을 해보세요.</p><a class="btn" href="#/list?brand=${curBrand}">쇼핑하러 가기</a></div>`);}
+    if(tab==='wish'){const ps=u.wish.map(P).filter(Boolean);body=ps.length?`<div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">${ps.map(p=>card(p,u)).join('')}</div>`:`<div class="empty box"><b>관심상품이 없어요</b><p>♡를 눌러 담아보세요.</p></div>`;}
+    if(tab==='coupons')body=`<table class="tbl"><tr><th>쿠폰</th><td><b>할인 · 조건</b></td></tr>${u.coupons.map(c=>`<tr><th>${esc(c.name)}</th><td>${won(c.amount)} · ${won(c.min)} 이상 구매 시 ${c.used?'<span class="tag g">사용 완료</span>':'<span class="tag">사용 가능</span>'}</td></tr>`).join('')}<tr><th>적립금</th><td><b>${won(u.points)}</b> · 결제 금액의 1% 적립 (배송 완료 후 확정)</td></tr></table>`;
+    if(tab==='profile')body=`<table class="tbl"><tr><th>가입 방법</th><td>${u.provider==='kakao'?'카카오':'이메일'}</td></tr><tr><th>이름</th><td>${esc(u.name)}</td></tr><tr><th>이메일</th><td>${esc(u.email)}</td></tr><tr><th>휴대폰</th><td>${esc(u.phone)}</td></tr><tr><th>마케팅 수신</th><td><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="mk"${u.agree&&u.agree.marketing?' checked':''} style="width:20px;height:20px;accent-color:var(--cobalt)"> 혜택·이벤트 알림 받기 (선택)</label></td></tr><tr><th>가입일</th><td>${esc(u.created)}</td></tr></table>
+      <div style="display:flex;gap:10px;margin-top:18px"><button class="btn line sm" id="lo2">로그아웃</button><button class="btn line sm" id="wd" style="border-color:var(--line);color:var(--sub)">회원 탈퇴</button></div>`;
+    render(`<h1 class="pt">${esc(u.name)}님, 안녕하세요</h1><p class="pt-sub">${u.provider==='kakao'?'카카오 회원':'이메일 회원'} · 가입일 ${esc(u.created)}</p><div class="mp"><nav class="mpnav">${nav.map(([k,t])=>`<a href="#/my/${k}"${k===tab?' class="on"':''}>${t}</a>`).join('')}</nav><div>${body}</div></div>`);
+    bindOrderCards();bindCards();
+    const mk=V.querySelector('#mk');if(mk)mk.onchange=()=>{u.agree=Object.assign(u.agree||{},{marketing:mk.checked,at:new Date().toISOString()});API._save(u);toast(mk.checked?'마케팅 수신에 동의했어요.':'마케팅 수신을 해제했어요.');};
+    const lo=V.querySelector('#lo2');if(lo)lo.onclick=()=>{API.logout();paintUtil();go('#/list?brand='+curBrand);};
+    const wd=V.querySelector('#wd');if(wd)wd.onclick=()=>{const m=modal(`<h3>정말 탈퇴할까요?</h3><p class="muted" style="margin:0 0 18px">쿠폰과 적립금이 모두 사라지고 되돌릴 수 없어요. 진행 중인 주문이 있으면 탈퇴할 수 없어요.</p><div class="btns"><button class="btn line" data-x>취소</button><button class="btn" id="wdOk" style="background:var(--err);border-color:var(--err)">탈퇴하기</button></div>`);
+      m.querySelector('[data-x]').onclick=close;m.querySelector('#wdOk').onclick=()=>{if(os.some(o=>['PAID','PREPARING','SHIPPING'].includes(o.status))){close();return toast('진행 중인 주문이 있어 탈퇴할 수 없어요.');}API.withdraw();close();paintUtil();toast('탈퇴가 완료됐어요.');go('#/list?brand='+curBrand);};};
+  },
+  guest(){
+    render(`<div class="form"><h1 class="pt" style="text-align:center">비회원 주문조회</h1><p class="pt-sub" style="text-align:center">주문할 때 입력한 정보로 조회해요.</p>
+      <form id="gf"><div class="fld"><label for="gi">주문번호</label><input class="in" id="gi" placeholder="VL…"></div><div class="fld"><label for="gh">주문자 휴대폰</label><input class="in" id="gh" inputmode="tel"></div><div class="fld"><label for="gpw">주문조회 비밀번호</label><input class="in" id="gpw" type="password" inputmode="numeric"></div>
+      <div class="err" id="gerr" role="alert"></div><button class="btn block">조회하기</button></form><div id="gres" style="margin-top:22px"></div></div>`);
+    V.querySelector('#gf').onsubmit=e=>{e.preventDefault();try{const o=API.guestOrder(V.querySelector('#gi').value,V.querySelector('#gh').value,V.querySelector('#gpw').value);V.querySelector('#gerr').textContent='';V.querySelector('#gres').innerHTML=orderCard(o);bindOrderCards();}catch(x){V.querySelector('#gerr').textContent=x.message;}};
+  },
+  inquiry(){
+    const u=API.me();
+    render(`<div class="form"><h1 class="pt" style="text-align:center">1:1 문의</h1><p class="pt-sub" style="text-align:center">영업일 기준 1~2일 안에 알림톡·이메일로 답변드려요.</p>
+      <form id="qf" novalidate><div class="fld"><label for="qt">문의 유형</label><select class="in" id="qt"><option>상품 문의</option><option>주문·결제</option><option>배송</option><option>교환·반품·환불</option><option>IM.BERT 서비스</option><option>기타</option></select></div>
+      <div class="fld"><label for="qn">이름</label><input class="in" id="qn" value="${esc(u?u.name:'')}"></div>
+      <div class="fld"><label for="qh">휴대폰</label><input class="in" id="qh" inputmode="tel" value="${esc(u?u.phone:'')}"></div>
+      <div class="fld"><label for="qe">이메일 (선택)</label><input class="in" id="qe" type="email" value="${esc(u?u.email:'')}"></div>
+      <div class="fld"><label for="qo">주문번호 (선택)</label><input class="in" id="qo" placeholder="VL…"></div>
+      <div class="fld"><label for="qm">문의 내용</label><textarea class="in" id="qm" rows="6" style="height:auto;padding:14px 16px" placeholder="궁금한 점을 적어주세요."></textarea></div>
+      <label style="display:flex;gap:8px;align-items:center;font-size:15px;margin-bottom:16px"><input type="checkbox" id="qa" style="width:20px;height:20px;accent-color:var(--cobalt)"> [필수] 문의 처리를 위한 개인정보 수집·이용에 동의합니다</label>
+      <div class="err" id="qerr" role="alert"></div><button class="btn block">문의 남기기</button></form></div>`);
+    V.querySelector('#qf').onsubmit=e=>{e.preventDefault();const g=id=>V.querySelector('#'+id).value.trim();const er=V.querySelector('#qerr');
+      if(g('qn').length<2||!/^01[016789]-?\d{3,4}-?\d{4}$/.test(g('qh'))||g('qm').length<5||!V.querySelector('#qa').checked){er.textContent='이름·휴대폰·문의 내용(5자 이상)·동의를 확인해 주세요.';return;}
+      const qs=DB.get('inquiries',[]);qs.unshift({id:uid('Q'),uid:u?u.id:null,type:g('qt'),name:g('qn'),phone:fmtPhone(g('qh')),email:g('qe'),order:g('qo'),msg:g('qm'),at:new Date().toISOString(),status:'접수'});DB.set('inquiries',qs);
+      render(`<div class="empty box"><b style="font-size:20px">문의가 접수됐어요</b><p>영업일 기준 1~2일 안에 답변드릴게요.</p><a class="btn" href="#/list?brand=${curBrand}">스토어로 돌아가기</a></div>`);};
+  },
+  imbert(){render(`<div class="box" style="max-width:760px;margin:0 auto"><span class="tag">AT-HOME TEST</span><h1 class="pt" style="margin-top:10px">IM.BERT 1:1 맞춤 상담</h1><p>집에서 하는 장내 미생물 검사와 AI 리포트, 그리고 1:1 이중영양 설계는 상담 후 진행돼요.</p>
+    <div class="fld" style="margin-top:20px"><label for="in1">이름</label><input class="in" id="in1"></div><div class="fld"><label for="in2">연락처</label><input class="in" id="in2" inputmode="tel"></div>
+    <label style="display:flex;gap:8px;align-items:center;font-size:15px;margin-bottom:16px"><input type="checkbox" id="in3" style="width:20px;height:20px;accent-color:var(--cobalt)"> [필수] 상담을 위한 개인정보 수집·이용에 동의합니다</label>
+    <button class="btn block" id="inb">상담 신청하기</button></div>`);
+    V.querySelector('#inb').onclick=()=>{if(V.querySelector('#in1').value.trim().length<2||!/^01\d-?\d{3,4}-?\d{4}$/.test(V.querySelector('#in2').value.trim())||!V.querySelector('#in3').checked)return toast('이름·연락처·동의를 확인해 주세요.');toast('상담 신청을 받았어요. 영업일 기준 1~2일 안에 연락드릴게요.');};},
+  doc(q,[,k]){
+    const D={terms:['이용약관',[['제1조 (목적)','이 약관은 <span class="ph-fill">[(주)비락]</span>(이하 “회사”)이 운영하는 VILAC Store(이하 “몰”)에서 제공하는 전자상거래 서비스의 이용 조건과 절차, 회사와 이용자의 권리·의무를 정합니다.'],['제2조 (회원가입)','이용자는 회사가 정한 양식에 따라 정보를 입력하고 약관에 동의하여 회원가입을 신청하며, 카카오 계정으로도 가입할 수 있습니다. 만 14세 미만은 가입할 수 없습니다.'],['제3조 (구매신청 및 계약 성립)','이용자는 상품 선택, 배송지 입력, 결제수단 선택 후 결제를 완료하여 구매를 신청합니다. 회사가 결제 완료를 확인한 때 계약이 성립합니다.'],['제4조 (청약철회)','이용자는 상품을 받은 날부터 7일 이내에 청약을 철회할 수 있습니다. 다만 식품처럼 시간이 지나 재판매가 어려운 경우, 이용자 책임으로 상품이 훼손된 경우에는 제한될 수 있습니다.'],['부칙','이 약관은 <span class="ph-fill">[시행일]</span>부터 시행합니다.']]],
+      privacy:['개인정보처리방침',[['1. 수집 항목','회원가입: 이메일, 비밀번호, 이름, 휴대폰 번호 / 카카오 가입: 카카오 회원번호, 닉네임, 이메일, (선택) 휴대폰 번호 / 주문: 주문자·수령인 이름, 연락처, 주소, 결제 정보(결제대행사 보관)'],['2. 이용 목적','회원 관리, 주문·배송·결제 처리, 고객 상담, (동의한 경우) 혜택·이벤트 안내'],['3. 보유 기간','회원 탈퇴 시까지. 다만 전자상거래법에 따라 계약·청약철회 기록 5년, 대금결제·재화 공급 기록 5년, 소비자 불만·분쟁 처리 기록 3년 보관'],['4. 제3자 제공','배송업체 <span class="ph-fill">[택배사명]</span>: 수령인 이름·연락처·주소 (배송 완료 후 파기)'],['5. 처리 위탁','결제대행 <span class="ph-fill">[PG사명]</span>, 알림 발송 <span class="ph-fill">[카카오 알림톡 대행사]</span>, 서버 운영 <span class="ph-fill">[호스팅사]</span>'],['6. 개인정보보호책임자','<span class="ph-fill">[성명 · 직책 · 연락처 · 이메일]</span>']]],
+      refund:['교환·환불 정책',[['교환·반품 신청 기간','상품 수령 후 7일 이내. 상품 하자·오배송은 수령 후 3개월 이내, 그 사실을 안 날부터 30일 이내'],['교환·반품이 어려운 경우','유제품을 개봉했거나 보관 부주의로 변질된 경우, 시간이 지나 재판매가 어려운 경우'],['반품 배송비','단순 변심: 왕복 6,000원 (고객 부담) · 하자·오배송: 회사 부담'],['환불','반품 상품 확인 후 3영업일 이내 결제 수단으로 환불. 카드 결제는 카드사 사정에 따라 3~7일 걸릴 수 있어요.'],['주문 취소','상품 준비 전에는 마이페이지에서 바로 취소할 수 있어요. 출고 이후에는 반품으로 진행돼요.'],['반품 주소','<span class="ph-fill">[물류센터 주소]</span>']]]}[k];
+    if(!D)return views.notfound();
+    render(`<div class="doc"><h1 class="pt">${D[0]}</h1><p class="pt-sub">노란색 표시는 회사 정보로 채워야 하는 부분이에요.</p>${D[1].map(([h,t])=>`<h2>${h}</h2><p>${t}</p>`).join('')}</div>`);
+  },
+  notfound(){render(`<div class="empty box"><b style="font-size:20px">페이지를 찾을 수 없어요</b><p>주소를 확인해 주세요.</p><a class="btn" href="#/list?brand=${curBrand}">스토어 홈</a></div>`);}
+};
+
+/* shared bits */
+function card(p,u){const o=p.options[0];const w=u&&u.wish.includes(p.id);const off=Math.round((1-o.price/o.list)*100);
+  return `<article class="pc"><div class="ph"><a href="#/product/${p.id}" aria-label="${esc(p.name)}">${art(p)}</a><div class="badges">${p.badges.map(([t,c])=>`<span class="tag ${c}">${t}</span>`).join('')}${p.soldOut?'<span class="tag g">일시품절</span>':''}</div>
+    <button class="wish${w?' on':''}" data-w="${p.id}" aria-label="관심상품${w?' 해제':''}" aria-pressed="${!!w}">${ICON.heart}</button></div>
+    <div class="tx"><h3><a href="#/product/${p.id}">${esc(p.name)} <span class="opt-l">(${esc(o.label)})</span></a></h3>
+    <div class="price"><s>${won(o.list)}</s><b>${won(o.price)}</b><em>${off}<small>%</small></em></div>
+    <div class="ft"><span class="rv">★ 리뷰 (${p.reviews.toLocaleString()})</span>${p.comingSoon||p.soldOut?`<a class="cart-i" href="#/product/${p.id}" aria-label="${p.soldOut?'재입고 알림':'출시 알림'}">🔔</a>`:`<button class="cart-i" data-add="${p.id}" aria-label="${esc(p.name)} 장바구니 담기">${ICON.cart}</button>`}</div></div></article>`;}
+function bindCards(){
+  V.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{const p=P(b.dataset.add);Cart.add(p.id,p.options[0].id,1,false);toast(`장바구니에 담았어요 · ${p.name}`);});
+  V.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{if(!API.me())return needLogin(location.hash);const on=API.toggleWish(b.dataset.w);b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);toast(on?'관심상품에 담았어요.':'관심상품에서 뺐어요.');});
+}
+function orderCard(o){const flow=['PAID','PREPARING','SHIPPING','DELIVERED'];const at=flow.indexOf(o.status);
+  return `<div class="ord"><div class="hd"><span>${o.created.slice(0,10).replace(/-/g,'.')} · ${esc(o.id)}</span><span class="st-badge ${o.status}">${STATUS[o.status]}</span></div>
+    <div>${o.lines.map(l=>`<div>${esc(l.name)} <span class="muted">· ${esc(l.opt)} × ${l.qty}</span></div>`).join('')}</div>
+    <div style="margin-top:6px"><b>${won(o.total)}</b> <span class="muted">· ${esc(METHODS[o.method])}</span></div>
+    ${at>=0?`<div class="steps">${['결제 완료','상품 준비','배송중','배송 완료'].map((t,i)=>`<span class="${i<=at?'on':''}">${t}</span>`).join('')}</div>`:''}
+    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">${['PAID','PREPARING'].includes(o.status)?`<button class="btn line sm" data-cancel="${o.id}">주문 취소</button>`:''}${o.status==='DELIVERED'?`<button class="btn line sm" data-ret="${o.id}">교환·반품 신청</button><button class="btn sm">리뷰 쓰기</button>`:''}${o.status==='SHIPPING'?'<button class="btn line sm">배송 조회</button>':''}</div></div>`;}
+function bindOrderCards(){V.querySelectorAll('[data-cancel]').forEach(b=>b.onclick=()=>{
+  const m=modal(`<h3>주문을 취소할까요?</h3><p class="muted" style="margin:0 0 14px">결제 수단으로 전액 환불돼요. 쿠폰은 돌려드려요.</p><select class="in" id="why"><option>단순 변심</option><option>다른 상품을 잘못 주문</option><option>배송이 너무 늦어요</option><option>기타</option></select><div class="btns" style="margin-top:16px"><button class="btn line" data-x>닫기</button><button class="btn" id="cOk">취소하기</button></div>`);
+  m.querySelector('[data-x]').onclick=close;m.querySelector('#cOk').onclick=()=>{try{API.cancelOrder(b.dataset.cancel,m.querySelector('#why').value);close();toast('주문을 취소했어요. 환불은 3~7일 걸릴 수 있어요.');route();}catch(x){close();toast(x.message);}};});}
+function agreeBox(){return `<div class="fld"><span class="lb">약관 동의</span><div class="agree">
+  <label class="all"><input type="checkbox" id="agAll"> 전체 동의</label>
+  <label><input type="checkbox" class="ag" data-req="1"> [필수] 만 14세 이상입니다</label>
+  <label><input type="checkbox" class="ag" data-req="1"> [필수] 이용약관 동의 <a href="#/doc/terms" target="_blank">보기</a></label>
+  <label><input type="checkbox" class="ag" data-req="1"> [필수] 개인정보 수집·이용 동의 <a href="#/doc/privacy" target="_blank">보기</a></label>
+  <label><input type="checkbox" class="ag" data-mk="1"> [선택] 혜택·이벤트 알림 수신 (문자·이메일·알림톡)</label></div></div>`;}
+function bindAgree(){const all=V.querySelector('#agAll'),ags=[...V.querySelectorAll('.ag')];all.onchange=()=>ags.forEach(a=>a.checked=all.checked);ags.forEach(a=>a.onchange=()=>all.checked=ags.every(x=>x.checked));}
+function readAgree(){const ags=[...V.querySelectorAll('.ag')];return {ok:ags.filter(a=>a.dataset.req).every(a=>a.checked),marketing:ags.some(a=>a.dataset.mk&&a.checked)};}
+function setErr(k,m){const e=V.querySelector(`[data-e="${k}"]`);if(e)e.textContent=m;const i=V.querySelector('#'+k);if(i)i.classList.toggle('bad',!!m);}
+function fmtPhone(v){const d=String(v).replace(/\D/g,'').slice(0,11);if(d.length<4)return d;if(d.length<8)return d.slice(0,3)+'-'+d.slice(3);return d.slice(0,3)+'-'+d.slice(3,d.length-4)+'-'+d.slice(-4);}
+async function findAddress(){
+  // live: Daum(카카오) 우편번호 서비스. demo / blocked: simple manual sheet.
+  const fill=(zip,a1)=>{V.querySelector('#zip').value=zip;V.querySelector('#a1').value=a1;setErr('a1','');V.querySelector('#a2').focus();};
+  if(CONFIG.mode==='live'){try{await loadScript('https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js');new daum.Postcode({oncomplete:d=>fill(d.zonecode,d.roadAddress||d.jibunAddress)}).open();return;}catch(e){}}
+  const m=modal(`<h3>주소 검색 · 테스트</h3><p class="muted" style="margin:0 0 14px">실서비스에서는 카카오 우편번호 검색창이 열려요.</p><div class="opts">${[['06236','서울 강남구 테헤란로 152'],['04524','서울 중구 세종대로 110'],['48058','부산 해운대구 센텀중앙로 79']].map(([z,a])=>`<button type="button" class="opt" data-z="${z}" data-a="${a}" style="text-align:left"><span><b>${z}</b> ${a}</span></button>`).join('')}</div><button class="btn line block" style="margin-top:14px" data-x>닫기</button>`);
+  m.querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>{close();fill(b.dataset.z,b.dataset.a);});m.querySelector('[data-x]').onclick=close;
+}
+
+/* router */
+function route(){close();const {parts,q}=parse();const name=parts[0]||'list';
+  if(name!=='list'&&name!=='product'){/* keep current brand */}
+  const fn=views[name]||views.notfound;
+  try{fn(q,parts);}catch(e){console.error(e);views.notfound();}
+  paintUtil();document.title=(name==='list'?BRAND[curBrand]+' · ':'')+'VILAC Store';V.focus({preventScroll:true});}
+addEventListener('hashchange',route);
+addEventListener('keydown',e=>{if(e.key==='Escape'&&dimEl)close();});
+document.addEventListener('click',e=>{if(e.target===dimEl)close();});
+if(LS.get('promoOff','')===today())document.getElementById('promo').remove();
+else document.getElementById('promoX').onclick=()=>{LS.set('promoOff',today());document.getElementById('promo').remove();};
+if(CONFIG.mode!=='demo')document.getElementById('demoBar').remove();
+route();
+</script>
+<div class="ask" id="ask">
+  <div class="ask-panel" id="askPanel" role="dialog" aria-label="문의하기">
+    <h3>무엇을 도와드릴까요?</h3><p>평일 09:00~18:00 · 점심 12:00~13:00</p>
+    <a href="#" data-kakao><i style="background:#FEE500;color:#191919">K</i><span>카카오톡 상담<small>채널 추가하고 바로 문의</small></span></a>
+    <a href="#/inquiry"><i style="background:#EAF0FF;color:#004BDE">✎</i><span>1:1 문의 남기기<small>답변은 알림톡·이메일로</small></span></a>
+    <a href="#/imbert"><i style="background:#FFEDE6;color:#C8441B">B</i><span>IM.BERT 맞춤 상담 신청<small>장내 미생물 검사 · 1:1 설계</small></span></a>
+    <a href="tel:000-0000-0000"><i style="background:#F1EFEA;color:#14213D">☎</i><span>고객센터 전화<small>[000-0000-0000]</small></span></a>
+  </div>
+  <button type="button" class="ask-btn" id="askBtn" aria-expanded="false" aria-controls="askPanel" aria-label="문의하기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></button>
+</div>
+<script>
+(function(){const a=document.getElementById('ask'),b=document.getElementById('askBtn');
+b.onclick=()=>{const o=a.classList.toggle('open');b.setAttribute('aria-expanded',o);};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){a.classList.remove('open');b.setAttribute('aria-expanded',false);}});
+document.addEventListener('click',e=>{if(!a.contains(e.target)){a.classList.remove('open');b.setAttribute('aria-expanded',false);}});
+a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySelector('.ask-panel p');p.textContent='카카오톡 채널 주소가 정해지면 연결돼요.';};})();
+</script>
+
+</body>
+</html>
