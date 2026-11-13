@@ -381,6 +381,11 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
 .drag{cursor:grab;user-select:none;-webkit-user-select:none}
 .drag.dragging{cursor:grabbing;scroll-snap-type:none!important;scroll-behavior:auto}
 .drag img{-webkit-user-drag:none;user-drag:none}
+/* cafe24 module wrappers */
+.c24{display:contents}
+.drawer .d-acc .c24{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.side .s-acc .c24{display:flex;gap:10px}
+.hd-ic .cnt:empty,.hd-ic .cnt.zero{display:none}
 /* reveal */
 .js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .js .rv.in{opacity:1;transform:none}
@@ -395,7 +400,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
 <!-- desktop side panel -->
 <aside class="side" aria-label="굿케어맥스 안내">
   <div>
-    <div class="s-top"><span class="s-logo">GOODCARE <b>MACs</b></span><span class="s-acc"><a href="/member/login.html" data-gcm="login">로그인</a><span>|</span><a href="/member/agreement.html" data-gcm="signup">회원가입</a></span></div>
+    <div class="s-top"><span class="s-logo">GOODCARE <b>MACs</b></span><span class="s-acc"><span class="c24" module="Layout_stateLogoff"><a href="/member/login.html">로그인</a><span>|</span><a href="/member/agreement.html">회원가입</a></span><span class="c24" module="Layout_stateLogon"><a href="/myshop/index.html">마이페이지</a><span>|</span><a href="/exec/front/Member/logout/">로그아웃</a></span></span></div>
     <h1>한 팩에<br>두 번의 영양,<br><em>굿케어맥스</em></h1>
     <p class="s-sub">나만 챙기던 영양에서,<br>미생물까지 챙기는 영양으로.</p>
     <div class="s-qr"><img src="https://jjinyet-collab.github.io/goodcare-macs/mobile/assets/gcm-logo-circle.png" alt=""><span>첫 구매 2,000원 쿠폰<br>3만원 이상 무료배송</span></div>
@@ -413,8 +418,11 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
     <div class="hd-row">
       <a class="logo" href="#top"><img src="https://jjinyet-collab.github.io/goodcare-macs/mobile/assets/gcm-logo-circle.png" alt="">GOODCARE <b>MACs</b></a>
       <div class="hd-ic">
-        <a href="/myshop/index.html" data-gcm="mypage" aria-label="마이페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a>
-        <a href="/order/basket.html" data-gcm="cart" aria-label="장바구니"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cnt" id="cartCnt" hidden>0</span></a>
+        <!-- [카페24 모듈] 로그인 전: 로그인 / 로그인 후: 마이페이지 -->
+        <div class="c24" module="Layout_stateLogoff"><a href="/member/login.html" aria-label="로그인"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a></div>
+        <div class="c24" module="Layout_stateLogon"><a href="/myshop/index.html" aria-label="마이페이지"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a></div>
+        <!-- [카페24 모듈] 장바구니 + 담긴 개수 -->
+        <a href="/order/basket.html" aria-label="장바구니"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="c24" module="Layout_orderBasketcount"><span class="cnt EC-Layout-Basket-count">{$basket_count}</span></span></a>
         <button type="button" id="menuBtn" aria-label="메뉴 열기" aria-controls="drawer" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       </div>
     </div>
@@ -724,7 +732,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
 <div class="dim" id="dim"></div>
 <aside class="drawer" id="drawer" aria-label="메뉴" aria-hidden="true">
   <div class="d-top"><span class="logo"><img src="https://jjinyet-collab.github.io/goodcare-macs/mobile/assets/gcm-logo-circle.png" alt="">GOODCARE <b>MACs</b></span><button type="button" class="d-x" id="drClose" aria-label="메뉴 닫기">✕</button></div>
-  <div class="d-acc"><b>반가워요!</b><div><a href="/member/login.html" data-gcm="login">로그인</a><a href="/member/agreement.html" data-gcm="signup">회원가입</a></div></div>
+  <div class="d-acc"><b>반가워요!</b><div class="c24" module="Layout_stateLogoff"><a href="/member/login.html">로그인</a><a href="/member/agreement.html">회원가입</a></div><div class="c24" module="Layout_stateLogon"><a href="/myshop/index.html">마이페이지</a><a href="/exec/front/Member/logout/">로그아웃</a></div></div>
   <nav>
     <a href="#products">제품</a><a href="#about">About MACs</a><a href="#story">MAC 이야기</a><a href="#process">1:1 맞춤 설계 · Coming soon</a><a href="#moments">함께하는 순간</a><a href="#column">칼럼</a><a href="#faq">FAQ</a>
     <a href="/order/basket.html" data-gcm="cart">장바구니</a><a href="/myshop/order/list.html" data-gcm="orders">주문조회</a>
@@ -809,6 +817,8 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
     el.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
     el.addEventListener('dragstart',function(e){e.preventDefault();});
   });
+  // cart count from Cafe24 ({$basket_count}); hide when 0
+  document.querySelectorAll('.hd-ic .cnt').forEach(function(c){var v=c.textContent.trim();if(!/^[1-9][0-9]*$/.test(v))c.classList.add('zero');});
   // tabs: active on scroll + keep visible
   var tabs=[].slice.call(document.querySelectorAll('.tabs a')),secs=tabs.map(function(a){return document.getElementById(a.dataset.t);});
   var hd=document.querySelector('.hd');
