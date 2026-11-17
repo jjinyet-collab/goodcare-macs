@@ -130,6 +130,7 @@ h1,h2,h3,h4,p{margin:0}
 .stk b{display:block;font:900 25px/1.05 var(--display)}
 @keyframes spin{to{transform:rotate(350deg)}}
 .copy{margin-top:22px;display:grid;gap:14px;font-size:16px;line-height:1.85;color:#222}
+.copy .big{display:inline-block;margin-top:8px;font-size:2em;font-weight:900;line-height:1.3;letter-spacing:-.03em;color:var(--ink)}
 .copy .lead{font:900 21px/1.45 var(--kr);letter-spacing:-.03em;color:var(--ink)}
 .copy em{font-style:normal;font-weight:900;color:#fff;padding:0 .14em;margin:0 -.04em;border-radius:3px;
   background:linear-gradient(var(--pink),var(--pink)) no-repeat 0 0/0% 100%;transition:background-size .9s cubic-bezier(.6,.1,.2,1),color .3s;color:var(--ink)}
@@ -246,6 +247,7 @@ h1,h2,h3,h4,p{margin:0}
 .mom figure img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .mom figure:hover img{transform:scale(1.06)}
 .mom figure.w{grid-column:span 2;aspect-ratio:auto}
+.mom figure.w3{grid-column:span 3;aspect-ratio:2/1}
 .mom figcaption{position:absolute;left:8px;bottom:7px;color:#fff;font-size:11.5px;font-weight:700;text-shadow:0 1px 6px rgba(0,0,0,.5)}
 
 /* column board */
@@ -366,6 +368,16 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
 .drag{cursor:grab;user-select:none;-webkit-user-select:none}
 .drag.dragging{cursor:grabbing;scroll-snap-type:none!important;scroll-behavior:auto}
 .drag img{-webkit-user-drag:none;user-drag:none}
+/* sub views (column, WHY MAC · FAQ) */
+.view{position:fixed;z-index:45;top:0;bottom:0;left:max(0px,calc(50% - var(--colw)/2));width:min(100%,var(--colw));background:#fff;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:60px;box-shadow:0 0 60px rgba(0,0,0,.18)}
+@media (min-width:1024px){.view{left:calc(50% - 20px)}}
+.view[hidden]{display:none}
+.v-hd{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:4px;height:56px;padding:0 8px;background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.v-back{width:44px;height:44px;font-size:22px;border-radius:50%}
+.v-hd b{font-size:16px;font-weight:800}
+.view .sec{padding-top:22px}
+.view .fq-sec{scroll-margin-top:70px}
+html.vw{overflow:hidden}
 /* reveal */
 .js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .js .rv.in{opacity:1;transform:none}
@@ -404,7 +416,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
       </div>
     </div>
     <nav class="tabs" aria-label="바로가기">
-      <a href="#top" data-t="top" class="on">홈</a><a href="#products" data-t="products">제품</a><a href="#about" data-t="about">About MACs</a><a href="#story" data-t="story">MAC 이야기</a><a href="#process" data-t="process">1:1 맞춤</a><a href="#column" data-t="column">칼럼</a><a href="#faq" data-t="faq">FAQ</a>
+      <a href="#top" data-t="top" class="on">홈</a><a href="#products" data-t="products">제품</a><a href="#about" data-t="about">About MACs</a><a href="#story" data-t="story">MAC 이야기</a><a href="#process" data-t="process">1:1 맞춤</a><a href="#why" data-t="why">WHY MAC</a><a href="#column" data-t="column">칼럼</a><a href="#faq" data-t="faq">FAQ</a>
     </nav>
   </header>
 
@@ -412,13 +424,12 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
     <!-- HERO SLIDER -->
     <section class="hero" aria-roledescription="carousel" aria-label="굿케어맥스 소식">
       <div class="slides" id="slides">
-        <a class="slide" href="shop.html#/list?brand=gcm"><img src="assets/gcm-duo-orange.jpg" alt="굿케어맥스 그린바나나 오트와 피스타치오" style="object-position:50% 50%"><span class="badge">식이섬유<b>12.5g</b>하루 50%</span><div class="cap"><small>NEW</small><h2>나만 챙기던 영양에서,<br>미생물까지 챙기는 영양으로.</h2></div></a>
+        <a class="slide" href="shop.html#/list?brand=gcm"><img src="assets/gcm-duo-orange.jpg" alt="굿케어맥스 그린바나나 오트와 피스타치오" style="object-position:50% 50%"><span class="badge">식이섬유<b>12.5g</b>하루 50%</span><div class="cap"><small>NEW</small><h2>한 팩에 두 번의 영양,<br>굿케어맥스</h2></div></a>
         <a class="slide" href="#about"><img src="assets/gcm-joyful-ritual.jpg" alt="잔디밭에서 웃고 있는 가족과 반려견" style="object-position:32% 40%"><div class="cap"><small>JOYFUL CARE RITUAL</small><h2>한 팩에 두 번의 영양,<br>굿케어맥스</h2></div></a>
         <a class="slide" href="#products"><img src="assets/day-morning.jpg" alt="아침 주방 조리대 위 굿케어맥스" style="object-position:50% 60%"><div class="cap"><small>MORNING ROUTINE</small><h2>바쁜 아침엔 한 팩으로<br>나의 한 끼 + 미생물의 밥</h2></div></a>
-        <a class="slide" href="#process"><img src="assets/imbert-keyvisual.jpg" alt="IM.BERT 장내 미생물 분석 키비주얼" style="object-position:30% 50%"><span class="soon-b">COMING<br>SOON</span><div class="cap"><small>COMING SOON</small><h2>장내 미생물 분석으로<br>나에게 맞춘 이중영양 설계</h2></div></a>
       </div>
       <div class="dots" id="dots"></div>
-      <span class="num" id="num">1 / 4</span>
+      <span class="num" id="num">1 / 3</span>
     </section>
 
     <!-- PRODUCTS -->
@@ -440,7 +451,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
         <p class="lead">한 팩에 두 번의 영양, <em>굿케어맥스.</em></p>
         <p>오늘도 끼니는 챙겼는데,<br><em>장 속 미생물의 밥</em>도 챙겼나요?</p>
         <p><em>굿케어맥스</em>는 내 몸을 위한 영양에<br>장 속 미생물의 먹이가 되는 <em>MACs</em>를 더했습니다.</p>
-        <p>다양한 식이섬유를 <em>2:6:2</em> 비율로 배합해<br>한 팩에 <em>12.5g</em>, 하루 기준치의 50%를 담았습니다.</p>
+        <p>다양한 식이섬유를 <em>2:6:2</em> 비율로 배합해<br><span class="big">한 팩에 <em>12.5g</em>, 하루 기준치의 50%를 담았습니다.</span></p>
       </div>
 
       <div class="race" id="race" aria-label="연두 2, 노랑 6, 파랑 2 MAC 캐릭터가 트랙을 달려 골 앞에 서는 애니메이션">
@@ -517,22 +528,9 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
       <span class="btn soon-btn" role="status">Coming soon · 서비스 오픈 준비 중이에요</span>
     </section>
 
-    <!-- MOMENTS -->
-    <section class="sec" id="moments">
-      <div class="sh"><div><p class="eb">Joyful Care Ritual</p><h2 class="ttl">굿케어맥스와 함께하는 순간</h2></div></div>
-      <div class="mom">
-        <figure class="w"><img src="assets/gcm-joyful-ritual.jpg" alt="잔디밭에서 웃고 있는 가족과 반려견" style="object-position:30% 35%"><figcaption>Joyful Care Ritual</figcaption></figure>
-        <figure><img src="assets/day-morning.jpg" alt="아침 주방 조리대 위 굿케어맥스"><figcaption>아침 루틴</figcaption></figure>
-        <figure><img src="assets/day-lunch.jpg" alt="사무실 책상 위 굿케어맥스"><figcaption>바쁜 점심</figcaption></figure>
-        <figure><img src="assets/day-afternoon.jpg" alt="오후의 굿케어맥스"><figcaption>오후 한 팩</figcaption></figure>
-        <figure><img src="assets/day-workout.jpg" alt="운동 후 굿케어맥스"><figcaption>운동 후</figcaption></figure>
-        <figure><img src="assets/day-bag.jpg" alt="공원 벤치 위 가방 앞 굿케어맥스 두 종"><figcaption>가방 속 상비</figcaption></figure>
-        <figure class="w"><img src="assets/imbert-keyvisual.jpg" alt="IM.BERT 키비주얼"><figcaption>나에게 맞춘 설계 · Coming soon</figcaption></figure>
-      </div>
-    </section>
 
     <!-- COLUMN -->
-    <section class="sec" id="column">
+    <section class="view" id="column" hidden aria-label="칼럼"><div class="v-hd"><button type="button" class="v-back" aria-label="뒤로 가기">←</button><b>칼럼</b></div><div class="sec">
       <p class="eb">Column</p>
       <h2 class="ttl">한 병에 담긴 이야기</h2>
 <div class="board">
@@ -558,13 +556,13 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
         </details>
       </div>
 <p class="col-note">칼럼 속 원료 이야기는 원료에 대한 일반적인 설명이며, 굿케어맥스 제품의 효능·효과를 뜻하지 않아요.</p>
-    </section>
+    </div></section>
 
     <!-- FAQ -->
-    <section class="sec faq" id="faq">
+    <section class="view" id="faq" hidden aria-label="WHY MAC · FAQ"><div class="v-hd"><button type="button" class="v-back" aria-label="뒤로 가기">←</button><b>WHY MAC · FAQ</b></div><div class="sec faq">
 
       
-      <div class="fq-sec">
+      <div class="fq-sec" id="why">
         <span class="fq-eb">WHY MAC</span>
         <h2>왜 <em>MAC</em>을 챙겨야 할까요?</h2>
         <p class="fq-lead">끼니는 챙기는데, 정작 <strong>장 속 미생물의 밥</strong>은 잊기 쉬워요. 굿케어맥스가 한 병에 무엇을, 왜 담았는지 네 가지로 정리했어요.</p>
@@ -677,7 +675,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
       <p class="fq-note">소개한 연구는 이눌린·올리고프락토스·구아검 가수분해물 등 원료 단독 또는 일반 식생활에 대한 연구이며, 굿케어맥스 제품으로 수행한 시험 결과가 아니에요. 이 제품은 질병의 예방 및 치료를 위한 의약품이 아닙니다.</p>
       <p class="src-note">*원물에 대한 설명 및 건강정보 입니다.</p>
     
-    </section>
+    </div></section>
 
     <!-- CS -->
     <section class="cs" aria-label="고객센터">
@@ -711,7 +709,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
   <div class="d-top"><span class="logo"><img src="assets/gcm-logo-circle.png" alt="">GOODCARE <b>MACs</b></span><button type="button" class="d-x" id="drClose" aria-label="메뉴 닫기">✕</button></div>
   <div class="d-acc"><b>반가워요!</b><div><a href="shop.html#/login">로그인</a><a href="shop.html#/signup">회원가입</a></div></div>
   <nav>
-    <a href="#products">제품</a><a href="#about">About MACs</a><a href="#story">MAC 이야기</a><a href="#process">1:1 맞춤 설계 · Coming soon</a><a href="#moments">함께하는 순간</a><a href="#column">칼럼</a><a href="#faq">FAQ</a>
+    <a href="#products">제품</a><a href="#about">About MACs</a><a href="#story">MAC 이야기</a><a href="#process">1:1 맞춤 설계 · Coming soon</a><a href="#why">WHY MAC</a><a href="#column">칼럼</a><a href="#faq">FAQ</a>
     <a href="shop.html#/cart">장바구니</a><a href="shop.html#/my/orders">주문조회</a>
   </nav>
   <p class="d-q">고객센터 000-0000-0000 · 평일 09:00~18:00</p>
@@ -797,15 +795,27 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
   // tabs: active on scroll + keep visible
   var tabs=[].slice.call(document.querySelectorAll('.tabs a')),secs=tabs.map(function(a){return document.getElementById(a.dataset.t);});
   var hd=document.querySelector('.hd');
-  function onScroll(){var y=scrollY+hd.offsetHeight+40,on=0;secs.forEach(function(s,i){if(s&&s.offsetTop<=y)on=i;});
+  function onScroll(){if(openV)return;var y=scrollY+hd.offsetHeight+40,on=0;secs.forEach(function(s,i){if(s&&!viewOf(s)&&s.offsetTop<=y)on=i;});
     tabs.forEach(function(a,i){a.classList.toggle('on',i===on);});
     var a=tabs[on],bar=a.parentNode;if(a.offsetLeft<bar.scrollLeft||a.offsetLeft+a.offsetWidth>bar.scrollLeft+bar.clientWidth)bar.scrollTo({left:a.offsetLeft-16,behavior:'smooth'});
     document.getElementById('toTop').classList.toggle('show',scrollY>600);
     document.getElementById('bbar').classList.toggle('show',scrollY>700);}
   addEventListener('scroll',onScroll,{passive:true});onScroll();
   // anchor scroll with sticky header offset
+  // sub views: column and WHY MAC · FAQ open as their own screens
+  var openV=null,backY=0;
+  function viewOf(el){return el&&el.closest?el.closest('.view'):null;}
+  function showView(v,target,key){if(openV&&openV!==v)openV.hidden=true;if(!openV)backY=scrollY;openV=v;v.hidden=false;root.classList.add('vw');
+    tabs.forEach(function(a){a.classList.toggle('on',a.dataset.t===(key||v.id));});
+    v.scrollTop=0;
+    if(target&&target!==v)setTimeout(function(){v.scrollTop=target.getBoundingClientRect().top-v.getBoundingClientRect().top+v.scrollTop-66;if(target.tagName==='LI'||target.tagName==='DETAILS')target.classList.add('flash');},30);}
+  function hideView(){if(!openV)return;openV.hidden=true;openV=null;root.classList.remove('vw');scrollTo(0,backY);onScroll();if(location.hash)history.replaceState(null,'',location.pathname+location.search);}
+  document.querySelectorAll('.v-back').forEach(function(b){b.addEventListener('click',hideView);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&openV&&!root.classList.contains('dr'))hideView();});
   document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var id=a.getAttribute('href').slice(1),t=id==='top'?document.body:document.getElementById(id);if(!t)return;
-    e.preventDefault();closeDr();var top=id==='top'?0:t.getBoundingClientRect().top+scrollY-hd.offsetHeight-8;scrollTo({top:top,behavior:still?'auto':'smooth'});
+    var v=viewOf(t);
+    if(v){e.preventDefault();closeDr();showView(v,t,id);history.replaceState(null,'','#'+id);return;}
+    e.preventDefault();closeDr();if(openV)hideView();var top=id==='top'?0:t.getBoundingClientRect().top+scrollY-hd.offsetHeight-8;scrollTo({top:top,behavior:still?'auto':'smooth'});
     if(t.tagName==='LI'||t.tagName==='DETAILS'){t.classList.add('flash');}
     history.replaceState(null,'','#'+id);});
   document.getElementById('toTop').addEventListener('click',function(){scrollTo({top:0,behavior:still?'auto':'smooth'});});
@@ -816,6 +826,7 @@ html.dr .drawer{transform:none;opacity:1;visibility:visible;transition:transform
   function closeDr(){root.classList.remove('dr');dr.setAttribute('aria-hidden','true');mb.setAttribute('aria-expanded','false');}
   mb.addEventListener('click',openDr);document.getElementById('drClose').addEventListener('click',closeDr);document.getElementById('dim').addEventListener('click',closeDr);
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeDr();});
+  (function(){var id=location.hash.slice(1),t=id&&document.getElementById(id),v=viewOf(t);if(v)showView(v,t,id);})();
 
   // cart count from store (same browser)
   try{var ss=JSON.parse(localStorage.getItem('vs.session')||'null');var c=JSON.parse(localStorage.getItem('vs.'+(ss&&ss.uid?'cart.'+ss.uid:'cart.guest'))||'[]');var n=c.reduce(function(s,x){return s+(+x.qty||0);},0);if(n){var el=document.getElementById('cartCnt');el.textContent=n;el.hidden=false;}}catch(e){}
