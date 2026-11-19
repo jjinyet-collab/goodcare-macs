@@ -417,3 +417,16 @@ html.vw{overflow:hidden}
 @keyframes stkWob2{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
 .stk{animation:stkWob 2.8s ease-in-out infinite}
 .buy .stk2{animation:stkWob2 2.8s ease-in-out infinite}
+
+/* layout tidy */
+.rail{scroll-padding-inline:16px}
+.pc4 .ph{overflow:hidden}
+.pc4 .ph img{height:68%;bottom:12%}
+.pc4.box .ph .pb,.pc4.box .ph .pc2{height:56%;bottom:16%}
+.pc4.box .ph .pb{margin-left:-19%}
+.pc4.box .ph .pc2{margin-left:19%}
+.pc4.box .ph .p1{height:66%;bottom:9%}
+.pc4 .box1{width:44px;height:44px;font-size:11px}
+.hero .slide img{object-position:50% 28%!important}
+.rail .pc{min-width:0;flex:0 0 46%}
+.pc4 h3{white-space:normal;line-height:1.35;min-height:2.7em}
