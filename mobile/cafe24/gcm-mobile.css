@@ -400,3 +400,14 @@ html.vw{overflow:hidden}
 .buy .art img{height:150px}
 .buy .p1{left:calc(50% - 124px)}
 .buy .p2{left:calc(50% + 4px)}
+
+/* line-up 4 cards (1팩/12팩) */
+.pc4 .ph img{position:absolute;left:50%;bottom:10%;height:74%;width:auto;transform:translateX(-50%) rotate(var(--r,0deg))}
+.pc4.box .ph .pb{--r:-9deg;margin-left:-22%;height:66%;opacity:.95}
+.pc4.box .ph .pc2{--r:9deg;margin-left:22%;height:66%;opacity:.95}
+.pc4.box .ph .p1{height:74%}
+.pc4:hover .ph img.p1{transform:translateX(-50%) scale(1.05)}
+.pc4 .box1{position:absolute;z-index:2;left:8px;top:8px;width:50px;height:50px;border-radius:50%;background:#5A1530;color:#fff;border:3px solid #D7F25A;display:grid;place-items:center;font:900 12px/1 var(--display);letter-spacing:.02em;transform:rotate(-12deg);box-shadow:0 4px 10px rgba(0,0,0,.15)}
+.pc4-cart{position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.12)}
+.pc4-cart svg{width:17px;height:17px}
+#products{background:#FAF5EA;margin-top:0;padding-top:28px;padding-bottom:28px}

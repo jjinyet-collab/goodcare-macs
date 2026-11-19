@@ -17,37 +17,6 @@
   sl.addEventListener('pointerdown',restart);
   mark(0);restart();
 
-  // race: green 2, yellow 6, blue 2 run in groups and line up before the goals
-  var track=document.getElementById('track'),race=document.getElementById('race');
-  var plan=[ // [color, left%, top%] — each group lines up just before its goal
-    ['green',3,46],['green',15,58],
-    ['yellow',34,30],['yellow',46.5,30],['yellow',59,30],['yellow',34,60],['yellow',46.5,60],['yellow',59,60],
-    ['blue',82,40],['blue',82,64]];
-  var groups=[[0,1],[2,3,4,5,6,7],[8,9]],rn=[];
-  var order=plan.map(function(p,i){return i;}).sort(function(a,b){return plan[b][1]-plan[a][1];}),startX=[];
-  order.forEach(function(i,r){startX[i]=-14-r*9;});
-  plan.forEach(function(p){var d=document.createElement('div');d.className='rn';d.style.top=p[2]+'%';d.innerHTML='<img src="https://jjinyet-collab.github.io/goodcare-macs/mobile/assets/run-'+p[0]+'.svg" alt="">';track.appendChild(d);rn.push(d);});
-  var bubs=[].slice.call(track.querySelectorAll('.bub'));
-  var tids=[];
-  function reset(){tids.forEach(clearTimeout);tids=[];race.classList.remove('go','done');rn.forEach(function(d){d.classList.remove('stop');});bubs.forEach(function(b){b.classList.remove('on');});
-    rn.forEach(function(d,i){d.style.transition='none';d.style.left=startX[i]+'%';});void track.offsetWidth;}
-  function run(){reset();
-    if(still){rn.forEach(function(d,i){d.style.left=plan[i][1]+'%';});bubs.forEach(function(b){b.classList.add('on');});race.classList.add('done');return;}
-    race.classList.add('go');
-    // everyone starts together at the same speed; each stops at its own goal
-    var SPEED=42,last=0; // % of track per second — same for everyone
-    tids.push(setTimeout(function(){
-      rn.forEach(function(d,i){var dur=(plan[i][1]-startX[i])/SPEED;d.style.transition='left '+dur.toFixed(2)+'s linear';d.style.left=plan[i][1]+'%';
-        tids.push(setTimeout(function(){d.classList.add('stop');},dur*1000));});
-      groups.forEach(function(g,gi){var dur=Math.max.apply(null,g.map(function(i){return (plan[i][1]-startX[i])/SPEED;}));last=Math.max(last,dur);
-        tids.push(setTimeout(function(){bubs[gi].classList.add('on');},dur*1000+120));});
-      tids.push(setTimeout(function(){race.classList.remove('go');race.classList.add('done');},last*1000+150));
-    },300));}
-  new IntersectionObserver(function(es,o){if(es[0].isIntersecting){run();o.disconnect();}},{threshold:.45}).observe(race);
-  document.getElementById('replay').addEventListener('click',run);
-  track.addEventListener('click',run);track.setAttribute('role','button');track.setAttribute('tabindex','0');track.setAttribute('aria-label','눌러서 MAC 달리기 다시 보기');
-  track.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();run();}});
-  reset();
 
   // stats count-up
   var st=document.getElementById('stats');
