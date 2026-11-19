@@ -37,3 +37,7 @@
 .bb-art .p2{left:46%}
 @media (max-width:760px){.bb-art img{height:160px}}
 .pk img{width:clamp(130px,13vw,240px)}
+
+/* stickers: gentle wobble instead of full spin */
+@keyframes stkWob{0%,100%{transform:rotate(4deg)}50%{transform:rotate(20deg)}}
+.bb-art .stk{animation:stkWob 2.8s ease-in-out infinite}

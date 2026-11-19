@@ -411,3 +411,9 @@ html.vw{overflow:hidden}
 .pc4-cart{position:absolute;right:8px;bottom:8px;width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.12)}
 .pc4-cart svg{width:17px;height:17px}
 #products{background:#FAF5EA;margin-top:0;padding-top:28px;padding-bottom:28px}
+
+/* stickers: gentle wobble instead of full spin */
+@keyframes stkWob{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(-2deg)}}
+@keyframes stkWob2{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+.stk{animation:stkWob 2.8s ease-in-out infinite}
+.buy .stk2{animation:stkWob2 2.8s ease-in-out infinite}
