@@ -235,6 +235,7 @@ a.card{text-decoration:none}
 .mq{background:var(--orange);overflow:hidden;padding-block:20px;transform:rotate(-2deg);margin-block:-24px;position:relative;z-index:4;box-shadow:0 20px 40px rgba(0,0,0,.4)}
 .mq .t{display:flex;gap:34px;width:max-content;animation:mq 20s linear infinite;font:900 clamp(32px,4vw,60px)/1 var(--display);letter-spacing:-.02em;text-transform:uppercase;white-space:nowrap}
 .mq .t span:nth-child(even){color:var(--cobalt)}
+.nc,.mq .t span.nc{text-transform:none;color:inherit}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* ---------- partner ---------- */
@@ -695,7 +696,7 @@ html.fq-open,html.fq-open body{overflow:hidden}
   <!-- JOYFUL CARE RITUAL -->
   <section class="gut" id="gut" aria-label="About MACs · 2:6:2 MAC 달리기">
     <div class="gut-head wrap" id="about">
-      <h2 class="gh-t">About MACs<span class="ast" aria-hidden="true">✱</span></h2>
+      <h2 class="gh-t">About <span class="nc">MACs</span><span class="ast" aria-hidden="true">✱</span></h2>
       <div class="gh-copy">
         <p class="gh-lead">한 팩에 두 번의 영양, <em>굿케어맥스.</em></p>
         <p>오늘도 끼니는 챙겼는데,<br><em>장 속 미생물의 밥</em>도 챙겼나요?</p>
@@ -880,8 +881,8 @@ html.fq-open,html.fq-open body{overflow:hidden}
   </section>
 
   <div class="mq" aria-hidden="true"><div class="t">
-    <span>GOODCARE MACs</span><span>✱</span><span>이중영양</span><span>✱</span><span>Dual Nutrition</span><span>✱</span><span>장 속 미생물의 밥</span><span>✱</span>
-    <span>GOODCARE MACs</span><span>✱</span><span>이중영양</span><span>✱</span><span>Dual Nutrition</span><span>✱</span><span>장 속 미생물의 밥</span><span>✱</span>
+    <span>GOODCARE <span class="nc">MACs</span></span><span>✱</span><span>이중영양</span><span>✱</span><span>Dual Nutrition</span><span>✱</span><span>장 속 미생물의 밥</span><span>✱</span>
+    <span>GOODCARE <span class="nc">MACs</span></span><span>✱</span><span>이중영양</span><span>✱</span><span>Dual Nutrition</span><span>✱</span><span>장 속 미생물의 밥</span><span>✱</span>
   </div></div>
 
 
