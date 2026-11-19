@@ -653,3 +653,37 @@ html.fq-open,html.fq-open body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.gf-yum.on,.gf-mic.fed .mb{animation:none}}
 
 .gut .gf{--gf-max:var(--wrap);--gf-pad:max(16px,4vw)}
+
+/* ===== hero video (capsule film) ===== */
+.vid{position:relative;background:#F25C0A;overflow:hidden}
+.vid video{display:block;width:100%;aspect-ratio:16/9;max-height:100vh;object-fit:cover;background:#F25C0A}
+.vid-snd{position:absolute;right:max(16px,3vw);bottom:20px;z-index:2;display:inline-flex;align-items:center;gap:6px;border:0;border-radius:999px;padding:9px 14px;background:rgba(0,0,0,.45);color:#fff;font:700 13px/1 "Noto Sans KR",sans-serif;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.vid-snd:hover{background:rgba(0,0,0,.6)}
+.vid + .hero{padding-top:56px}
+/* ===== line-up shop cards (4 sets) ===== */
+.line-up{background:#FAF5EA;color:#14213D}
+.line-up .lu-head h2{color:#14213D}
+.line-up .lu-head p{color:#4A5470}
+.shop4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,1.8vw,28px)}
+.pc4{display:flex;flex-direction:column;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(20,33,61,.08);color:#14213D;text-decoration:none;transition:transform .25s,box-shadow .25s}
+.pc4:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(20,33,61,.14)}
+.pc4-ph{position:relative;aspect-ratio:1;background:var(--bg);overflow:hidden}
+.pc4-ph img{position:absolute;left:50%;top:52%;height:76%;width:auto;max-width:none;--t:translate(-50%,-50%);transform:var(--t);filter:drop-shadow(0 14px 16px rgba(0,0,0,.18));transition:transform .4s}
+.pc4:hover .pc4-ph .p1{transform:var(--t) scale(1.05) rotate(-2deg)}
+.pc4-ph .pb,.pc4-ph .pc{height:62%}
+.pc4-ph .pb{--t:translate(-92%,-56%) rotate(-10deg)}
+.pc4-ph .pc{--t:translate(-8%,-56%) rotate(10deg)}
+.pc4-ph .pb+.pc+.p1{height:70%;top:56%}
+.box1{position:absolute;z-index:2;right:12px;top:12px;width:74px;height:74px;border-radius:50%;background:#5A1330;color:#fff;display:grid;place-items:center;font:900 19px/1 Urbanist,Arial,sans-serif;letter-spacing:.02em;transform:rotate(12deg);box-shadow:0 8px 18px rgba(0,0,0,.2);border:3px solid #E7F75A}
+.pc4-tx{padding:18px 20px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pc4-tx h3{margin:0;font:700 clamp(15px,1.15vw,18px)/1.45 "Noto Sans KR",sans-serif;letter-spacing:-.02em}
+.pc4-tx .pr{margin:4px 0 0;font:800 clamp(18px,1.4vw,22px)/1.2 "Noto Sans KR",sans-serif}
+.pc4-tx .pr b{font-family:Urbanist,Arial,sans-serif;font-weight:900}
+.pc4-tx .unit{margin:0;font-size:13px;color:#7A8094}
+.pc4-ft{margin-top:auto;padding-top:12px;display:flex;justify-content:space-between;align-items:center}
+.pc4-ft .pc4-tag{font:800 12px/1 Urbanist,Arial,sans-serif;color:#F75E03;letter-spacing:.04em}
+.pc4-ft .pc4-cart{width:36px;height:36px;border-radius:10px;border:1.5px solid #14213D;display:grid;place-items:center}
+.pc4-ft .pc4-cart svg{width:18px;height:18px}
+.pc4:hover .pc4-ft .pc4-cart{background:#F75E03;border-color:#F75E03;color:#fff}
+@media (max-width:1000px){.shop4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px){.pc4-tx{padding:14px}.box1{width:58px;height:58px;font-size:15px}}

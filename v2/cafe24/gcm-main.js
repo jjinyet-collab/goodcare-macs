@@ -207,7 +207,7 @@ a.querySelector('[data-kakao]').onclick=e=>{e.preventDefault();const p=a.querySe
   var L=window.GCM_LINKS||{};
   function list(){return L.cate?'/product/list.html?cate_no='+encodeURIComponent(L.cate):'/product/list.html';}
   function prod(no){return no?'/product/detail.html?product_no='+encodeURIComponent(no):list();}
-  var map={list:list(),banana:prod(L.banana),pistachio:prod(L.pistachio),inquiry:L.inquiry||'/board/index.html',imbert:L.imbert||'https://www.immunobiome.co.kr/imbert'};
+  var map={list:list(),banana:prod(L.banana),pistachio:prod(L.pistachio),banana12:prod(L.banana12||L.banana),pistachio12:prod(L.pistachio12||L.pistachio),inquiry:L.inquiry||'/board/index.html',imbert:L.imbert||'https://www.immunobiome.co.kr/imbert'};
   document.querySelectorAll('a[data-gcm]').forEach(function(a){var u=map[a.getAttribute('data-gcm')];if(u)a.setAttribute('href',u);});
 })();
 

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!--
+  GOODCARE MACs 브랜드 메인 · 카페24 스마트디자인용
+  ▼ 아래 GCM_LINKS 에 카페24 번호만 넣으면 모든 구매 버튼이 연결돼요.
+    cate      : 굿케어맥스 상품분류 번호 (상품 > 상품분류 관리)   예) '24'
+    banana    : 그린바나나 오트 상품 번호 (상품 목록의 상품번호)  예) '12'
+    pistachio : 피스타치오 상품 번호                               예) '13'
+    banana12 / pistachio12 : 12팩(1BOX) 상품 번호 (비우면 1팩 상품으로 연결)
+    inquiry   : 1:1 문의 버튼이 갈 주소
+    imbert    : IM.BERT 상담 버튼이 갈 주소
+  번호를 비워 두면 상품 목록(/product/list.html)으로 연결돼요.
+  ※ 스타일·동작은 gcm-main.css / gcm-main.js(카페24 파일업로더 gcm 폴더)에서 불러와요. 새로 추가한 영상·라인업 이미지와 gcm-extra.css는 GitHub Pages에서 불러와요.
+    카페24 편집창이 스크립트 문법을 오류로 판단하지 않도록 분리했어요.
+-->
+<script>
+window.GCM_LINKS={cate:'',banana:'',banana12:'',pistachio:'',pistachio12:'',inquiry:'/board/index.html',imbert:'https://www.immunobiome.co.kr/imbert'};
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="GOODCARE MACs 굿케어맥스 — 내 몸과 장 속 미생물을 위한 이중영양">
+<meta property="og:image" content="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-duo-orange.jpg">
+<title>GOODCARE MACs Active</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/gcm-main.css?v=3"><link rel="stylesheet" href="https://jjinyet-collab.github.io/goodcare-macs/v2/cafe24/gcm-extra.css?v=1">
+</head>
+<body>
+
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="site band" id="hdr">
+  <nav class="nav wrap" aria-label="주요 메뉴">
+    <a class="logo" href="#top">GOODCARE <b>MACs</b></a>
+    <ul>
+      <li><a href="#about" class="on">About</a></li>
+      <li><a href="#mac">MAC</a></li>
+      <li><a href="#mosaic">Moments</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#lineup">Line-up</a></li>
+      <li><a href="#column">Column</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="shopbtn" href="/product/list.html" data-gcm="list">구매하기</a>
+    <button class="burger" type="button" aria-label="메뉴"><i></i><i></i><i></i></button>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <!-- BRAND FILM -->
+  <section class="vid" aria-label="굿케어맥스 브랜드 영상">
+    <video id="gcmFilm" src="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/gcm-capsule.mp4" poster="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/gcm-capsule-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+    <button type="button" class="vid-snd" id="vidSnd" aria-label="소리 켜기" onclick="var v=document.getElementById('gcmFilm');v.muted=!v.muted;this.textContent=v.muted?'🔇 소리 켜기':'🔊 소리 끄기';if(!v.muted)v.play();">🔇 소리 켜기</button>
+  </section>
+
+  <section class="hero band" aria-label="GOODCARE MACs">
+    <canvas class="flow" id="flow" aria-hidden="true"></canvas>
+    <div class="stack wrap hero5">
+      <img class="logo-c" src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-logo-circle.png" alt="" width="512" height="512">
+      <h1 class="mark"><span class="line">GOODCARE <b>MACs</b></span><span class="sr-kr">굿케어맥스</span></h1>
+      <p class="tl">한 팩에 두 번의 영양, <b>굿케어맥스</b></p>
+    </div>
+    <a class="duo" href="/product/list.html" data-gcm="list" aria-label="굿케어맥스 그린바나나 오트 · 피스타치오 구매하러 가기"><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-duo-orange.jpg" alt="굿케어맥스 그린바나나 오트와 피스타치오 두 팩, 바나나·오트·피스타치오와 함께" width="1536" height="1024"></a>
+  </section>
+  <div class="mq mq-w" aria-label="MACs · 식이섬유 12.5g"><div class="t" aria-hidden="true"><span>MACs</span><i>✱</i><span>식이섬유 12.5g</span><i>✱</i><span>MACs</span><i>✱</i><span>식이섬유 12.5g</span><i>✱</i><span>MACs</span><i>✱</i><span>식이섬유 12.5g</span><i>✱</i><span>MACs</span><i>✱</i><span>식이섬유 12.5g</span><i>✱</i><span>MACs</span><i>✱</i><span>식이섬유 12.5g</span><i>✱</i><span>MACs</span><i>✱</i><span>식이섬유 12.5g</span><i>✱</i><span>MACs</span><i>✱</i><span>식이섬유 12.5g</span><i>✱</i><span>MACs</span><i>✱</i><span>식이섬유 12.5g</span><i>✱</i></div></div>
+
+  <!-- JOYFUL CARE RITUAL -->
+  <section class="gut" id="gut-about" aria-label="About MACs">
+    <div class="gut-head wrap" id="about">
+      <h2 class="gh-t">About <span class="nc">MACs</span><span class="ast" aria-hidden="true">✱</span></h2>
+      <div class="gh-copy">
+        <p class="gh-lead">한 팩에 두 번의 영양, <em>굿케어맥스.</em></p>
+        <p>오늘도 끼니는 챙겼는데,<br><em>장 속 미생물의 밥</em>도 챙겼나요?</p>
+        <p><em>굿케어맥스</em>는 내 몸을 위한 영양에<br>장 속 미생물의 먹이가 되는 <em>MACs</em>를 더했습니다.</p>
+        <p>다양한 식이섬유를 <em>2:6:2</em> 비율로 배합해<br><span class="gh-big">한 팩에 <em>12.5g</em>, 하루 기준치의 50%를 담았습니다.</span></p>
+      </div>
+    </div>
+<div class="gf" id="gutFlow" aria-label="MACs가 장 속을 흘러가며 미생물에게 밥을 주는 애니메이션">
+  <div class="gf-hd">
+    <h3>MACs가 장 속을 흘러가며,<br>미생물에게 밥을 줍니다.</h3>
+    <p>MACs = 사람은 소화하지 못하고, 장 속 미생물이 먹는 식이섬유 · 한 팩 12.5g</p>
+  </div>
+  <div class="gf-stage" id="gfStage" data-assets="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/" role="button" tabindex="0" aria-label="눌러서 다시 보기"></div>
+  <span class="gf-tip" aria-hidden="true">눌러서 다시 보기 ↻</span>
+</div>
+    <div class="wrap band"><p class="src-note">*원물에 대한 설명 및 건강정보 입니다.</p></div>
+  </section>
+
+  <!-- LINE-UP -->
+  <section class="line-up band" id="lineup">
+    <div class="wrap">
+      <div class="lu-head">
+        <h2 class="rv">Line<span class="o">-</span>up<span class="ast o" aria-hidden="true">✱</span></h2>
+        <div class="lu-r rv">
+          <p class="rv">한 팩 2,500원 · 12팩 1BOX 30,000원</p>
+        </div>
+      </div>
+      <div class="shop4">
+        <a class="pc4 rv" href="/product/list.html" data-gcm="banana"><div class="pc4-ph" style="--bg:#EEF8B8"><img class="p1" src="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/gcm-pack-banana-v2.png" alt="굿케어맥스 그린바나나오트"></div><div class="pc4-tx"><h3>굿케어맥스 그린바나나오트 1팩</h3><p class="pr"><b>2,500</b>원</p><p class="unit">1팩 · 200mL</p><div class="pc4-ft"><span class="pc4-tag">MACs 12.5g</span><span class="pc4-cart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span></div></div></a>
+        <a class="pc4 rv" href="/product/list.html" data-gcm="banana12"><div class="pc4-ph" style="--bg:#E2F48C"><img class="pb" src="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/gcm-pack-banana-v2.png" alt=""><img class="pc" src="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/gcm-pack-banana-v2.png" alt=""><img class="p1" src="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/gcm-pack-banana-v2.png" alt="굿케어맥스 그린바나나오트 12팩"><span class="box1">1BOX</span></div><div class="pc4-tx"><h3>굿케어맥스 그린바나나오트 1BOX (12팩)</h3><p class="pr"><b>30,000</b>원</p><p class="unit">12팩 · 개당 2,500원</p><div class="pc4-ft"><span class="pc4-tag">MACs 12.5g</span><span class="pc4-cart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span></div></div></a>
+        <a class="pc4 rv" href="/product/list.html" data-gcm="pistachio"><div class="pc4-ph" style="--bg:#FFE1CC"><img class="p1" src="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/gcm-pack-pistachio-v2.png" alt="굿케어맥스 피스타치오"></div><div class="pc4-tx"><h3>굿케어맥스 피스타치오 1팩</h3><p class="pr"><b>2,500</b>원</p><p class="unit">1팩 · 200mL</p><div class="pc4-ft"><span class="pc4-tag">MACs 12.5g</span><span class="pc4-cart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span></div></div></a>
+        <a class="pc4 rv" href="/product/list.html" data-gcm="pistachio12"><div class="pc4-ph" style="--bg:#FFCBA6"><img class="pb" src="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/gcm-pack-pistachio-v2.png" alt=""><img class="pc" src="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/gcm-pack-pistachio-v2.png" alt=""><img class="p1" src="https://jjinyet-collab.github.io/goodcare-macs/v2/assets/gcm-pack-pistachio-v2.png" alt="굿케어맥스 피스타치오 12팩"><span class="box1">1BOX</span></div><div class="pc4-tx"><h3>굿케어맥스 피스타치오 1BOX (12팩)</h3><p class="pr"><b>30,000</b>원</p><p class="unit">12팩 · 개당 2,500원</p><div class="pc4-ft"><span class="pc4-tag">MACs 12.5g</span><span class="pc4-cart" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span></div></div></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+
+
+  <!-- MAC STORY 01–04 -->
+  <section class="mc mc1 band" id="mac">
+    <span class="mc-giant" aria-hidden="true">MAC</span>
+    <div class="wrap">
+      <div class="mc-intro rv">
+        <span class="mc-chip">균형영양식의 새로운 기준</span>
+        <h2>MAC은 <em>“장 속 미생물의 밥”</em><br>내 몸과 미생물을 위한 이중영양 솔루션, 굿케어맥스</h2>
+      </div>
+      <div class="mc-grid">
+        <div class="mc-step rv">
+          <div class="mc-count"><b>01</b><span>/ 04</span></div>
+          <p class="mc-k">MAC은</p>
+          <h3>장 속 미생물의 밥입니다</h3>
+          <p>사람은 소화하지 못하지만,<br>장 속 미생물은 먹을 수 있는 탄수화물이에요.</p>
+        </div>
+        <div class="duel" aria-label="사람은 MAC을 소화하지 못하고, 장 속 미생물이 먹는다는 설명 그림">
+          <div class="box human"><h4>사람</h4><p>소화하지 못해요</p><span class="x" aria-hidden="true">✕</span></div>
+          <div class="cap-wrap" aria-hidden="true"><b class="cap"><span>MAC</span><i><em></em><em></em><em></em></i></b></div>
+          <div class="box microbe"><h4>장 속 미생물</h4><p>맛있게 먹어요</p><div class="bugs" aria-hidden="true"><i><svg viewBox="0 0 70 28"><path d="M52 14c5-7 9 7 14 0" fill="none" stroke="#FF6839" stroke-width="2.4" stroke-linecap="round"/><rect x="2" y="4" width="50" height="20" rx="10" fill="#FF6839"/><circle cx="16" cy="12" r="2.2" fill="rgba(0,0,0,.25)"/><circle cx="28" cy="16" r="1.8" fill="rgba(0,0,0,.25)"/><circle cx="39" cy="11" r="2" fill="rgba(0,0,0,.25)"/></svg></i><i><svg viewBox="0 0 40 24"><circle cx="12" cy="12" r="10" fill="#FF6839"/><circle cx="28" cy="12" r="10" fill="#FF6839"/><path d="M20 4v16" stroke="rgba(0,0,0,.25)" stroke-width="1.6"/></svg></i><i><svg viewBox="0 0 44 34"><path d="M8 26C8 12 20 6 34 10" fill="none" stroke="#FF6839" stroke-width="12" stroke-linecap="round"/><path d="M34 10c4-2 6-6 8-8" fill="none" stroke="#FF6839" stroke-width="2.2" stroke-linecap="round"/></svg></i><i><svg viewBox="0 0 46 30"><circle cx="8" cy="22" r="7" fill="#FF6839"/><circle cx="22" cy="15" r="7" fill="#FF6839"/><circle cx="36" cy="8" r="7" fill="#FF6839"/></svg></i><i><svg viewBox="0 0 60 26"><path d="M6 13c6-10 10 10 16 0s10 10 16 0 10 10 16 0" fill="none" stroke="#FF6839" stroke-width="7" stroke-linecap="round"/></svg></i></div></div>
+        </div>
+      </div>
+      <p class="src-note">*원물에 대한 설명 및 건강정보 입니다.</p>
+    </div>
+  </section>
+
+  <section class="mc mc2 band">
+    <span class="mc-giant" aria-hidden="true">DUAL</span>
+    <div class="wrap mc-grid">
+      <div class="mc-step rv">
+        <div class="mc-count"><b>02</b><span>/ 04</span></div>
+        <p class="mc-k">굿케어맥스는</p>
+        <h3>장 속 미생물의 밥까지 담은 한 팩</h3>
+        <p>나를 위한 균형영양에 미생물을 위한 MAC을 더해<br>한 팩으로 두 번의 영양을 챙겨요.</p>
+        <div class="mc-chips"><span class="c1">1st 나를 위한 균형영양</span><span class="c2">2nd 미생물을 위한 MAC</span></div>
+      </div>
+      <div class="packs">
+        <div class="pk c"><span class="pk-tag">그린바나나 오트</span><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-pack-banana2.png" alt="굿케어맥스 그린바나나 오트"><i class="pk-sh"></i></div>
+        <div class="pk b"><span class="pk-tag">피스타치오</span><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-pack-pistachio.png" alt="굿케어맥스 피스타치오"><i class="pk-sh"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mc mc3 band">
+    <span class="mc-giant" aria-hidden="true">2:6:2</span>
+    <div class="wrap mc-grid">
+      <div class="mc-step rv">
+        <div class="mc-count"><b>03</b><span>/ 04</span></div>
+        <p class="mc-k">2 : 6 : 2는</p>
+        <h3>건강한 밥처럼<br>잡곡쌀 · 흰쌀 · 콩을 섞은 비율</h3>
+        <p>단쇄 2 · 중쇄 6 · 장쇄 2,<br>3가지 길이를 섞어 든든하게 설계했어요.</p>
+        <div class="ratio" aria-label="건강한 밥 잡곡쌀 2 흰쌀 6 콩 2, 굿케어맥스 MAC 단쇄 2 중쇄 6 장쇄 2">
+          <div class="rrow"><span>건강한 밥</span><div class="rbar"><i style="background:#F3D9B1">잡곡쌀 2</i><i style="background:#fff">흰쌀 6</i><i style="background:#7A4A2A;color:#fff">콩 2</i></div></div>
+          <div class="rrow"><span>굿케어맥스 MAC</span><div class="rbar m"><i style="background:#000;color:#fff">단쇄 2</i><i style="background:#fff">중쇄 6</i><i style="background:var(--cobalt);color:#fff">장쇄 2</i></div></div>
+        </div>
+        <p class="src-note">*원물에 대한 설명 및 건강정보 입니다.</p>
+      </div>
+      <div class="rice"><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-rice-244.jpg" alt="흰쌀, 잡곡, 콩과 잡곡밥"></div>
+    </div>
+  </section>
+
+  <section class="mc mc4 band">
+    <span class="mc-giant" aria-hidden="true">ONLY</span>
+    <div class="wrap mc-grid">
+      <div class="mc-step rv">
+        <div class="mc-count"><b>04</b><span>/ 04</span></div>
+        <p class="mc-k">굿케어맥스만의</p>
+        <h3>다른 균형영양식과<br>이렇게 달라요</h3>
+        <p>장 속 미생물까지 생각한 설계부터 근거 있는 원료,<br>하루 섭취 기준까지 꼼꼼하게 담았어요.</p>
+        <p class="src-note">*원물에 대한 설명 및 건강정보 입니다.</p>
+      </div>
+      <div class="usp">
+        <article><span class="ub">01</span><span class="uk">한 팩에 두 번</span><h4>‘MACs 이중영양 설계’</h4><p>나의 몸을 위한 영양과 장 속 미생물을 위한 MAC을 한 팩에 함께 설계했어요.</p><a class="u-more" href="#faq" data-fq="fq-u1">자세히 보기 <span aria-hidden="true">→</span></a></article>
+        <article><span class="ub">02</span><span class="uk">열처리 유익균</span><h4>사균체</h4><p>유익균을 열처리한 사균체 원료를 100억 cells 이상 담았어요.</p><a class="u-more" href="#faq" data-fq="fq-u2">자세히 보기 <span aria-hidden="true">→</span></a></article>
+        <article><span class="ub">03</span><span class="uk">유익균 유래 성분</span><h4>포스트바이오틱스</h4><p>유익균이 만들어낸 성분까지 함께 담아 장 속 환경을 생각했어요.</p><a class="u-more" href="#faq" data-fq="fq-u3">자세히 보기 <span aria-hidden="true">→</span></a></article>
+        <article><span class="ub">04</span><span class="uk">자체 기준</span><h4>‘MACs 지수’</h4><p>유효성분을 하루에 얼마나 섭취하면 좋은지, 일섭취량 기준을 제시해요.</p><a class="u-more" href="#faq" data-fq="fq-u4">자세히 보기 <span aria-hidden="true">→</span></a></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOSAIC -->
+  <section class="mosaic" id="mosaic" aria-label="굿케어맥스와 함께하는 순간">
+    <figure class="m-a"><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-joyful-ritual.jpg" alt="잔디밭에서 웃고 있는 가족과 반려견" style="object-position:30% 30%"><figcaption>Joyful Care Ritual</figcaption></figure>
+    <figure class="m-b"><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-hand-balanced.jpg" alt="손에 든 굿케어맥스"><figcaption>한 손에 한 끼</figcaption></figure>
+    <figure class="m-c"><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-rice-244.jpg" alt="흰쌀, 잡곡, 콩과 잡곡밥"><figcaption>2 : 6 : 2</figcaption></figure>
+    <figure class="m-d"><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/day-morning.jpg" alt="아침 주방 조리대 위 굿케어맥스 균형영양식"><figcaption>아침 루틴</figcaption></figure>
+    <figure class="m-e"><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/imbert-kit.jpg" alt="IM.BERT KIT 상자를 든 두 손"><figcaption>IM.BERT KIT</figcaption></figure>
+    <figure class="m-f"><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/day-lunch.jpg" alt="사무실 책상 위 굿케어맥스 균형영양식"><figcaption>바쁜 점심</figcaption></figure>
+    <figure class="m-g"><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/day-bag.jpg" alt="공원 벤치 위 가방 앞 굿케어맥스 두 종"><figcaption>가방 속 상비</figcaption></figure>
+    <figure class="m-h"><img src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/imbert-keyvisual.jpg" alt="IM.BERT 장내 미생물 분석 키비주얼"><figcaption>나에게 맞춘 설계</figcaption></figure>
+  </section>
+
+  <!-- STATEMENT + STATS -->
+  <section class="state band">
+    <div class="wrap">
+      <div class="row">
+        <h2 class="rv"><span class="g">We feed</span><br><span class="b">you &amp; your</span><br><span class="b">microbes</span><span class="ast o" aria-hidden="true">✱</span></h2>
+        <div class="side rv">
+          <p>내 몸을 위한 영양만으로는 부족하니까<br>굿케어맥스는 <b>장 속 미생물의 밥</b>까지 한 팩에 담습니다.<br>분석에서 설계까지 이어지는 흐름으로<br><b>한 사람에게 맞춘 이중영양</b>을 만듭니다.</p>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat rv"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M5 8c3 0 4 2 7 2s4-2 7-2M5 14c3 0 4 2 7 2s4-2 7-2"/></svg></span><h5>Dietary fiber</h5><span class="n" data-to="12.5" data-dec="1" data-suf="g">12.5g</span><small>1병 식이섬유</small></div>
+        <div class="stat rv"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="#fff"/></svg></span><h5>Daily value</h5><span class="n" data-to="50" data-suf="%">50%</span><small>1일 기준치 25g 대비</small></div>
+        <div class="stat rv"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="#fff"><circle cx="6" cy="8" r="2.6"/><circle cx="12" cy="6" r="2.6"/><circle cx="18" cy="8" r="2.6"/><circle cx="9" cy="15" r="2.6"/><circle cx="15" cy="15" r="2.6"/></svg></span><h5>Fiber blend</h5><span class="n" data-to="5" data-suf="종">5종</span><small>발효 속도가 다른 식이섬유</small></div>
+        <div class="stat rv"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="4" y="9" width="16" height="7" rx="3.5"/><path d="M12 9v7"/></svg></span><h5>Postbiotics</h5><span class="n" data-to="100" data-suf="억+">100억+</span><small>사균체 cells (원료사 COA)</small></div>
+      </div>
+      <p class="src-note">*원물에 대한 설명 및 건강정보 입니다.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="proc band" id="process">
+    <div class="wrap">
+      <h2 class="rv">Dual nutrition<br><span class="o">from</span> kit <span class="o">to</span> you<span class="ast" aria-hidden="true">✱</span></h2>
+      <p class="lead rv">검사 키트 수령부터 AI 리포트까지는 이뮤노바이옴이, 리포트를 바탕으로 한 이중영양 설계는 굿케어맥스가 맡습니다. 집에서 시작해 한 사람의 데이터로 끝까지 이어집니다.</p>
+      <div class="rings" id="rings">
+        <div class="ring"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96"/><polyline points="190,92 196,100 202,92"/><polyline points="10,108 4,100 -2,108"/></svg><b>01</b><span>키트 수령</span></div>
+        <div class="ring"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96"/><polyline points="190,92 196,100 202,92"/><polyline points="10,108 4,100 -2,108"/></svg><b>02</b><span>자택 간편 채취</span></div>
+        <div class="ring"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96"/><polyline points="190,92 196,100 202,92"/><polyline points="10,108 4,100 -2,108"/></svg><b>03</b><span>IM.BERT<br>정밀 분석</span></div>
+        <div class="ring"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96"/><polyline points="190,92 196,100 202,92"/><polyline points="10,108 4,100 -2,108"/></svg><b>04</b><span>AI 맞춤<br>리포트</span></div>
+        <div class="ring"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96"/><polyline points="190,92 196,100 202,92"/><polyline points="10,108 4,100 -2,108"/></svg><b>05</b><span>1:1<br>이중영양 설계</span></div>
+      </div>
+      <div class="who"><span><i style="background:#fff"></i>01–04 분석 · 진단 by IMMUNOBIOME</span><span><i style="background:var(--orange)"></i>05 맞춤 설계 by GOODCARE MACs</span></div>
+    </div>
+  </section>
+
+  <div class="mq" aria-hidden="true"><div class="t">
+    <span>GOODCARE <span class="nc">MACs</span></span><span>✱</span><span>이중영양</span><span>✱</span><span>Dual Nutrition</span><span>✱</span><span>장 속 미생물의 밥</span><span>✱</span>
+    <span>GOODCARE <span class="nc">MACs</span></span><span>✱</span><span>이중영양</span><span>✱</span><span>Dual Nutrition</span><span>✱</span><span>장 속 미생물의 밥</span><span>✱</span>
+  </div></div>
+
+
+  <!-- BUY BANNER -->
+  <section class="buyban" aria-label="굿케어맥스 구매하기">
+    <div class="bb-bar">
+      <div class="wrap bb-in">
+        <div class="bb-art" aria-hidden="true">
+          <span class="bl bl1"></span><span class="bl bl2"></span>
+          <span class="sp s1"></span><span class="sp s2"></span><span class="sp s3"></span>
+          <img class="p1" src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-pack-banana2.png" alt="">
+          <img class="p2" src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/assets/gcm-pack-pistachio.png" alt="">
+          <span class="stk">식이섬유<b>12.5g</b>하루 50%</span>
+        </div>
+        <div class="bb-tx"><small>GOODCARE MACs</small><b>오늘부터, 미생물까지 챙기는 영양</b><span>그린바나나 오트 · 피스타치오 — 3만원 이상 무료배송 · 첫 구매 2,000원 쿠폰</span></div>
+        <a class="bb-btn" href="/product/list.html" data-gcm="list">지금 구매하기 <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLUMN -->
+  <section class="colm band" id="column">
+    <div class="wrap">
+      <h2 class="rv">Column<span class="ast o" aria-hidden="true">✱</span></h2>
+      <p class="lead rv">한 병에 담긴 이야기를 소비자 눈높이에 맞춰 다섯 편의 짧은 글로 옮겼어요.</p>
+      <div class="board">
+        <div class="board-head" aria-hidden="true"><span>No.</span><span>분류</span><span>제목</span><span>작성</span><span></span></div>
+        <details class="post" id="column-05">
+          <summary><span class="b-no">05</span><span class="b-cat">우리의 약속</span><span class="b-title">우리가 말하는 것, 말하지 않는 것</span><span class="b-meta">2026.10.30</span><span class="b-arrow" aria-hidden="true"></span></summary>
+          <div class="post-body"><h3>우리가 말하는 것, 말하지 않는 것</h3><p>원료에 대한 연구는 많지만, 원료의 연구 결과가 곧 제품의 효과는 아니에요.</p><p>그래서 굿케어맥스는 한 병에 무엇이 얼마나 들었는지를 정확히 알려드리는 데 집중해요. 식이섬유 12.5g, 사균체 100억 cells 이상, 락토프리. 확인되지 않은 효과는 약속하지 않을게요.</p><button type="button" class="post-close">목록으로 접기</button></div>
+        </details>
+        <details class="post" id="column-04">
+          <summary><span class="b-no">04</span><span class="b-cat">사균체</span><span class="b-title">살아 있는 유산균 대신 ‘사균체’를 담은 이유</span><span class="b-meta">2026.10.30</span><span class="b-arrow" aria-hidden="true"></span></summary>
+          <div class="post-body"><h3>살아 있는 유산균 대신 ‘사균체’를 담은 이유</h3><p>굿케어맥스에는 열처리한 유산균, 사균체 EF-2001이 들어 있어요. 살아 있는 균이 아니어서 상온에서도 안정적이고, 고온 살균 공정을 거쳐도 영향이 적어요.</p><p>한 병에 사균체 100억 cells 이상을 담았고, 이 수치는 원료사의 시험성적서(COA)로 확인해요.</p><button type="button" class="post-close">목록으로 접기</button></div>
+        </details>
+        <details class="post" id="column-03">
+          <summary><span class="b-no">03</span><span class="b-cat">맛과 식감</span><span class="b-title">부드럽게 넘어가는 맛의 비밀</span><span class="b-meta">2026.10.30</span><span class="b-arrow" aria-hidden="true"></span></summary>
+          <div class="post-body"><h3>부드럽게 넘어가는 맛의 비밀</h3><p>식이섬유를 많이 넣으면 텁텁해지거나 가라앉기 쉬워요. 치커리 이눌린은 약 3%일 때 가장 크리미한 식감을 내고, 프락토올리고당은 은은한 단맛을 더해요.</p><p>폴리덱스트로스는 열과 산에 강해 살균 과정을 거쳐도 안정적이고, 난소화성말토덱스트린은 맛이 없고 잘 녹아 가볍게 넘어가요. 여기에 오트와 그린바나나로 고소한 풍미를 더했어요.</p><button type="button" class="post-close">목록으로 접기</button></div>
+        </details>
+        <details class="post" id="column-02">
+          <summary><span class="b-no">02</span><span class="b-cat">배합 설계</span><span class="b-title">왜 한 가지가 아니라 다섯 가지일까요?</span><span class="b-meta">2026.10.30</span><span class="b-arrow" aria-hidden="true"></span></summary>
+          <div class="post-body"><h3>왜 한 가지가 아니라 다섯 가지일까요?</h3><p>식이섬유는 종류마다 장 속에서 발효되는 속도가 달라요. 이눌린과 올리고당은 빠르게, 구아검가수분해물은 완만하게, 폴리덱스트로스와 난소화성말토덱스트린은 천천히 발효돼요.</p><p>그래서 한 가지 원료를 많이 넣는 대신, 속도가 다른 다섯 가지를 고르게 섞어 12.5g을 채웠어요. 흰쌀·잡곡쌀·콩을 섞어 짓는 밥처럼요.</p><button type="button" class="post-close">목록으로 접기</button></div>
+        </details>
+        <details class="post" id="column-01" open>
+          <summary><span class="b-no">01</span><span class="b-cat">식이섬유</span><span class="b-title">식이섬유 12.5g, 몸속에서는 어디로 갈까요?</span><span class="b-meta">2026.10.30</span><span class="b-arrow" aria-hidden="true"></span></summary>
+          <div class="post-body"><h3>식이섬유 12.5g, 몸속에서는 어디로 갈까요?</h3><p>식이섬유는 사람의 소화효소로는 분해되지 않아요. 입과 위, 소장을 그대로 지나 대장까지 도착하고, 그곳에서 장 속 미생물이 먹을 수 있는 ‘밥’이 돼요.</p><p>굿케어맥스가 MAC을 ‘장 속 미생물의 밥’이라고 부르는 이유예요. 한 병에는 이런 식이섬유가 12.5g, 하루 영양성분 기준치(25g)의 절반만큼 들어 있어요.</p><button type="button" class="post-close">목록으로 접기</button></div>
+        </details>
+      </div>
+      <p class="col-note">칼럼 속 원료 이야기는 원료에 대한 일반적인 설명이며, 굿케어맥스 제품의 효능·효과를 뜻하지 않아요.</p>
+      <p class="src-note">*원물에 대한 설명 및 건강정보 입니다.</p>
+    </div>
+  </section>
+
+  <!-- FAQ (opens as its own screen) -->
+  <section class="fq-view" id="faq" aria-label="MAC FAQ" hidden>
+    <div class="fq-in">
+      <div class="fq-top"><span class="fq-logo">GOODCARE <b>MACs</b></span><button type="button" class="fq-close" id="fqClose">닫기 ✕</button></div>
+
+      <div class="fq-sec">
+        <span class="fq-eb">WHY MAC</span>
+        <h2>왜 <em>MAC</em>을 챙겨야 할까요?</h2>
+        <p class="fq-lead">끼니는 챙기는데, 정작 <strong>장 속 미생물의 밥</strong>은 잊기 쉬워요. 굿케어맥스가 한 병에 무엇을, 왜 담았는지 네 가지로 정리했어요.</p>
+        <ol class="why">
+          <li><span class="why-n">01</span><div><h3>식이섬유, 생각보다 덜 먹고 있어요</h3>
+            <p>식이섬유 하루 기준치는 25g이에요. 그런데 정제된 밥과 빵, 가공식품이 많은 요즘 식단으로는 이만큼 채우기가 쉽지 않아요. 미국 연구에서는 권장량을 채우는 사람이 <strong>10%도 안 된다</strong>고 보고했을 정도예요.</p>
+            <p class="fq-src">Buddington RK et al. Nutrients. 2017;9(12):1372.</p></div></li>
+          <li><span class="why-n">02</span><div><h3>장 속 미생물에게도 밥이 필요해요</h3>
+            <p>MAC은 우리 몸은 소화하지 못하지만 <strong>장 속 미생물은 먹을 수 있는 탄수화물</strong>이에요. 평소 식이섬유를 적게 먹던 건강한 성인이 4주 동안 매일 이눌린을 챙겨 먹자, 장내 비피더스균 비율이 높아진 연구가 있어요.</p>
+            <p class="fq-src">Reimer RA et al. Am J Clin Nutr. 2020;111(6):1286-1296.</p></div></li>
+          <li><span class="why-n">03</span><div><h3>미생물마다 좋아하는 밥이 달라요, 그래서 <span style="color:var(--orange)">2:6:2</span></h3>
+            <p>식이섬유는 사슬 길이에 따라 발효되는 속도가 달라요. 짧은 사슬은 빠르게, 긴 사슬은 천천히 발효돼서 장을 지나는 동안 <strong>시간차를 두고 여러 미생물의 밥</strong>이 돼요. 실제로 이눌린을 먹었을 때 장 속에서는 한두 균이 아니라 여러 미생물 그룹이 각자 다르게 반응했어요.</p>
+            <p>굿케어맥스는 한 가지를 많이 넣는 대신 단쇄 2 · 중쇄 6 · 장쇄 2로 섞어, <strong>장 속 생태계 전체</strong>가 나눠 먹을 수 있게 설계했어요.</p>
+            <p class="fq-src">Vandeputte D et al. Gut. 2017;66(11):1968-1974.</p></div></li>
+          <li><span class="why-n">04</span><div><h3>한 병에 두 번의 영양</h3>
+            <p>MAC만 따로 챙기려면 번거롭고 값도 만만치 않아요. 그래서 굿케어맥스는 <strong>나를 위한 균형영양</strong>에 비타민·무기질을 갖추고, 여기에 <strong>미생물을 위한 MAC 12.5g</strong>(하루 기준치의 50%)과 사균체 100억 cells 이상을 더했어요. 한 끼를 챙기는 동시에 장 속 미생물의 밥까지 챙기는 거죠.</p></div></li>
+        </ol>
+      </div>
+
+      <div class="fq-sec" id="fq-only">
+        <span class="fq-eb">ONLY GOODCARE MACs</span>
+        <h2>굿케어맥스만의 <em>네 가지</em></h2>
+        <p class="fq-lead">브랜드 페이지에서 소개한 네 가지를 조금 더 풀어 설명하고, 일상에서 바로 해 볼 수 있는 <strong>웰니스 라이프 팁</strong>을 함께 담았어요.</p>
+        <ol class="why only">
+          <li id="fq-u1"><span class="why-n">01</span><div><span class="uk2">한 팩에 두 번</span><h3>‘MACs 이중영양 설계’</h3>
+            <p>보통 균형영양식은 <strong>나에게 필요한 영양</strong>, 곧 탄수화물·단백질·지방과 비타민·무기질을 채우는 데 집중해요. 굿케어맥스는 여기에 <strong>장 속 미생물이 먹는 MAC</strong>을 한 팩에 함께 설계했어요. 한 번 마시면 나를 위한 한 끼와 미생물을 위한 한 끼가 동시에 채워져서 ‘이중영양’이에요.</p>
+            <p>MAC은 길이가 다른 식이섬유를 단쇄 2 · 중쇄 6 · 장쇄 2로 섞어, 한 팩에 <strong>12.5g</strong>(하루 기준치의 50%)을 담았어요.</p>
+            <div class="tip"><b>WELLNESS TIP</b><p>끼니를 거르기 쉬운 시간을 먼저 찾아 보세요. 아침을 자주 건너뛴다면 전날 밤 한 팩을 눈에 잘 띄는 곳에 꺼내 두기만 해도, 나의 한 끼와 미생물의 밥을 함께 놓치지 않게 돼요.</p></div></div></li>
+          <li id="fq-u2"><span class="why-n">02</span><div><span class="uk2">열처리 유익균</span><h3>사균체</h3>
+            <p>사균체는 유익균을 열처리해 생명 활동을 멈춘 균체예요. 살아 있어야 하는 균이 아니라서 <strong>보관하고 유통하는 동안 균 수가 줄어들 걱정이 적고</strong>, 매일 마시는 음료에 담기 좋아요.</p>
+            <p>굿케어맥스에는 사균체 원료를 <strong>100억 cells 이상</strong> 담았어요.</p>
+            <div class="tip"><b>WELLNESS TIP</b><p>좋은 습관은 이미 하는 일에 붙이면 오래가요. 양치 후, 출근 가방을 챙길 때처럼 매일 하는 행동 바로 다음을 ‘한 팩 마시는 시간’으로 정해 보세요.</p></div></div></li>
+          <li id="fq-u3"><span class="why-n">03</span><div><span class="uk2">유익균 유래 성분</span><h3>포스트바이오틱스</h3>
+            <p>국제 프로바이오틱스·프리바이오틱스 과학협회(ISAPP)는 포스트바이오틱스를 <strong>‘몸에 이로움을 주는, 생명 활동이 없는 미생물이나 그 구성 성분’</strong>으로 정의해요. 사균체도, 유익균이 만들어 낸 성분도 여기에 속해요.</p>
+            <p>살아 있는 균인 프로바이오틱스, 균의 먹이인 프리바이오틱스와 MAC에 이어, 장 속 환경을 돌보는 또 하나의 축이라고 보면 쉬워요.</p>
+            <p class="fq-src">Salminen S et al. Nat Rev Gastroenterol Hepatol. 2021;18(9):649-667. <a href="https://doi.org/10.1038/s41575-021-00440-6" target="_blank" rel="noopener">doi:10.1038/s41575-021-00440-6</a></p>
+            <div class="tip"><b>WELLNESS TIP</b><p>식탁에 익숙한 발효식품을 하루 한 가지 곁들여 보세요. 김치, 된장국, 플레인 요거트면 충분해요. 건강한 성인들이 10주 동안 발효식품을 늘려 먹은 무작위 연구에서 장내 미생물의 다양성이 높아졌어요.</p><p class="fq-src">Wastyk HC et al. Cell. 2021;184(16):4137-4153. <a href="https://doi.org/10.1016/j.cell.2021.06.019" target="_blank" rel="noopener">doi:10.1016/j.cell.2021.06.019</a></p></div></div></li>
+          <li id="fq-u4"><span class="why-n">04</span><div><span class="uk2">자체 기준</span><h3>‘MACs 지수’</h3>
+            <p>좋은 원료를 넣는 것만큼 중요한 건 <strong>얼마나 먹느냐</strong>예요. MACs 지수는 유효성분을 하루에 얼마나 섭취하면 좋은지, 굿케어맥스가 스스로 정해 제시하는 <strong>일섭취량 기준</strong>이에요.</p>
+            <p>예를 들어 식이섬유는 하루 기준치 25g 가운데 절반인 12.5g을 한 팩으로 채우도록 맞췄어요. 매일 얼마나 챙겼는지 숫자로 가늠할 수 있게 하는 게 목표예요.</p>
+            <div class="tip"><b>WELLNESS TIP</b><p>나머지 절반은 식탁에서 채워요. 흰쌀 대신 잡곡밥, 반찬 하나는 나물이나 해조류, 간식은 껍질째 먹는 과일이나 견과 한 줌. 식이섬유를 늘릴 땐 물도 함께 충분히 마셔 주세요.</p></div></div></li>
+        </ol>
+      </div>
+
+      <div class="fq-sec">
+        <span class="fq-eb">FAQ</span>
+        <h2>자주 묻는 질문</h2>
+        <p class="fq-lead">답변에는 국제 학술지에 실린 사람 대상 연구에서 확인된 내용만 담았어요.</p>
+        <div class="fq-list">
+          <details class="fq" open><summary><b>Q1</b><span>MAC은 어떤 일을 하나요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>MAC은 우리 몸은 소화하지 못하지만, 장 속 미생물은 먹을 수 있는 탄수화물이에요. 위와 소장을 그대로 지나 대장까지 내려가면, 거기 사는 미생물들이 이걸 먹고 발효해요. 내가 먹는 한 끼 안에 <strong>장 속 미생물의 밥</strong>을 같이 챙겨 주는 셈이죠.</p>
+              <p>평소 식이섬유를 적게 먹는 건강한 성인 50명이 치커리 이눌린이 든 간식바를 4주간 먹은 연구에서는, 하루 7g 그룹의 장내 비피더스균 비율이 대조군보다 높아졌어요. 하루 3g 그룹도 정밀 분석(qPCR)에서 증가가 확인됐고요.</p>
+              <p class="fq-src">Reimer RA et al. Am J Clin Nutr. 2020;111(6):1286-1296. <a href="https://doi.org/10.1093/ajcn/nqaa074" target="_blank" rel="noopener">doi:10.1093/ajcn/nqaa074</a></p>
+            </div></details>
+          <details class="fq"><summary><b>Q2</b><span>비피더스균 말고 다른 미생물도 달라지나요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>네, 생각보다 콕 집어서 달라져요. 장 속 미생물 전체를 유전자 분석으로 훑어본 연구에서, 이눌린을 먹었을 때 꾸준히 변한 건 세 그룹이었어요. 비피더스균과 아나에로스티페스는 늘고, 빌로필라는 줄었죠.</p>
+              <p>미생물 전체 구성의 변화 폭은 크지 않았고, 대변 속 대사물질에도 유의한 변화는 없었다고 함께 보고됐어요. 장이 통째로 바뀌는 게 아니라, 특정 미생물들이 조용히 반응한다고 보는 게 정확해요.</p>
+              <p class="fq-src">Vandeputte D et al. Gut. 2017;66(11):1968-1974. <a href="https://doi.org/10.1136/gutjnl-2016-313271" target="_blank" rel="noopener">doi:10.1136/gutjnl-2016-313271</a></p>
+            </div></details>
+          <details class="fq"><summary><b>Q3</b><span>미생물이 MAC을 먹으면 뭐가 만들어지나요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>미생물이 식이섬유를 발효하면 짧은사슬지방산이라는 물질이 생겨요. 그중 하나가 낙산(부티르산)인데, 이걸 만드는 미생물을 ‘낙산 생성균’이라고 불러요.</p>
+              <p>건강한 성인 10명이 구아검 가수분해물(PHGG)을 하루 6g씩 2주 동안 먹은 연구에서는, 비피더스균과 함께 낙산 생성균들, 그리고 낙산을 만드는 데 쓰이는 유전자의 양이 늘어난 게 확인됐어요.</p>
+              <p class="fq-src">Ohashi Y et al. Benef Microbes. 2015;6(4):451-455. <a href="https://doi.org/10.3920/BM2014.0118" target="_blank" rel="noopener">doi:10.3920/BM2014.0118</a></p>
+            </div></details>
+          <details class="fq"><summary><b>Q4</b><span>프리바이오틱스, 프로바이오틱스와는 뭐가 달라요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>프로바이오틱스는 미생물 자체를 넣어 주는 거예요. 프리바이오틱스는 특정 유익균이 골라 먹는 먹이 성분이고요.</p>
+              <p>MAC은 여기서 한 걸음 더 넓게, 장 속에 사는 여러 미생물이 실제로 먹을 수 있는 탄수화물 전체를 가리키는 말이에요. 미생물마다 잘 먹는 사슬 길이가 달라서, 굿케어맥스는 길이가 다른 식이섬유를 <strong>2:6:2</strong>로 섞었어요.</p>
+            </div></details>
+          <details class="fq"><summary><b>Q5</b><span>식이섬유 먹으면 속이 더부룩하지 않을까요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>식이섬유 섭취가 부족한 건강한 성인 97명이 올리고프락토스를 4주 단위로 늘려 하루 15g까지 먹은 연구에서, 소리·압박감·통증·가스 같은 불편감은 섭취군과 위약군 모두 낮은 수준이었어요.</p>
+              <p>다만 사람마다 장 속 미생물이 달라서 처음 며칠은 가스가 조금 늘 수 있어요. 처음엔 천천히, 몸이 익숙해지면 꾸준히 드시는 걸 권해요.</p>
+              <p class="fq-src">Buddington RK et al. Nutrients. 2017;9(12):1372. <a href="https://doi.org/10.3390/nu9121372" target="_blank" rel="noopener">doi:10.3390/nu9121372</a></p>
+            </div></details>
+          <details class="fq"><summary><b>Q6</b><span>얼마나 먹어야 하나요? 한 병이면 충분해요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>위 연구들에서 사용한 양은 하루 3g에서 15g 사이였어요. 굿케어맥스 한 병에는 식이섬유가 <strong>12.5g</strong> 들어 있어서, 하루 영양성분 기준치(25g)의 절반을 한 번에 채울 수 있어요.</p>
+            </div></details>
+          <details class="fq"><summary><b>Q7</b><span>꾸준히 먹어야 하나요?</span><i aria-hidden="true">+</i></summary>
+            <div class="fq-a">
+              <p>장 속 미생물의 변화는 먹는 동안 서서히 나타나요. 지금까지 소개한 연구들도 짧게는 2주, 길게는 3개월 동안 매일 먹으며 변화를 지켜봤어요.</p>
+              <p>건강한 성인 44명이 PHGG를 하루 5g씩 12주 동안 먹은 이중맹검 연구에서는, 위약 그룹과 달리 장내 비피더스균 비율이 유의하게 늘었어요.</p>
+              <p class="fq-src">Yasukawa Z et al. Nutrients. 2019;11(9):2170. <a href="https://doi.org/10.3390/nu11092170" target="_blank" rel="noopener">doi:10.3390/nu11092170</a></p>
+            </div></details>
+        </div>
+      </div>
+
+      <div class="fq-sec">
+        <span class="fq-eb">DAILY ROUTINE</span>
+        <div class="rt">
+          <h3>장 속 미생물을 위한 ‘하루 두 번의 영양’ 루틴</h3>
+          <p>장 속 미생물에게는 <strong>한 가지를 많이</strong>보다 <strong>여러 가지를 골고루</strong>가 더 반가워요. 1만 명 넘는 사람의 장내 미생물을 분석한 연구에서, <strong>일주일에 30가지 이상의 식물성 식품</strong>을 먹은 사람들은 10가지 이하를 먹은 사람들보다 장내 미생물이 더 다양했어요.</p>
+          <h4>이렇게 시작해 보세요</h4>
+          <ul class="rt-day">
+            <li><b>아침</b><span>바쁜 아침엔 굿케어맥스 한 병으로 한 끼 영양과 MAC 12.5g을 함께 챙겨요.</span></li>
+            <li><b>점심</b><span>접시의 절반을 채소, 통곡물, 콩으로 채워요. 흰쌀만 먹기보다 잡곡을 섞어 보세요.</span></li>
+            <li><b>오후 간식</b><span>과일은 껍질째, 견과류는 한 줌. 매일 종류를 바꾸면 일주일 가짓수가 금세 늘어요.</span></li>
+            <li><b>저녁</b><span>버섯, 해조류, 양파·마늘처럼 평소 덜 먹던 재료를 하나씩 더해요.</span></li>
+            <li><b>외출할 때</b><span>가방에 한 병 넣어 두면 끼니를 놓친 날에도 미생물의 밥은 놓치지 않아요.</span></li>
+          </ul>
+          <p>식이섬유를 갑자기 많이 늘리기보다 며칠에 걸쳐 천천히 늘리고, 물도 충분히 함께 드세요. <strong>나를 위한 한 끼, 미생물을 위한 한 끼.</strong> 오늘 한 병으로 시작해 보세요.</p>
+          <p class="fq-src">McDonald D et al. American Gut: an Open Platform for Citizen Science Microbiome Research. mSystems. 2018;3(3):e00031-18.</p>
+        </div>
+      </div>
+
+      <p class="fq-note">소개한 연구는 이눌린·올리고프락토스·구아검 가수분해물 등 원료 단독 또는 일반 식생활에 대한 연구이며, 굿케어맥스 제품으로 수행한 시험 결과가 아니에요. 이 제품은 질병의 예방 및 치료를 위한 의약품이 아닙니다.</p>
+      <p class="src-note">*원물에 대한 설명 및 건강정보 입니다.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="band">
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="flogo">굿케어<br>맥스<small>We feed you &amp;<br>your microbes.</small></div>
+      <div><h6>Brand.</h6><p>GOODCARE MACs<br>굿케어맥스 · by VILAC</p></div>
+      <div><h6>Explore.</h6><ul><li><a href="#about">About MACs</a></li><li><a href="#process">1:1 Process</a></li><li><a href="#lineup">Line-up</a></li><li><a href="#column">Column</a></li><li><a href="#faq">FAQ</a></li><li><a href="https://www.immunobiome.co.kr/imbert" target="_blank" rel="noopener">IM.BERT ↗</a></li></ul></div>
+      <button class="to-top" type="button" id="toTop" aria-label="맨 위로"><svg viewBox="0 0 26 44" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 42V3M2 14 13 3l11 11"/></svg></button>
+    </div>
+    <p class="fine">© VILAC. GOODCARE MACs. 식이섬유 12.5g · 1일 기준치 50%는 완제품 실측 기준, 사균체 수치는 원료사 시험성적서(COA) 기준입니다. IM.BERT 관련 내용은 이뮤노바이옴 소개 자료를 바탕으로 합니다.</p>
+  </div>
+</footer>
+
+
+
+<div class="ask" id="ask">
+  <div class="ask-panel" id="askPanel" role="dialog" aria-label="문의하기">
+    <h3>무엇을 도와드릴까요?</h3><p>평일 09:00~18:00 · 점심 12:00~13:00</p>
+    <a href="#" data-kakao><i style="background:#FEE500;color:#191919">K</i><span>카카오톡 상담<small>채널 추가하고 바로 문의</small></span></a>
+    <a href="/board/index.html" data-gcm="inquiry"><i style="background:#EAF0FF;color:#004BDE">✎</i><span>1:1 문의 남기기<small>답변은 알림톡·이메일로</small></span></a>
+    <a href="https://www.immunobiome.co.kr/imbert" target="_blank" rel="noopener" data-gcm="imbert"><i style="background:#FFEDE6;color:#C8441B">B</i><span>IM.BERT 맞춤 상담 신청<small>장내 미생물 검사 · 1:1 설계</small></span></a>
+    <a href="tel:000-0000-0000"><i style="background:#F1EFEA;color:#14213D">☎</i><span>고객센터 전화<small>[000-0000-0000]</small></span></a>
+  </div>
+  <button type="button" class="ask-btn" id="askBtn" aria-expanded="false" aria-controls="askPanel" aria-label="문의하기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></button>
+</div>
+
+
+
+
+
+
+<script src="https://ecimg.cafe24img.com/pg3603b59929079057/vilac7171/gcm/gcm-main.js?v=3"></script>
+</body>
+</html>
