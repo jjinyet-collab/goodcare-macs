@@ -687,3 +687,9 @@ html.fq-open,html.fq-open body{overflow:hidden}
 .pc4:hover .pc4-ft .pc4-cart{background:#F75E03;border-color:#F75E03;color:#fff}
 @media (max-width:1000px){.shop4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:420px){.pc4-tx{padding:14px}.box1{width:58px;height:58px;font-size:15px}}
+
+/* new pack model (wider) */
+.bb-art img{height:clamp(170px,15.5vw,215px)}
+.bb-art .p2{left:46%}
+@media (max-width:760px){.bb-art img{height:160px}}
+.pk img{width:clamp(130px,13vw,240px)}

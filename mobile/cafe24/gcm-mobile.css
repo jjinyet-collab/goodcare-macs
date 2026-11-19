@@ -395,3 +395,8 @@ html.vw{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.gf-yum.on,.gf-mic.fed .mb{animation:none}}
 
 .about .gf{margin:26px -16px 0;padding:34px 0 14px;background:#F95D06;--gf-pad:18px;--gf-h:22px;--gf-s:12px}
+
+/* new pack model (wider) */
+.buy .art img{height:150px}
+.buy .p1{left:calc(50% - 124px)}
+.buy .p2{left:calc(50% + 4px)}
